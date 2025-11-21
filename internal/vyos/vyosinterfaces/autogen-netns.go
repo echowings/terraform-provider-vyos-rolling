@@ -11,79 +11,55 @@ import (
 func netns() schemadefinition.InterfaceDefinition {
 	return schemadefinition.InterfaceDefinition{
 		XMLName: xml.Name{
-			Local: "interfaceDefinition",
-		},
-		Node: []*schemadefinition.Node{{
+			Local: "interfaceDefinition"},
+		Node: []*schemadefinition.Node{&schemadefinition.Node{
 			IsBaseNode: false,
 			XMLName: xml.Name{
-				Local: "node",
-			},
+				Local: "node"},
 			NodeNameAttr: "netns",
 			OwnerAttr:    "${vyos_conf_scripts_dir}/netns.py",
-			Properties: []*schemadefinition.Properties{{
+			Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 				XMLName: xml.Name{
-					Local: "properties",
-				},
+					Local: "properties"},
 				Help:     []string{"Network namespace"},
-				Priority: []string{"10"},
-			}},
-			Children: []*schemadefinition.Children{{
+				Priority: []string{"10"}}},
+			Children: []*schemadefinition.Children{&schemadefinition.Children{
 				XMLName: xml.Name{
-					Local: "children",
-				},
-				TagNode: []*schemadefinition.TagNode{{
+					Local: "children"},
+				TagNode: []*schemadefinition.TagNode{&schemadefinition.TagNode{
 					IsBaseNode: true,
 					XMLName: xml.Name{
-						Local: "tagNode",
-					},
+						Local: "tagNode"},
 					NodeNameAttr: "name",
-					Properties: []*schemadefinition.Properties{{
+					Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 						XMLName: xml.Name{
-							Local: "properties",
-						},
+							Local: "properties"},
 						Help: []string{"Network namespace name"},
-						Constraint: []*schemadefinition.Constraint{{
+						Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 							XMLName: xml.Name{
-								Local: "constraint",
-							},
-							Regex: []string{"[a-zA-Z0-9-_]{1,100}"},
-						}},
-						ConstraintErrorMessage: []string{"Netns name must be alphanumeric and can contain hyphens and underscores."},
-					}},
-					Children: []*schemadefinition.Children{{
+								Local: "constraint"},
+							Regex: []string{"[a-zA-Z0-9-_]{1,100}"}}},
+						ConstraintErrorMessage: []string{"Netns name must be alphanumeric and can contain hyphens and underscores."}}},
+					Children: []*schemadefinition.Children{&schemadefinition.Children{
 						XMLName: xml.Name{
-							Local: "children",
-						},
-						LeafNode: []*schemadefinition.LeafNode{{
+							Local: "children"},
+						LeafNode: []*schemadefinition.LeafNode{&schemadefinition.LeafNode{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "leafNode",
-							},
+								Local: "leafNode"},
 							NodeNameAttr: "description",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
+									Local: "properties"},
 								Help: []string{"Description"},
-								Constraint: []*schemadefinition.Constraint{{
+								Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 									XMLName: xml.Name{
-										Local: "constraint",
-									},
-									Regex: []string{".{0,255}"},
-								}},
-								ValueHelp: []*schemadefinition.ValueHelp{{
+										Local: "constraint"},
+									Regex: []string{".{0,255}"}}},
+								ValueHelp: []*schemadefinition.ValueHelp{&schemadefinition.ValueHelp{
 									XMLName: xml.Name{
-										Local: "valueHelp",
-									},
+										Local: "valueHelp"},
 									Format:      "txt",
-									Description: "Description",
-								}},
-								ConstraintErrorMessage: []string{"Description too long (limit 255 characters)"},
-							}},
-						}},
-					}},
-				}},
-			}},
-		}},
-	}
+									Description: "Description"}},
+								ConstraintErrorMessage: []string{"Description too long (limit 255 characters)"}}}}}}}}}}}}}}
 }

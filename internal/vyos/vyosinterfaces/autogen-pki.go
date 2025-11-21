@@ -11,1031 +11,691 @@ import (
 func pki() schemadefinition.InterfaceDefinition {
 	return schemadefinition.InterfaceDefinition{
 		XMLName: xml.Name{
-			Local: "interfaceDefinition",
-		},
-		Node: []*schemadefinition.Node{{
+			Local: "interfaceDefinition"},
+		Node: []*schemadefinition.Node{&schemadefinition.Node{
 			IsBaseNode: false,
 			XMLName: xml.Name{
-				Local: "node",
-			},
+				Local: "node"},
 			NodeNameAttr: "pki",
 			OwnerAttr:    "${vyos_conf_scripts_dir}/pki.py",
-			Properties: []*schemadefinition.Properties{{
+			Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 				XMLName: xml.Name{
-					Local: "properties",
-				},
+					Local: "properties"},
 				Help:     []string{"Public key infrastructure (PKI)"},
-				Priority: []string{"300"},
-			}},
-			Children: []*schemadefinition.Children{{
+				Priority: []string{"300"}}},
+			Children: []*schemadefinition.Children{&schemadefinition.Children{
 				XMLName: xml.Name{
-					Local: "children",
-				},
-				Node: []*schemadefinition.Node{{
+					Local: "children"},
+				Node: []*schemadefinition.Node{&schemadefinition.Node{
 					IsBaseNode: false,
 					XMLName: xml.Name{
-						Local: "node",
-					},
+						Local: "node"},
 					NodeNameAttr: "openvpn",
-					Properties: []*schemadefinition.Properties{{
+					Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 						XMLName: xml.Name{
-							Local: "properties",
-						},
-						Help: []string{"OpenVPN keys"},
-					}},
-					Children: []*schemadefinition.Children{{
+							Local: "properties"},
+						Help: []string{"OpenVPN keys"}}},
+					Children: []*schemadefinition.Children{&schemadefinition.Children{
 						XMLName: xml.Name{
-							Local: "children",
-						},
-						TagNode: []*schemadefinition.TagNode{{
+							Local: "children"},
+						TagNode: []*schemadefinition.TagNode{&schemadefinition.TagNode{
 							IsBaseNode: true,
 							XMLName: xml.Name{
-								Local: "tagNode",
-							},
+								Local: "tagNode"},
 							NodeNameAttr: "shared-secret",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
-								Help: []string{"OpenVPN shared secret key"},
-							}},
-							Children: []*schemadefinition.Children{{
+									Local: "properties"},
+								Help: []string{"OpenVPN shared secret key"}}},
+							Children: []*schemadefinition.Children{&schemadefinition.Children{
 								XMLName: xml.Name{
-									Local: "children",
-								},
-								LeafNode: []*schemadefinition.LeafNode{{
+									Local: "children"},
+								LeafNode: []*schemadefinition.LeafNode{&schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "key",
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"OpenVPN shared secret key data"},
-									}},
-								}, {
+											Local: "properties"},
+										Help: []string{"OpenVPN shared secret key data"}}}}, &schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "version",
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"OpenVPN shared secret key version"},
-									}},
-								}},
-							}},
-						}},
-					}},
-				}, {
+											Local: "properties"},
+										Help: []string{"OpenVPN shared secret key version"}}}}}}}}}}}}, &schemadefinition.Node{
 					IsBaseNode: false,
 					XMLName: xml.Name{
-						Local: "node",
-					},
+						Local: "node"},
 					NodeNameAttr: "x509",
-					Properties: []*schemadefinition.Properties{{
+					Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 						XMLName: xml.Name{
-							Local: "properties",
-						},
-						Help: []string{"X509 Settings"},
-					}},
-					Children: []*schemadefinition.Children{{
+							Local: "properties"},
+						Help: []string{"X509 Settings"}}},
+					Children: []*schemadefinition.Children{&schemadefinition.Children{
 						XMLName: xml.Name{
-							Local: "children",
-						},
-						Node: []*schemadefinition.Node{{
+							Local: "children"},
+						Node: []*schemadefinition.Node{&schemadefinition.Node{
 							IsBaseNode: true,
 							XMLName: xml.Name{
-								Local: "node",
-							},
+								Local: "node"},
 							NodeNameAttr: "default",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
-								Help: []string{"X509 Default Values"},
-							}},
-							Children: []*schemadefinition.Children{{
+									Local: "properties"},
+								Help: []string{"X509 Default Values"}}},
+							Children: []*schemadefinition.Children{&schemadefinition.Children{
 								XMLName: xml.Name{
-									Local: "children",
-								},
-								LeafNode: []*schemadefinition.LeafNode{{
+									Local: "children"},
+								LeafNode: []*schemadefinition.LeafNode{&schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "country",
 									DefaultValue: []string{"GB"},
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"Default country"},
-									}},
-								}, {
+											Local: "properties"},
+										Help: []string{"Default country"}}}}, &schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "state",
 									DefaultValue: []string{"Some-State"},
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"Default state"},
-									}},
-								}, {
+											Local: "properties"},
+										Help: []string{"Default state"}}}}, &schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "locality",
 									DefaultValue: []string{"Some-City"},
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"Default locality"},
-									}},
-								}, {
+											Local: "properties"},
+										Help: []string{"Default locality"}}}}, &schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "organization",
 									DefaultValue: []string{"VyOS"},
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"Default organization"},
-									}},
-								}},
-							}},
-						}},
-					}},
-				}},
-				TagNode: []*schemadefinition.TagNode{{
+											Local: "properties"},
+										Help: []string{"Default organization"}}}}}}}}}}}}},
+				TagNode: []*schemadefinition.TagNode{&schemadefinition.TagNode{
 					IsBaseNode: true,
 					XMLName: xml.Name{
-						Local: "tagNode",
-					},
+						Local: "tagNode"},
 					NodeNameAttr: "ca",
-					Properties: []*schemadefinition.Properties{{
+					Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 						XMLName: xml.Name{
-							Local: "properties",
-						},
+							Local: "properties"},
 						Help: []string{"Certificate Authority"},
-						Constraint: []*schemadefinition.Constraint{{
+						Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 							XMLName: xml.Name{
-								Local: "constraint",
-							},
-							Regex: []string{"[-_a-zA-Z0-9][\\w\\-\\.\\+]&"},
-						}},
-					}},
-					Children: []*schemadefinition.Children{{
+								Local: "constraint"},
+							Regex: []string{"[-_a-zA-Z0-9][\\w\\-\\.\\+]&"}}}}},
+					Children: []*schemadefinition.Children{&schemadefinition.Children{
 						XMLName: xml.Name{
-							Local: "children",
-						},
-						Node: []*schemadefinition.Node{{
+							Local: "children"},
+						Node: []*schemadefinition.Node{&schemadefinition.Node{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "node",
-							},
+								Local: "node"},
 							NodeNameAttr: "private",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
-								Help: []string{"CA private key in PEM format"},
-							}},
-							Children: []*schemadefinition.Children{{
+									Local: "properties"},
+								Help: []string{"CA private key in PEM format"}}},
+							Children: []*schemadefinition.Children{&schemadefinition.Children{
 								XMLName: xml.Name{
-									Local: "children",
-								},
-								LeafNode: []*schemadefinition.LeafNode{{
+									Local: "children"},
+								LeafNode: []*schemadefinition.LeafNode{&schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "key",
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
+											Local: "properties"},
 										Help: []string{"Private key in PEM format"},
-										Constraint: []*schemadefinition.Constraint{{
+										Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Validator: []*schemadefinition.Validator{{
+												Local: "constraint"},
+											Validator: []*schemadefinition.Validator{&schemadefinition.Validator{
 												XMLName: xml.Name{
-													Local: "validator",
-												},
-												NameAttr: "base64",
-											}},
-										}},
-										ConstraintErrorMessage: []string{"Private key is not base64-encoded"},
-									}},
-								}, {
+													Local: "validator"},
+												NameAttr: "base64"}}}},
+										ConstraintErrorMessage: []string{"Private key is not base64-encoded"}}}}, &schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "password-protected",
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
+											Local: "properties"},
 										Help: []string{"Private key portion is password protected"},
-										Valueless: []*schemadefinition.Valueless{{
+										Valueless: []*schemadefinition.Valueless{&schemadefinition.Valueless{
 											XMLName: xml.Name{
-												Local: "valueless",
-											},
-										}},
-									}},
-								}},
-							}},
-						}},
-						LeafNode: []*schemadefinition.LeafNode{{
+												Local: "valueless"}}}}}}}}}}},
+						LeafNode: []*schemadefinition.LeafNode{&schemadefinition.LeafNode{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "leafNode",
-							},
+								Local: "leafNode"},
 							NodeNameAttr: "certificate",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
+									Local: "properties"},
 								Help: []string{"Certificate in PEM format"},
-								Constraint: []*schemadefinition.Constraint{{
+								Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 									XMLName: xml.Name{
-										Local: "constraint",
-									},
-									Validator: []*schemadefinition.Validator{{
+										Local: "constraint"},
+									Validator: []*schemadefinition.Validator{&schemadefinition.Validator{
 										XMLName: xml.Name{
-											Local: "validator",
-										},
-										NameAttr: "base64",
-									}},
-								}},
-								ConstraintErrorMessage: []string{"Certificate is not base64-encoded"},
-							}},
-						}, {
+											Local: "validator"},
+										NameAttr: "base64"}}}},
+								ConstraintErrorMessage: []string{"Certificate is not base64-encoded"}}}}, &schemadefinition.LeafNode{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "leafNode",
-							},
+								Local: "leafNode"},
 							NodeNameAttr: "description",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
+									Local: "properties"},
 								Help: []string{"Description"},
-								Constraint: []*schemadefinition.Constraint{{
+								Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 									XMLName: xml.Name{
-										Local: "constraint",
-									},
-									Regex: []string{".{0,255}"},
-								}},
-								ValueHelp: []*schemadefinition.ValueHelp{{
+										Local: "constraint"},
+									Regex: []string{".{0,255}"}}},
+								ValueHelp: []*schemadefinition.ValueHelp{&schemadefinition.ValueHelp{
 									XMLName: xml.Name{
-										Local: "valueHelp",
-									},
+										Local: "valueHelp"},
 									Format:      "txt",
-									Description: "Description",
-								}},
-								ConstraintErrorMessage: []string{"Description too long (limit 255 characters)"},
-							}},
-						}, {
+									Description: "Description"}},
+								ConstraintErrorMessage: []string{"Description too long (limit 255 characters)"}}}}, &schemadefinition.LeafNode{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "leafNode",
-							},
+								Local: "leafNode"},
 							NodeNameAttr: "crl",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
+									Local: "properties"},
 								Help: []string{"Certificate revocation list in PEM format"},
-								Constraint: []*schemadefinition.Constraint{{
+								Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 									XMLName: xml.Name{
-										Local: "constraint",
-									},
-									Validator: []*schemadefinition.Validator{{
+										Local: "constraint"},
+									Validator: []*schemadefinition.Validator{&schemadefinition.Validator{
 										XMLName: xml.Name{
-											Local: "validator",
-										},
-										NameAttr: "base64",
-									}},
-								}},
+											Local: "validator"},
+										NameAttr: "base64"}}}},
 								ConstraintErrorMessage: []string{"CRL is not base64-encoded"},
-								Multi: []*schemadefinition.Multi{{
+								Multi: []*schemadefinition.Multi{&schemadefinition.Multi{
 									XMLName: xml.Name{
-										Local: "multi",
-									},
-								}},
-							}},
-						}, {
+										Local: "multi"}}}}}}, &schemadefinition.LeafNode{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "leafNode",
-							},
+								Local: "leafNode"},
 							NodeNameAttr: "system-install",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
+									Local: "properties"},
 								Help: []string{"Install into CA certificate store on router"},
-								Valueless: []*schemadefinition.Valueless{{
+								Valueless: []*schemadefinition.Valueless{&schemadefinition.Valueless{
 									XMLName: xml.Name{
-										Local: "valueless",
-									},
-								}},
-							}},
-						}, {
+										Local: "valueless"}}}}}}, &schemadefinition.LeafNode{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "leafNode",
-							},
+								Local: "leafNode"},
 							NodeNameAttr: "revoke",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
+									Local: "properties"},
 								Help: []string{"Include certificate in parent CRL"},
-								Valueless: []*schemadefinition.Valueless{{
+								Valueless: []*schemadefinition.Valueless{&schemadefinition.Valueless{
 									XMLName: xml.Name{
-										Local: "valueless",
-									},
-								}},
-							}},
-						}},
-					}},
-				}, {
+										Local: "valueless"}}}}}}}}}}, &schemadefinition.TagNode{
 					IsBaseNode: true,
 					XMLName: xml.Name{
-						Local: "tagNode",
-					},
+						Local: "tagNode"},
 					NodeNameAttr: "certificate",
-					Properties: []*schemadefinition.Properties{{
+					Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 						XMLName: xml.Name{
-							Local: "properties",
-						},
+							Local: "properties"},
 						Help: []string{"Certificate"},
-						Constraint: []*schemadefinition.Constraint{{
+						Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 							XMLName: xml.Name{
-								Local: "constraint",
-							},
-							Regex: []string{"[-_a-zA-Z0-9][\\w\\-\\.\\+]&"},
-						}},
-					}},
-					Children: []*schemadefinition.Children{{
+								Local: "constraint"},
+							Regex: []string{"[-_a-zA-Z0-9][\\w\\-\\.\\+]&"}}}}},
+					Children: []*schemadefinition.Children{&schemadefinition.Children{
 						XMLName: xml.Name{
-							Local: "children",
-						},
-						Node: []*schemadefinition.Node{{
+							Local: "children"},
+						Node: []*schemadefinition.Node{&schemadefinition.Node{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "node",
-							},
+								Local: "node"},
 							NodeNameAttr: "acme",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
-								Help: []string{"Automatic Certificate Management Environment (ACME) request"},
-							}},
-							Children: []*schemadefinition.Children{{
+									Local: "properties"},
+								Help: []string{"Automatic Certificate Management Environment (ACME) request"}}},
+							Children: []*schemadefinition.Children{&schemadefinition.Children{
 								XMLName: xml.Name{
-									Local: "children",
-								},
-								LeafNode: []*schemadefinition.LeafNode{{
+									Local: "children"},
+								LeafNode: []*schemadefinition.LeafNode{&schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "url",
 									DefaultValue: []string{"https://acme-v02.api.letsencrypt.org/directory"},
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
+											Local: "properties"},
 										Help: []string{"Remote URL"},
-										Constraint: []*schemadefinition.Constraint{{
+										Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Validator: []*schemadefinition.Validator{{
+												Local: "constraint"},
+											Validator: []*schemadefinition.Validator{&schemadefinition.Validator{
 												XMLName: xml.Name{
-													Local: "validator",
-												},
+													Local: "validator"},
 												NameAttr:     "url",
-												ArgumentAttr: "--scheme http --scheme https",
-											}},
-										}},
-										ValueHelp: []*schemadefinition.ValueHelp{{
+												ArgumentAttr: "--scheme http --scheme https"}}}},
+										ValueHelp: []*schemadefinition.ValueHelp{&schemadefinition.ValueHelp{
 											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
+												Local: "valueHelp"},
 											Format:      "url",
-											Description: "Remote HTTP(S) URL",
-										}},
-										ConstraintErrorMessage: []string{"Invalid HTTP(S) URL format"},
-									}},
-								}, {
+											Description: "Remote HTTP(S) URL"}},
+										ConstraintErrorMessage: []string{"Invalid HTTP(S) URL format"}}}}, &schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "domain-name",
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
+											Local: "properties"},
 										Help: []string{"Domain Name"},
-										Constraint: []*schemadefinition.Constraint{{
+										Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Validator: []*schemadefinition.Validator{{
+												Local: "constraint"},
+											Validator: []*schemadefinition.Validator{&schemadefinition.Validator{
 												XMLName: xml.Name{
-													Local: "validator",
-												},
-												NameAttr: "fqdn",
-											}},
-										}},
+													Local: "validator"},
+												NameAttr: "fqdn"}}}},
 										ConstraintErrorMessage: []string{"Invalid domain name (RFC 1123 section 2).\\nMay only contain letters, numbers and .-_"},
-										Multi: []*schemadefinition.Multi{{
+										Multi: []*schemadefinition.Multi{&schemadefinition.Multi{
 											XMLName: xml.Name{
-												Local: "multi",
-											},
-										}},
-									}},
-								}, {
+												Local: "multi"}}}}}}, &schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "email",
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
+											Local: "properties"},
 										Help: []string{"Email address to associate with certificate"},
-										Constraint: []*schemadefinition.Constraint{{
+										Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Regex: []string{"[^\\s@]+@([^\\s@.,]+\\.)+[^\\s@.,]{2,}"},
-										}},
-									}},
-								}, {
+												Local: "constraint"},
+											Regex: []string{"[^\\s@]+@([^\\s@.,]+\\.)+[^\\s@.,]{2,}"}}}}}}, &schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "listen-address",
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
+											Local: "properties"},
 										Help: []string{"Local IP addresses to listen on"},
-										Constraint: []*schemadefinition.Constraint{{
+										Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Validator: []*schemadefinition.Validator{{
+												Local: "constraint"},
+											Validator: []*schemadefinition.Validator{&schemadefinition.Validator{
 												XMLName: xml.Name{
-													Local: "validator",
-												},
-												NameAttr: "ip-address",
-											}, {
+													Local: "validator"},
+												NameAttr: "ip-address"}, &schemadefinition.Validator{
 												XMLName: xml.Name{
-													Local: "validator",
-												},
-												NameAttr: "ipv6-link-local",
-											}},
-										}},
-										ValueHelp: []*schemadefinition.ValueHelp{{
+													Local: "validator"},
+												NameAttr: "ipv6-link-local"}}}},
+										ValueHelp: []*schemadefinition.ValueHelp{&schemadefinition.ValueHelp{
 											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
+												Local: "valueHelp"},
 											Format:      "ipv4",
-											Description: "IPv4 address to listen for incoming connections",
-										}, {
+											Description: "IPv4 address to listen for incoming connections"}, &schemadefinition.ValueHelp{
 											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
+												Local: "valueHelp"},
 											Format:      "ipv6",
-											Description: "IPv6 address to listen for incoming connections",
-										}},
-										CompletionHelp: []*schemadefinition.CompletionHelp{{
+											Description: "IPv6 address to listen for incoming connections"}},
+										CompletionHelp: []*schemadefinition.CompletionHelp{&schemadefinition.CompletionHelp{
 											XMLName: xml.Name{
-												Local: "completionHelp",
-											},
-											Script: []string{"${vyos_completion_dir}/list_local_ips.sh --both"},
-										}},
-									}},
-								}, {
+												Local: "completionHelp"},
+											Script: []string{"${vyos_completion_dir}/list_local_ips.sh --both"}}}}}}, &schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "rsa-key-size",
 									DefaultValue: []string{"2048"},
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
+											Local: "properties"},
 										Help: []string{"Size of the RSA key"},
-										Constraint: []*schemadefinition.Constraint{{
+										Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Regex: []string{"(2048|3072|4096)"},
-										}},
-										ValueHelp: []*schemadefinition.ValueHelp{{
+												Local: "constraint"},
+											Regex: []string{"(2048|3072|4096)"}}},
+										ValueHelp: []*schemadefinition.ValueHelp{&schemadefinition.ValueHelp{
 											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
+												Local: "valueHelp"},
 											Format:      "2048",
-											Description: "RSA key length 2048 bit",
-										}, {
+											Description: "RSA key length 2048 bit"}, &schemadefinition.ValueHelp{
 											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
+												Local: "valueHelp"},
 											Format:      "3072",
-											Description: "RSA key length 3072 bit",
-										}, {
+											Description: "RSA key length 3072 bit"}, &schemadefinition.ValueHelp{
 											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
+												Local: "valueHelp"},
 											Format:      "4096",
-											Description: "RSA key length 4096 bit",
-										}},
-										CompletionHelp: []*schemadefinition.CompletionHelp{{
+											Description: "RSA key length 4096 bit"}},
+										CompletionHelp: []*schemadefinition.CompletionHelp{&schemadefinition.CompletionHelp{
 											XMLName: xml.Name{
-												Local: "completionHelp",
-											},
-											List: []string{"2048 3072 4096"},
-										}},
-									}},
-								}},
-							}},
-						}, {
+												Local: "completionHelp"},
+											List: []string{"2048 3072 4096"}}}}}}}}}}, &schemadefinition.Node{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "node",
-							},
+								Local: "node"},
 							NodeNameAttr: "private",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
-								Help: []string{"Certificate private key"},
-							}},
-							Children: []*schemadefinition.Children{{
+									Local: "properties"},
+								Help: []string{"Certificate private key"}}},
+							Children: []*schemadefinition.Children{&schemadefinition.Children{
 								XMLName: xml.Name{
-									Local: "children",
-								},
-								LeafNode: []*schemadefinition.LeafNode{{
+									Local: "children"},
+								LeafNode: []*schemadefinition.LeafNode{&schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "key",
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
+											Local: "properties"},
 										Help: []string{"Private key in PEM format"},
-										Constraint: []*schemadefinition.Constraint{{
+										Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Validator: []*schemadefinition.Validator{{
+												Local: "constraint"},
+											Validator: []*schemadefinition.Validator{&schemadefinition.Validator{
 												XMLName: xml.Name{
-													Local: "validator",
-												},
-												NameAttr: "base64",
-											}},
-										}},
-										ConstraintErrorMessage: []string{"Private key is not base64-encoded"},
-									}},
-								}, {
+													Local: "validator"},
+												NameAttr: "base64"}}}},
+										ConstraintErrorMessage: []string{"Private key is not base64-encoded"}}}}, &schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "password-protected",
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
+											Local: "properties"},
 										Help: []string{"Private key portion is password protected"},
-										Valueless: []*schemadefinition.Valueless{{
+										Valueless: []*schemadefinition.Valueless{&schemadefinition.Valueless{
 											XMLName: xml.Name{
-												Local: "valueless",
-											},
-										}},
-									}},
-								}},
-							}},
-						}},
-						LeafNode: []*schemadefinition.LeafNode{{
+												Local: "valueless"}}}}}}}}}}},
+						LeafNode: []*schemadefinition.LeafNode{&schemadefinition.LeafNode{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "leafNode",
-							},
+								Local: "leafNode"},
 							NodeNameAttr: "certificate",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
+									Local: "properties"},
 								Help: []string{"Certificate in PEM format"},
-								Constraint: []*schemadefinition.Constraint{{
+								Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 									XMLName: xml.Name{
-										Local: "constraint",
-									},
-									Validator: []*schemadefinition.Validator{{
+										Local: "constraint"},
+									Validator: []*schemadefinition.Validator{&schemadefinition.Validator{
 										XMLName: xml.Name{
-											Local: "validator",
-										},
-										NameAttr: "base64",
-									}},
-								}},
-								ConstraintErrorMessage: []string{"Certificate is not base64-encoded"},
-							}},
-						}, {
+											Local: "validator"},
+										NameAttr: "base64"}}}},
+								ConstraintErrorMessage: []string{"Certificate is not base64-encoded"}}}}, &schemadefinition.LeafNode{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "leafNode",
-							},
+								Local: "leafNode"},
 							NodeNameAttr: "description",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
+									Local: "properties"},
 								Help: []string{"Description"},
-								Constraint: []*schemadefinition.Constraint{{
+								Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 									XMLName: xml.Name{
-										Local: "constraint",
-									},
-									Regex: []string{".{0,255}"},
-								}},
-								ValueHelp: []*schemadefinition.ValueHelp{{
+										Local: "constraint"},
+									Regex: []string{".{0,255}"}}},
+								ValueHelp: []*schemadefinition.ValueHelp{&schemadefinition.ValueHelp{
 									XMLName: xml.Name{
-										Local: "valueHelp",
-									},
+										Local: "valueHelp"},
 									Format:      "txt",
-									Description: "Description",
-								}},
-								ConstraintErrorMessage: []string{"Description too long (limit 255 characters)"},
-							}},
-						}, {
+									Description: "Description"}},
+								ConstraintErrorMessage: []string{"Description too long (limit 255 characters)"}}}}, &schemadefinition.LeafNode{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "leafNode",
-							},
+								Local: "leafNode"},
 							NodeNameAttr: "revoke",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
+									Local: "properties"},
 								Help: []string{"Include certificate in parent CRL"},
-								Valueless: []*schemadefinition.Valueless{{
+								Valueless: []*schemadefinition.Valueless{&schemadefinition.Valueless{
 									XMLName: xml.Name{
-										Local: "valueless",
-									},
-								}},
-							}},
-						}},
-					}},
-				}, {
+										Local: "valueless"}}}}}}}}}}, &schemadefinition.TagNode{
 					IsBaseNode: true,
 					XMLName: xml.Name{
-						Local: "tagNode",
-					},
+						Local: "tagNode"},
 					NodeNameAttr: "dh",
-					Properties: []*schemadefinition.Properties{{
+					Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 						XMLName: xml.Name{
-							Local: "properties",
-						},
+							Local: "properties"},
 						Help: []string{"Diffie-Hellman parameters"},
-						Constraint: []*schemadefinition.Constraint{{
+						Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 							XMLName: xml.Name{
-								Local: "constraint",
-							},
-							Regex: []string{"[-_a-zA-Z0-9][\\w\\-\\.\\+]&"},
-						}},
-					}},
-					Children: []*schemadefinition.Children{{
+								Local: "constraint"},
+							Regex: []string{"[-_a-zA-Z0-9][\\w\\-\\.\\+]&"}}}}},
+					Children: []*schemadefinition.Children{&schemadefinition.Children{
 						XMLName: xml.Name{
-							Local: "children",
-						},
-						LeafNode: []*schemadefinition.LeafNode{{
+							Local: "children"},
+						LeafNode: []*schemadefinition.LeafNode{&schemadefinition.LeafNode{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "leafNode",
-							},
+								Local: "leafNode"},
 							NodeNameAttr: "parameters",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
+									Local: "properties"},
 								Help: []string{"DH parameters in PEM format"},
-								Constraint: []*schemadefinition.Constraint{{
+								Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 									XMLName: xml.Name{
-										Local: "constraint",
-									},
-									Validator: []*schemadefinition.Validator{{
+										Local: "constraint"},
+									Validator: []*schemadefinition.Validator{&schemadefinition.Validator{
 										XMLName: xml.Name{
-											Local: "validator",
-										},
-										NameAttr: "base64",
-									}},
-								}},
-								ConstraintErrorMessage: []string{"DH parameters are not base64-encoded"},
-							}},
-						}},
-					}},
-				}, {
+											Local: "validator"},
+										NameAttr: "base64"}}}},
+								ConstraintErrorMessage: []string{"DH parameters are not base64-encoded"}}}}}}}}, &schemadefinition.TagNode{
 					IsBaseNode: true,
 					XMLName: xml.Name{
-						Local: "tagNode",
-					},
+						Local: "tagNode"},
 					NodeNameAttr: "key-pair",
-					Properties: []*schemadefinition.Properties{{
+					Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 						XMLName: xml.Name{
-							Local: "properties",
-						},
-						Help: []string{"Public and private keys"},
-					}},
-					Children: []*schemadefinition.Children{{
+							Local: "properties"},
+						Help: []string{"Public and private keys"}}},
+					Children: []*schemadefinition.Children{&schemadefinition.Children{
 						XMLName: xml.Name{
-							Local: "children",
-						},
-						Node: []*schemadefinition.Node{{
+							Local: "children"},
+						Node: []*schemadefinition.Node{&schemadefinition.Node{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "node",
-							},
+								Local: "node"},
 							NodeNameAttr: "public",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
-								Help: []string{"Public key"},
-							}},
-							Children: []*schemadefinition.Children{{
+									Local: "properties"},
+								Help: []string{"Public key"}}},
+							Children: []*schemadefinition.Children{&schemadefinition.Children{
 								XMLName: xml.Name{
-									Local: "children",
-								},
-								LeafNode: []*schemadefinition.LeafNode{{
+									Local: "children"},
+								LeafNode: []*schemadefinition.LeafNode{&schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "key",
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
+											Local: "properties"},
 										Help: []string{"Public key in PEM format"},
-										Constraint: []*schemadefinition.Constraint{{
+										Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Validator: []*schemadefinition.Validator{{
+												Local: "constraint"},
+											Validator: []*schemadefinition.Validator{&schemadefinition.Validator{
 												XMLName: xml.Name{
-													Local: "validator",
-												},
-												NameAttr: "base64",
-											}},
-										}},
-										ConstraintErrorMessage: []string{"Public key is not base64-encoded"},
-									}},
-								}},
-							}},
-						}, {
+													Local: "validator"},
+												NameAttr: "base64"}}}},
+										ConstraintErrorMessage: []string{"Public key is not base64-encoded"}}}}}}}}, &schemadefinition.Node{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "node",
-							},
+								Local: "node"},
 							NodeNameAttr: "private",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
-								Help: []string{"Private key"},
-							}},
-							Children: []*schemadefinition.Children{{
+									Local: "properties"},
+								Help: []string{"Private key"}}},
+							Children: []*schemadefinition.Children{&schemadefinition.Children{
 								XMLName: xml.Name{
-									Local: "children",
-								},
-								LeafNode: []*schemadefinition.LeafNode{{
+									Local: "children"},
+								LeafNode: []*schemadefinition.LeafNode{&schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "key",
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
+											Local: "properties"},
 										Help: []string{"Private key in PEM format"},
-										Constraint: []*schemadefinition.Constraint{{
+										Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Validator: []*schemadefinition.Validator{{
+												Local: "constraint"},
+											Validator: []*schemadefinition.Validator{&schemadefinition.Validator{
 												XMLName: xml.Name{
-													Local: "validator",
-												},
-												NameAttr: "base64",
-											}},
-										}},
-										ConstraintErrorMessage: []string{"Private key is not base64-encoded"},
-									}},
-								}, {
+													Local: "validator"},
+												NameAttr: "base64"}}}},
+										ConstraintErrorMessage: []string{"Private key is not base64-encoded"}}}}, &schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "password-protected",
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
+											Local: "properties"},
 										Help: []string{"Private key portion is password protected"},
-										Valueless: []*schemadefinition.Valueless{{
+										Valueless: []*schemadefinition.Valueless{&schemadefinition.Valueless{
 											XMLName: xml.Name{
-												Local: "valueless",
-											},
-										}},
-									}},
-								}},
-							}},
-						}},
-					}},
-				}, {
+												Local: "valueless"}}}}}}}}}}}}}}, &schemadefinition.TagNode{
 					IsBaseNode: true,
 					XMLName: xml.Name{
-						Local: "tagNode",
-					},
+						Local: "tagNode"},
 					NodeNameAttr: "openssh",
-					Properties: []*schemadefinition.Properties{{
+					Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 						XMLName: xml.Name{
-							Local: "properties",
-						},
-						Help: []string{"OpenSSH public and private keys"},
-					}},
-					Children: []*schemadefinition.Children{{
+							Local: "properties"},
+						Help: []string{"OpenSSH public and private keys"}}},
+					Children: []*schemadefinition.Children{&schemadefinition.Children{
 						XMLName: xml.Name{
-							Local: "children",
-						},
-						Node: []*schemadefinition.Node{{
+							Local: "children"},
+						Node: []*schemadefinition.Node{&schemadefinition.Node{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "node",
-							},
+								Local: "node"},
 							NodeNameAttr: "public",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
-								Help: []string{"Public key"},
-							}},
-							Children: []*schemadefinition.Children{{
+									Local: "properties"},
+								Help: []string{"Public key"}}},
+							Children: []*schemadefinition.Children{&schemadefinition.Children{
 								XMLName: xml.Name{
-									Local: "children",
-								},
-								LeafNode: []*schemadefinition.LeafNode{{
+									Local: "children"},
+								LeafNode: []*schemadefinition.LeafNode{&schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "key",
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
+											Local: "properties"},
 										Help: []string{"Public key in PEM format"},
-										Constraint: []*schemadefinition.Constraint{{
+										Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Validator: []*schemadefinition.Validator{{
+												Local: "constraint"},
+											Validator: []*schemadefinition.Validator{&schemadefinition.Validator{
 												XMLName: xml.Name{
-													Local: "validator",
-												},
-												NameAttr: "base64",
-											}},
-										}},
-										ConstraintErrorMessage: []string{"Public key is not base64-encoded"},
-									}},
-								}, {
+													Local: "validator"},
+												NameAttr: "base64"}}}},
+										ConstraintErrorMessage: []string{"Public key is not base64-encoded"}}}}, &schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "type",
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
+											Local: "properties"},
 										Help: []string{"SSH public key type"},
-										Constraint: []*schemadefinition.Constraint{{
+										Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Regex: []string{"(ssh-rsa)"},
-										}},
-										ValueHelp: []*schemadefinition.ValueHelp{{
+												Local: "constraint"},
+											Regex: []string{"(ssh-rsa)"}}},
+										ValueHelp: []*schemadefinition.ValueHelp{&schemadefinition.ValueHelp{
 											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
+												Local: "valueHelp"},
 											Format:      "ssh-rsa",
-											Description: "Key pair based on RSA algorithm",
-										}},
-										CompletionHelp: []*schemadefinition.CompletionHelp{{
+											Description: "Key pair based on RSA algorithm"}},
+										CompletionHelp: []*schemadefinition.CompletionHelp{&schemadefinition.CompletionHelp{
 											XMLName: xml.Name{
-												Local: "completionHelp",
-											},
-											List: []string{"ssh-rsa"},
-										}},
-									}},
-								}},
-							}},
-						}, {
+												Local: "completionHelp"},
+											List: []string{"ssh-rsa"}}}}}}}}}}, &schemadefinition.Node{
 							IsBaseNode: false,
 							XMLName: xml.Name{
-								Local: "node",
-							},
+								Local: "node"},
 							NodeNameAttr: "private",
-							Properties: []*schemadefinition.Properties{{
+							Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 								XMLName: xml.Name{
-									Local: "properties",
-								},
-								Help: []string{"Private key"},
-							}},
-							Children: []*schemadefinition.Children{{
+									Local: "properties"},
+								Help: []string{"Private key"}}},
+							Children: []*schemadefinition.Children{&schemadefinition.Children{
 								XMLName: xml.Name{
-									Local: "children",
-								},
-								LeafNode: []*schemadefinition.LeafNode{{
+									Local: "children"},
+								LeafNode: []*schemadefinition.LeafNode{&schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "key",
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
+											Local: "properties"},
 										Help: []string{"Private key in PEM format"},
-										Constraint: []*schemadefinition.Constraint{{
+										Constraint: []*schemadefinition.Constraint{&schemadefinition.Constraint{
 											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Validator: []*schemadefinition.Validator{{
+												Local: "constraint"},
+											Validator: []*schemadefinition.Validator{&schemadefinition.Validator{
 												XMLName: xml.Name{
-													Local: "validator",
-												},
-												NameAttr: "base64",
-											}},
-										}},
-										ConstraintErrorMessage: []string{"Private key is not base64-encoded"},
-									}},
-								}, {
+													Local: "validator"},
+												NameAttr: "base64"}}}},
+										ConstraintErrorMessage: []string{"Private key is not base64-encoded"}}}}, &schemadefinition.LeafNode{
 									IsBaseNode: false,
 									XMLName: xml.Name{
-										Local: "leafNode",
-									},
+										Local: "leafNode"},
 									NodeNameAttr: "password-protected",
-									Properties: []*schemadefinition.Properties{{
+									Properties: []*schemadefinition.Properties{&schemadefinition.Properties{
 										XMLName: xml.Name{
-											Local: "properties",
-										},
+											Local: "properties"},
 										Help: []string{"Private key portion is password protected"},
-										Valueless: []*schemadefinition.Valueless{{
+										Valueless: []*schemadefinition.Valueless{&schemadefinition.Valueless{
 											XMLName: xml.Name{
-												Local: "valueless",
-											},
-										}},
-									}},
-								}},
-							}},
-						}},
-					}},
-				}},
-			}},
-		}},
-	}
+												Local: "valueless"}}}}}}}}}}}}}}}}}}}}
 }

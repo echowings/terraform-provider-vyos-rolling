@@ -147,7 +147,8 @@ internal/vyos/schemadefinition/autogen-structs.go: data/vyos-1x-info.txt interna
 	# Add a parent value to node structs
 	sed -i 's|\(type [A-Za-z]*Node struct {\)|\1\nParent NodeParent|' internal/vyos/schemadefinition/autogen-structs.go
 
-	# Format output
+	# Format output (install gofumpt if missing)
+	command -v gofumpt >/dev/null 2>&1 || (echo Installing gofumpt; GO111MODULE=on go install mvdan.cc/gofumpt@latest)
 	gofumpt -w ./internal/vyos/schemadefinition/
 
 # Compile interface devfinitions
@@ -163,11 +164,17 @@ internal/vyos/schemadefinition/autogen-structs.go: data/vyos-1x-info.txt interna
 	# see vyos-1x as newer than the interface-definitions
 	# causing interface-definitions to always rebuild
 	sudo docker volume create --name repo
+	# Remove any leftover container that may conflict with the create step
+	sudo docker rm -f make-interface-definitions || true
 	sudo docker container create --name make-interface-definitions -v repo:/docker-volume busybox
 	sudo docker cp .build/vyos-1x make-interface-definitions:/docker-volume
 
 	# Build interface definitions using the vyos build container.
-	sudo docker run --rm -v repo:/docker-volume -w /docker-volume/vyos-1x docker.io/vyos/vyos-build:current make interface_definitions
+	# Some images may miss the runtime lib; attempt to install it before running the make target.
+	# Use local wrapper image that ensures required runtime libs are installed.
+	# Build the image with: docker build -t vyos-build:local-with-libs tools/vyos-build-wrapper
+	sudo docker run --rm -v repo:/docker-volume -w /docker-volume/vyos-1x vyos-build:local-with-libs \
+		bash -lc "make interface_definitions"
 
 	# Clean up the tmp resources
 	sudo docker cp make-interface-definitions:/docker-volume/vyos-1x/build/interface-definitions .build/interface-definitions
@@ -194,7 +201,8 @@ internal/vyos/vyosinterfaces/autogen.go: \
 
 	# Generate interfaces
 	cd tools/generate-vyos-infterface-definition-structs
-	go get
+	# Ensure a compatible golang.org/x/tools version is available (use latest recommended)
+	go get golang.org/x/tools@latest
 	go run ./*.go \
 			"../../.build/interface-definitions/" \
 			"../../internal/vyos/vyosinterfaces" \
@@ -219,6 +227,7 @@ internal/vyos/vyosinterfaces/autogen.go: \
 
 	echo -e "}\n}" >> "../../internal/vyos/vyosinterfaces/autogen.go"
 
+	command -v gofumpt >/dev/null 2>&1 || (echo Installing gofumpt; GO111MODULE=on go install mvdan.cc/gofumpt@latest)
 	gofumpt -w ../../internal/vyos/vyosinterfaces/*.go
 
 internal/terraform/resource/autogen/package.go: \
@@ -245,6 +254,7 @@ internal/terraform/resource/autogen/package.go: \
 		"system/conntrack-timeout-custom-rule"
 
 	# Clean up code
+	command -v gofumpt >/dev/null 2>&1 || (echo Installing gofumpt; GO111MODULE=on go install mvdan.cc/gofumpt@latest)
 	gofumpt -w "../../internal/terraform/resource/autogen/"
 	goimports -w "../../internal/terraform/resource/autogen"
 
