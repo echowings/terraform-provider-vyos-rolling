@@ -30,6 +30,8 @@ type PolicyRoutesixRuleDestination struct {
 	// Nodes
 
 	NodePolicyRoutesixRuleDestinationGroup *PolicyRoutesixRuleDestinationGroup `tfsdk:"group" vyos:"group,omitempty"`
+
+	NodePolicyRoutesixRuleDestinationGeoIP *PolicyRoutesixRuleDestinationGeoIP `tfsdk:"geoip" vyos:"geoip,omitempty"`
 }
 
 // ResourceSchemaAttributes generates the schema attributes for the resource at this level
@@ -102,6 +104,17 @@ func (o PolicyRoutesixRuleDestination) ResourceSchemaAttributes(ctx context.Cont
 
 `,
 			Description: `Group
+
+`,
+		},
+
+		"geoip": schema.SingleNestedAttribute{
+			Attributes: PolicyRoutesixRuleDestinationGeoIP{}.ResourceSchemaAttributes(ctx),
+			Optional:   true,
+			MarkdownDescription: `GeoIP options - Data provided by DB-IP.com
+
+`,
+			Description: `GeoIP options - Data provided by DB-IP.com
 
 `,
 		},

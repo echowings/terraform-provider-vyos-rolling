@@ -22,16 +22,17 @@ var _ helpers.VyosResourceDataModel = &ServiceDhcpvsixServerSharedNetworkNameSub
 // Top level basenode type: `N/A`
 type ServiceDhcpvsixServerSharedNetworkNameSubnetRangeOption struct {
 	// LeafNodes
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionCaptivePortal   types.String `tfsdk:"captive_portal" vyos:"captive-portal,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionDomainSearch    types.List   `tfsdk:"domain_search" vyos:"domain-search,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionNameServer      types.List   `tfsdk:"name_server" vyos:"name-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionNisDomain       types.String `tfsdk:"nis_domain" vyos:"nis-domain,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionNisServer       types.List   `tfsdk:"nis_server" vyos:"nis-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionNisplusDomain   types.String `tfsdk:"nisplus_domain" vyos:"nisplus-domain,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionNisplusServer   types.List   `tfsdk:"nisplus_server" vyos:"nisplus-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionSIPServer       types.List   `tfsdk:"sip_server" vyos:"sip-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionSntpServer      types.List   `tfsdk:"sntp_server" vyos:"sntp-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionInfoRefreshTime types.Number `tfsdk:"info_refresh_time" vyos:"info-refresh-time,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionCaptivePortal    types.String `tfsdk:"captive_portal" vyos:"captive-portal,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionDomainSearch     types.List   `tfsdk:"domain_search" vyos:"domain-search,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionNameServer       types.List   `tfsdk:"name_server" vyos:"name-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionCapwapController types.String `tfsdk:"capwap_controller" vyos:"capwap-controller,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionNisDomain        types.String `tfsdk:"nis_domain" vyos:"nis-domain,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionNisServer        types.List   `tfsdk:"nis_server" vyos:"nis-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionNisplusDomain    types.String `tfsdk:"nisplus_domain" vyos:"nisplus-domain,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionNisplusServer    types.List   `tfsdk:"nisplus_server" vyos:"nisplus-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionSIPServer        types.List   `tfsdk:"sip_server" vyos:"sip-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionSntpServer       types.List   `tfsdk:"sntp_server" vyos:"sntp-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetRangeOptionInfoRefreshTime  types.Number `tfsdk:"info_refresh_time" vyos:"info-refresh-time,omitempty"`
 
 	// TagNodes
 
@@ -93,6 +94,25 @@ func (o ServiceDhcpvsixServerSharedNetworkNameSubnetRangeOption) ResourceSchemaA
     |  Format  |  Description                            |
     |----------|-----------------------------------------|
     |  ipv6    |  Domain Name Server (DNS) IPv6 address  |
+`,
+		},
+
+		"capwap_controller":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (capwap-controller) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `IP address of CAPWAP access controller (Option 52)
+
+    |  Format  |  Description           |
+    |----------|------------------------|
+    |  ipv6    |  CAPWAP AC controller  |
+`,
+			Description: `IP address of CAPWAP access controller (Option 52)
+
+    |  Format  |  Description           |
+    |----------|------------------------|
+    |  ipv6    |  CAPWAP AC controller  |
 `,
 		},
 

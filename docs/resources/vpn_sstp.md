@@ -36,6 +36,7 @@ Virtual Private Network (VPN)
       - [mtu](#mtu)
       - [name_server](#name_server)
       - [port](#port)
+      - [thread_count](#thread_count)
       - [timeouts](#timeouts)
       - [wins_server](#wins_server)
     - [Read-Only](#read-only)
@@ -101,6 +102,14 @@ Virtual Private Network (VPN)
     |  Format   &emsp;|  Description      |
     |-----------|-------------------|
     |  1-65535  &emsp;|  Numeric IP port  |
+#### thread_count
+- `thread_count` (String) Number of working threads
+
+    |  Format  &emsp;|  Description                      |
+    |----------|-----------------------------------|
+    |  all     &emsp;|  Use all available CPU cores      |
+    |  half    &emsp;|  Use half of available CPU cores  |
+    |  1-512   &emsp;|  Thread count                     |
 #### timeouts
 - `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
 #### wins_server

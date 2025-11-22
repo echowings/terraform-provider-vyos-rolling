@@ -36,6 +36,8 @@ type ProtocolsBgpAddressFamilyIPvsixUnicastRedistribute struct {
 
 	ExistsNodeProtocolsBgpAddressFamilyIPvsixUnicastRedistributeKernel bool `tfsdk:"-" vyos:"kernel,child"`
 
+	ExistsNodeProtocolsBgpAddressFamilyIPvsixUnicastRedistributeNhrp bool `tfsdk:"-" vyos:"nhrp,child"`
+
 	ExistsNodeProtocolsBgpAddressFamilyIPvsixUnicastRedistributeStatic bool `tfsdk:"-" vyos:"static,child"`
 
 	ExistsNodeProtocolsBgpAddressFamilyIPvsixUnicastRedistributeOspfvthree bool `tfsdk:"-" vyos:"ospfv3,child"`

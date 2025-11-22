@@ -29,15 +29,18 @@ Service Policy definitions
     - [Required](#required)
       - [identifier](#identifier)
     - [Optional](#optional)
+      - [ack_filter](#ack_filter)
       - [bandwidth](#bandwidth)
       - [description](#description)
       - [flow_isolation](#flow_isolation)
       - [flow_isolation_nat](#flow_isolation_nat)
+      - [no_split_gso](#no_split_gso)
       - [rtt](#rtt)
       - [timeouts](#timeouts)
     - [Read-Only](#read-only)
       - [id](#id)
     - [Nested Schema for `identifier`](#nested-schema-for-identifier)
+    - [Nested Schema for `ack_filter`](#nested-schema-for-ack_filter)
     - [Nested Schema for `timeouts`](#nested-schema-for-timeouts)
   - [Import](#import)
 
@@ -53,6 +56,8 @@ Service Policy definitions
 
 ### Optional
 
+#### ack_filter
+- `ack_filter` (Attributes) Identify and filter out TCP ACK packets that do not convey significant new information (see [below for nested schema](#nestedatt--ack_filter))
 #### bandwidth
 - `bandwidth` (String) Available bandwidth for this policy
 
@@ -86,6 +91,8 @@ Service Policy definitions
     |  triple-isolate  &emsp;|  Flows are defined by the 5-tuple, fairness is applied over source and destination addresses and also over individual flows (default)  |
 #### flow_isolation_nat
 - `flow_isolation_nat` (Boolean) Perform NAT lookup before applying flow-isolation rules
+#### no_split_gso
+- `no_split_gso` (Boolean) Do not split GSO super-packets into on-the-wire components
 #### rtt
 - `rtt` (Number) Round-Trip-Time for Active Queue Management (AQM)
 
@@ -110,6 +117,14 @@ Required:
     |  Format  &emsp;|  Description  |
     |----------|---------------|
     |  txt     &emsp;|  Policy name  |
+
+
+<a id="nestedatt--ack_filter"></a>
+### Nested Schema for `ack_filter`
+
+Optional:
+
+- `aggressive` (Boolean) Enable aggressive mode which will result in more ACK packets being compresses/filtered
 
 
 <a id="nestedatt--timeouts"></a>

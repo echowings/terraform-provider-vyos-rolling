@@ -34,6 +34,7 @@ type VpnPptpRemoteAccess struct {
 	LeafVpnPptpRemoteAccessGatewayAddress        types.String `tfsdk:"gateway_address" vyos:"gateway-address,omitempty"`
 	LeafVpnPptpRemoteAccessMaxConcurrentSessions types.Number `tfsdk:"max_concurrent_sessions" vyos:"max-concurrent-sessions,omitempty"`
 	LeafVpnPptpRemoteAccessMtu                   types.String `tfsdk:"mtu" vyos:"mtu,omitempty"`
+	LeafVpnPptpRemoteAccessThreadCount           types.String `tfsdk:"thread_count" vyos:"thread-count,omitempty"`
 	LeafVpnPptpRemoteAccessWinsServer            types.List   `tfsdk:"wins_server" vyos:"wins-server,omitempty"`
 	LeafVpnPptpRemoteAccessDescrIPtion           types.String `tfsdk:"description" vyos:"description,omitempty"`
 	LeafVpnPptpRemoteAccessNameServer            types.List   `tfsdk:"name_server" vyos:"name-server,omitempty"`
@@ -230,6 +231,32 @@ func (o VpnPptpRemoteAccess) ResourceSchemaAttributes(ctx context.Context) map[s
 `,
 
 			// Default:          stringdefault.StaticString(`1436`),
+			Computed: true,
+		},
+
+		"thread_count":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (thread-count) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `Number of working threads
+
+    |  Format  |  Description                      |
+    |----------|-----------------------------------|
+    |  all     |  Use all available CPU cores      |
+    |  half    |  Use half of available CPU cores  |
+    |  1-512   |  Thread count                     |
+`,
+			Description: `Number of working threads
+
+    |  Format  |  Description                      |
+    |----------|-----------------------------------|
+    |  all     |  Use all available CPU cores      |
+    |  half    |  Use half of available CPU cores  |
+    |  1-512   |  Thread count                     |
+`,
+
+			// Default:          stringdefault.StaticString(`all`),
 			Computed: true,
 		},
 

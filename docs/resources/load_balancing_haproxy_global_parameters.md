@@ -5,7 +5,7 @@ subcategory: "Load Balancing"
 
 description: |-
   ~> This resource is global, having more than one resource of this type is likely to cause configuration drift / conflicts.
-  load-balancing⯯Configure haproxy⯯Global perfomance parameters and limits
+  load-balancing⯯HAProxy TCP/HTTP Load Balancer⯯Global perfomance parameters and limits
 ---
 
 # vyos_load_balancing_haproxy_global_parameters (Resource)
@@ -15,7 +15,7 @@ description: |-
 
 *load-balancing*  
 ⯯  
-Configure haproxy  
+HAProxy TCP/HTTP Load Balancer  
 ⯯  
 **Global perfomance parameters and limits**
 

@@ -534,6 +534,75 @@ func container() schemadefinition.InterfaceDefinition {
 							XMLName: xml.Name{
 								Local: "tagNode",
 							},
+							NodeNameAttr: "tmpfs",
+							Properties: []*schemadefinition.Properties{{
+								XMLName: xml.Name{
+									Local: "properties",
+								},
+								Help: []string{"Mount a tmpfs filesystem into the container"},
+							}},
+							Children: []*schemadefinition.Children{{
+								XMLName: xml.Name{
+									Local: "children",
+								},
+								LeafNode: []*schemadefinition.LeafNode{{
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "destination",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Destination container directory"},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "txt",
+											Description: "Destination container directory",
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "size",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"tmpfs filesystem size in MB"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr:     "numeric",
+												ArgumentAttr: "--range 1-65535",
+											}},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "u32:1-65536",
+											Description: "tmpfs filesystem size in MB",
+										}},
+										ConstraintErrorMessage: []string{"Container tmpfs size must be between 1 and 65535 MB"},
+									}},
+								}},
+							}},
+						}, {
+							IsBaseNode: true,
+							XMLName: xml.Name{
+								Local: "tagNode",
+							},
 							NodeNameAttr: "volume",
 							Properties: []*schemadefinition.Properties{{
 								XMLName: xml.Name{
@@ -735,7 +804,7 @@ func container() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(net-admin|net-bind-service|net-raw|setpcap|sys-admin|sys-module|sys-nice|sys-time)"},
+									Regex: []string{"(net-admin|net-bind-service|net-raw|mknod|setpcap|sys-admin|sys-module|sys-nice|sys-time)"},
 								}},
 								ValueHelp: []*schemadefinition.ValueHelp{{
 									XMLName: xml.Name{
@@ -755,6 +824,12 @@ func container() schemadefinition.InterfaceDefinition {
 									},
 									Format:      "net-raw",
 									Description: "Permission to create raw network sockets",
+								}, {
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "mknod",
+									Description: "Permission to create special files",
 								}, {
 									XMLName: xml.Name{
 										Local: "valueHelp",
@@ -790,11 +865,28 @@ func container() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "completionHelp",
 									},
-									List: []string{"net-admin net-bind-service net-raw setpcap sys-admin sys-module sys-nice sys-time"},
+									List: []string{"net-admin net-bind-service net-raw mknod setpcap sys-admin sys-module sys-nice sys-time"},
 								}},
 								Multi: []*schemadefinition.Multi{{
 									XMLName: xml.Name{
 										Local: "multi",
+									},
+								}},
+							}},
+						}, {
+							IsBaseNode: false,
+							XMLName: xml.Name{
+								Local: "leafNode",
+							},
+							NodeNameAttr: "privileged",
+							Properties: []*schemadefinition.Properties{{
+								XMLName: xml.Name{
+									Local: "properties",
+								},
+								Help: []string{"Grant root capabilities to the container"},
+								Valueless: []*schemadefinition.Valueless{{
+									XMLName: xml.Name{
+										Local: "valueless",
 									},
 								}},
 							}},
@@ -1206,6 +1298,50 @@ func container() schemadefinition.InterfaceDefinition {
 									Description: "Group ID this container will run as",
 								}},
 							}},
+						}, {
+							IsBaseNode: false,
+							XMLName: xml.Name{
+								Local: "leafNode",
+							},
+							NodeNameAttr: "log-driver",
+							DefaultValue: []string{"journald"},
+							Properties: []*schemadefinition.Properties{{
+								XMLName: xml.Name{
+									Local: "properties",
+								},
+								Help: []string{"Configure container log driver"},
+								Constraint: []*schemadefinition.Constraint{{
+									XMLName: xml.Name{
+										Local: "constraint",
+									},
+									Regex: []string{"(k8s-file|journald|none)"},
+								}},
+								ValueHelp: []*schemadefinition.ValueHelp{{
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "k8s-file",
+									Description: "Logs to plain-text file",
+								}, {
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "journald",
+									Description: "Logs to systemd's journal",
+								}, {
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "none",
+									Description: "Disable logging for the container",
+								}},
+								CompletionHelp: []*schemadefinition.CompletionHelp{{
+									XMLName: xml.Name{
+										Local: "completionHelp",
+									},
+									List: []string{"k8s-file journald none"},
+								}},
+							}},
 						}},
 					}},
 				}, {
@@ -1478,6 +1614,139 @@ func container() schemadefinition.InterfaceDefinition {
 									}},
 								}},
 							}},
+						}, {
+							IsBaseNode: false,
+							XMLName: xml.Name{
+								Local: "node",
+							},
+							NodeNameAttr: "mirror",
+							Properties: []*schemadefinition.Properties{{
+								XMLName: xml.Name{
+									Local: "properties",
+								},
+								Help: []string{"Registry mirror, use host-name|address[:port][/path]"},
+							}},
+							Children: []*schemadefinition.Children{{
+								XMLName: xml.Name{
+									Local: "children",
+								},
+								LeafNode: []*schemadefinition.LeafNode{{
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "address",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"IP address of container registry mirror"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr: "ip-address",
+											}, {
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr: "ipv6-link-local",
+											}},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "ipv4",
+											Description: "IPv4 address of container registry mirror",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "ipv6",
+											Description: "IPv6 address of container registry mirror",
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "host-name",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Hostname of container registry mirror"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr: "fqdn",
+											}},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "hostname",
+											Description: "FQDN of container registry mirror",
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "port",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Port number used by connection"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr:     "numeric",
+												ArgumentAttr: "--range 1-65535",
+											}},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "u32:1-65535",
+											Description: "Numeric IP port",
+										}},
+										ConstraintErrorMessage: []string{"Port number must be in range 1 to 65535"},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "path",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Path of container registry mirror, optional, must be start with '/' if not empty"},
+									}},
+								}},
+							}},
 						}},
 						LeafNode: []*schemadefinition.LeafNode{{
 							IsBaseNode: false,
@@ -1490,6 +1759,23 @@ func container() schemadefinition.InterfaceDefinition {
 									Local: "properties",
 								},
 								Help: []string{"Disable instance"},
+								Valueless: []*schemadefinition.Valueless{{
+									XMLName: xml.Name{
+										Local: "valueless",
+									},
+								}},
+							}},
+						}, {
+							IsBaseNode: false,
+							XMLName: xml.Name{
+								Local: "leafNode",
+							},
+							NodeNameAttr: "insecure",
+							Properties: []*schemadefinition.Properties{{
+								XMLName: xml.Name{
+									Local: "properties",
+								},
+								Help: []string{"Allow registry access over unencrypted HTTP or TLS connections with untrusted certificates"},
 								Valueless: []*schemadefinition.Valueless{{
 									XMLName: xml.Name{
 										Local: "valueless",

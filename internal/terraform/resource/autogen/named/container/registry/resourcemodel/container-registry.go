@@ -46,13 +46,16 @@ type ContainerRegistry struct {
 	SelfIdentifier *ContainerRegistrySelfIdentifier `tfsdk:"identifier" vyos:"-,self-id"`
 
 	// LeafNodes
-	LeafContainerRegistryDisable types.Bool `tfsdk:"disable" vyos:"disable,omitempty"`
+	LeafContainerRegistryDisable  types.Bool `tfsdk:"disable" vyos:"disable,omitempty"`
+	LeafContainerRegistryInsecure types.Bool `tfsdk:"insecure" vyos:"insecure,omitempty"`
 
 	// TagNodes
 
 	// Nodes
 
 	NodeContainerRegistryAuthentication *ContainerRegistryAuthentication `tfsdk:"authentication" vyos:"authentication,omitempty"`
+
+	NodeContainerRegistryMirror *ContainerRegistryMirror `tfsdk:"mirror" vyos:"mirror,omitempty"`
 }
 
 // SetID configures the resource ID
@@ -169,6 +172,21 @@ func (o ContainerRegistry) ResourceSchemaAttributes(ctx context.Context) map[str
 			Computed: true,
 		},
 
+		"insecure":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (insecure) */
+		schema.BoolAttribute{
+			Optional: true,
+			MarkdownDescription: `Allow registry access over unencrypted HTTP or TLS connections with untrusted certificates
+
+`,
+			Description: `Allow registry access over unencrypted HTTP or TLS connections with untrusted certificates
+
+`,
+			Default:  booldefault.StaticBool(false),
+			Computed: true,
+		},
+
 		// TagNodes
 
 		// Nodes
@@ -180,6 +198,17 @@ func (o ContainerRegistry) ResourceSchemaAttributes(ctx context.Context) map[str
 
 `,
 			Description: `Authentication settings
+
+`,
+		},
+
+		"mirror": schema.SingleNestedAttribute{
+			Attributes: ContainerRegistryMirror{}.ResourceSchemaAttributes(ctx),
+			Optional:   true,
+			MarkdownDescription: `Registry mirror, use host-name|address[:port][/path]
+
+`,
+			Description: `Registry mirror, use host-name|address[:port][/path]
 
 `,
 		},

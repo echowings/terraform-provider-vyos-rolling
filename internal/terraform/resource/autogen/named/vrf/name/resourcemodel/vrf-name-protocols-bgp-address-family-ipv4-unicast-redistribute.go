@@ -36,6 +36,8 @@ type VrfNameProtocolsBgpAddressFamilyIPvfourUnicastRedistribute struct {
 
 	NodeVrfNameProtocolsBgpAddressFamilyIPvfourUnicastRedistributeKernel *VrfNameProtocolsBgpAddressFamilyIPvfourUnicastRedistributeKernel `tfsdk:"kernel" vyos:"kernel,omitempty"`
 
+	NodeVrfNameProtocolsBgpAddressFamilyIPvfourUnicastRedistributeNhrp *VrfNameProtocolsBgpAddressFamilyIPvfourUnicastRedistributeNhrp `tfsdk:"nhrp" vyos:"nhrp,omitempty"`
+
 	NodeVrfNameProtocolsBgpAddressFamilyIPvfourUnicastRedistributeStatic *VrfNameProtocolsBgpAddressFamilyIPvfourUnicastRedistributeStatic `tfsdk:"static" vyos:"static,omitempty"`
 
 	NodeVrfNameProtocolsBgpAddressFamilyIPvfourUnicastRedistributeOspf *VrfNameProtocolsBgpAddressFamilyIPvfourUnicastRedistributeOspf `tfsdk:"ospf" vyos:"ospf,omitempty"`
@@ -92,6 +94,17 @@ func (o VrfNameProtocolsBgpAddressFamilyIPvfourUnicastRedistribute) ResourceSche
 
 `,
 			Description: `Redistribute kernel routes into BGP
+
+`,
+		},
+
+		"nhrp": schema.SingleNestedAttribute{
+			Attributes: VrfNameProtocolsBgpAddressFamilyIPvfourUnicastRedistributeNhrp{}.ResourceSchemaAttributes(ctx),
+			Optional:   true,
+			MarkdownDescription: `Redistribute NHRP routes into BGP
+
+`,
+			Description: `Redistribute NHRP routes into BGP
 
 `,
 		},

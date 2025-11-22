@@ -1,0 +1,2 @@
+
+terraform import vyos_load_balancing_haproxy_timeout.example "load-balancing__haproxy__timeout"

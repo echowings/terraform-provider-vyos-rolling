@@ -55,9 +55,9 @@ description: |-
 #### hash_size
 - `hash_size` (Number) Hash size for connection tracking table
 
-    |  Format      &emsp;|  Description                                        |
-    |--------------|-----------------------------------------------------|
-    |  1-50000000  &emsp;|  Size of hash to use for connection tracking table  |
+    |  Format         &emsp;|  Description                                        |
+    |-----------------|-----------------------------------------------------|
+    |  1024-50000000  &emsp;|  Size of hash to use for connection tracking table  |
 #### table_size
 - `table_size` (Number) Size of connection tracking table
 

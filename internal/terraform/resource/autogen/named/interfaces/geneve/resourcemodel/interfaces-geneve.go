@@ -51,6 +51,7 @@ type InterfacesGeneve struct {
 	LeafInterfacesGeneveDisable     types.Bool   `tfsdk:"disable" vyos:"disable,omitempty"`
 	LeafInterfacesGeneveMac         types.String `tfsdk:"mac" vyos:"mac,omitempty"`
 	LeafInterfacesGeneveMtu         types.Number `tfsdk:"mtu" vyos:"mtu,omitempty"`
+	LeafInterfacesGenevePort        types.Number `tfsdk:"port" vyos:"port,omitempty"`
 	LeafInterfacesGeneveRedirect    types.String `tfsdk:"redirect" vyos:"redirect,omitempty"`
 	LeafInterfacesGeneveRemote      types.String `tfsdk:"remote" vyos:"remote,omitempty"`
 	LeafInterfacesGeneveVrf         types.String `tfsdk:"vrf" vyos:"vrf,omitempty"`
@@ -267,6 +268,28 @@ func (o InterfacesGeneve) ResourceSchemaAttributes(ctx context.Context) map[stri
 `,
 
 			// Default:          stringdefault.StaticString(`1500`),
+			Computed: true,
+		},
+
+		"port":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (port) */
+		schema.NumberAttribute{
+			Optional: true,
+			MarkdownDescription: `Port number used by connection
+
+    |  Format   |  Description      |
+    |-----------|-------------------|
+    |  1-65535  |  Numeric IP port  |
+`,
+			Description: `Port number used by connection
+
+    |  Format   |  Description      |
+    |-----------|-------------------|
+    |  1-65535  |  Numeric IP port  |
+`,
+
+			// Default:          stringdefault.StaticString(`6081`),
 			Computed: true,
 		},
 

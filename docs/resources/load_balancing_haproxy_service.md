@@ -4,7 +4,7 @@ page_title: "vyos_load_balancing_haproxy_service Resource - vyos"
 subcategory: "Load Balancing"
 
 description: |-
-  load-balancing⯯Configure haproxy⯯Frontend service name
+  load-balancing⯯HAProxy TCP/HTTP Load Balancer⯯Frontend service name
 ---
 
 # vyos_load_balancing_haproxy_service (Resource)
@@ -13,7 +13,7 @@ description: |-
 
 *load-balancing*  
 ⯯  
-Configure haproxy  
+HAProxy TCP/HTTP Load Balancer  
 ⯯  
 **Frontend service name**
 
@@ -32,12 +32,12 @@ Configure haproxy
       - [backend](#backend)
       - [description](#description)
       - [http_compression](#http_compression)
-      - [listen_address](#listen_address)
       - [mode](#mode)
       - [port](#port)
       - [redirect_http_to_https](#redirect_http_to_https)
       - [ssl](#ssl)
       - [tcp_request](#tcp_request)
+      - [timeout](#timeout)
       - [timeouts](#timeouts)
     - [Read-Only](#read-only)
       - [id](#id)
@@ -45,6 +45,7 @@ Configure haproxy
     - [Nested Schema for `http_compression`](#nested-schema-for-http_compression)
     - [Nested Schema for `ssl`](#nested-schema-for-ssl)
     - [Nested Schema for `tcp_request`](#nested-schema-for-tcp_request)
+    - [Nested Schema for `timeout`](#nested-schema-for-timeout)
     - [Nested Schema for `timeouts`](#nested-schema-for-timeouts)
   - [Import](#import)
 
@@ -63,9 +64,9 @@ Configure haproxy
 #### backend
 - `backend` (List of String) Backend member
 
-    |  Format  &emsp;|  Description                     |
-    |----------|----------------------------------|
-    |  txt     &emsp;|  Name of haproxy backend system  |
+    |  Format  &emsp;|  Description                  |
+    |----------|-------------------------------|
+    |  txt     &emsp;|  HAProxy backend system name  |
 #### description
 - `description` (String) Description
 
@@ -74,13 +75,6 @@ Configure haproxy
     |  txt     &emsp;|  Description  |
 #### http_compression
 - `http_compression` (Attributes) Compress HTTP responses (see [below for nested schema](#nestedatt--http_compression))
-#### listen_address
-- `listen_address` (List of String) Local IP addresses to listen on
-
-    |  Format  &emsp;|  Description                                      |
-    |----------|---------------------------------------------------|
-    |  ipv4    &emsp;|  IPv4 address to listen for incoming connections  |
-    |  ipv6    &emsp;|  IPv6 address to listen for incoming connections  |
 #### mode
 - `mode` (String) Proxy mode
 
@@ -100,6 +94,8 @@ Configure haproxy
 - `ssl` (Attributes) SSL Certificate, SSL Key and CA (see [below for nested schema](#nestedatt--ssl))
 #### tcp_request
 - `tcp_request` (Attributes) TCP request directive (see [below for nested schema](#nestedatt--tcp_request))
+#### timeout
+- `timeout` (Attributes) Timeout options (see [below for nested schema](#nestedatt--timeout))
 #### timeouts
 - `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
 
@@ -151,6 +147,18 @@ Optional:
     |  Format   &emsp;|  Description                                  |
     |-----------|-----------------------------------------------|
     |  1-65535  &emsp;|  The timeout value specified in milliseconds  |
+
+
+<a id="nestedatt--timeout"></a>
+### Nested Schema for `timeout`
+
+Optional:
+
+- `client` (Number) Maximum inactivity time on the client side
+
+    |  Format  &emsp;|  Description         |
+    |----------|----------------------|
+    |  1-3600  &emsp;|  Timeout in seconds  |
 
 
 <a id="nestedatt--timeouts"></a>

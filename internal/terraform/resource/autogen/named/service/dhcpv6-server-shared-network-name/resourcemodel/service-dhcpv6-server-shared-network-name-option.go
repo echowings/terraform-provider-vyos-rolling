@@ -22,16 +22,17 @@ var _ helpers.VyosResourceDataModel = &ServiceDhcpvsixServerSharedNetworkNameOpt
 // Top level basenode type: `N/A`
 type ServiceDhcpvsixServerSharedNetworkNameOption struct {
 	// LeafNodes
-	LeafServiceDhcpvsixServerSharedNetworkNameOptionCaptivePortal   types.String `tfsdk:"captive_portal" vyos:"captive-portal,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameOptionDomainSearch    types.List   `tfsdk:"domain_search" vyos:"domain-search,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameOptionNameServer      types.List   `tfsdk:"name_server" vyos:"name-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameOptionNisDomain       types.String `tfsdk:"nis_domain" vyos:"nis-domain,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameOptionNisServer       types.List   `tfsdk:"nis_server" vyos:"nis-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameOptionNisplusDomain   types.String `tfsdk:"nisplus_domain" vyos:"nisplus-domain,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameOptionNisplusServer   types.List   `tfsdk:"nisplus_server" vyos:"nisplus-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameOptionSIPServer       types.List   `tfsdk:"sip_server" vyos:"sip-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameOptionSntpServer      types.List   `tfsdk:"sntp_server" vyos:"sntp-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameOptionInfoRefreshTime types.Number `tfsdk:"info_refresh_time" vyos:"info-refresh-time,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameOptionCaptivePortal    types.String `tfsdk:"captive_portal" vyos:"captive-portal,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameOptionDomainSearch     types.List   `tfsdk:"domain_search" vyos:"domain-search,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameOptionNameServer       types.List   `tfsdk:"name_server" vyos:"name-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameOptionCapwapController types.String `tfsdk:"capwap_controller" vyos:"capwap-controller,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameOptionNisDomain        types.String `tfsdk:"nis_domain" vyos:"nis-domain,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameOptionNisServer        types.List   `tfsdk:"nis_server" vyos:"nis-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameOptionNisplusDomain    types.String `tfsdk:"nisplus_domain" vyos:"nisplus-domain,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameOptionNisplusServer    types.List   `tfsdk:"nisplus_server" vyos:"nisplus-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameOptionSIPServer        types.List   `tfsdk:"sip_server" vyos:"sip-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameOptionSntpServer       types.List   `tfsdk:"sntp_server" vyos:"sntp-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameOptionInfoRefreshTime  types.Number `tfsdk:"info_refresh_time" vyos:"info-refresh-time,omitempty"`
 
 	// TagNodes
 
@@ -93,6 +94,25 @@ func (o ServiceDhcpvsixServerSharedNetworkNameOption) ResourceSchemaAttributes(c
     |  Format  |  Description                            |
     |----------|-----------------------------------------|
     |  ipv6    |  Domain Name Server (DNS) IPv6 address  |
+`,
+		},
+
+		"capwap_controller":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (capwap-controller) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `IP address of CAPWAP access controller (Option 52)
+
+    |  Format  |  Description           |
+    |----------|------------------------|
+    |  ipv6    |  CAPWAP AC controller  |
+`,
+			Description: `IP address of CAPWAP access controller (Option 52)
+
+    |  Format  |  Description           |
+    |----------|------------------------|
+    |  ipv6    |  CAPWAP AC controller  |
 `,
 		},
 

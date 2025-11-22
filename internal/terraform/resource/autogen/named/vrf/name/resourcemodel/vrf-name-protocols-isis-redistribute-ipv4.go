@@ -32,6 +32,8 @@ type VrfNameProtocolsIsisRedistributeIPvfour struct {
 
 	NodeVrfNameProtocolsIsisRedistributeIPvfourKernel *VrfNameProtocolsIsisRedistributeIPvfourKernel `tfsdk:"kernel" vyos:"kernel,omitempty"`
 
+	NodeVrfNameProtocolsIsisRedistributeIPvfourNhrp *VrfNameProtocolsIsisRedistributeIPvfourNhrp `tfsdk:"nhrp" vyos:"nhrp,omitempty"`
+
 	NodeVrfNameProtocolsIsisRedistributeIPvfourOspf *VrfNameProtocolsIsisRedistributeIPvfourOspf `tfsdk:"ospf" vyos:"ospf,omitempty"`
 
 	NodeVrfNameProtocolsIsisRedistributeIPvfourRIP *VrfNameProtocolsIsisRedistributeIPvfourRIP `tfsdk:"rip" vyos:"rip,omitempty"`
@@ -79,6 +81,17 @@ func (o VrfNameProtocolsIsisRedistributeIPvfour) ResourceSchemaAttributes(ctx co
 
 `,
 			Description: `Redistribute kernel routes into IS-IS
+
+`,
+		},
+
+		"nhrp": schema.SingleNestedAttribute{
+			Attributes: VrfNameProtocolsIsisRedistributeIPvfourNhrp{}.ResourceSchemaAttributes(ctx),
+			Optional:   true,
+			MarkdownDescription: `Redistribute NHRP routes into IS-IS
+
+`,
+			Description: `Redistribute NHRP routes into IS-IS
 
 `,
 		},

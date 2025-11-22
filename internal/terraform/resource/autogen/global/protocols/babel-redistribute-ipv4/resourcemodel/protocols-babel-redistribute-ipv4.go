@@ -33,6 +33,7 @@ type ProtocolsBabelRedistributeIPvfour struct {
 	LeafProtocolsBabelRedistributeIPvfourConnected  types.Bool `tfsdk:"connected" vyos:"connected,omitempty"`
 	LeafProtocolsBabelRedistributeIPvfourIsis       types.Bool `tfsdk:"isis" vyos:"isis,omitempty"`
 	LeafProtocolsBabelRedistributeIPvfourKernel     types.Bool `tfsdk:"kernel" vyos:"kernel,omitempty"`
+	LeafProtocolsBabelRedistributeIPvfourNhrp       types.Bool `tfsdk:"nhrp" vyos:"nhrp,omitempty"`
 	LeafProtocolsBabelRedistributeIPvfourOpenfabric types.Bool `tfsdk:"openfabric" vyos:"openfabric,omitempty"`
 	LeafProtocolsBabelRedistributeIPvfourStatic     types.Bool `tfsdk:"static" vyos:"static,omitempty"`
 	LeafProtocolsBabelRedistributeIPvfourOspf       types.Bool `tfsdk:"ospf" vyos:"ospf,omitempty"`
@@ -170,6 +171,21 @@ func (o ProtocolsBabelRedistributeIPvfour) ResourceSchemaAttributes(ctx context.
 
 `,
 			Description: `Redistribute Kernel routes (not installed via the zebra RIB)
+
+`,
+			Default:  booldefault.StaticBool(false),
+			Computed: true,
+		},
+
+		"nhrp":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (nhrp) */
+		schema.BoolAttribute{
+			Optional: true,
+			MarkdownDescription: `Redistribute NHRP routes
+
+`,
+			Description: `Redistribute NHRP routes
 
 `,
 			Default:  booldefault.StaticBool(false),

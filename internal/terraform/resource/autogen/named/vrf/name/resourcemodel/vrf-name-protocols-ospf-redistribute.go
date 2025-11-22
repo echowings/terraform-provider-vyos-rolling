@@ -36,6 +36,8 @@ type VrfNameProtocolsOspfRedistribute struct {
 
 	NodeVrfNameProtocolsOspfRedistributeKernel *VrfNameProtocolsOspfRedistributeKernel `tfsdk:"kernel" vyos:"kernel,omitempty"`
 
+	NodeVrfNameProtocolsOspfRedistributeNhrp *VrfNameProtocolsOspfRedistributeNhrp `tfsdk:"nhrp" vyos:"nhrp,omitempty"`
+
 	NodeVrfNameProtocolsOspfRedistributeRIP *VrfNameProtocolsOspfRedistributeRIP `tfsdk:"rip" vyos:"rip,omitempty"`
 
 	NodeVrfNameProtocolsOspfRedistributeBabel *VrfNameProtocolsOspfRedistributeBabel `tfsdk:"babel" vyos:"babel,omitempty"`
@@ -92,6 +94,17 @@ func (o VrfNameProtocolsOspfRedistribute) ResourceSchemaAttributes(ctx context.C
 
 `,
 			Description: `Redistribute Kernel routes
+
+`,
+		},
+
+		"nhrp": schema.SingleNestedAttribute{
+			Attributes: VrfNameProtocolsOspfRedistributeNhrp{}.ResourceSchemaAttributes(ctx),
+			Optional:   true,
+			MarkdownDescription: `Redistribute NHRP routes
+
+`,
+			Description: `Redistribute NHRP routes
 
 `,
 		},

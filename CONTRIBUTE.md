@@ -21,9 +21,78 @@ All development "actions" are done via the provided Makefile
 
 ## Workflow
 
-Due to the somewhat confusing nature of the workflow this list can be used as a reference:
+Here is a typical workflow for developing and testing this provider locally:
 
-1.  
+**1. Initial Setup**
+
+Before you begin, you need to set up your environment. This is automated if you use the devcontainer.
+If you are not using the devcontainer these are the steps for a fresh start:
+
+*   **Install Go:** Make sure you have a working Go environment.
+*   **Install Terraform/OpenTofu:** You'll need the Terraform or OpenTofu CLI to test the provider.
+*   **Install `tfplugindocs`:** This tool is used to generate documentation. You can install it with:
+    ```bash
+    go install github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs@v0.19.4
+    ```
+*   **Configure Local Provider:** Create a `~/.terraformrc` file with the following content to tell Terraform to use your local build of the provider:
+    ```
+    provider_installation {
+      filesystem_mirror {
+        path    = "/dist"
+        include = ["providers.localhost/dev/*"]
+      }
+      direct {
+        exclude = ["providers.localhost/dev/*"]
+      }
+    }
+    ```
+*   **Add Go Binaries to PATH:** Make sure that the Go binary directory is in your `PATH`. You can do this by adding the following to your shell's startup file (e.g., `~/.bashrc`, `~/.zshrc`):
+    ```bash
+    export PATH=$PATH:$(go env GOPATH)/bin
+    ```
+
+**2. Building the Provider**
+
+To compile the provider from the source code, run the following command from the root of the repository:
+
+```bash
+make build
+```
+
+This will place the compiled provider binary in the `/dist` directory, where your `~/.terraformrc` is configured to look for it.
+
+**3. Testing**
+
+*   **Running Automated Tests:** To run the project's built-in tests, use:
+    ```bash
+    make test
+    ```
+*   **Manual Testing with Examples:** The `examples/provider` directory is set up for manual testing.
+    1.  Navigate to the `examples/provider` directory:
+        ```bash
+        cd examples/provider
+        ```
+    2.  Initialize Terraform. This will load your local provider:
+        ```bash
+        make init
+        ```
+    3.  Create a `testing.tf` file (or similar) in that directory to define some resources you want to test.
+    4.  Run `tofu plan` to see what changes will be made, and `tofu apply` to apply them.
+
+**4. Updating Documentation and Code**
+
+After making changes to the provider's code or the underlying VyOS interface definitions, you need to regenerate the documentation and parts of the Go code. You can do this with the command we used earlier:
+
+```bash
+make ci-update
+```
+
+This command will:
+*   Regenerate Go code from the VyOS interface definitions.
+*   Update the provider schema.
+*   Regenerate the documentation in the `docs/` directory.
+
+After running this, you'll see a number of changed files. You can then commit them.
 
 ## Troubleshooting
 

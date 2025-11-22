@@ -33,6 +33,7 @@ type ServiceIPoeServer struct {
 	LeafServiceIPoeServerDefaultIPvsixPool     types.String `tfsdk:"default_ipv6_pool" vyos:"default-ipv6-pool,omitempty"`
 	LeafServiceIPoeServerGatewayAddress        types.List   `tfsdk:"gateway_address" vyos:"gateway-address,omitempty"`
 	LeafServiceIPoeServerMaxConcurrentSessions types.Number `tfsdk:"max_concurrent_sessions" vyos:"max-concurrent-sessions,omitempty"`
+	LeafServiceIPoeServerThreadCount           types.String `tfsdk:"thread_count" vyos:"thread-count,omitempty"`
 	LeafServiceIPoeServerDescrIPtion           types.String `tfsdk:"description" vyos:"description,omitempty"`
 	LeafServiceIPoeServerNameServer            types.List   `tfsdk:"name_server" vyos:"name-server,omitempty"`
 
@@ -213,6 +214,32 @@ func (o ServiceIPoeServer) ResourceSchemaAttributes(ctx context.Context) map[str
     |-----------|-------------------------------------------------------|
     |  0-65535  |  Maximum number of concurrent session start attempts  |
 `,
+		},
+
+		"thread_count":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (thread-count) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `Number of working threads
+
+    |  Format  |  Description                      |
+    |----------|-----------------------------------|
+    |  all     |  Use all available CPU cores      |
+    |  half    |  Use half of available CPU cores  |
+    |  1-512   |  Thread count                     |
+`,
+			Description: `Number of working threads
+
+    |  Format  |  Description                      |
+    |----------|-----------------------------------|
+    |  all     |  Use all available CPU cores      |
+    |  half    |  Use half of available CPU cores  |
+    |  1-512   |  Thread count                     |
+`,
+
+			// Default:          stringdefault.StaticString(`all`),
+			Computed: true,
 		},
 
 		"description":

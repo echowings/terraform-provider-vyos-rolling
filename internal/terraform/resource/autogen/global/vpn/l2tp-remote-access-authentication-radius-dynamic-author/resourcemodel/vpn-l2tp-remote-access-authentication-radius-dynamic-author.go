@@ -146,17 +146,17 @@ func (o VpnLtwotpRemoteAccessAuthenticationRadiusDynamicAuthor) ResourceSchemaAt
 		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (port) */
 		schema.NumberAttribute{
 			Optional: true,
-			MarkdownDescription: `Port for Dynamic Authorization Extension server (DM/CoA)
+			MarkdownDescription: `Port number used by connection
 
-    |  Format   |  Description  |
-    |-----------|---------------|
-    |  1-65535  |  TCP port     |
+    |  Format   |  Description      |
+    |-----------|-------------------|
+    |  1-65535  |  Numeric IP port  |
 `,
-			Description: `Port for Dynamic Authorization Extension server (DM/CoA)
+			Description: `Port number used by connection
 
-    |  Format   |  Description  |
-    |-----------|---------------|
-    |  1-65535  |  TCP port     |
+    |  Format   |  Description      |
+    |-----------|-------------------|
+    |  1-65535  |  Numeric IP port  |
 `,
 
 			// Default:          stringdefault.StaticString(`1700`),

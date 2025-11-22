@@ -57,6 +57,8 @@ type InterfacesBrIDgeMemberInterface struct {
 	LeafInterfacesBrIDgeMemberInterfaceCost        types.Number `tfsdk:"cost" vyos:"cost,omitempty"`
 	LeafInterfacesBrIDgeMemberInterfacePriority    types.Number `tfsdk:"priority" vyos:"priority,omitempty"`
 	LeafInterfacesBrIDgeMemberInterfaceIsolated    types.Bool   `tfsdk:"isolated" vyos:"isolated,omitempty"`
+	LeafInterfacesBrIDgeMemberInterfaceBpduGuard   types.Bool   `tfsdk:"bpdu_guard" vyos:"bpdu-guard,omitempty"`
+	LeafInterfacesBrIDgeMemberInterfaceRootGuard   types.Bool   `tfsdk:"root_guard" vyos:"root-guard,omitempty"`
 
 	// TagNodes
 
@@ -308,6 +310,36 @@ func (o InterfacesBrIDgeMemberInterface) ResourceSchemaAttributes(ctx context.Co
 
 `,
 			Description: `Port is isolated (also known as Private-VLAN)
+
+`,
+			Default:  booldefault.StaticBool(false),
+			Computed: true,
+		},
+
+		"bpdu_guard":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (bpdu-guard) */
+		schema.BoolAttribute{
+			Optional: true,
+			MarkdownDescription: `Enable BPDU Guard
+
+`,
+			Description: `Enable BPDU Guard
+
+`,
+			Default:  booldefault.StaticBool(false),
+			Computed: true,
+		},
+
+		"root_guard":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (root-guard) */
+		schema.BoolAttribute{
+			Optional: true,
+			MarkdownDescription: `Enable Root Guard
+
+`,
+			Description: `Enable Root Guard
 
 `,
 			Default:  booldefault.StaticBool(false),

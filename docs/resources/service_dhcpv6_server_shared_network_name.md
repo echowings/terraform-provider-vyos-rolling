@@ -97,6 +97,11 @@ Optional:
     |  Format  &emsp;|  Description                  |
     |----------|-------------------------------|
     |  txt     &emsp;|  Captive portal API endpoint  |
+- `capwap_controller` (String) IP address of CAPWAP access controller (Option 52)
+
+    |  Format  &emsp;|  Description           |
+    |----------|------------------------|
+    |  ipv6    &emsp;|  CAPWAP AC controller  |
 - `domain_search` (List of String) Client Domain Name search list
 - `info_refresh_time` (Number) Time (in seconds) that stateless clients should wait between refreshing the information they were given
 

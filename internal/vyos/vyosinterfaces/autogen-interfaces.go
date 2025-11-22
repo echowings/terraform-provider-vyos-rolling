@@ -1302,6 +1302,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 													},
 												}},
 											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "interface-identifier",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"SLAAC interface identifier"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "::h:h:h:h",
+													Description: "Interface identifier",
+												}},
+												ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+											}},
 										}},
 									}},
 								}},
@@ -1545,7 +1571,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -2479,6 +2505,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 																Local: "valueless",
 															},
 														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "interface-identifier",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"SLAAC interface identifier"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "::h:h:h:h",
+															Description: "Interface identifier",
+														}},
+														ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
 													}},
 												}},
 											}},
@@ -3659,6 +3711,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 																	},
 																}},
 															}},
+														}, {
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "leafNode",
+															},
+															NodeNameAttr: "interface-identifier",
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"SLAAC interface identifier"},
+																Constraint: []*schemadefinition.Constraint{{
+																	XMLName: xml.Name{
+																		Local: "constraint",
+																	},
+																	Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+																}},
+																ValueHelp: []*schemadefinition.ValueHelp{{
+																	XMLName: xml.Name{
+																		Local: "valueHelp",
+																	},
+																	Format:      "::h:h:h:h",
+																	Description: "Interface identifier",
+																}},
+																ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+															}},
 														}},
 													}},
 												}},
@@ -4137,7 +4215,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -4435,7 +4513,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -5401,6 +5479,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 															},
 														}},
 													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "interface-identifier",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"SLAAC interface identifier"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "::h:h:h:h",
+															Description: "Interface identifier",
+														}},
+														ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+													}},
 												}},
 											}},
 										}},
@@ -5931,7 +6035,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -6391,7 +6495,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(802.3ad|active-backup|broadcast|round-robin|transmit-load-balance|adaptive-load-balance|xor-hash)"},
+									Regex: []string{"(802\\.3ad|active-backup|broadcast|round-robin|transmit-load-balance|adaptive-load-balance|xor-hash)"},
 								}},
 								ValueHelp: []*schemadefinition.ValueHelp{{
 									XMLName: xml.Name{
@@ -6492,7 +6596,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -6529,7 +6633,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -7506,6 +7610,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 													},
 												}},
 											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "interface-identifier",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"SLAAC interface identifier"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "::h:h:h:h",
+													Description: "Interface identifier",
+												}},
+												ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+											}},
 										}},
 									}},
 								}},
@@ -7817,7 +7947,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -7988,6 +8118,40 @@ func interfaces() schemadefinition.InterfaceDefinition {
 													Local: "properties",
 												},
 												Help: []string{"Port is isolated (also known as Private-VLAN)"},
+												Valueless: []*schemadefinition.Valueless{{
+													XMLName: xml.Name{
+														Local: "valueless",
+													},
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "bpdu-guard",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Enable BPDU Guard"},
+												Valueless: []*schemadefinition.Valueless{{
+													XMLName: xml.Name{
+														Local: "valueless",
+													},
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "root-guard",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Enable Root Guard"},
 												Valueless: []*schemadefinition.Valueless{{
 													XMLName: xml.Name{
 														Local: "valueless",
@@ -8904,6 +9068,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 															},
 														}},
 													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "interface-identifier",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"SLAAC interface identifier"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "::h:h:h:h",
+															Description: "Interface identifier",
+														}},
+														ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+													}},
 												}},
 											}},
 										}},
@@ -9434,7 +9624,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -9974,7 +10164,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -10441,7 +10631,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -11529,6 +11719,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 														Local: "valueless",
 													},
 												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "interface-identifier",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"SLAAC interface identifier"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "::h:h:h:h",
+													Description: "Interface identifier",
+												}},
+												ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
 											}},
 										}},
 									}},
@@ -12950,6 +13166,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 															},
 														}},
 													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "interface-identifier",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"SLAAC interface identifier"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "::h:h:h:h",
+															Description: "Interface identifier",
+														}},
+														ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+													}},
 												}},
 											}},
 										}},
@@ -14129,6 +14371,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 																	},
 																}},
 															}},
+														}, {
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "leafNode",
+															},
+															NodeNameAttr: "interface-identifier",
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"SLAAC interface identifier"},
+																Constraint: []*schemadefinition.Constraint{{
+																	XMLName: xml.Name{
+																		Local: "constraint",
+																	},
+																	Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+																}},
+																ValueHelp: []*schemadefinition.ValueHelp{{
+																	XMLName: xml.Name{
+																		Local: "valueHelp",
+																	},
+																	Format:      "::h:h:h:h",
+																	Description: "Interface identifier",
+																}},
+																ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+															}},
 														}},
 													}},
 												}},
@@ -14607,7 +14875,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -14905,7 +15173,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -15871,6 +16139,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 															},
 														}},
 													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "interface-identifier",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"SLAAC interface identifier"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "::h:h:h:h",
+															Description: "Interface identifier",
+														}},
+														ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+													}},
 												}},
 											}},
 										}},
@@ -16401,7 +16695,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -16862,7 +17156,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -17330,6 +17624,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 														Local: "valueless",
 													},
 												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "interface-identifier",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"SLAAC interface identifier"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "::h:h:h:h",
+													Description: "Interface identifier",
+												}},
+												ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
 											}},
 										}},
 									}},
@@ -17989,6 +18309,39 @@ func interfaces() schemadefinition.InterfaceDefinition {
 							XMLName: xml.Name{
 								Local: "leafNode",
 							},
+							NodeNameAttr: "port",
+							DefaultValue: []string{"6081"},
+							Properties: []*schemadefinition.Properties{{
+								XMLName: xml.Name{
+									Local: "properties",
+								},
+								Help: []string{"Port number used by connection"},
+								Constraint: []*schemadefinition.Constraint{{
+									XMLName: xml.Name{
+										Local: "constraint",
+									},
+									Validator: []*schemadefinition.Validator{{
+										XMLName: xml.Name{
+											Local: "validator",
+										},
+										NameAttr:     "numeric",
+										ArgumentAttr: "--range 1-65535",
+									}},
+								}},
+								ValueHelp: []*schemadefinition.ValueHelp{{
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "u32:1-65535",
+									Description: "Numeric IP port",
+								}},
+								ConstraintErrorMessage: []string{"Port number must be in range 1 to 65535"},
+							}},
+						}, {
+							IsBaseNode: false,
+							XMLName: xml.Name{
+								Local: "leafNode",
+							},
 							NodeNameAttr: "redirect",
 							Properties: []*schemadefinition.Properties{{
 								XMLName: xml.Name{
@@ -17999,7 +18352,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -18217,7 +18570,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -18648,6 +19001,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 														Local: "valueless",
 													},
 												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "interface-identifier",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"SLAAC interface identifier"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "::h:h:h:h",
+													Description: "Interface identifier",
+												}},
+												ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
 											}},
 										}},
 									}},
@@ -19635,7 +20014,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -20560,6 +20939,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 													},
 												}},
 											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "interface-identifier",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"SLAAC interface identifier"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "::h:h:h:h",
+													Description: "Interface identifier",
+												}},
+												ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+											}},
 										}},
 									}},
 								}},
@@ -21368,7 +21773,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -22075,6 +22480,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 														Local: "valueless",
 													},
 												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "interface-identifier",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"SLAAC interface identifier"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "::h:h:h:h",
+													Description: "Interface identifier",
+												}},
+												ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
 											}},
 										}},
 									}},
@@ -24325,7 +24756,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -24928,6 +25359,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 													},
 												}},
 											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "interface-identifier",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"SLAAC interface identifier"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "::h:h:h:h",
+													Description: "Interface identifier",
+												}},
+												ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+											}},
 										}},
 									}},
 								}},
@@ -25297,7 +25754,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -25495,7 +25952,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -26456,6 +26913,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 														Local: "valueless",
 													},
 												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "interface-identifier",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"SLAAC interface identifier"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "::h:h:h:h",
+													Description: "Interface identifier",
+												}},
+												ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
 											}},
 										}},
 									}},
@@ -27643,6 +28126,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 															},
 														}},
 													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "interface-identifier",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"SLAAC interface identifier"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "::h:h:h:h",
+															Description: "Interface identifier",
+														}},
+														ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+													}},
 												}},
 											}},
 										}},
@@ -28822,6 +29331,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 																	},
 																}},
 															}},
+														}, {
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "leafNode",
+															},
+															NodeNameAttr: "interface-identifier",
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"SLAAC interface identifier"},
+																Constraint: []*schemadefinition.Constraint{{
+																	XMLName: xml.Name{
+																		Local: "constraint",
+																	},
+																	Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+																}},
+																ValueHelp: []*schemadefinition.ValueHelp{{
+																	XMLName: xml.Name{
+																		Local: "valueHelp",
+																	},
+																	Format:      "::h:h:h:h",
+																	Description: "Interface identifier",
+																}},
+																ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+															}},
 														}},
 													}},
 												}},
@@ -29300,7 +29835,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -29598,7 +30133,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -30564,6 +31099,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 															},
 														}},
 													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "interface-identifier",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"SLAAC interface identifier"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "::h:h:h:h",
+															Description: "Interface identifier",
+														}},
+														ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+													}},
 												}},
 											}},
 										}},
@@ -31094,7 +31655,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -31466,7 +32027,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -33288,7 +33849,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -33525,7 +34086,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -34980,6 +35541,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 															},
 														}},
 													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "interface-identifier",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"SLAAC interface identifier"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "::h:h:h:h",
+															Description: "Interface identifier",
+														}},
+														ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+													}},
 												}},
 											}},
 										}},
@@ -36159,6 +36746,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 																	},
 																}},
 															}},
+														}, {
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "leafNode",
+															},
+															NodeNameAttr: "interface-identifier",
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"SLAAC interface identifier"},
+																Constraint: []*schemadefinition.Constraint{{
+																	XMLName: xml.Name{
+																		Local: "constraint",
+																	},
+																	Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+																}},
+																ValueHelp: []*schemadefinition.ValueHelp{{
+																	XMLName: xml.Name{
+																		Local: "valueHelp",
+																	},
+																	Format:      "::h:h:h:h",
+																	Description: "Interface identifier",
+																}},
+																ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+															}},
 														}},
 													}},
 												}},
@@ -36637,7 +37250,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -36935,7 +37548,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -37901,6 +38514,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 															},
 														}},
 													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "interface-identifier",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"SLAAC interface identifier"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "::h:h:h:h",
+															Description: "Interface identifier",
+														}},
+														ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+													}},
 												}},
 											}},
 										}},
@@ -38431,7 +39070,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -38595,6 +39234,39 @@ func interfaces() schemadefinition.InterfaceDefinition {
 										Local: "valueless",
 									},
 								}},
+							}},
+						}, {
+							IsBaseNode: false,
+							XMLName: xml.Name{
+								Local: "leafNode",
+							},
+							NodeNameAttr: "mtu",
+							DefaultValue: []string{"1500"},
+							Properties: []*schemadefinition.Properties{{
+								XMLName: xml.Name{
+									Local: "properties",
+								},
+								Help: []string{"Maximum Transmission Unit (MTU)"},
+								Constraint: []*schemadefinition.Constraint{{
+									XMLName: xml.Name{
+										Local: "constraint",
+									},
+									Validator: []*schemadefinition.Validator{{
+										XMLName: xml.Name{
+											Local: "validator",
+										},
+										NameAttr:     "numeric",
+										ArgumentAttr: "--range 68-16000",
+									}},
+								}},
+								ValueHelp: []*schemadefinition.ValueHelp{{
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "u32:68-16000",
+									Description: "Maximum Transmission Unit in byte",
+								}},
+								ConstraintErrorMessage: []string{"MTU must be between 68 and 16000"},
 							}},
 						}, {
 							IsBaseNode: false,
@@ -39513,7 +40185,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -39981,6 +40653,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 														Local: "valueless",
 													},
 												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "interface-identifier",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"SLAAC interface identifier"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "::h:h:h:h",
+													Description: "Interface identifier",
+												}},
+												ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
 											}},
 										}},
 									}},
@@ -40919,7 +41617,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -40997,7 +41695,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -41854,7 +42552,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 										XMLName: xml.Name{
 											Local: "properties",
 										},
-										Help: []string{"base64 encoded public key"},
+										Help: []string{"Base64 encoded public key"},
 										Constraint: []*schemadefinition.Constraint{{
 											XMLName: xml.Name{
 												Local: "constraint",
@@ -41863,10 +42561,11 @@ func interfaces() schemadefinition.InterfaceDefinition {
 												XMLName: xml.Name{
 													Local: "validator",
 												},
-												NameAttr: "base64",
+												NameAttr:     "base64",
+												ArgumentAttr: "--decoded-len 32",
 											}},
 										}},
-										ConstraintErrorMessage: []string{"Key is not base64-encoded"},
+										ConstraintErrorMessage: []string{"Key must be Base64-encoded with 32 bytes in length"},
 									}},
 								}, {
 									IsBaseNode: false,
@@ -41878,7 +42577,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 										XMLName: xml.Name{
 											Local: "properties",
 										},
-										Help: []string{"base64 encoded preshared key"},
+										Help: []string{"Base64 encoded preshared key"},
 										Constraint: []*schemadefinition.Constraint{{
 											XMLName: xml.Name{
 												Local: "constraint",
@@ -41887,10 +42586,11 @@ func interfaces() schemadefinition.InterfaceDefinition {
 												XMLName: xml.Name{
 													Local: "validator",
 												},
-												NameAttr: "base64",
+												NameAttr:     "base64",
+												ArgumentAttr: "--decoded-len 32",
 											}},
 										}},
-										ConstraintErrorMessage: []string{"Key is not base64-encoded"},
+										ConstraintErrorMessage: []string{"Key must be Base64-encoded with 32 bytes in length"},
 									}},
 								}, {
 									IsBaseNode: false,
@@ -42289,10 +42989,11 @@ func interfaces() schemadefinition.InterfaceDefinition {
 										XMLName: xml.Name{
 											Local: "validator",
 										},
-										NameAttr: "base64",
+										NameAttr:     "base64",
+										ArgumentAttr: "--decoded-len 32",
 									}},
 								}},
-								ConstraintErrorMessage: []string{"Key is not base64-encoded"},
+								ConstraintErrorMessage: []string{"Key must be Base64-encoded with 32 bytes in length"},
 							}},
 						}, {
 							IsBaseNode: false,
@@ -42309,7 +43010,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -44578,6 +45279,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 													},
 												}},
 											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "interface-identifier",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"SLAAC interface identifier"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "::h:h:h:h",
+													Description: "Interface identifier",
+												}},
+												ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+											}},
 										}},
 									}},
 								}},
@@ -46443,6 +47170,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 															},
 														}},
 													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "interface-identifier",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"SLAAC interface identifier"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "::h:h:h:h",
+															Description: "Interface identifier",
+														}},
+														ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+													}},
 												}},
 											}},
 										}},
@@ -46973,7 +47726,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -47938,6 +48691,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 																Local: "valueless",
 															},
 														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "interface-identifier",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"SLAAC interface identifier"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "::h:h:h:h",
+															Description: "Interface identifier",
+														}},
+														ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
 													}},
 												}},
 											}},
@@ -49118,6 +49897,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 																	},
 																}},
 															}},
+														}, {
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "leafNode",
+															},
+															NodeNameAttr: "interface-identifier",
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"SLAAC interface identifier"},
+																Constraint: []*schemadefinition.Constraint{{
+																	XMLName: xml.Name{
+																		Local: "constraint",
+																	},
+																	Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+																}},
+																ValueHelp: []*schemadefinition.ValueHelp{{
+																	XMLName: xml.Name{
+																		Local: "valueHelp",
+																	},
+																	Format:      "::h:h:h:h",
+																	Description: "Interface identifier",
+																}},
+																ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+															}},
 														}},
 													}},
 												}},
@@ -49596,7 +50401,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -49894,7 +50699,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -50636,7 +51441,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -51705,6 +52510,32 @@ func interfaces() schemadefinition.InterfaceDefinition {
 													},
 												}},
 											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "interface-identifier",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"SLAAC interface identifier"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"::([0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){0,3})"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "::h:h:h:h",
+													Description: "Interface identifier",
+												}},
+												ConstraintErrorMessage: []string{"Interface identifier format must start with :: and may contain up four hextets (::h:h:h:h)"},
+											}},
 										}},
 									}},
 								}},
@@ -52115,7 +52946,7 @@ func interfaces() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",

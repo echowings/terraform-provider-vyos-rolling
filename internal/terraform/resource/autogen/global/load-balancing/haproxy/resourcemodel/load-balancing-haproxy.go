@@ -39,6 +39,8 @@ type LoadBalancingHaproxy struct {
 	// Nodes
 
 	ExistsNodeLoadBalancingHaproxyGlobalParameters bool `tfsdk:"-" vyos:"global-parameters,child"`
+
+	ExistsNodeLoadBalancingHaproxyTimeout bool `tfsdk:"-" vyos:"timeout,child"`
 }
 
 // SetID configures the resource ID

@@ -1,0 +1,2 @@
+
+terraform import vyos_protocols_mpls_ldp_interface.example "protocols__mpls__ldp__interface__<interface>"

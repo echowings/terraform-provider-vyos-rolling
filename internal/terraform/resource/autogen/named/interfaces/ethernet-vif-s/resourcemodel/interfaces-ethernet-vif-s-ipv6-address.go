@@ -23,9 +23,10 @@ var _ helpers.VyosResourceDataModel = &InterfacesEthernetVifSIPvsixAddress{}
 // Top level basenode type: `N/A`
 type InterfacesEthernetVifSIPvsixAddress struct {
 	// LeafNodes
-	LeafInterfacesEthernetVifSIPvsixAddressAutoconf           types.Bool `tfsdk:"autoconf" vyos:"autoconf,omitempty"`
-	LeafInterfacesEthernetVifSIPvsixAddressEuisixfour         types.List `tfsdk:"eui64" vyos:"eui64,omitempty"`
-	LeafInterfacesEthernetVifSIPvsixAddressNoDefaultLinkLocal types.Bool `tfsdk:"no_default_link_local" vyos:"no-default-link-local,omitempty"`
+	LeafInterfacesEthernetVifSIPvsixAddressAutoconf            types.Bool   `tfsdk:"autoconf" vyos:"autoconf,omitempty"`
+	LeafInterfacesEthernetVifSIPvsixAddressEuisixfour          types.List   `tfsdk:"eui64" vyos:"eui64,omitempty"`
+	LeafInterfacesEthernetVifSIPvsixAddressNoDefaultLinkLocal  types.Bool   `tfsdk:"no_default_link_local" vyos:"no-default-link-local,omitempty"`
+	LeafInterfacesEthernetVifSIPvsixAddressInterfaceIDentifier types.String `tfsdk:"interface_identifier" vyos:"interface-identifier,omitempty"`
 
 	// TagNodes
 
@@ -84,6 +85,25 @@ func (o InterfacesEthernetVifSIPvsixAddress) ResourceSchemaAttributes(ctx contex
 `,
 			Default:  booldefault.StaticBool(false),
 			Computed: true,
+		},
+
+		"interface_identifier":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (interface-identifier) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `SLAAC interface identifier
+
+    |  Format     |  Description           |
+    |-------------|------------------------|
+    |  ::h:h:h:h  |  Interface identifier  |
+`,
+			Description: `SLAAC interface identifier
+
+    |  Format     |  Description           |
+    |-------------|------------------------|
+    |  ::h:h:h:h  |  Interface identifier  |
+`,
 		},
 
 		// TagNodes

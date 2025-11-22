@@ -34,6 +34,7 @@ description: |-
       - [lua_file](#lua_file)
       - [max_concurrent_sessions](#max_concurrent_sessions)
       - [name_server](#name_server)
+      - [thread_count](#thread_count)
       - [timeouts](#timeouts)
     - [Read-Only](#read-only)
       - [id](#id)
@@ -90,6 +91,14 @@ description: |-
     |----------|-----------------------------------------|
     |  ipv4    &emsp;|  Domain Name Server (DNS) IPv4 address  |
     |  ipv6    &emsp;|  Domain Name Server (DNS) IPv6 address  |
+#### thread_count
+- `thread_count` (String) Number of working threads
+
+    |  Format  &emsp;|  Description                      |
+    |----------|-----------------------------------|
+    |  all     &emsp;|  Use all available CPU cores      |
+    |  half    &emsp;|  Use half of available CPU cores  |
+    |  1-512   &emsp;|  Thread count                     |
 #### timeouts
 - `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
 

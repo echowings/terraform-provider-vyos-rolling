@@ -34,6 +34,7 @@ type VpnSstp struct {
 	LeafVpnSstpMaxConcurrentSessions types.Number `tfsdk:"max_concurrent_sessions" vyos:"max-concurrent-sessions,omitempty"`
 	LeafVpnSstpMtu                   types.Number `tfsdk:"mtu" vyos:"mtu,omitempty"`
 	LeafVpnSstpPort                  types.Number `tfsdk:"port" vyos:"port,omitempty"`
+	LeafVpnSstpThreadCount           types.String `tfsdk:"thread_count" vyos:"thread-count,omitempty"`
 	LeafVpnSstpWinsServer            types.List   `tfsdk:"wins_server" vyos:"wins-server,omitempty"`
 	LeafVpnSstpDescrIPtion           types.String `tfsdk:"description" vyos:"description,omitempty"`
 	LeafVpnSstpNameServer            types.List   `tfsdk:"name_server" vyos:"name-server,omitempty"`
@@ -242,6 +243,32 @@ func (o VpnSstp) ResourceSchemaAttributes(ctx context.Context) map[string]schema
 `,
 
 			// Default:          stringdefault.StaticString(`443`),
+			Computed: true,
+		},
+
+		"thread_count":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (thread-count) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `Number of working threads
+
+    |  Format  |  Description                      |
+    |----------|-----------------------------------|
+    |  all     |  Use all available CPU cores      |
+    |  half    |  Use half of available CPU cores  |
+    |  1-512   |  Thread count                     |
+`,
+			Description: `Number of working threads
+
+    |  Format  |  Description                      |
+    |----------|-----------------------------------|
+    |  all     |  Use all available CPU cores      |
+    |  half    |  Use half of available CPU cores  |
+    |  1-512   |  Thread count                     |
+`,
+
+			// Default:          stringdefault.StaticString(`all`),
 			Computed: true,
 		},
 

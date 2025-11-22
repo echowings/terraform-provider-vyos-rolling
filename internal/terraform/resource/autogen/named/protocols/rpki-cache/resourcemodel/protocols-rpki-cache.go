@@ -47,8 +47,9 @@ type ProtocolsRpkiCache struct {
 	SelfIdentifier *ProtocolsRpkiCacheSelfIdentifier `tfsdk:"identifier" vyos:"-,self-id"`
 
 	// LeafNodes
-	LeafProtocolsRpkiCachePort       types.Number `tfsdk:"port" vyos:"port,omitempty"`
-	LeafProtocolsRpkiCachePreference types.Number `tfsdk:"preference" vyos:"preference,omitempty"`
+	LeafProtocolsRpkiCachePort          types.Number `tfsdk:"port" vyos:"port,omitempty"`
+	LeafProtocolsRpkiCachePreference    types.Number `tfsdk:"preference" vyos:"preference,omitempty"`
+	LeafProtocolsRpkiCacheSourceAddress types.String `tfsdk:"source_address" vyos:"source-address,omitempty"`
 
 	// TagNodes
 
@@ -209,6 +210,25 @@ func (o ProtocolsRpkiCache) ResourceSchemaAttributes(ctx context.Context) map[st
     |  Format  |  Description                     |
     |----------|----------------------------------|
     |  1-255   |  Preference of the cache server  |
+`,
+		},
+
+		"source_address":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (source-address) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `IPv4 address used to initiate connection
+
+    |  Format  |  Description          |
+    |----------|-----------------------|
+    |  ipv4    |  IPv4 source address  |
+`,
+			Description: `IPv4 address used to initiate connection
+
+    |  Format  |  Description          |
+    |----------|-----------------------|
+    |  ipv4    |  IPv4 source address  |
 `,
 		},
 

@@ -4,7 +4,7 @@ page_title: "vyos_load_balancing_haproxy_backend Resource - vyos"
 subcategory: "Load Balancing"
 
 description: |-
-  load-balancing⯯Configure haproxy⯯Backend server name
+  load-balancing⯯HAProxy TCP/HTTP Load Balancer⯯Backend server name
 ---
 
 # vyos_load_balancing_haproxy_backend (Resource)
@@ -13,7 +13,7 @@ description: |-
 
 *load-balancing*  
 ⯯  
-Configure haproxy  
+HAProxy TCP/HTTP Load Balancer  
 ⯯  
 **Backend server name**
 

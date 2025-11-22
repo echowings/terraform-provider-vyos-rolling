@@ -1,0 +1,2 @@
+
+terraform import vyos_protocols_isis_redistribute_ipv4_nhrp_level_1.example "protocols__isis__redistribute__ipv4__nhrp__level-1"

@@ -54,6 +54,9 @@ Site-to-site VPN
     - [Nested Schema for `authentication.x509`](#nested-schema-for-authenticationx509)
     - [Nested Schema for `timeouts`](#nested-schema-for-timeouts)
     - [Nested Schema for `vti`](#nested-schema-for-vti)
+    - [Nested Schema for `vti.traffic_selector`](#nested-schema-for-vtitraffic_selector)
+    - [Nested Schema for `vti.traffic_selector.local`](#nested-schema-for-vtitraffic_selectorlocal)
+    - [Nested Schema for `vti.traffic_selector.remote`](#nested-schema-for-vtitraffic_selectorremote)
   - [Import](#import)
 
 <!--TOC-->
@@ -233,6 +236,40 @@ Optional:
 
 - `bind` (String) VTI tunnel interface associated with this configuration
 - `esp_group` (String) Encapsulating Security Payloads (ESP) group name
+- `traffic_selector` (Attributes) Traffic-selectors parameters (see [below for nested schema](#nestedatt--vti--traffic_selector))
+
+<a id="nestedatt--vti--traffic_selector"></a>
+### Nested Schema for `vti.traffic_selector`
+
+Optional:
+
+- `local` (Attributes) Local parameters for interesting traffic (see [below for nested schema](#nestedatt--vti--traffic_selector--local))
+- `remote` (Attributes) Remote parameters for interesting traffic (see [below for nested schema](#nestedatt--vti--traffic_selector--remote))
+
+<a id="nestedatt--vti--traffic_selector--local"></a>
+### Nested Schema for `vti.traffic_selector.local`
+
+Optional:
+
+- `prefix` (List of String) Local IPv4 or IPv6 prefix
+
+    |  Format   &emsp;|  Description        |
+    |-----------|---------------------|
+    |  ipv4net  &emsp;|  Local IPv4 prefix  |
+    |  ipv6net  &emsp;|  Local IPv6 prefix  |
+
+
+<a id="nestedatt--vti--traffic_selector--remote"></a>
+### Nested Schema for `vti.traffic_selector.remote`
+
+Optional:
+
+- `prefix` (List of String) Remote IPv4 or IPv6 prefix
+
+    |  Format   &emsp;|  Description         |
+    |-----------|----------------------|
+    |  ipv4net  &emsp;|  Remote IPv4 prefix  |
+    |  ipv6net  &emsp;|  Remote IPv6 prefix  |
 
 ## Import
 

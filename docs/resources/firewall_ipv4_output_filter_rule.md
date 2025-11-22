@@ -413,6 +413,7 @@ Optional:
 - `mac_group` (String) Group of MAC addresses
 - `network_group` (String) Group of networks
 - `port_group` (String) Group of ports
+- `remote_group` (String) Group of remote addresses
 
 
 
@@ -723,6 +724,7 @@ Optional:
 - `mac_group` (String) Group of MAC addresses
 - `network_group` (String) Group of networks
 - `port_group` (String) Group of ports
+- `remote_group` (String) Group of remote addresses
 
 
 

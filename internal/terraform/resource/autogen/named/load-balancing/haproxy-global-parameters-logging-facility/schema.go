@@ -18,7 +18,7 @@ func (r loadBalancingHaproxyGlobalParametersLoggingFacility) Schema(ctx context.
 		MarkdownDescription: `
 *load-balancing*  
 ⯯  
-Configure haproxy  
+HAProxy TCP/HTTP Load Balancer  
 ⯯  
 Global perfomance parameters and limits  
 ⯯  

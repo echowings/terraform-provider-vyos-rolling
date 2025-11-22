@@ -33,6 +33,7 @@ type SystemOption struct {
 	LeafSystemOptionKeyboardLayout          types.String `tfsdk:"keyboard_layout" vyos:"keyboard-layout,omitempty"`
 	LeafSystemOptionPerformance             types.List   `tfsdk:"performance" vyos:"performance,omitempty"`
 	LeafSystemOptionRebootOnPanic           types.Bool   `tfsdk:"reboot_on_panic" vyos:"reboot-on-panic,omitempty"`
+	LeafSystemOptionRebootOnUpgradeFailure  types.Number `tfsdk:"reboot_on_upgrade_failure" vyos:"reboot-on-upgrade-failure,omitempty"`
 	LeafSystemOptionStartupBeep             types.Bool   `tfsdk:"startup_beep" vyos:"startup-beep,omitempty"`
 	LeafSystemOptionRootPartitionAutoResize types.Bool   `tfsdk:"root_partition_auto_resize" vyos:"root-partition-auto-resize,omitempty"`
 	LeafSystemOptionTimeFormat              types.String `tfsdk:"time_format" vyos:"time-format,omitempty"`
@@ -217,6 +218,25 @@ func (o SystemOption) ResourceSchemaAttributes(ctx context.Context) map[string]s
 `,
 			Default:  booldefault.StaticBool(false),
 			Computed: true,
+		},
+
+		"reboot_on_upgrade_failure":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (reboot-on-upgrade-failure) */
+		schema.NumberAttribute{
+			Optional: true,
+			MarkdownDescription: `Automatic reboot into previous running image on upgrade failure
+
+    |  Format  |  Description                                |
+    |----------|---------------------------------------------|
+    |  1-30    |  Timeout before automatic reboot (minutes)  |
+`,
+			Description: `Automatic reboot into previous running image on upgrade failure
+
+    |  Format  |  Description                                |
+    |----------|---------------------------------------------|
+    |  1-30    |  Timeout before automatic reboot (minutes)  |
+`,
 		},
 
 		"startup_beep":

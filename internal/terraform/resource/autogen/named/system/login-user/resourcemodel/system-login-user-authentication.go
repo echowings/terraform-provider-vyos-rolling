@@ -24,6 +24,7 @@ type SystemLoginUserAuthentication struct {
 	// LeafNodes
 	LeafSystemLoginUserAuthenticationEncryptedPassword types.String `tfsdk:"encrypted_password" vyos:"encrypted-password,omitempty"`
 	LeafSystemLoginUserAuthenticationPlaintextPassword types.String `tfsdk:"plaintext_password" vyos:"plaintext-password,omitempty"`
+	LeafSystemLoginUserAuthenticationPrincIPal         types.List   `tfsdk:"principal" vyos:"principal,omitempty"`
 
 	// TagNodes
 
@@ -64,6 +65,19 @@ func (o SystemLoginUserAuthentication) ResourceSchemaAttributes(ctx context.Cont
 
 `,
 			Description: `Plaintext password used for encryption
+
+`,
+		},
+
+		"principal":
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype-multi (principal) */
+		schema.ListAttribute{
+			ElementType: types.StringType,
+			Optional:    true,
+			MarkdownDescription: `Accepted principal names for certificate authentication
+
+`,
+			Description: `Accepted principal names for certificate authentication
 
 `,
 		},

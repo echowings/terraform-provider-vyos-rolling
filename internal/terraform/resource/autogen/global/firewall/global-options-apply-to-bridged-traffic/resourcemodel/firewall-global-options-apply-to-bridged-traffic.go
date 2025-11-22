@@ -29,13 +29,14 @@ type FirewallGlobalOptionsApplyToBrIDgedTraffic struct {
 	Timeouts timeouts.Value `tfsdk:"timeouts" vyos:"-,timeout"`
 
 	// LeafNodes
-	LeafFirewallGlobalOptionsApplyToBrIDgedTrafficInvalIDConnections types.Bool `tfsdk:"invalid_connections" vyos:"invalid-connections,omitempty"`
-	LeafFirewallGlobalOptionsApplyToBrIDgedTrafficIPvfour            types.Bool `tfsdk:"ipv4" vyos:"ipv4,omitempty"`
-	LeafFirewallGlobalOptionsApplyToBrIDgedTrafficIPvsix             types.Bool `tfsdk:"ipv6" vyos:"ipv6,omitempty"`
+	LeafFirewallGlobalOptionsApplyToBrIDgedTrafficIPvfour types.Bool `tfsdk:"ipv4" vyos:"ipv4,omitempty"`
+	LeafFirewallGlobalOptionsApplyToBrIDgedTrafficIPvsix  types.Bool `tfsdk:"ipv6" vyos:"ipv6,omitempty"`
 
 	// TagNodes
 
 	// Nodes
+
+	ExistsNodeFirewallGlobalOptionsApplyToBrIDgedTrafficAcceptInvalID bool `tfsdk:"-" vyos:"accept-invalid,child"`
 }
 
 // SetID configures the resource ID
@@ -104,21 +105,6 @@ func (o FirewallGlobalOptionsApplyToBrIDgedTraffic) ResourceSchemaAttributes(ctx
 		}),
 
 		// LeafNodes
-
-		"invalid_connections":
-
-		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (invalid-connections) */
-		schema.BoolAttribute{
-			Optional: true,
-			MarkdownDescription: `Accept ARP, DHCP and PPPoE despite they are marked as invalid connection
-
-`,
-			Description: `Accept ARP, DHCP and PPPoE despite they are marked as invalid connection
-
-`,
-			Default:  booldefault.StaticBool(false),
-			Computed: true,
-		},
 
 		"ipv4":
 

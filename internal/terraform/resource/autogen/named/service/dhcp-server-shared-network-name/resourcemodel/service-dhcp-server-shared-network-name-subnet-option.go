@@ -32,6 +32,7 @@ type ServiceDhcpServerSharedNetworkNameSubnetOption struct {
 	LeafServiceDhcpServerSharedNetworkNameSubnetOptionBootfileServer      types.String `tfsdk:"bootfile_server" vyos:"bootfile-server,omitempty"`
 	LeafServiceDhcpServerSharedNetworkNameSubnetOptionBootfileSize        types.Number `tfsdk:"bootfile_size" vyos:"bootfile-size,omitempty"`
 	LeafServiceDhcpServerSharedNetworkNameSubnetOptionClientPrefixLength  types.Number `tfsdk:"client_prefix_length" vyos:"client-prefix-length,omitempty"`
+	LeafServiceDhcpServerSharedNetworkNameSubnetOptionCapwapController    types.String `tfsdk:"capwap_controller" vyos:"capwap-controller,omitempty"`
 	LeafServiceDhcpServerSharedNetworkNameSubnetOptionDefaultRouter       types.String `tfsdk:"default_router" vyos:"default-router,omitempty"`
 	LeafServiceDhcpServerSharedNetworkNameSubnetOptionIPForwarding        types.Bool   `tfsdk:"ip_forwarding" vyos:"ip-forwarding,omitempty"`
 	LeafServiceDhcpServerSharedNetworkNameSubnetOptionIPvsixOnlyPreferred types.Number `tfsdk:"ipv6_only_preferred" vyos:"ipv6-only-preferred,omitempty"`
@@ -211,6 +212,25 @@ func (o ServiceDhcpServerSharedNetworkNameSubnetOption) ResourceSchemaAttributes
     |  Format  |  Description                                |
     |----------|---------------------------------------------|
     |  0-32    |  DHCP client prefix length must be 0 to 32  |
+`,
+		},
+
+		"capwap_controller":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (capwap-controller) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `IP address of CAPWAP access controller (Option 138)
+
+    |  Format  |  Description           |
+    |----------|------------------------|
+    |  ipv4    |  CAPWAP AC controller  |
+`,
+			Description: `IP address of CAPWAP access controller (Option 138)
+
+    |  Format  |  Description           |
+    |----------|------------------------|
+    |  ipv4    |  CAPWAP AC controller  |
 `,
 		},
 

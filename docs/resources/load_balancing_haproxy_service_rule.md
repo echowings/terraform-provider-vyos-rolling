@@ -4,7 +4,7 @@ page_title: "vyos_load_balancing_haproxy_service_rule Resource - vyos"
 subcategory: "Load Balancing"
 
 description: |-
-  load-balancing⯯Configure haproxy⯯Frontend service name⯯Proxy rule number
+  load-balancing⯯HAProxy TCP/HTTP Load Balancer⯯Frontend service name⯯Proxy rule number
 ---
 
 # vyos_load_balancing_haproxy_service_rule (Resource)
@@ -13,7 +13,7 @@ description: |-
 
 *load-balancing*  
 ⯯  
-Configure haproxy  
+HAProxy TCP/HTTP Load Balancer  
 ⯯  
 Frontend service name  
 ⯯  
@@ -101,11 +101,11 @@ Required:
 Optional:
 
 - `backend` (String) Backend name
-- `redirect_location` (String) Set URL location
+- `redirect_location` (String) Set path location
 
-    |  Format  &emsp;|  Description       |
-    |----------|--------------------|
-    |  url     &emsp;|  Set URL location  |
+    |  Format  &emsp;|  Description        |
+    |----------|---------------------|
+    |  url     &emsp;|  Set path location  |
 
 
 <a id="nestedatt--timeouts"></a>

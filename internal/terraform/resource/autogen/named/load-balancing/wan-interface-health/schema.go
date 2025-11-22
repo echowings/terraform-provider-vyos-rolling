@@ -18,7 +18,7 @@ func (r loadBalancingWanInterfaceHealth) Schema(ctx context.Context, req resourc
 		MarkdownDescription: `
 *load-balancing*  
 ⯯  
-Configure Wide Area Network (WAN) load-balancing  
+Wide Area Network (WAN) load-balancing  
 ⯯  
 **Interface name**
 `,

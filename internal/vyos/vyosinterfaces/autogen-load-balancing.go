@@ -34,7 +34,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 						XMLName: xml.Name{
 							Local: "properties",
 						},
-						Help:     []string{"Configure haproxy"},
+						Help:     []string{"HAProxy TCP/HTTP Load Balancer"},
 						Priority: []string{"900"},
 					}},
 					Children: []*schemadefinition.Children{{
@@ -88,26 +88,14 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(auth|authpriv|cron|daemon|kern|lpr|mail|mark|news|syslog|user|uucp|local0|local1|local2|local3|local4|local5|local6|local7|all)"},
+													Regex: []string{"(auth|cron|daemon|kern|lpr|mail|news|syslog|user|uucp|local0|local1|local2|local3|local4|local5|local6|local7)"},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
 													XMLName: xml.Name{
 														Local: "valueHelp",
 													},
-													Format:      "all",
-													Description: "All facilities excluding \"mark\"",
-												}, {
-													XMLName: xml.Name{
-														Local: "valueHelp",
-													},
 													Format:      "auth",
 													Description: "Authentication and authorization",
-												}, {
-													XMLName: xml.Name{
-														Local: "valueHelp",
-													},
-													Format:      "authpriv",
-													Description: "Non-system authorization",
 												}, {
 													XMLName: xml.Name{
 														Local: "valueHelp",
@@ -138,12 +126,6 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 													},
 													Format:      "mail",
 													Description: "Mail subsystem",
-												}, {
-													XMLName: xml.Name{
-														Local: "valueHelp",
-													},
-													Format:      "mark",
-													Description: "Timestamp",
 												}, {
 													XMLName: xml.Name{
 														Local: "valueHelp",
@@ -222,7 +204,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "completionHelp",
 													},
-													List: []string{"auth authpriv cron daemon kern lpr mail mark news syslog user uucp local0 local1 local2 local3 local4 local5 local6 local7 all"},
+													List: []string{"auth cron daemon kern lpr mail news syslog user uucp local0 local1 local2 local3 local4 local5 local6 local7"},
 												}},
 											}},
 											Children: []*schemadefinition.Children{{
@@ -245,7 +227,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"(emerg|alert|crit|err|warning|notice|info|debug|all)"},
+															Regex: []string{"(emerg|alert|crit|err|warning|notice|info|debug)"},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
 															XMLName: xml.Name{
@@ -295,19 +277,13 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 															},
 															Format:      "debug",
 															Description: "Debug messages",
-														}, {
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "all",
-															Description: "Log everything",
 														}},
 														ConstraintErrorMessage: []string{"Invalid loglevel"},
 														CompletionHelp: []*schemadefinition.CompletionHelp{{
 															XMLName: xml.Name{
 																Local: "completionHelp",
 															},
-															List: []string{"emerg alert crit err warning notice info debug all"},
+															List: []string{"emerg alert crit err warning notice info debug"},
 														}},
 													}},
 												}},
@@ -465,6 +441,152 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 									}},
 								}},
 							}},
+						}, {
+							IsBaseNode: true,
+							XMLName: xml.Name{
+								Local: "node",
+							},
+							NodeNameAttr: "timeout",
+							Properties: []*schemadefinition.Properties{{
+								XMLName: xml.Name{
+									Local: "properties",
+								},
+								Help: []string{"Timeout options"},
+							}},
+							Children: []*schemadefinition.Children{{
+								XMLName: xml.Name{
+									Local: "children",
+								},
+								LeafNode: []*schemadefinition.LeafNode{{
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "check",
+									DefaultValue: []string{"5"},
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Timeout in seconds for established connections"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr:     "numeric",
+												ArgumentAttr: "--range 1-3600",
+											}},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "u32:1-3600",
+											Description: "Check timeout in seconds",
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "connect",
+									DefaultValue: []string{"10"},
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Set the maximum time to wait for a connection attempt to a server to succeed"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr:     "numeric",
+												ArgumentAttr: "--range 1-3600",
+											}},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "u32:1-3600",
+											Description: "Connect timeout in seconds",
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "client",
+									DefaultValue: []string{"50"},
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Maximum inactivity time on the client side"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr:     "numeric",
+												ArgumentAttr: "--range 1-3600",
+											}},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "u32:1-3600",
+											Description: "Timeout in seconds",
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "server",
+									DefaultValue: []string{"50"},
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Set the maximum inactivity time on the server side"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr:     "numeric",
+												ArgumentAttr: "--range 1-3600",
+											}},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "u32:1-3600",
+											Description: "Server timeout in seconds",
+										}},
+									}},
+								}},
+							}},
 						}},
 						TagNode: []*schemadefinition.TagNode{{
 							IsBaseNode: true,
@@ -520,26 +642,14 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(auth|authpriv|cron|daemon|kern|lpr|mail|mark|news|syslog|user|uucp|local0|local1|local2|local3|local4|local5|local6|local7|all)"},
+													Regex: []string{"(auth|cron|daemon|kern|lpr|mail|news|syslog|user|uucp|local0|local1|local2|local3|local4|local5|local6|local7)"},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
 													XMLName: xml.Name{
 														Local: "valueHelp",
 													},
-													Format:      "all",
-													Description: "All facilities excluding \"mark\"",
-												}, {
-													XMLName: xml.Name{
-														Local: "valueHelp",
-													},
 													Format:      "auth",
 													Description: "Authentication and authorization",
-												}, {
-													XMLName: xml.Name{
-														Local: "valueHelp",
-													},
-													Format:      "authpriv",
-													Description: "Non-system authorization",
 												}, {
 													XMLName: xml.Name{
 														Local: "valueHelp",
@@ -570,12 +680,6 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 													},
 													Format:      "mail",
 													Description: "Mail subsystem",
-												}, {
-													XMLName: xml.Name{
-														Local: "valueHelp",
-													},
-													Format:      "mark",
-													Description: "Timestamp",
 												}, {
 													XMLName: xml.Name{
 														Local: "valueHelp",
@@ -654,7 +758,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "completionHelp",
 													},
-													List: []string{"auth authpriv cron daemon kern lpr mail mark news syslog user uucp local0 local1 local2 local3 local4 local5 local6 local7 all"},
+													List: []string{"auth cron daemon kern lpr mail news syslog user uucp local0 local1 local2 local3 local4 local5 local6 local7"},
 												}},
 											}},
 											Children: []*schemadefinition.Children{{
@@ -677,7 +781,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"(emerg|alert|crit|err|warning|notice|info|debug|all)"},
+															Regex: []string{"(emerg|alert|crit|err|warning|notice|info|debug)"},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
 															XMLName: xml.Name{
@@ -727,19 +831,13 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 															},
 															Format:      "debug",
 															Description: "Debug messages",
-														}, {
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "all",
-															Description: "Log everything",
 														}},
 														ConstraintErrorMessage: []string{"Invalid loglevel"},
 														CompletionHelp: []*schemadefinition.CompletionHelp{{
 															XMLName: xml.Name{
 																Local: "completionHelp",
 															},
-															List: []string{"emerg alert crit err warning notice info debug all"},
+															List: []string{"emerg alert crit err warning notice info debug"},
 														}},
 													}},
 												}},
@@ -793,6 +891,55 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 													Description: "The timeout value specified in milliseconds",
 												}},
 												ConstraintErrorMessage: []string{"The timeout value must be in range 1 to 65535 milliseconds"},
+											}},
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "node",
+									},
+									NodeNameAttr: "timeout",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Timeout options"},
+									}},
+									Children: []*schemadefinition.Children{{
+										XMLName: xml.Name{
+											Local: "children",
+										},
+										LeafNode: []*schemadefinition.LeafNode{{
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "client",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Maximum inactivity time on the client side"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr:     "numeric",
+														ArgumentAttr: "--range 1-3600",
+													}},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "u32:1-3600",
+													Description: "Timeout in seconds",
+												}},
 											}},
 										}},
 									}},
@@ -923,6 +1070,76 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "tagNode",
 									},
+									NodeNameAttr: "listen-address",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Local IP addresses to listen on"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr: "ip-address",
+											}, {
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr: "ipv6-link-local",
+											}},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "ipv4",
+											Description: "IPv4 address to listen for incoming connections",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "ipv6",
+											Description: "IPv6 address to listen for incoming connections",
+										}},
+										CompletionHelp: []*schemadefinition.CompletionHelp{{
+											XMLName: xml.Name{
+												Local: "completionHelp",
+											},
+											Script: []string{"${vyos_completion_dir}/list_local_ips.sh --both"},
+										}},
+									}},
+									Children: []*schemadefinition.Children{{
+										XMLName: xml.Name{
+											Local: "children",
+										},
+										LeafNode: []*schemadefinition.LeafNode{{
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "accept-proxy",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Accept PROXY protocol"},
+												Valueless: []*schemadefinition.Valueless{{
+													XMLName: xml.Name{
+														Local: "valueless",
+													},
+												}},
+											}},
+										}},
+									}},
+								}, {
+									IsBaseNode: true,
+									XMLName: xml.Name{
+										Local: "tagNode",
+									},
 									NodeNameAttr: "rule",
 									Properties: []*schemadefinition.Properties{{
 										XMLName: xml.Name{
@@ -980,21 +1197,21 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 														XMLName: xml.Name{
 															Local: "properties",
 														},
-														Help: []string{"Set URL location"},
+														Help: []string{"Set path location"},
 														Constraint: []*schemadefinition.Constraint{{
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"^\\/[\\w\\-.\\/]+$"},
+															Regex: []string{"\\/[\\w\\-.\\/]+"},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
 															XMLName: xml.Name{
 																Local: "valueHelp",
 															},
 															Format:      "url",
-															Description: "Set URL location",
+															Description: "Set path location",
 														}},
-														ConstraintErrorMessage: []string{"Incorrect URL format"},
+														ConstraintErrorMessage: []string{"Incorrect path format"},
 													}},
 												}, {
 													IsBaseNode: false,
@@ -1054,7 +1271,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"^\\/[\\w\\-.\\/]+$"},
+															Regex: []string{"\\/[\\w\\-.\\/]+"},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
 															XMLName: xml.Name{
@@ -1085,7 +1302,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"^\\/[\\w\\-.\\/]+$"},
+															Regex: []string{"\\/[\\w\\-.\\/]+"},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
 															XMLName: xml.Name{
@@ -1116,7 +1333,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"^\\/[\\w\\-.\\/]+$"},
+															Regex: []string{"\\/[\\w\\-.\\/]+"},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
 															XMLName: xml.Name{
@@ -1295,7 +1512,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 												Local: "valueHelp",
 											},
 											Format:      "txt",
-											Description: "Name of haproxy backend system",
+											Description: "HAProxy backend system name",
 										}},
 										ConstraintErrorMessage: []string{"Backend name must be alphanumeric and can contain hyphen and underscores"},
 										CompletionHelp: []*schemadefinition.CompletionHelp{{
@@ -1335,58 +1552,6 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 											Description: "Description",
 										}},
 										ConstraintErrorMessage: []string{"Description too long (limit 255 characters)"},
-									}},
-								}, {
-									IsBaseNode: false,
-									XMLName: xml.Name{
-										Local: "leafNode",
-									},
-									NodeNameAttr: "listen-address",
-									Properties: []*schemadefinition.Properties{{
-										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"Local IP addresses to listen on"},
-										Constraint: []*schemadefinition.Constraint{{
-											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Validator: []*schemadefinition.Validator{{
-												XMLName: xml.Name{
-													Local: "validator",
-												},
-												NameAttr: "ip-address",
-											}, {
-												XMLName: xml.Name{
-													Local: "validator",
-												},
-												NameAttr: "ipv6-link-local",
-											}},
-										}},
-										ValueHelp: []*schemadefinition.ValueHelp{{
-											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
-											Format:      "ipv4",
-											Description: "IPv4 address to listen for incoming connections",
-										}, {
-											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
-											Format:      "ipv6",
-											Description: "IPv6 address to listen for incoming connections",
-										}},
-										CompletionHelp: []*schemadefinition.CompletionHelp{{
-											XMLName: xml.Name{
-												Local: "completionHelp",
-											},
-											Script: []string{"${vyos_completion_dir}/list_local_ips.sh --both"},
-										}},
-										Multi: []*schemadefinition.Multi{{
-											XMLName: xml.Name{
-												Local: "multi",
-											},
-										}},
 									}},
 								}, {
 									IsBaseNode: false,
@@ -1532,26 +1697,14 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(auth|authpriv|cron|daemon|kern|lpr|mail|mark|news|syslog|user|uucp|local0|local1|local2|local3|local4|local5|local6|local7|all)"},
+													Regex: []string{"(auth|cron|daemon|kern|lpr|mail|news|syslog|user|uucp|local0|local1|local2|local3|local4|local5|local6|local7)"},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
 													XMLName: xml.Name{
 														Local: "valueHelp",
 													},
-													Format:      "all",
-													Description: "All facilities excluding \"mark\"",
-												}, {
-													XMLName: xml.Name{
-														Local: "valueHelp",
-													},
 													Format:      "auth",
 													Description: "Authentication and authorization",
-												}, {
-													XMLName: xml.Name{
-														Local: "valueHelp",
-													},
-													Format:      "authpriv",
-													Description: "Non-system authorization",
 												}, {
 													XMLName: xml.Name{
 														Local: "valueHelp",
@@ -1582,12 +1735,6 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 													},
 													Format:      "mail",
 													Description: "Mail subsystem",
-												}, {
-													XMLName: xml.Name{
-														Local: "valueHelp",
-													},
-													Format:      "mark",
-													Description: "Timestamp",
 												}, {
 													XMLName: xml.Name{
 														Local: "valueHelp",
@@ -1666,7 +1813,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "completionHelp",
 													},
-													List: []string{"auth authpriv cron daemon kern lpr mail mark news syslog user uucp local0 local1 local2 local3 local4 local5 local6 local7 all"},
+													List: []string{"auth cron daemon kern lpr mail news syslog user uucp local0 local1 local2 local3 local4 local5 local6 local7"},
 												}},
 											}},
 											Children: []*schemadefinition.Children{{
@@ -1689,7 +1836,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"(emerg|alert|crit|err|warning|notice|info|debug|all)"},
+															Regex: []string{"(emerg|alert|crit|err|warning|notice|info|debug)"},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
 															XMLName: xml.Name{
@@ -1739,19 +1886,13 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 															},
 															Format:      "debug",
 															Description: "Debug messages",
-														}, {
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "all",
-															Description: "Log everything",
 														}},
 														ConstraintErrorMessage: []string{"Invalid loglevel"},
 														CompletionHelp: []*schemadefinition.CompletionHelp{{
 															XMLName: xml.Name{
 																Local: "completionHelp",
 															},
-															List: []string{"emerg alert crit err warning notice info debug all"},
+															List: []string{"emerg alert crit err warning notice info debug"},
 														}},
 													}},
 												}},
@@ -1890,7 +2031,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"^\\/([^?#\\s]&)(\\?[^#\\s]&)?$"},
+													Regex: []string{"\\/([^?#\\s]&)(\\?[^#\\s]&)?"},
 												}},
 											}},
 										}},
@@ -2191,7 +2332,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"^\\/[\\w\\-.\\/]+$"},
+															Regex: []string{"\\/[\\w\\-.\\/]+"},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
 															XMLName: xml.Name{
@@ -2254,7 +2395,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"^\\/[\\w\\-.\\/]+$"},
+															Regex: []string{"\\/[\\w\\-.\\/]+"},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
 															XMLName: xml.Name{
@@ -2285,7 +2426,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"^\\/[\\w\\-.\\/]+$"},
+															Regex: []string{"\\/[\\w\\-.\\/]+"},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
 															XMLName: xml.Name{
@@ -2316,7 +2457,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"^\\/[\\w\\-.\\/]&$"},
+															Regex: []string{"\\/[\\w\\-.\\/]&"},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
 															XMLName: xml.Name{
@@ -2787,7 +2928,7 @@ func loadbalancing() schemadefinition.InterfaceDefinition {
 						XMLName: xml.Name{
 							Local: "properties",
 						},
-						Help:     []string{"Configure Wide Area Network (WAN) load-balancing"},
+						Help:     []string{"Wide Area Network (WAN) load-balancing"},
 						Priority: []string{"900"},
 					}},
 					Children: []*schemadefinition.Children{{

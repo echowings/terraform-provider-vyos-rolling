@@ -9,6 +9,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework-timeouts/resource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
+	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 
@@ -28,6 +29,7 @@ type SystemSyslogMarker struct {
 	Timeouts timeouts.Value `tfsdk:"timeouts" vyos:"-,timeout"`
 
 	// LeafNodes
+	LeafSystemSyslogMarkerDisable  types.Bool   `tfsdk:"disable" vyos:"disable,omitempty"`
 	LeafSystemSyslogMarkerInterval types.Number `tfsdk:"interval" vyos:"interval,omitempty"`
 
 	// TagNodes
@@ -101,6 +103,21 @@ func (o SystemSyslogMarker) ResourceSchemaAttributes(ctx context.Context) map[st
 		}),
 
 		// LeafNodes
+
+		"disable":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (disable) */
+		schema.BoolAttribute{
+			Optional: true,
+			MarkdownDescription: `Disable instance
+
+`,
+			Description: `Disable instance
+
+`,
+			Default:  booldefault.StaticBool(false),
+			Computed: true,
+		},
 
 		"interval":
 

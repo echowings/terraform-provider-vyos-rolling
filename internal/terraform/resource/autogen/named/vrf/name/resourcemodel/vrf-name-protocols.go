@@ -36,6 +36,8 @@ type VrfNameProtocols struct {
 
 	NodeVrfNameProtocolsOspfvthree *VrfNameProtocolsOspfvthree `tfsdk:"ospfv3" vyos:"ospfv3,omitempty"`
 
+	NodeVrfNameProtocolsRpki *VrfNameProtocolsRpki `tfsdk:"rpki" vyos:"rpki,omitempty"`
+
 	// Ignoring Node `VrfNameProtocolsStatic`.
 }
 
@@ -99,6 +101,17 @@ func (o VrfNameProtocols) ResourceSchemaAttributes(ctx context.Context) map[stri
 
 `,
 			Description: `Open Shortest Path First (OSPF) for IPv6
+
+`,
+		},
+
+		"rpki": schema.SingleNestedAttribute{
+			Attributes: VrfNameProtocolsRpki{}.ResourceSchemaAttributes(ctx),
+			Optional:   true,
+			MarkdownDescription: `Resource Public Key Infrastructure (RPKI)
+
+`,
+			Description: `Resource Public Key Infrastructure (RPKI)
 
 `,
 		},

@@ -49,6 +49,7 @@ type InterfacesVirtualEthernet struct {
 	LeafInterfacesVirtualEthernetAddress     types.List   `tfsdk:"address" vyos:"address,omitempty"`
 	LeafInterfacesVirtualEthernetDescrIPtion types.String `tfsdk:"description" vyos:"description,omitempty"`
 	LeafInterfacesVirtualEthernetDisable     types.Bool   `tfsdk:"disable" vyos:"disable,omitempty"`
+	LeafInterfacesVirtualEthernetMtu         types.Number `tfsdk:"mtu" vyos:"mtu,omitempty"`
 	LeafInterfacesVirtualEthernetNetns       types.String `tfsdk:"netns" vyos:"netns,omitempty"`
 	LeafInterfacesVirtualEthernetVrf         types.String `tfsdk:"vrf" vyos:"vrf,omitempty"`
 	LeafInterfacesVirtualEthernetPeerName    types.String `tfsdk:"peer_name" vyos:"peer-name,omitempty"`
@@ -227,6 +228,28 @@ func (o InterfacesVirtualEthernet) ResourceSchemaAttributes(ctx context.Context)
 
 `,
 			Default:  booldefault.StaticBool(false),
+			Computed: true,
+		},
+
+		"mtu":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (mtu) */
+		schema.NumberAttribute{
+			Optional: true,
+			MarkdownDescription: `Maximum Transmission Unit (MTU)
+
+    |  Format    |  Description                        |
+    |------------|-------------------------------------|
+    |  68-16000  |  Maximum Transmission Unit in byte  |
+`,
+			Description: `Maximum Transmission Unit (MTU)
+
+    |  Format    |  Description                        |
+    |------------|-------------------------------------|
+    |  68-16000  |  Maximum Transmission Unit in byte  |
+`,
+
+			// Default:          stringdefault.StaticString(`1500`),
 			Computed: true,
 		},
 

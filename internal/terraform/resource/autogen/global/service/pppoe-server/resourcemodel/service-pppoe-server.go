@@ -39,6 +39,7 @@ type ServicePppoeServer struct {
 	LeafServicePppoeServerGatewayAddress        types.String `tfsdk:"gateway_address" vyos:"gateway-address,omitempty"`
 	LeafServicePppoeServerMaxConcurrentSessions types.Number `tfsdk:"max_concurrent_sessions" vyos:"max-concurrent-sessions,omitempty"`
 	LeafServicePppoeServerMtu                   types.String `tfsdk:"mtu" vyos:"mtu,omitempty"`
+	LeafServicePppoeServerThreadCount           types.String `tfsdk:"thread_count" vyos:"thread-count,omitempty"`
 	LeafServicePppoeServerWinsServer            types.List   `tfsdk:"wins_server" vyos:"wins-server,omitempty"`
 	LeafServicePppoeServerDescrIPtion           types.String `tfsdk:"description" vyos:"description,omitempty"`
 	LeafServicePppoeServerNameServer            types.List   `tfsdk:"name_server" vyos:"name-server,omitempty"`
@@ -305,6 +306,32 @@ func (o ServicePppoeServer) ResourceSchemaAttributes(ctx context.Context) map[st
 `,
 
 			// Default:          stringdefault.StaticString(`1492`),
+			Computed: true,
+		},
+
+		"thread_count":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (thread-count) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `Number of working threads
+
+    |  Format  |  Description                      |
+    |----------|-----------------------------------|
+    |  all     |  Use all available CPU cores      |
+    |  half    |  Use half of available CPU cores  |
+    |  1-512   |  Thread count                     |
+`,
+			Description: `Number of working threads
+
+    |  Format  |  Description                      |
+    |----------|-----------------------------------|
+    |  all     |  Use all available CPU cores      |
+    |  half    |  Use half of available CPU cores  |
+    |  1-512   |  Thread count                     |
+`,
+
+			// Default:          stringdefault.StaticString(`all`),
 			Computed: true,
 		},
 

@@ -77,6 +77,42 @@ func qos() schemadefinition.InterfaceDefinition {
 								XMLName: xml.Name{
 									Local: "children",
 								},
+								Node: []*schemadefinition.Node{{
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "node",
+									},
+									NodeNameAttr: "ack-filter",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Identify and filter out TCP ACK packets that do not convey significant new information"},
+									}},
+									Children: []*schemadefinition.Children{{
+										XMLName: xml.Name{
+											Local: "children",
+										},
+										LeafNode: []*schemadefinition.LeafNode{{
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "aggressive",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Enable aggressive mode which will result in more ACK packets being compresses/filtered"},
+												Valueless: []*schemadefinition.Valueless{{
+													XMLName: xml.Name{
+														Local: "valueless",
+													},
+												}},
+											}},
+										}},
+									}},
+								}},
 								LeafNode: []*schemadefinition.LeafNode{{
 									IsBaseNode: false,
 									XMLName: xml.Name{
@@ -256,6 +292,23 @@ func qos() schemadefinition.InterfaceDefinition {
 											Local: "properties",
 										},
 										Help: []string{"Perform NAT lookup before applying flow-isolation rules"},
+										Valueless: []*schemadefinition.Valueless{{
+											XMLName: xml.Name{
+												Local: "valueless",
+											},
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "no-split-gso",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Do not split GSO super-packets into on-the-wire components"},
 										Valueless: []*schemadefinition.Valueless{{
 											XMLName: xml.Name{
 												Local: "valueless",
@@ -2415,7 +2468,7 @@ func qos() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 															Validator: []*schemadefinition.Validator{{
 																XMLName: xml.Name{
 																	Local: "validator",
@@ -4836,7 +4889,7 @@ func qos() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 															Validator: []*schemadefinition.Validator{{
 																XMLName: xml.Name{
 																	Local: "validator",
@@ -7415,7 +7468,7 @@ func qos() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 															Validator: []*schemadefinition.Validator{{
 																XMLName: xml.Name{
 																	Local: "validator",
@@ -10031,7 +10084,7 @@ func qos() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 															Validator: []*schemadefinition.Validator{{
 																XMLName: xml.Name{
 																	Local: "validator",
@@ -13377,7 +13430,7 @@ func qos() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 															Validator: []*schemadefinition.Validator{{
 																XMLName: xml.Name{
 																	Local: "validator",
@@ -13651,7 +13704,7 @@ func qos() schemadefinition.InterfaceDefinition {
 							XMLName: xml.Name{
 								Local: "constraint",
 							},
-							Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+							Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 							Validator: []*schemadefinition.Validator{{
 								XMLName: xml.Name{
 									Local: "validator",

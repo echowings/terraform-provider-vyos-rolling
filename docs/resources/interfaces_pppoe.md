@@ -263,6 +263,11 @@ Optional:
 Optional:
 
 - `autoconf` (Boolean) Enable acquisition of IPv6 address using stateless autoconfig (SLAAC)
+- `interface_identifier` (String) SLAAC interface identifier
+
+    |  Format     &emsp;|  Description           |
+    |-------------|------------------------|
+    |  ::h:h:h:h  &emsp;|  Interface identifier  |
 
 
 

@@ -29,11 +29,14 @@ Container applications
     - [Optional](#optional)
       - [authentication](#authentication)
       - [disable](#disable)
+      - [insecure](#insecure)
+      - [mirror](#mirror)
       - [timeouts](#timeouts)
     - [Read-Only](#read-only)
       - [id](#id)
     - [Nested Schema for `identifier`](#nested-schema-for-identifier)
     - [Nested Schema for `authentication`](#nested-schema-for-authentication)
+    - [Nested Schema for `mirror`](#nested-schema-for-mirror)
     - [Nested Schema for `timeouts`](#nested-schema-for-timeouts)
   - [Import](#import)
 
@@ -53,6 +56,10 @@ Container applications
 - `authentication` (Attributes) Authentication settings (see [below for nested schema](#nestedatt--authentication))
 #### disable
 - `disable` (Boolean) Disable instance
+#### insecure
+- `insecure` (Boolean) Allow registry access over unencrypted HTTP or TLS connections with untrusted certificates
+#### mirror
+- `mirror` (Attributes) Registry mirror, use host-name|address[:port][/path] (see [below for nested schema](#nestedatt--mirror))
 #### timeouts
 - `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
 
@@ -84,6 +91,30 @@ Optional:
     |  Format  &emsp;|  Description  |
     |----------|---------------|
     |  txt     &emsp;|  Username     |
+
+
+<a id="nestedatt--mirror"></a>
+### Nested Schema for `mirror`
+
+Optional:
+
+- `address` (String) IP address of container registry mirror
+
+    |  Format  &emsp;|  Description                                |
+    |----------|---------------------------------------------|
+    |  ipv4    &emsp;|  IPv4 address of container registry mirror  |
+    |  ipv6    &emsp;|  IPv6 address of container registry mirror  |
+- `host_name` (String) Hostname of container registry mirror
+
+    |  Format    &emsp;|  Description                        |
+    |------------|-------------------------------------|
+    |  hostname  &emsp;|  FQDN of container registry mirror  |
+- `path` (String) Path of container registry mirror, optional, must be start with &#39;/&#39; if not empty
+- `port` (Number) Port number used by connection
+
+    |  Format   &emsp;|  Description      |
+    |-----------|-------------------|
+    |  1-65535  &emsp;|  Numeric IP port  |
 
 
 <a id="nestedatt--timeouts"></a>

@@ -68,11 +68,13 @@ Virtual Routing and Forwarding
     - [Nested Schema for `protocols.bgp.address_family.ipv4_unicast.redistribute.connected`](#nested-schema-for-protocolsbgpaddress_familyipv4_unicastredistributeconnected)
     - [Nested Schema for `protocols.bgp.address_family.ipv4_unicast.redistribute.isis`](#nested-schema-for-protocolsbgpaddress_familyipv4_unicastredistributeisis)
     - [Nested Schema for `protocols.bgp.address_family.ipv4_unicast.redistribute.kernel`](#nested-schema-for-protocolsbgpaddress_familyipv4_unicastredistributekernel)
+    - [Nested Schema for `protocols.bgp.address_family.ipv4_unicast.redistribute.nhrp`](#nested-schema-for-protocolsbgpaddress_familyipv4_unicastredistributenhrp)
     - [Nested Schema for `protocols.bgp.address_family.ipv4_unicast.redistribute.ospf`](#nested-schema-for-protocolsbgpaddress_familyipv4_unicastredistributeospf)
     - [Nested Schema for `protocols.bgp.address_family.ipv4_unicast.redistribute.rip`](#nested-schema-for-protocolsbgpaddress_familyipv4_unicastredistributerip)
     - [Nested Schema for `protocols.bgp.address_family.ipv4_unicast.redistribute.static`](#nested-schema-for-protocolsbgpaddress_familyipv4_unicastredistributestatic)
     - [Nested Schema for `protocols.bgp.address_family.ipv4_unicast.route_map`](#nested-schema-for-protocolsbgpaddress_familyipv4_unicastroute_map)
     - [Nested Schema for `protocols.bgp.address_family.ipv4_unicast.route_map.vpn`](#nested-schema-for-protocolsbgpaddress_familyipv4_unicastroute_mapvpn)
+    - [Nested Schema for `protocols.bgp.address_family.ipv4_unicast.route_map.vrf`](#nested-schema-for-protocolsbgpaddress_familyipv4_unicastroute_mapvrf)
     - [Nested Schema for `protocols.bgp.address_family.ipv4_unicast.route_target`](#nested-schema-for-protocolsbgpaddress_familyipv4_unicastroute_target)
     - [Nested Schema for `protocols.bgp.address_family.ipv4_unicast.route_target.vpn`](#nested-schema-for-protocolsbgpaddress_familyipv4_unicastroute_targetvpn)
     - [Nested Schema for `protocols.bgp.address_family.ipv4_unicast.sid`](#nested-schema-for-protocolsbgpaddress_familyipv4_unicastsid)
@@ -98,6 +100,7 @@ Virtual Routing and Forwarding
     - [Nested Schema for `protocols.bgp.address_family.ipv6_unicast.redistribute.connected`](#nested-schema-for-protocolsbgpaddress_familyipv6_unicastredistributeconnected)
     - [Nested Schema for `protocols.bgp.address_family.ipv6_unicast.redistribute.isis`](#nested-schema-for-protocolsbgpaddress_familyipv6_unicastredistributeisis)
     - [Nested Schema for `protocols.bgp.address_family.ipv6_unicast.redistribute.kernel`](#nested-schema-for-protocolsbgpaddress_familyipv6_unicastredistributekernel)
+    - [Nested Schema for `protocols.bgp.address_family.ipv6_unicast.redistribute.nhrp`](#nested-schema-for-protocolsbgpaddress_familyipv6_unicastredistributenhrp)
     - [Nested Schema for `protocols.bgp.address_family.ipv6_unicast.redistribute.ospfv3`](#nested-schema-for-protocolsbgpaddress_familyipv6_unicastredistributeospfv3)
     - [Nested Schema for `protocols.bgp.address_family.ipv6_unicast.redistribute.ripng`](#nested-schema-for-protocolsbgpaddress_familyipv6_unicastredistributeripng)
     - [Nested Schema for `protocols.bgp.address_family.ipv6_unicast.redistribute.static`](#nested-schema-for-protocolsbgpaddress_familyipv6_unicastredistributestatic)
@@ -175,6 +178,9 @@ Virtual Routing and Forwarding
     - [Nested Schema for `protocols.isis.redistribute.ipv4.kernel`](#nested-schema-for-protocolsisisredistributeipv4kernel)
     - [Nested Schema for `protocols.isis.redistribute.ipv4.kernel.level_1`](#nested-schema-for-protocolsisisredistributeipv4kernellevel_1)
     - [Nested Schema for `protocols.isis.redistribute.ipv4.kernel.level_2`](#nested-schema-for-protocolsisisredistributeipv4kernellevel_2)
+    - [Nested Schema for `protocols.isis.redistribute.ipv4.nhrp`](#nested-schema-for-protocolsisisredistributeipv4nhrp)
+    - [Nested Schema for `protocols.isis.redistribute.ipv4.nhrp.level_1`](#nested-schema-for-protocolsisisredistributeipv4nhrplevel_1)
+    - [Nested Schema for `protocols.isis.redistribute.ipv4.nhrp.level_2`](#nested-schema-for-protocolsisisredistributeipv4nhrplevel_2)
     - [Nested Schema for `protocols.isis.redistribute.ipv4.ospf`](#nested-schema-for-protocolsisisredistributeipv4ospf)
     - [Nested Schema for `protocols.isis.redistribute.ipv4.ospf.level_1`](#nested-schema-for-protocolsisisredistributeipv4ospflevel_1)
     - [Nested Schema for `protocols.isis.redistribute.ipv4.ospf.level_2`](#nested-schema-for-protocolsisisredistributeipv4ospflevel_2)
@@ -234,6 +240,7 @@ Virtual Routing and Forwarding
     - [Nested Schema for `protocols.ospf.redistribute.connected`](#nested-schema-for-protocolsospfredistributeconnected)
     - [Nested Schema for `protocols.ospf.redistribute.isis`](#nested-schema-for-protocolsospfredistributeisis)
     - [Nested Schema for `protocols.ospf.redistribute.kernel`](#nested-schema-for-protocolsospfredistributekernel)
+    - [Nested Schema for `protocols.ospf.redistribute.nhrp`](#nested-schema-for-protocolsospfredistributenhrp)
     - [Nested Schema for `protocols.ospf.redistribute.rip`](#nested-schema-for-protocolsospfredistributerip)
     - [Nested Schema for `protocols.ospf.redistribute.static`](#nested-schema-for-protocolsospfredistributestatic)
     - [Nested Schema for `protocols.ospf.refresh`](#nested-schema-for-protocolsospfrefresh)
@@ -262,6 +269,7 @@ Virtual Routing and Forwarding
     - [Nested Schema for `protocols.ospfv3.redistribute.kernel`](#nested-schema-for-protocolsospfv3redistributekernel)
     - [Nested Schema for `protocols.ospfv3.redistribute.ripng`](#nested-schema-for-protocolsospfv3redistributeripng)
     - [Nested Schema for `protocols.ospfv3.redistribute.static`](#nested-schema-for-protocolsospfv3redistributestatic)
+    - [Nested Schema for `protocols.rpki`](#nested-schema-for-protocolsrpki)
     - [Nested Schema for `timeouts`](#nested-schema-for-timeouts)
   - [Import](#import)
 
@@ -367,6 +375,7 @@ Optional:
 - `isis` (Attributes) Intermediate System to Intermediate System (IS-IS) (see [below for nested schema](#nestedatt--protocols--isis))
 - `ospf` (Attributes) Open Shortest Path First (OSPF) (see [below for nested schema](#nestedatt--protocols--ospf))
 - `ospfv3` (Attributes) Open Shortest Path First (OSPF) for IPv6 (see [below for nested schema](#nestedatt--protocols--ospfv3))
+- `rpki` (Attributes) Resource Public Key Infrastructure (RPKI) (see [below for nested schema](#nestedatt--protocols--rpki))
 
 <a id="nestedatt--protocols--bgp"></a>
 ### Nested Schema for `protocols.bgp`
@@ -632,6 +641,7 @@ Optional:
 - `connected` (Attributes) Redistribute connected routes into BGP (see [below for nested schema](#nestedatt--protocols--bgp--address_family--ipv4_unicast--redistribute--connected))
 - `isis` (Attributes) Redistribute IS-IS routes into BGP (see [below for nested schema](#nestedatt--protocols--bgp--address_family--ipv4_unicast--redistribute--isis))
 - `kernel` (Attributes) Redistribute kernel routes into BGP (see [below for nested schema](#nestedatt--protocols--bgp--address_family--ipv4_unicast--redistribute--kernel))
+- `nhrp` (Attributes) Redistribute NHRP routes into BGP (see [below for nested schema](#nestedatt--protocols--bgp--address_family--ipv4_unicast--redistribute--nhrp))
 - `ospf` (Attributes) Redistribute OSPF routes into BGP (see [below for nested schema](#nestedatt--protocols--bgp--address_family--ipv4_unicast--redistribute--ospf))
 - `rip` (Attributes) Redistribute RIP routes into BGP (see [below for nested schema](#nestedatt--protocols--bgp--address_family--ipv4_unicast--redistribute--rip))
 - `static` (Attributes) Redistribute static routes into BGP (see [below for nested schema](#nestedatt--protocols--bgp--address_family--ipv4_unicast--redistribute--static))
@@ -689,6 +699,23 @@ Optional:
 
 <a id="nestedatt--protocols--bgp--address_family--ipv4_unicast--redistribute--kernel"></a>
 ### Nested Schema for `protocols.bgp.address_family.ipv4_unicast.redistribute.kernel`
+
+Optional:
+
+- `metric` (Number) Metric for redistributed routes
+
+    |  Format        &emsp;|  Description                      |
+    |----------------|-----------------------------------|
+    |  1-4294967295  &emsp;|  Metric for redistributed routes  |
+- `route_map` (String) Specify route-map name to use
+
+    |  Format  &emsp;|  Description     |
+    |----------|------------------|
+    |  txt     &emsp;|  Route map name  |
+
+
+<a id="nestedatt--protocols--bgp--address_family--ipv4_unicast--redistribute--nhrp"></a>
+### Nested Schema for `protocols.bgp.address_family.ipv4_unicast.redistribute.nhrp`
 
 Optional:
 
@@ -762,6 +789,7 @@ Optional:
 Optional:
 
 - `vpn` (Attributes) Between current address-family and VPN (see [below for nested schema](#nestedatt--protocols--bgp--address_family--ipv4_unicast--route_map--vpn))
+- `vrf` (Attributes) Between current address-family and VRF (see [below for nested schema](#nestedatt--protocols--bgp--address_family--ipv4_unicast--route_map--vrf))
 
 <a id="nestedatt--protocols--bgp--address_family--ipv4_unicast--route_map--vpn"></a>
 ### Nested Schema for `protocols.bgp.address_family.ipv4_unicast.route_map.vpn`
@@ -773,6 +801,18 @@ Optional:
     |  Format  &emsp;|  Description     |
     |----------|------------------|
     |  txt     &emsp;|  Route map name  |
+- `import` (String) Route-map to filter incoming route updates
+
+    |  Format  &emsp;|  Description     |
+    |----------|------------------|
+    |  txt     &emsp;|  Route map name  |
+
+
+<a id="nestedatt--protocols--bgp--address_family--ipv4_unicast--route_map--vrf"></a>
+### Nested Schema for `protocols.bgp.address_family.ipv4_unicast.route_map.vrf`
+
+Optional:
+
 - `import` (String) Route-map to filter incoming route updates
 
     |  Format  &emsp;|  Description     |
@@ -1040,6 +1080,7 @@ Optional:
 - `connected` (Attributes) Redistribute connected routes into BGP (see [below for nested schema](#nestedatt--protocols--bgp--address_family--ipv6_unicast--redistribute--connected))
 - `isis` (Attributes) Redistribute IS-IS routes into BGP (see [below for nested schema](#nestedatt--protocols--bgp--address_family--ipv6_unicast--redistribute--isis))
 - `kernel` (Attributes) Redistribute kernel routes into BGP (see [below for nested schema](#nestedatt--protocols--bgp--address_family--ipv6_unicast--redistribute--kernel))
+- `nhrp` (Attributes) Redistribute NHRP routes into BGP (see [below for nested schema](#nestedatt--protocols--bgp--address_family--ipv6_unicast--redistribute--nhrp))
 - `ospfv3` (Attributes) Redistribute OSPFv3 routes into BGP (see [below for nested schema](#nestedatt--protocols--bgp--address_family--ipv6_unicast--redistribute--ospfv3))
 - `ripng` (Attributes) Redistribute RIPng routes into BGP (see [below for nested schema](#nestedatt--protocols--bgp--address_family--ipv6_unicast--redistribute--ripng))
 - `static` (Attributes) Redistribute static routes into BGP (see [below for nested schema](#nestedatt--protocols--bgp--address_family--ipv6_unicast--redistribute--static))
@@ -1097,6 +1138,23 @@ Optional:
 
 <a id="nestedatt--protocols--bgp--address_family--ipv6_unicast--redistribute--kernel"></a>
 ### Nested Schema for `protocols.bgp.address_family.ipv6_unicast.redistribute.kernel`
+
+Optional:
+
+- `metric` (Number) Metric for redistributed routes
+
+    |  Format        &emsp;|  Description                      |
+    |----------------|-----------------------------------|
+    |  1-4294967295  &emsp;|  Metric for redistributed routes  |
+- `route_map` (String) Specify route-map name to use
+
+    |  Format  &emsp;|  Description     |
+    |----------|------------------|
+    |  txt     &emsp;|  Route map name  |
+
+
+<a id="nestedatt--protocols--bgp--address_family--ipv6_unicast--redistribute--nhrp"></a>
+### Nested Schema for `protocols.bgp.address_family.ipv6_unicast.redistribute.nhrp`
 
 Optional:
 
@@ -1463,6 +1521,7 @@ Optional:
 - `no_client_to_client_reflection` (Boolean) Disable client to client route reflection
 - `no_fast_external_failover` (Boolean) Disable immediate session reset on peer link down event
 - `no_hard_administrative_reset` (Boolean) Do not send hard reset CEASE Notification for &#39;Administrative Reset&#39;
+- `no_ipv6_auto_ra` (Boolean) Disable IPv6 automatic router advertisement
 - `no_suppress_duplicates` (Boolean) Disable suppress duplicate updates if the route actually not changed
 - `reject_as_sets` (Boolean) Reject routes with AS_SET or AS_CONFED_SET flag
 - `route_reflector_allow_outbound_policy` (Boolean) Route reflector client allow policy outbound
@@ -2092,6 +2151,7 @@ Optional:
 - `bgp` (Attributes) Border Gateway Protocol (BGP) (see [below for nested schema](#nestedatt--protocols--isis--redistribute--ipv4--bgp))
 - `connected` (Attributes) Redistribute connected routes into IS-IS (see [below for nested schema](#nestedatt--protocols--isis--redistribute--ipv4--connected))
 - `kernel` (Attributes) Redistribute kernel routes into IS-IS (see [below for nested schema](#nestedatt--protocols--isis--redistribute--ipv4--kernel))
+- `nhrp` (Attributes) Redistribute NHRP routes into IS-IS (see [below for nested schema](#nestedatt--protocols--isis--redistribute--ipv4--nhrp))
 - `ospf` (Attributes) Redistribute OSPF routes into IS-IS (see [below for nested schema](#nestedatt--protocols--isis--redistribute--ipv4--ospf))
 - `rip` (Attributes) Redistribute RIP routes into IS-IS (see [below for nested schema](#nestedatt--protocols--isis--redistribute--ipv4--rip))
 - `static` (Attributes) Redistribute static routes into IS-IS (see [below for nested schema](#nestedatt--protocols--isis--redistribute--ipv4--static))
@@ -2252,6 +2312,49 @@ Optional:
 
 <a id="nestedatt--protocols--isis--redistribute--ipv4--kernel--level_2"></a>
 ### Nested Schema for `protocols.isis.redistribute.ipv4.kernel.level_2`
+
+Optional:
+
+- `metric` (Number) Set default metric for circuit
+
+    |  Format      &emsp;|  Description           |
+    |--------------|------------------------|
+    |  0-16777215  &emsp;|  Default metric value  |
+- `route_map` (String) Specify route-map name to use
+
+    |  Format  &emsp;|  Description     |
+    |----------|------------------|
+    |  txt     &emsp;|  Route map name  |
+
+
+
+<a id="nestedatt--protocols--isis--redistribute--ipv4--nhrp"></a>
+### Nested Schema for `protocols.isis.redistribute.ipv4.nhrp`
+
+Optional:
+
+- `level_1` (Attributes) Redistribute into level-1 (see [below for nested schema](#nestedatt--protocols--isis--redistribute--ipv4--nhrp--level_1))
+- `level_2` (Attributes) Redistribute into level-2 (see [below for nested schema](#nestedatt--protocols--isis--redistribute--ipv4--nhrp--level_2))
+
+<a id="nestedatt--protocols--isis--redistribute--ipv4--nhrp--level_1"></a>
+### Nested Schema for `protocols.isis.redistribute.ipv4.nhrp.level_1`
+
+Optional:
+
+- `metric` (Number) Set default metric for circuit
+
+    |  Format      &emsp;|  Description           |
+    |--------------|------------------------|
+    |  0-16777215  &emsp;|  Default metric value  |
+- `route_map` (String) Specify route-map name to use
+
+    |  Format  &emsp;|  Description     |
+    |----------|------------------|
+    |  txt     &emsp;|  Route map name  |
+
+
+<a id="nestedatt--protocols--isis--redistribute--ipv4--nhrp--level_2"></a>
+### Nested Schema for `protocols.isis.redistribute.ipv4.nhrp.level_2`
 
 Optional:
 
@@ -3073,6 +3176,7 @@ Optional:
 - `connected` (Attributes) Redistribute connected routes (see [below for nested schema](#nestedatt--protocols--ospf--redistribute--connected))
 - `isis` (Attributes) Redistribute IS-IS routes (see [below for nested schema](#nestedatt--protocols--ospf--redistribute--isis))
 - `kernel` (Attributes) Redistribute Kernel routes (see [below for nested schema](#nestedatt--protocols--ospf--redistribute--kernel))
+- `nhrp` (Attributes) Redistribute NHRP routes (see [below for nested schema](#nestedatt--protocols--ospf--redistribute--nhrp))
 - `rip` (Attributes) Redistribute RIP routes (see [below for nested schema](#nestedatt--protocols--ospf--redistribute--rip))
 - `static` (Attributes) Redistribute statically configured routes (see [below for nested schema](#nestedatt--protocols--ospf--redistribute--static))
 
@@ -3166,6 +3270,28 @@ Optional:
 
 <a id="nestedatt--protocols--ospf--redistribute--kernel"></a>
 ### Nested Schema for `protocols.ospf.redistribute.kernel`
+
+Optional:
+
+- `metric` (Number) OSPF default metric
+
+    |  Format      &emsp;|  Description     |
+    |--------------|------------------|
+    |  0-16777214  &emsp;|  Default metric  |
+- `metric_type` (Number) OSPF metric type for default routes
+
+    |  Format  &emsp;|  Description                         |
+    |----------|--------------------------------------|
+    |  1-2     &emsp;|  Set OSPF External Type 1/2 metrics  |
+- `route_map` (String) Specify route-map name to use
+
+    |  Format  &emsp;|  Description     |
+    |----------|------------------|
+    |  txt     &emsp;|  Route map name  |
+
+
+<a id="nestedatt--protocols--ospf--redistribute--nhrp"></a>
+### Nested Schema for `protocols.ospf.redistribute.nhrp`
 
 Optional:
 
@@ -3648,6 +3774,28 @@ Optional:
     |  txt     &emsp;|  Route map name  |
 
 
+
+
+<a id="nestedatt--protocols--rpki"></a>
+### Nested Schema for `protocols.rpki`
+
+Optional:
+
+- `expire_interval` (Number) Interval to wait before expiring the cache
+
+    |  Format      &emsp;|  Description          |
+    |--------------|-----------------------|
+    |  600-172800  &emsp;|  Interval in seconds  |
+- `polling_period` (Number) Cache polling interval
+
+    |  Format   &emsp;|  Description          |
+    |-----------|-----------------------|
+    |  1-86400  &emsp;|  Interval in seconds  |
+- `retry_interval` (Number) Retry interval to connect to the cache server
+
+    |  Format  &emsp;|  Description          |
+    |----------|-----------------------|
+    |  1-7200  &emsp;|  Interval in seconds  |
 
 
 

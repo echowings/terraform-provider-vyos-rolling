@@ -29,8 +29,8 @@ LLDP settings
     - [Required](#required)
       - [identifier](#identifier)
     - [Optional](#optional)
-      - [disable](#disable)
       - [location](#location)
+      - [mode](#mode)
       - [timeouts](#timeouts)
     - [Read-Only](#read-only)
       - [id](#id)
@@ -52,10 +52,17 @@ LLDP settings
 
 ### Optional
 
-#### disable
-- `disable` (Boolean) Disable instance
 #### location
 - `location` (Attributes) LLDP-MED location data (see [below for nested schema](#nestedatt--location))
+#### mode
+- `mode` (String) Set LLDP receive/transmit operation mode of this interface
+
+    |  Format   &emsp;|  Description                           |
+    |-----------|----------------------------------------|
+    |  disable  &emsp;|  Do not process or send LLDP messages  |
+    |  rx-tx    &emsp;|  Send and process LLDP messages        |
+    |  rx       &emsp;|  Process incoming LLDP messages        |
+    |  tx       &emsp;|  Send LLDP messages                    |
 #### timeouts
 - `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
 

@@ -11,7 +11,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework-timeouts/resource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema"
-	"github.com/hashicorp/terraform-plugin-framework/resource/schema/booldefault"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/stringplanmodifier"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
@@ -48,7 +47,7 @@ type ServiceLldpInterface struct {
 	SelfIdentifier *ServiceLldpInterfaceSelfIdentifier `tfsdk:"identifier" vyos:"-,self-id"`
 
 	// LeafNodes
-	LeafServiceLldpInterfaceDisable types.Bool `tfsdk:"disable" vyos:"disable,omitempty"`
+	LeafServiceLldpInterfaceMode types.String `tfsdk:"mode" vyos:"mode,omitempty"`
 
 	// TagNodes
 
@@ -172,18 +171,31 @@ func (o ServiceLldpInterface) ResourceSchemaAttributes(ctx context.Context) map[
 
 		// LeafNodes
 
-		"disable":
+		"mode":
 
-		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (disable) */
-		schema.BoolAttribute{
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (mode) */
+		schema.StringAttribute{
 			Optional: true,
-			MarkdownDescription: `Disable instance
+			MarkdownDescription: `Set LLDP receive/transmit operation mode of this interface
 
+    |  Format   |  Description                           |
+    |-----------|----------------------------------------|
+    |  disable  |  Do not process or send LLDP messages  |
+    |  rx-tx    |  Send and process LLDP messages        |
+    |  rx       |  Process incoming LLDP messages        |
+    |  tx       |  Send LLDP messages                    |
 `,
-			Description: `Disable instance
+			Description: `Set LLDP receive/transmit operation mode of this interface
 
+    |  Format   |  Description                           |
+    |-----------|----------------------------------------|
+    |  disable  |  Do not process or send LLDP messages  |
+    |  rx-tx    |  Send and process LLDP messages        |
+    |  rx       |  Process incoming LLDP messages        |
+    |  tx       |  Send LLDP messages                    |
 `,
-			Default:  booldefault.StaticBool(false),
+
+			// Default:          stringdefault.StaticString(`rx-tx`),
 			Computed: true,
 		},
 

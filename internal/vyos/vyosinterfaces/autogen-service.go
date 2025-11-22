@@ -495,7 +495,7 @@ func service() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -2956,7 +2956,7 @@ func service() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -2998,7 +2998,7 @@ func service() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -3040,7 +3040,7 @@ func service() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -3123,6 +3123,784 @@ func service() schemadefinition.InterfaceDefinition {
 							Local: "children",
 						},
 						Node: []*schemadefinition.Node{{
+							IsBaseNode: true,
+							XMLName: xml.Name{
+								Local: "node",
+							},
+							NodeNameAttr: "dynamic-dns-update",
+							Properties: []*schemadefinition.Properties{{
+								XMLName: xml.Name{
+									Local: "properties",
+								},
+								Help: []string{"Dynamically update Domain Name System (RFC4702)"},
+							}},
+							Children: []*schemadefinition.Children{{
+								XMLName: xml.Name{
+									Local: "children",
+								},
+								TagNode: []*schemadefinition.TagNode{{
+									IsBaseNode: true,
+									XMLName: xml.Name{
+										Local: "tagNode",
+									},
+									NodeNameAttr: "tsig-key",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"TSIG key definition for DNS updates"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Regex: []string{"[-_a-zA-Z0-9]+"},
+										}},
+										ConstraintErrorMessage: []string{"Invalid TSIG key name. May only contain letters, numbers, hyphen and underscore"},
+									}},
+									Children: []*schemadefinition.Children{{
+										XMLName: xml.Name{
+											Local: "children",
+										},
+										LeafNode: []*schemadefinition.LeafNode{{
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "algorithm",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"TSIG key algorithm"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"(md5|sha1|sha224|sha256|sha384|sha512)"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "md5",
+													Description: "MD5 HMAC algorithm",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "sha1",
+													Description: "SHA1 HMAC algorithm",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "sha224",
+													Description: "SHA224 HMAC algorithm",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "sha256",
+													Description: "SHA256 HMAC algorithm",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "sha384",
+													Description: "SHA384 HMAC algorithm",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "sha512",
+													Description: "SHA512 HMAC algorithm",
+												}},
+												ConstraintErrorMessage: []string{"Invalid TSIG key algorithm"},
+												CompletionHelp: []*schemadefinition.CompletionHelp{{
+													XMLName: xml.Name{
+														Local: "completionHelp",
+													},
+													List: []string{"md5 sha1 sha224 sha256 sha384 sha512"},
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "secret",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"TSIG key secret (base64-encoded)"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr: "base64",
+													}},
+												}},
+											}},
+										}},
+									}},
+								}, {
+									IsBaseNode: true,
+									XMLName: xml.Name{
+										Local: "tagNode",
+									},
+									NodeNameAttr: "forward-domain",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Forward DNS domain name"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr: "fqdn",
+											}},
+										}},
+										ConstraintErrorMessage: []string{"Invalid forward DNS domain name"},
+									}},
+									Children: []*schemadefinition.Children{{
+										XMLName: xml.Name{
+											Local: "children",
+										},
+										TagNode: []*schemadefinition.TagNode{{
+											IsBaseNode: true,
+											XMLName: xml.Name{
+												Local: "tagNode",
+											},
+											NodeNameAttr: "dns-server",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"DNS server specification"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr:     "numeric",
+														ArgumentAttr: "--range 1-999999",
+													}},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "u32:1-999999",
+													Description: "Number for this DNS server",
+												}},
+												ConstraintErrorMessage: []string{"DNS server number must be between 1 and 999999"},
+											}},
+											Children: []*schemadefinition.Children{{
+												XMLName: xml.Name{
+													Local: "children",
+												},
+												LeafNode: []*schemadefinition.LeafNode{{
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "address",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"IP address"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Validator: []*schemadefinition.Validator{{
+																XMLName: xml.Name{
+																	Local: "validator",
+																},
+																NameAttr: "ip-address",
+															}},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "ipv4",
+															Description: "IPv4 address",
+														}, {
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "ipv6",
+															Description: "IPv6 address",
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "port",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Port number used by connection"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Validator: []*schemadefinition.Validator{{
+																XMLName: xml.Name{
+																	Local: "validator",
+																},
+																NameAttr:     "numeric",
+																ArgumentAttr: "--range 1-65535",
+															}},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "u32:1-65535",
+															Description: "Numeric IP port",
+														}},
+														ConstraintErrorMessage: []string{"Port number must be in range 1 to 65535"},
+													}},
+												}},
+											}},
+										}},
+										LeafNode: []*schemadefinition.LeafNode{{
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "key-name",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"TSIG key name for forward DNS updates"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"[-_a-zA-Z0-9]+"},
+												}},
+												ConstraintErrorMessage: []string{"Invalid TSIG key name. May only contain letters, numbers, numbers, hyphen and underscore"},
+											}},
+										}},
+									}},
+								}, {
+									IsBaseNode: true,
+									XMLName: xml.Name{
+										Local: "tagNode",
+									},
+									NodeNameAttr: "reverse-domain",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Reverse DNS domain name"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr: "fqdn",
+											}},
+										}},
+										ConstraintErrorMessage: []string{"Invalid reverse DNS domain name"},
+									}},
+									Children: []*schemadefinition.Children{{
+										XMLName: xml.Name{
+											Local: "children",
+										},
+										TagNode: []*schemadefinition.TagNode{{
+											IsBaseNode: true,
+											XMLName: xml.Name{
+												Local: "tagNode",
+											},
+											NodeNameAttr: "dns-server",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"DNS server specification"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr:     "numeric",
+														ArgumentAttr: "--range 1-999999",
+													}},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "u32:1-999999",
+													Description: "Number for this DNS server",
+												}},
+												ConstraintErrorMessage: []string{"DNS server number must be between 1 and 999999"},
+											}},
+											Children: []*schemadefinition.Children{{
+												XMLName: xml.Name{
+													Local: "children",
+												},
+												LeafNode: []*schemadefinition.LeafNode{{
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "address",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"IP address"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Validator: []*schemadefinition.Validator{{
+																XMLName: xml.Name{
+																	Local: "validator",
+																},
+																NameAttr: "ip-address",
+															}},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "ipv4",
+															Description: "IPv4 address",
+														}, {
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "ipv6",
+															Description: "IPv6 address",
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "port",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Port number used by connection"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Validator: []*schemadefinition.Validator{{
+																XMLName: xml.Name{
+																	Local: "validator",
+																},
+																NameAttr:     "numeric",
+																ArgumentAttr: "--range 1-65535",
+															}},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "u32:1-65535",
+															Description: "Numeric IP port",
+														}},
+														ConstraintErrorMessage: []string{"Port number must be in range 1 to 65535"},
+													}},
+												}},
+											}},
+										}},
+										LeafNode: []*schemadefinition.LeafNode{{
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "key-name",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"TSIG key name for reverse DNS updates"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"[-_a-zA-Z0-9]+"},
+												}},
+												ConstraintErrorMessage: []string{"Invalid TSIG key name. May only contain letters, numbers, numbers, hyphen and underscore"},
+											}},
+										}},
+									}},
+								}},
+								LeafNode: []*schemadefinition.LeafNode{{
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "send-updates",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Enable or disable updates for this scope"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Regex: []string{"(enable|disable)"},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "enable",
+											Description: "Enable updates for this scope",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "disable",
+											Description: "Disable updates for this scope",
+										}},
+										ConstraintErrorMessage: []string{"Set it to either enable or disable"},
+										CompletionHelp: []*schemadefinition.CompletionHelp{{
+											XMLName: xml.Name{
+												Local: "completionHelp",
+											},
+											List: []string{"enable disable"},
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "override-client-update",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Always update both forward and reverse DNS data, regardless of the client's request"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Regex: []string{"(enable|disable)"},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "enable",
+											Description: "Force update both forward and reverse DNS records",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "disable",
+											Description: "Respect client request settings",
+										}},
+										ConstraintErrorMessage: []string{"Set it to either enable or disable"},
+										CompletionHelp: []*schemadefinition.CompletionHelp{{
+											XMLName: xml.Name{
+												Local: "completionHelp",
+											},
+											List: []string{"enable disable"},
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "override-no-update",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Perform a DDNS update, even if the client instructs the server not to"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Regex: []string{"(enable|disable)"},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "enable",
+											Description: "Force DDNS updates regardless of client request",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "disable",
+											Description: "Respect client request settings",
+										}},
+										ConstraintErrorMessage: []string{"Set it to either enable or disable"},
+										CompletionHelp: []*schemadefinition.CompletionHelp{{
+											XMLName: xml.Name{
+												Local: "completionHelp",
+											},
+											List: []string{"enable disable"},
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "replace-client-name",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Replace client name mode"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Regex: []string{"(never|always|when-present|when-not-present)"},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "never",
+											Description: "Use the name the client sent. If the client sent no name, do not generate\n                one",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "always",
+											Description: "Replace the name the client sent. If the client sent no name, generate one\n                for the client",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "when-present",
+											Description: "Replace the name the client sent. If the client sent no name, do not\n                generate one",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "when-not-present",
+											Description: "Use the name the client sent. If the client sent no name, generate one for\n                the client",
+										}},
+										ConstraintErrorMessage: []string{"Invalid replace client name mode"},
+										CompletionHelp: []*schemadefinition.CompletionHelp{{
+											XMLName: xml.Name{
+												Local: "completionHelp",
+											},
+											List: []string{"never always when-present when-not-present"},
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "generated-prefix",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"The prefix used in the generation of an FQDN"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr: "fqdn",
+											}},
+										}},
+										ConstraintErrorMessage: []string{"Invalid generated prefix"},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "qualifying-suffix",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"The suffix used when generating an FQDN, or when qualifying a partial name"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr: "fqdn",
+											}},
+										}},
+										ConstraintErrorMessage: []string{"Invalid qualifying suffix"},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "update-on-renew",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Update DNS record on lease renew"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Regex: []string{"(enable|disable)"},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "enable",
+											Description: "Update DNS record on lease renew",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "disable",
+											Description: "Do not update DNS record on lease renew",
+										}},
+										ConstraintErrorMessage: []string{"Set it to either enable or disable"},
+										CompletionHelp: []*schemadefinition.CompletionHelp{{
+											XMLName: xml.Name{
+												Local: "completionHelp",
+											},
+											List: []string{"enable disable"},
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "conflict-resolution",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"DNS conflict resolution behavior"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Regex: []string{"(enable|disable)"},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "enable",
+											Description: "Enable DNS conflict resolution",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "disable",
+											Description: "Disable DNS conflict resolution",
+										}},
+										ConstraintErrorMessage: []string{"Set it to either enable or disable"},
+										CompletionHelp: []*schemadefinition.CompletionHelp{{
+											XMLName: xml.Name{
+												Local: "completionHelp",
+											},
+											List: []string{"enable disable"},
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "ttl-percent",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Calculate TTL of the DNS record as a percentage of the lease lifetime"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr:     "numeric",
+												ArgumentAttr: "--range 1-100",
+											}},
+										}},
+										ConstraintErrorMessage: []string{"Invalid qualifying suffix"},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "hostname-char-set",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"A regular expression describing the invalid character set in the host name"},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "hostname-char-replacement",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"A string of zero or more characters with which to replace each invalid character in\n            the host name"},
+									}},
+								}},
+							}},
+						}, {
 							IsBaseNode: true,
 							XMLName: xml.Name{
 								Local: "node",
@@ -3377,6 +4155,361 @@ func service() schemadefinition.InterfaceDefinition {
 									Local: "children",
 								},
 								Node: []*schemadefinition.Node{{
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "node",
+									},
+									NodeNameAttr: "dynamic-dns-update",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Dynamically update Domain Name System (RFC4702)"},
+									}},
+									Children: []*schemadefinition.Children{{
+										XMLName: xml.Name{
+											Local: "children",
+										},
+										LeafNode: []*schemadefinition.LeafNode{{
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "send-updates",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Enable or disable updates for this scope"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"(enable|disable)"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "enable",
+													Description: "Enable updates for this scope",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "disable",
+													Description: "Disable updates for this scope",
+												}},
+												ConstraintErrorMessage: []string{"Set it to either enable or disable"},
+												CompletionHelp: []*schemadefinition.CompletionHelp{{
+													XMLName: xml.Name{
+														Local: "completionHelp",
+													},
+													List: []string{"enable disable"},
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "override-client-update",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Always update both forward and reverse DNS data, regardless of the client's request"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"(enable|disable)"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "enable",
+													Description: "Force update both forward and reverse DNS records",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "disable",
+													Description: "Respect client request settings",
+												}},
+												ConstraintErrorMessage: []string{"Set it to either enable or disable"},
+												CompletionHelp: []*schemadefinition.CompletionHelp{{
+													XMLName: xml.Name{
+														Local: "completionHelp",
+													},
+													List: []string{"enable disable"},
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "override-no-update",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Perform a DDNS update, even if the client instructs the server not to"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"(enable|disable)"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "enable",
+													Description: "Force DDNS updates regardless of client request",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "disable",
+													Description: "Respect client request settings",
+												}},
+												ConstraintErrorMessage: []string{"Set it to either enable or disable"},
+												CompletionHelp: []*schemadefinition.CompletionHelp{{
+													XMLName: xml.Name{
+														Local: "completionHelp",
+													},
+													List: []string{"enable disable"},
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "replace-client-name",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Replace client name mode"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"(never|always|when-present|when-not-present)"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "never",
+													Description: "Use the name the client sent. If the client sent no name, do not generate\n                one",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "always",
+													Description: "Replace the name the client sent. If the client sent no name, generate one\n                for the client",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "when-present",
+													Description: "Replace the name the client sent. If the client sent no name, do not\n                generate one",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "when-not-present",
+													Description: "Use the name the client sent. If the client sent no name, generate one for\n                the client",
+												}},
+												ConstraintErrorMessage: []string{"Invalid replace client name mode"},
+												CompletionHelp: []*schemadefinition.CompletionHelp{{
+													XMLName: xml.Name{
+														Local: "completionHelp",
+													},
+													List: []string{"never always when-present when-not-present"},
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "generated-prefix",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"The prefix used in the generation of an FQDN"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr: "fqdn",
+													}},
+												}},
+												ConstraintErrorMessage: []string{"Invalid generated prefix"},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "qualifying-suffix",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"The suffix used when generating an FQDN, or when qualifying a partial name"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr: "fqdn",
+													}},
+												}},
+												ConstraintErrorMessage: []string{"Invalid qualifying suffix"},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "update-on-renew",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Update DNS record on lease renew"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"(enable|disable)"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "enable",
+													Description: "Update DNS record on lease renew",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "disable",
+													Description: "Do not update DNS record on lease renew",
+												}},
+												ConstraintErrorMessage: []string{"Set it to either enable or disable"},
+												CompletionHelp: []*schemadefinition.CompletionHelp{{
+													XMLName: xml.Name{
+														Local: "completionHelp",
+													},
+													List: []string{"enable disable"},
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "conflict-resolution",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"DNS conflict resolution behavior"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"(enable|disable)"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "enable",
+													Description: "Enable DNS conflict resolution",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "disable",
+													Description: "Disable DNS conflict resolution",
+												}},
+												ConstraintErrorMessage: []string{"Set it to either enable or disable"},
+												CompletionHelp: []*schemadefinition.CompletionHelp{{
+													XMLName: xml.Name{
+														Local: "completionHelp",
+													},
+													List: []string{"enable disable"},
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "ttl-percent",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Calculate TTL of the DNS record as a percentage of the lease lifetime"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr:     "numeric",
+														ArgumentAttr: "--range 1-100",
+													}},
+												}},
+												ConstraintErrorMessage: []string{"Invalid qualifying suffix"},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "hostname-char-set",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"A regular expression describing the invalid character set in the host name"},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "hostname-char-replacement",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"A string of zero or more characters with which to replace each invalid character in\n            the host name"},
+											}},
+										}},
+									}},
+								}, {
 									IsBaseNode: false,
 									XMLName: xml.Name{
 										Local: "node",
@@ -3789,6 +4922,36 @@ func service() schemadefinition.InterfaceDefinition {
 													Description: "DHCP client prefix length must be 0 to 32",
 												}},
 												ConstraintErrorMessage: []string{"DHCP client prefix length must be 0 to 32"},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "capwap-controller",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"IP address of CAPWAP access controller (Option 138)"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr: "ipv4-address",
+													}},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "ipv4",
+													Description: "CAPWAP AC controller",
+												}},
 											}},
 										}, {
 											IsBaseNode: false,
@@ -4605,6 +5768,36 @@ func service() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "leafNode",
 													},
+													NodeNameAttr: "capwap-controller",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"IP address of CAPWAP access controller (Option 138)"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Validator: []*schemadefinition.Validator{{
+																XMLName: xml.Name{
+																	Local: "validator",
+																},
+																NameAttr: "ipv4-address",
+															}},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "ipv4",
+															Description: "CAPWAP AC controller",
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
 													NodeNameAttr: "default-router",
 													Properties: []*schemadefinition.Properties{{
 														XMLName: xml.Name{
@@ -4957,6 +6150,361 @@ func service() schemadefinition.InterfaceDefinition {
 															Local: "properties",
 														},
 														Help: []string{"Web Proxy Autodiscovery (WPAD) URL"},
+													}},
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "node",
+											},
+											NodeNameAttr: "dynamic-dns-update",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Dynamically update Domain Name System (RFC4702)"},
+											}},
+											Children: []*schemadefinition.Children{{
+												XMLName: xml.Name{
+													Local: "children",
+												},
+												LeafNode: []*schemadefinition.LeafNode{{
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "send-updates",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Enable or disable updates for this scope"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"(enable|disable)"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "enable",
+															Description: "Enable updates for this scope",
+														}, {
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "disable",
+															Description: "Disable updates for this scope",
+														}},
+														ConstraintErrorMessage: []string{"Set it to either enable or disable"},
+														CompletionHelp: []*schemadefinition.CompletionHelp{{
+															XMLName: xml.Name{
+																Local: "completionHelp",
+															},
+															List: []string{"enable disable"},
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "override-client-update",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Always update both forward and reverse DNS data, regardless of the client's request"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"(enable|disable)"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "enable",
+															Description: "Force update both forward and reverse DNS records",
+														}, {
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "disable",
+															Description: "Respect client request settings",
+														}},
+														ConstraintErrorMessage: []string{"Set it to either enable or disable"},
+														CompletionHelp: []*schemadefinition.CompletionHelp{{
+															XMLName: xml.Name{
+																Local: "completionHelp",
+															},
+															List: []string{"enable disable"},
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "override-no-update",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Perform a DDNS update, even if the client instructs the server not to"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"(enable|disable)"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "enable",
+															Description: "Force DDNS updates regardless of client request",
+														}, {
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "disable",
+															Description: "Respect client request settings",
+														}},
+														ConstraintErrorMessage: []string{"Set it to either enable or disable"},
+														CompletionHelp: []*schemadefinition.CompletionHelp{{
+															XMLName: xml.Name{
+																Local: "completionHelp",
+															},
+															List: []string{"enable disable"},
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "replace-client-name",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Replace client name mode"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"(never|always|when-present|when-not-present)"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "never",
+															Description: "Use the name the client sent. If the client sent no name, do not generate\n                one",
+														}, {
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "always",
+															Description: "Replace the name the client sent. If the client sent no name, generate one\n                for the client",
+														}, {
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "when-present",
+															Description: "Replace the name the client sent. If the client sent no name, do not\n                generate one",
+														}, {
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "when-not-present",
+															Description: "Use the name the client sent. If the client sent no name, generate one for\n                the client",
+														}},
+														ConstraintErrorMessage: []string{"Invalid replace client name mode"},
+														CompletionHelp: []*schemadefinition.CompletionHelp{{
+															XMLName: xml.Name{
+																Local: "completionHelp",
+															},
+															List: []string{"never always when-present when-not-present"},
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "generated-prefix",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"The prefix used in the generation of an FQDN"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Validator: []*schemadefinition.Validator{{
+																XMLName: xml.Name{
+																	Local: "validator",
+																},
+																NameAttr: "fqdn",
+															}},
+														}},
+														ConstraintErrorMessage: []string{"Invalid generated prefix"},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "qualifying-suffix",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"The suffix used when generating an FQDN, or when qualifying a partial name"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Validator: []*schemadefinition.Validator{{
+																XMLName: xml.Name{
+																	Local: "validator",
+																},
+																NameAttr: "fqdn",
+															}},
+														}},
+														ConstraintErrorMessage: []string{"Invalid qualifying suffix"},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "update-on-renew",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Update DNS record on lease renew"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"(enable|disable)"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "enable",
+															Description: "Update DNS record on lease renew",
+														}, {
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "disable",
+															Description: "Do not update DNS record on lease renew",
+														}},
+														ConstraintErrorMessage: []string{"Set it to either enable or disable"},
+														CompletionHelp: []*schemadefinition.CompletionHelp{{
+															XMLName: xml.Name{
+																Local: "completionHelp",
+															},
+															List: []string{"enable disable"},
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "conflict-resolution",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"DNS conflict resolution behavior"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"(enable|disable)"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "enable",
+															Description: "Enable DNS conflict resolution",
+														}, {
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "disable",
+															Description: "Disable DNS conflict resolution",
+														}},
+														ConstraintErrorMessage: []string{"Set it to either enable or disable"},
+														CompletionHelp: []*schemadefinition.CompletionHelp{{
+															XMLName: xml.Name{
+																Local: "completionHelp",
+															},
+															List: []string{"enable disable"},
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "ttl-percent",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Calculate TTL of the DNS record as a percentage of the lease lifetime"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Validator: []*schemadefinition.Validator{{
+																XMLName: xml.Name{
+																	Local: "validator",
+																},
+																NameAttr:     "numeric",
+																ArgumentAttr: "--range 1-100",
+															}},
+														}},
+														ConstraintErrorMessage: []string{"Invalid qualifying suffix"},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "hostname-char-set",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"A regular expression describing the invalid character set in the host name"},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "hostname-char-replacement",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"A string of zero or more characters with which to replace each invalid character in\n            the host name"},
 													}},
 												}},
 											}},
@@ -5397,6 +6945,36 @@ func service() schemadefinition.InterfaceDefinition {
 																	Description: "DHCP client prefix length must be 0 to 32",
 																}},
 																ConstraintErrorMessage: []string{"DHCP client prefix length must be 0 to 32"},
+															}},
+														}, {
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "leafNode",
+															},
+															NodeNameAttr: "capwap-controller",
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"IP address of CAPWAP access controller (Option 138)"},
+																Constraint: []*schemadefinition.Constraint{{
+																	XMLName: xml.Name{
+																		Local: "constraint",
+																	},
+																	Validator: []*schemadefinition.Validator{{
+																		XMLName: xml.Name{
+																			Local: "validator",
+																		},
+																		NameAttr: "ipv4-address",
+																	}},
+																}},
+																ValueHelp: []*schemadefinition.ValueHelp{{
+																	XMLName: xml.Name{
+																		Local: "valueHelp",
+																	},
+																	Format:      "ipv4",
+																	Description: "CAPWAP AC controller",
+																}},
 															}},
 														}, {
 															IsBaseNode: false,
@@ -6268,6 +7846,36 @@ func service() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "leafNode",
 															},
+															NodeNameAttr: "capwap-controller",
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"IP address of CAPWAP access controller (Option 138)"},
+																Constraint: []*schemadefinition.Constraint{{
+																	XMLName: xml.Name{
+																		Local: "constraint",
+																	},
+																	Validator: []*schemadefinition.Validator{{
+																		XMLName: xml.Name{
+																			Local: "validator",
+																		},
+																		NameAttr: "ipv4-address",
+																	}},
+																}},
+																ValueHelp: []*schemadefinition.ValueHelp{{
+																	XMLName: xml.Name{
+																		Local: "valueHelp",
+																	},
+																	Format:      "ipv4",
+																	Description: "CAPWAP AC controller",
+																}},
+															}},
+														}, {
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "leafNode",
+															},
 															NodeNameAttr: "default-router",
 															Properties: []*schemadefinition.Properties{{
 																XMLName: xml.Name{
@@ -6761,6 +8369,23 @@ func service() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "leafNode",
 											},
+											NodeNameAttr: "ping-check",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Sends ICMP Echo request to the address being assigned"},
+												Valueless: []*schemadefinition.Valueless{{
+													XMLName: xml.Name{
+														Local: "valueless",
+													},
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
 											NodeNameAttr: "description",
 											Properties: []*schemadefinition.Properties{{
 												XMLName: xml.Name{
@@ -6940,6 +8565,23 @@ func service() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "leafNode",
 									},
+									NodeNameAttr: "ping-check",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Sends ICMP Echo request to the address being assigned"},
+										Valueless: []*schemadefinition.Valueless{{
+											XMLName: xml.Name{
+												Local: "valueless",
+											},
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
 									NodeNameAttr: "description",
 									Properties: []*schemadefinition.Properties{{
 										XMLName: xml.Name{
@@ -6992,23 +8634,6 @@ func service() schemadefinition.InterfaceDefinition {
 									Local: "properties",
 								},
 								Help: []string{"Disable instance"},
-								Valueless: []*schemadefinition.Valueless{{
-									XMLName: xml.Name{
-										Local: "valueless",
-									},
-								}},
-							}},
-						}, {
-							IsBaseNode: false,
-							XMLName: xml.Name{
-								Local: "leafNode",
-							},
-							NodeNameAttr: "dynamic-dns-update",
-							Properties: []*schemadefinition.Properties{{
-								XMLName: xml.Name{
-									Local: "properties",
-								},
-								Help: []string{"Dynamically update Domain Name System (RFC4702)"},
 								Valueless: []*schemadefinition.Valueless{{
 									XMLName: xml.Name{
 										Local: "valueless",
@@ -7088,7 +8713,7 @@ func service() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -7589,6 +9214,36 @@ func service() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "leafNode",
 											},
+											NodeNameAttr: "capwap-controller",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"IP address of CAPWAP access controller (Option 52)"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr: "ipv6-address",
+													}},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "ipv6",
+													Description: "CAPWAP AC controller",
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
 											NodeNameAttr: "nis-domain",
 											Properties: []*schemadefinition.Properties{{
 												XMLName: xml.Name{
@@ -8003,6 +9658,36 @@ func service() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "multi",
 															},
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "capwap-controller",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"IP address of CAPWAP access controller (Option 52)"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Validator: []*schemadefinition.Validator{{
+																XMLName: xml.Name{
+																	Local: "validator",
+																},
+																NameAttr: "ipv6-address",
+															}},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "ipv6",
+															Description: "CAPWAP AC controller",
 														}},
 													}},
 												}, {
@@ -8711,6 +10396,36 @@ func service() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "leafNode",
 															},
+															NodeNameAttr: "capwap-controller",
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"IP address of CAPWAP access controller (Option 52)"},
+																Constraint: []*schemadefinition.Constraint{{
+																	XMLName: xml.Name{
+																		Local: "constraint",
+																	},
+																	Validator: []*schemadefinition.Validator{{
+																		XMLName: xml.Name{
+																			Local: "validator",
+																		},
+																		NameAttr: "ipv6-address",
+																	}},
+																}},
+																ValueHelp: []*schemadefinition.ValueHelp{{
+																	XMLName: xml.Name{
+																		Local: "valueHelp",
+																	},
+																	Format:      "ipv6",
+																	Description: "CAPWAP AC controller",
+																}},
+															}},
+														}, {
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "leafNode",
+															},
 															NodeNameAttr: "nis-domain",
 															Properties: []*schemadefinition.Properties{{
 																XMLName: xml.Name{
@@ -9218,6 +10933,36 @@ func service() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "leafNode",
 															},
+															NodeNameAttr: "capwap-controller",
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"IP address of CAPWAP access controller (Option 52)"},
+																Constraint: []*schemadefinition.Constraint{{
+																	XMLName: xml.Name{
+																		Local: "constraint",
+																	},
+																	Validator: []*schemadefinition.Validator{{
+																		XMLName: xml.Name{
+																			Local: "validator",
+																		},
+																		NameAttr: "ipv6-address",
+																	}},
+																}},
+																ValueHelp: []*schemadefinition.ValueHelp{{
+																	XMLName: xml.Name{
+																		Local: "valueHelp",
+																	},
+																	Format:      "ipv6",
+																	Description: "CAPWAP AC controller",
+																}},
+															}},
+														}, {
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "leafNode",
+															},
 															NodeNameAttr: "nis-domain",
 															Properties: []*schemadefinition.Properties{{
 																XMLName: xml.Name{
@@ -9580,7 +11325,7 @@ func service() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -9694,7 +11439,7 @@ func service() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -9751,7 +11496,7 @@ func service() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -9994,7 +11739,7 @@ func service() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 															Validator: []*schemadefinition.Validator{{
 																XMLName: xml.Name{
 																	Local: "validator",
@@ -14235,819 +15980,6 @@ func service() schemadefinition.InterfaceDefinition {
 						}},
 					}},
 				}, {
-					IsBaseNode: false,
-					XMLName: xml.Name{
-						Local: "node",
-					},
-					NodeNameAttr: "ids",
-					Properties: []*schemadefinition.Properties{{
-						XMLName: xml.Name{
-							Local: "properties",
-						},
-						Help: []string{"Intrusion Detection System"},
-					}},
-					Children: []*schemadefinition.Children{{
-						XMLName: xml.Name{
-							Local: "children",
-						},
-						Node: []*schemadefinition.Node{{
-							IsBaseNode: true,
-							XMLName: xml.Name{
-								Local: "node",
-							},
-							NodeNameAttr: "ddos-protection",
-							OwnerAttr:    "${vyos_conf_scripts_dir}/service_ids_ddos-protection.py",
-							Properties: []*schemadefinition.Properties{{
-								XMLName: xml.Name{
-									Local: "properties",
-								},
-								Help:     []string{"FastNetMon detection and protection parameters"},
-								Priority: []string{"731"},
-							}},
-							Children: []*schemadefinition.Children{{
-								XMLName: xml.Name{
-									Local: "children",
-								},
-								Node: []*schemadefinition.Node{{
-									IsBaseNode: true,
-									XMLName: xml.Name{
-										Local: "node",
-									},
-									NodeNameAttr: "sflow",
-									Properties: []*schemadefinition.Properties{{
-										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"Sflow settings"},
-									}},
-									Children: []*schemadefinition.Children{{
-										XMLName: xml.Name{
-											Local: "children",
-										},
-										LeafNode: []*schemadefinition.LeafNode{{
-											IsBaseNode: false,
-											XMLName: xml.Name{
-												Local: "leafNode",
-											},
-											NodeNameAttr: "listen-address",
-											Properties: []*schemadefinition.Properties{{
-												XMLName: xml.Name{
-													Local: "properties",
-												},
-												Help: []string{"Local IPv4 addresses to listen on"},
-												Constraint: []*schemadefinition.Constraint{{
-													XMLName: xml.Name{
-														Local: "constraint",
-													},
-													Validator: []*schemadefinition.Validator{{
-														XMLName: xml.Name{
-															Local: "validator",
-														},
-														NameAttr: "ipv4-address",
-													}},
-												}},
-												ValueHelp: []*schemadefinition.ValueHelp{{
-													XMLName: xml.Name{
-														Local: "valueHelp",
-													},
-													Format:      "ipv4",
-													Description: "IPv4 address to listen for incoming connections",
-												}},
-												CompletionHelp: []*schemadefinition.CompletionHelp{{
-													XMLName: xml.Name{
-														Local: "completionHelp",
-													},
-													Script: []string{"${vyos_completion_dir}/list_local_ips.sh --ipv4"},
-												}},
-											}},
-										}, {
-											IsBaseNode: false,
-											XMLName: xml.Name{
-												Local: "leafNode",
-											},
-											NodeNameAttr: "port",
-											DefaultValue: []string{"6343"},
-											Properties: []*schemadefinition.Properties{{
-												XMLName: xml.Name{
-													Local: "properties",
-												},
-												Help: []string{"Port number used by connection"},
-												Constraint: []*schemadefinition.Constraint{{
-													XMLName: xml.Name{
-														Local: "constraint",
-													},
-													Validator: []*schemadefinition.Validator{{
-														XMLName: xml.Name{
-															Local: "validator",
-														},
-														NameAttr:     "numeric",
-														ArgumentAttr: "--range 1-65535",
-													}},
-												}},
-												ValueHelp: []*schemadefinition.ValueHelp{{
-													XMLName: xml.Name{
-														Local: "valueHelp",
-													},
-													Format:      "u32:1-65535",
-													Description: "Numeric IP port",
-												}},
-												ConstraintErrorMessage: []string{"Port number must be in range 1 to 65535"},
-											}},
-										}},
-									}},
-								}, {
-									IsBaseNode: false,
-									XMLName: xml.Name{
-										Local: "node",
-									},
-									NodeNameAttr: "threshold",
-									Properties: []*schemadefinition.Properties{{
-										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"Attack limits thresholds"},
-									}},
-									Children: []*schemadefinition.Children{{
-										XMLName: xml.Name{
-											Local: "children",
-										},
-										Node: []*schemadefinition.Node{{
-											IsBaseNode: true,
-											XMLName: xml.Name{
-												Local: "node",
-											},
-											NodeNameAttr: "general",
-											Properties: []*schemadefinition.Properties{{
-												XMLName: xml.Name{
-													Local: "properties",
-												},
-												Help: []string{"General threshold"},
-											}},
-											Children: []*schemadefinition.Children{{
-												XMLName: xml.Name{
-													Local: "children",
-												},
-												LeafNode: []*schemadefinition.LeafNode{{
-													IsBaseNode: false,
-													XMLName: xml.Name{
-														Local: "leafNode",
-													},
-													NodeNameAttr: "fps",
-													Properties: []*schemadefinition.Properties{{
-														XMLName: xml.Name{
-															Local: "properties",
-														},
-														Help: []string{"Flows per second"},
-														Constraint: []*schemadefinition.Constraint{{
-															XMLName: xml.Name{
-																Local: "constraint",
-															},
-															Validator: []*schemadefinition.Validator{{
-																XMLName: xml.Name{
-																	Local: "validator",
-																},
-																NameAttr:     "numeric",
-																ArgumentAttr: "--range 0-4294967294",
-															}},
-														}},
-														ValueHelp: []*schemadefinition.ValueHelp{{
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "u32:0-4294967294",
-															Description: "Flows per second",
-														}},
-													}},
-												}, {
-													IsBaseNode: false,
-													XMLName: xml.Name{
-														Local: "leafNode",
-													},
-													NodeNameAttr: "mbps",
-													Properties: []*schemadefinition.Properties{{
-														XMLName: xml.Name{
-															Local: "properties",
-														},
-														Help: []string{"Megabits per second"},
-														Constraint: []*schemadefinition.Constraint{{
-															XMLName: xml.Name{
-																Local: "constraint",
-															},
-															Validator: []*schemadefinition.Validator{{
-																XMLName: xml.Name{
-																	Local: "validator",
-																},
-																NameAttr:     "numeric",
-																ArgumentAttr: "--range 0-4294967294",
-															}},
-														}},
-														ValueHelp: []*schemadefinition.ValueHelp{{
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "u32:0-4294967294",
-															Description: "Megabits per second",
-														}},
-													}},
-												}, {
-													IsBaseNode: false,
-													XMLName: xml.Name{
-														Local: "leafNode",
-													},
-													NodeNameAttr: "pps",
-													Properties: []*schemadefinition.Properties{{
-														XMLName: xml.Name{
-															Local: "properties",
-														},
-														Help: []string{"Packets per second"},
-														Constraint: []*schemadefinition.Constraint{{
-															XMLName: xml.Name{
-																Local: "constraint",
-															},
-															Validator: []*schemadefinition.Validator{{
-																XMLName: xml.Name{
-																	Local: "validator",
-																},
-																NameAttr:     "numeric",
-																ArgumentAttr: "--range 0-4294967294",
-															}},
-														}},
-														ValueHelp: []*schemadefinition.ValueHelp{{
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "u32:0-4294967294",
-															Description: "Packets per second",
-														}},
-													}},
-												}},
-											}},
-										}, {
-											IsBaseNode: true,
-											XMLName: xml.Name{
-												Local: "node",
-											},
-											NodeNameAttr: "tcp",
-											Properties: []*schemadefinition.Properties{{
-												XMLName: xml.Name{
-													Local: "properties",
-												},
-												Help: []string{"TCP threshold"},
-											}},
-											Children: []*schemadefinition.Children{{
-												XMLName: xml.Name{
-													Local: "children",
-												},
-												LeafNode: []*schemadefinition.LeafNode{{
-													IsBaseNode: false,
-													XMLName: xml.Name{
-														Local: "leafNode",
-													},
-													NodeNameAttr: "fps",
-													Properties: []*schemadefinition.Properties{{
-														XMLName: xml.Name{
-															Local: "properties",
-														},
-														Help: []string{"Flows per second"},
-														Constraint: []*schemadefinition.Constraint{{
-															XMLName: xml.Name{
-																Local: "constraint",
-															},
-															Validator: []*schemadefinition.Validator{{
-																XMLName: xml.Name{
-																	Local: "validator",
-																},
-																NameAttr:     "numeric",
-																ArgumentAttr: "--range 0-4294967294",
-															}},
-														}},
-														ValueHelp: []*schemadefinition.ValueHelp{{
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "u32:0-4294967294",
-															Description: "Flows per second",
-														}},
-													}},
-												}, {
-													IsBaseNode: false,
-													XMLName: xml.Name{
-														Local: "leafNode",
-													},
-													NodeNameAttr: "mbps",
-													Properties: []*schemadefinition.Properties{{
-														XMLName: xml.Name{
-															Local: "properties",
-														},
-														Help: []string{"Megabits per second"},
-														Constraint: []*schemadefinition.Constraint{{
-															XMLName: xml.Name{
-																Local: "constraint",
-															},
-															Validator: []*schemadefinition.Validator{{
-																XMLName: xml.Name{
-																	Local: "validator",
-																},
-																NameAttr:     "numeric",
-																ArgumentAttr: "--range 0-4294967294",
-															}},
-														}},
-														ValueHelp: []*schemadefinition.ValueHelp{{
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "u32:0-4294967294",
-															Description: "Megabits per second",
-														}},
-													}},
-												}, {
-													IsBaseNode: false,
-													XMLName: xml.Name{
-														Local: "leafNode",
-													},
-													NodeNameAttr: "pps",
-													Properties: []*schemadefinition.Properties{{
-														XMLName: xml.Name{
-															Local: "properties",
-														},
-														Help: []string{"Packets per second"},
-														Constraint: []*schemadefinition.Constraint{{
-															XMLName: xml.Name{
-																Local: "constraint",
-															},
-															Validator: []*schemadefinition.Validator{{
-																XMLName: xml.Name{
-																	Local: "validator",
-																},
-																NameAttr:     "numeric",
-																ArgumentAttr: "--range 0-4294967294",
-															}},
-														}},
-														ValueHelp: []*schemadefinition.ValueHelp{{
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "u32:0-4294967294",
-															Description: "Packets per second",
-														}},
-													}},
-												}},
-											}},
-										}, {
-											IsBaseNode: true,
-											XMLName: xml.Name{
-												Local: "node",
-											},
-											NodeNameAttr: "udp",
-											Properties: []*schemadefinition.Properties{{
-												XMLName: xml.Name{
-													Local: "properties",
-												},
-												Help: []string{"UDP threshold"},
-											}},
-											Children: []*schemadefinition.Children{{
-												XMLName: xml.Name{
-													Local: "children",
-												},
-												LeafNode: []*schemadefinition.LeafNode{{
-													IsBaseNode: false,
-													XMLName: xml.Name{
-														Local: "leafNode",
-													},
-													NodeNameAttr: "fps",
-													Properties: []*schemadefinition.Properties{{
-														XMLName: xml.Name{
-															Local: "properties",
-														},
-														Help: []string{"Flows per second"},
-														Constraint: []*schemadefinition.Constraint{{
-															XMLName: xml.Name{
-																Local: "constraint",
-															},
-															Validator: []*schemadefinition.Validator{{
-																XMLName: xml.Name{
-																	Local: "validator",
-																},
-																NameAttr:     "numeric",
-																ArgumentAttr: "--range 0-4294967294",
-															}},
-														}},
-														ValueHelp: []*schemadefinition.ValueHelp{{
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "u32:0-4294967294",
-															Description: "Flows per second",
-														}},
-													}},
-												}, {
-													IsBaseNode: false,
-													XMLName: xml.Name{
-														Local: "leafNode",
-													},
-													NodeNameAttr: "mbps",
-													Properties: []*schemadefinition.Properties{{
-														XMLName: xml.Name{
-															Local: "properties",
-														},
-														Help: []string{"Megabits per second"},
-														Constraint: []*schemadefinition.Constraint{{
-															XMLName: xml.Name{
-																Local: "constraint",
-															},
-															Validator: []*schemadefinition.Validator{{
-																XMLName: xml.Name{
-																	Local: "validator",
-																},
-																NameAttr:     "numeric",
-																ArgumentAttr: "--range 0-4294967294",
-															}},
-														}},
-														ValueHelp: []*schemadefinition.ValueHelp{{
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "u32:0-4294967294",
-															Description: "Megabits per second",
-														}},
-													}},
-												}, {
-													IsBaseNode: false,
-													XMLName: xml.Name{
-														Local: "leafNode",
-													},
-													NodeNameAttr: "pps",
-													Properties: []*schemadefinition.Properties{{
-														XMLName: xml.Name{
-															Local: "properties",
-														},
-														Help: []string{"Packets per second"},
-														Constraint: []*schemadefinition.Constraint{{
-															XMLName: xml.Name{
-																Local: "constraint",
-															},
-															Validator: []*schemadefinition.Validator{{
-																XMLName: xml.Name{
-																	Local: "validator",
-																},
-																NameAttr:     "numeric",
-																ArgumentAttr: "--range 0-4294967294",
-															}},
-														}},
-														ValueHelp: []*schemadefinition.ValueHelp{{
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "u32:0-4294967294",
-															Description: "Packets per second",
-														}},
-													}},
-												}},
-											}},
-										}, {
-											IsBaseNode: true,
-											XMLName: xml.Name{
-												Local: "node",
-											},
-											NodeNameAttr: "icmp",
-											Properties: []*schemadefinition.Properties{{
-												XMLName: xml.Name{
-													Local: "properties",
-												},
-												Help: []string{"ICMP threshold"},
-											}},
-											Children: []*schemadefinition.Children{{
-												XMLName: xml.Name{
-													Local: "children",
-												},
-												LeafNode: []*schemadefinition.LeafNode{{
-													IsBaseNode: false,
-													XMLName: xml.Name{
-														Local: "leafNode",
-													},
-													NodeNameAttr: "fps",
-													Properties: []*schemadefinition.Properties{{
-														XMLName: xml.Name{
-															Local: "properties",
-														},
-														Help: []string{"Flows per second"},
-														Constraint: []*schemadefinition.Constraint{{
-															XMLName: xml.Name{
-																Local: "constraint",
-															},
-															Validator: []*schemadefinition.Validator{{
-																XMLName: xml.Name{
-																	Local: "validator",
-																},
-																NameAttr:     "numeric",
-																ArgumentAttr: "--range 0-4294967294",
-															}},
-														}},
-														ValueHelp: []*schemadefinition.ValueHelp{{
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "u32:0-4294967294",
-															Description: "Flows per second",
-														}},
-													}},
-												}, {
-													IsBaseNode: false,
-													XMLName: xml.Name{
-														Local: "leafNode",
-													},
-													NodeNameAttr: "mbps",
-													Properties: []*schemadefinition.Properties{{
-														XMLName: xml.Name{
-															Local: "properties",
-														},
-														Help: []string{"Megabits per second"},
-														Constraint: []*schemadefinition.Constraint{{
-															XMLName: xml.Name{
-																Local: "constraint",
-															},
-															Validator: []*schemadefinition.Validator{{
-																XMLName: xml.Name{
-																	Local: "validator",
-																},
-																NameAttr:     "numeric",
-																ArgumentAttr: "--range 0-4294967294",
-															}},
-														}},
-														ValueHelp: []*schemadefinition.ValueHelp{{
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "u32:0-4294967294",
-															Description: "Megabits per second",
-														}},
-													}},
-												}, {
-													IsBaseNode: false,
-													XMLName: xml.Name{
-														Local: "leafNode",
-													},
-													NodeNameAttr: "pps",
-													Properties: []*schemadefinition.Properties{{
-														XMLName: xml.Name{
-															Local: "properties",
-														},
-														Help: []string{"Packets per second"},
-														Constraint: []*schemadefinition.Constraint{{
-															XMLName: xml.Name{
-																Local: "constraint",
-															},
-															Validator: []*schemadefinition.Validator{{
-																XMLName: xml.Name{
-																	Local: "validator",
-																},
-																NameAttr:     "numeric",
-																ArgumentAttr: "--range 0-4294967294",
-															}},
-														}},
-														ValueHelp: []*schemadefinition.ValueHelp{{
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "u32:0-4294967294",
-															Description: "Packets per second",
-														}},
-													}},
-												}},
-											}},
-										}},
-									}},
-								}},
-								LeafNode: []*schemadefinition.LeafNode{{
-									IsBaseNode: false,
-									XMLName: xml.Name{
-										Local: "leafNode",
-									},
-									NodeNameAttr: "alert-script",
-									Properties: []*schemadefinition.Properties{{
-										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"Path to fastnetmon alert script"},
-									}},
-								}, {
-									IsBaseNode: false,
-									XMLName: xml.Name{
-										Local: "leafNode",
-									},
-									NodeNameAttr: "ban-time",
-									DefaultValue: []string{"1900"},
-									Properties: []*schemadefinition.Properties{{
-										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"How long we should keep an IP in blocked state"},
-										Constraint: []*schemadefinition.Constraint{{
-											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Validator: []*schemadefinition.Validator{{
-												XMLName: xml.Name{
-													Local: "validator",
-												},
-												NameAttr:     "numeric",
-												ArgumentAttr: "--range 1-4294967294",
-											}},
-										}},
-										ValueHelp: []*schemadefinition.ValueHelp{{
-											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
-											Format:      "u32:1-4294967294",
-											Description: "Time in seconds",
-										}},
-									}},
-								}, {
-									IsBaseNode: false,
-									XMLName: xml.Name{
-										Local: "leafNode",
-									},
-									NodeNameAttr: "direction",
-									Properties: []*schemadefinition.Properties{{
-										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"Direction for processing traffic"},
-										Constraint: []*schemadefinition.Constraint{{
-											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Regex: []string{"(in|out)"},
-										}},
-										CompletionHelp: []*schemadefinition.CompletionHelp{{
-											XMLName: xml.Name{
-												Local: "completionHelp",
-											},
-											List: []string{"in out"},
-										}},
-										Multi: []*schemadefinition.Multi{{
-											XMLName: xml.Name{
-												Local: "multi",
-											},
-										}},
-									}},
-								}, {
-									IsBaseNode: false,
-									XMLName: xml.Name{
-										Local: "leafNode",
-									},
-									NodeNameAttr: "excluded-network",
-									Properties: []*schemadefinition.Properties{{
-										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"Specify IPv4 and IPv6 networks which are going to be excluded from protection"},
-										Constraint: []*schemadefinition.Constraint{{
-											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Validator: []*schemadefinition.Validator{{
-												XMLName: xml.Name{
-													Local: "validator",
-												},
-												NameAttr: "ipv4-prefix",
-											}, {
-												XMLName: xml.Name{
-													Local: "validator",
-												},
-												NameAttr: "ipv6-prefix",
-											}},
-										}},
-										ValueHelp: []*schemadefinition.ValueHelp{{
-											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
-											Format:      "ipv4net",
-											Description: "IPv4 prefix(es) to exclude",
-										}, {
-											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
-											Format:      "ipv6net",
-											Description: "IPv6 prefix(es) to exclude",
-										}},
-										Multi: []*schemadefinition.Multi{{
-											XMLName: xml.Name{
-												Local: "multi",
-											},
-										}},
-									}},
-								}, {
-									IsBaseNode: false,
-									XMLName: xml.Name{
-										Local: "leafNode",
-									},
-									NodeNameAttr: "listen-interface",
-									Properties: []*schemadefinition.Properties{{
-										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"Listen interface for mirroring traffic"},
-										CompletionHelp: []*schemadefinition.CompletionHelp{{
-											XMLName: xml.Name{
-												Local: "completionHelp",
-											},
-											Script: []string{"${vyos_completion_dir}/list_interfaces"},
-										}},
-										Multi: []*schemadefinition.Multi{{
-											XMLName: xml.Name{
-												Local: "multi",
-											},
-										}},
-									}},
-								}, {
-									IsBaseNode: false,
-									XMLName: xml.Name{
-										Local: "leafNode",
-									},
-									NodeNameAttr: "mode",
-									Properties: []*schemadefinition.Properties{{
-										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"Traffic capture mode"},
-										Constraint: []*schemadefinition.Constraint{{
-											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Regex: []string{"(mirror|sflow)"},
-										}},
-										ValueHelp: []*schemadefinition.ValueHelp{{
-											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
-											Format:      "mirror",
-											Description: "Listen to mirrored traffic",
-										}, {
-											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
-											Format:      "sflow",
-											Description: "Capture sFlow flows",
-										}},
-										CompletionHelp: []*schemadefinition.CompletionHelp{{
-											XMLName: xml.Name{
-												Local: "completionHelp",
-											},
-											List: []string{"mirror sflow"},
-										}},
-									}},
-								}, {
-									IsBaseNode: false,
-									XMLName: xml.Name{
-										Local: "leafNode",
-									},
-									NodeNameAttr: "network",
-									Properties: []*schemadefinition.Properties{{
-										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"Specify IPv4 and IPv6 networks which belong to you"},
-										Constraint: []*schemadefinition.Constraint{{
-											XMLName: xml.Name{
-												Local: "constraint",
-											},
-											Validator: []*schemadefinition.Validator{{
-												XMLName: xml.Name{
-													Local: "validator",
-												},
-												NameAttr: "ipv4-prefix",
-											}, {
-												XMLName: xml.Name{
-													Local: "validator",
-												},
-												NameAttr: "ipv6-prefix",
-											}},
-										}},
-										ValueHelp: []*schemadefinition.ValueHelp{{
-											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
-											Format:      "ipv4net",
-											Description: "Your IPv4 prefix(es)",
-										}, {
-											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
-											Format:      "ipv6net",
-											Description: "Your IPv6 prefix(es)",
-										}},
-										Multi: []*schemadefinition.Multi{{
-											XMLName: xml.Name{
-												Local: "multi",
-											},
-										}},
-									}},
-								}},
-							}},
-						}},
-					}},
-				}, {
 					IsBaseNode: true,
 					XMLName: xml.Name{
 						Local: "node",
@@ -15154,7 +16086,7 @@ func service() schemadefinition.InterfaceDefinition {
 														XMLName: xml.Name{
 															Local: "properties",
 														},
-														Help: []string{"Port for Dynamic Authorization Extension server (DM/CoA)"},
+														Help: []string{"Port number used by connection"},
 														Constraint: []*schemadefinition.Constraint{{
 															XMLName: xml.Name{
 																Local: "constraint",
@@ -15172,8 +16104,9 @@ func service() schemadefinition.InterfaceDefinition {
 																Local: "valueHelp",
 															},
 															Format:      "u32:1-65535",
-															Description: "TCP port",
+															Description: "Numeric IP port",
 														}},
+														ConstraintErrorMessage: []string{"Port number must be in range 1 to 65535"},
 													}},
 												}, {
 													IsBaseNode: false,
@@ -15947,12 +16880,12 @@ func service() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "leafNode",
 													},
-													NodeNameAttr: "static-ip",
+													NodeNameAttr: "ip-address",
 													Properties: []*schemadefinition.Properties{{
 														XMLName: xml.Name{
 															Local: "properties",
 														},
-														Help: []string{"Static client IP address"},
+														Help: []string{"Fixed IP address of static mapping"},
 														Constraint: []*schemadefinition.Constraint{{
 															XMLName: xml.Name{
 																Local: "constraint",
@@ -15969,7 +16902,7 @@ func service() schemadefinition.InterfaceDefinition {
 																Local: "valueHelp",
 															},
 															Format:      "ipv4",
-															Description: "IPv4 address",
+															Description: "IPv4 address used in static mapping",
 														}},
 													}},
 												}},
@@ -17149,6 +18082,57 @@ func service() schemadefinition.InterfaceDefinition {
 							XMLName: xml.Name{
 								Local: "leafNode",
 							},
+							NodeNameAttr: "thread-count",
+							DefaultValue: []string{"all"},
+							Properties: []*schemadefinition.Properties{{
+								XMLName: xml.Name{
+									Local: "properties",
+								},
+								Help: []string{"Number of working threads"},
+								Constraint: []*schemadefinition.Constraint{{
+									XMLName: xml.Name{
+										Local: "constraint",
+									},
+									Regex: []string{"(all|half)"},
+									Validator: []*schemadefinition.Validator{{
+										XMLName: xml.Name{
+											Local: "validator",
+										},
+										NameAttr:     "numeric",
+										ArgumentAttr: "--range 1-512",
+									}},
+								}},
+								ValueHelp: []*schemadefinition.ValueHelp{{
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "all",
+									Description: "Use all available CPU cores",
+								}, {
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "half",
+									Description: "Use half of available CPU cores",
+								}, {
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "u32:1-512",
+									Description: "Thread count",
+								}},
+								CompletionHelp: []*schemadefinition.CompletionHelp{{
+									XMLName: xml.Name{
+										Local: "completionHelp",
+									},
+									List: []string{"all half"},
+								}},
+							}},
+						}, {
+							IsBaseNode: false,
+							XMLName: xml.Name{
+								Local: "leafNode",
+							},
 							NodeNameAttr: "description",
 							Properties: []*schemadefinition.Properties{{
 								XMLName: xml.Name{
@@ -17333,7 +18317,7 @@ func service() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo", "all"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo", "all"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -17570,16 +18554,49 @@ func service() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "leafNode",
 									},
-									NodeNameAttr: "disable",
+									NodeNameAttr: "mode",
+									DefaultValue: []string{"rx-tx"},
 									Properties: []*schemadefinition.Properties{{
 										XMLName: xml.Name{
 											Local: "properties",
 										},
-										Help: []string{"Disable instance"},
-										Valueless: []*schemadefinition.Valueless{{
+										Help: []string{"Set LLDP receive/transmit operation mode of this interface"},
+										Constraint: []*schemadefinition.Constraint{{
 											XMLName: xml.Name{
-												Local: "valueless",
+												Local: "constraint",
 											},
+											Regex: []string{"(disable|rx-tx|tx|rx)"},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "disable",
+											Description: "Do not process or send LLDP messages",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "rx-tx",
+											Description: "Send and process LLDP messages",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "rx",
+											Description: "Process incoming LLDP messages",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "tx",
+											Description: "Send LLDP messages",
+										}},
+										CompletionHelp: []*schemadefinition.CompletionHelp{{
+											XMLName: xml.Name{
+												Local: "completionHelp",
+											},
+											List: []string{"disable rx-tx tx rx"},
 										}},
 									}},
 								}},
@@ -17717,7 +18734,7 @@ func service() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -20595,7 +21612,7 @@ func service() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -20736,7 +21753,7 @@ func service() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -21024,7 +22041,7 @@ func service() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo", "all"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo", "all"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -21333,7 +22350,7 @@ func service() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -21759,7 +22776,7 @@ func service() schemadefinition.InterfaceDefinition {
 														XMLName: xml.Name{
 															Local: "properties",
 														},
-														Help: []string{"Port for Dynamic Authorization Extension server (DM/CoA)"},
+														Help: []string{"Port number used by connection"},
 														Constraint: []*schemadefinition.Constraint{{
 															XMLName: xml.Name{
 																Local: "constraint",
@@ -21777,8 +22794,9 @@ func service() schemadefinition.InterfaceDefinition {
 																Local: "valueHelp",
 															},
 															Format:      "u32:1-65535",
-															Description: "TCP port",
+															Description: "Numeric IP port",
 														}},
+														ConstraintErrorMessage: []string{"Port number must be in range 1 to 65535"},
 													}},
 												}, {
 													IsBaseNode: false,
@@ -24065,6 +25083,57 @@ func service() schemadefinition.InterfaceDefinition {
 							XMLName: xml.Name{
 								Local: "leafNode",
 							},
+							NodeNameAttr: "thread-count",
+							DefaultValue: []string{"all"},
+							Properties: []*schemadefinition.Properties{{
+								XMLName: xml.Name{
+									Local: "properties",
+								},
+								Help: []string{"Number of working threads"},
+								Constraint: []*schemadefinition.Constraint{{
+									XMLName: xml.Name{
+										Local: "constraint",
+									},
+									Regex: []string{"(all|half)"},
+									Validator: []*schemadefinition.Validator{{
+										XMLName: xml.Name{
+											Local: "validator",
+										},
+										NameAttr:     "numeric",
+										ArgumentAttr: "--range 1-512",
+									}},
+								}},
+								ValueHelp: []*schemadefinition.ValueHelp{{
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "all",
+									Description: "Use all available CPU cores",
+								}, {
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "half",
+									Description: "Use half of available CPU cores",
+								}, {
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "u32:1-512",
+									Description: "Thread count",
+								}},
+								CompletionHelp: []*schemadefinition.CompletionHelp{{
+									XMLName: xml.Name{
+										Local: "completionHelp",
+									},
+									List: []string{"all half"},
+								}},
+							}},
+						}, {
+							IsBaseNode: false,
+							XMLName: xml.Name{
+								Local: "leafNode",
+							},
 							NodeNameAttr: "wins-server",
 							Properties: []*schemadefinition.Properties{{
 								XMLName: xml.Name{
@@ -24983,6 +26052,41 @@ func service() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "leafNode",
 									},
+									NodeNameAttr: "auto-ignore",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"IPv6 prefix to be excluded in Router Advertisements (RAs) - use in conjunction with the ::/64 wildcard prefix"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr: "ipv6-prefix",
+											}},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "ipv6net",
+											Description: "IPv6 prefix to be excluded",
+										}},
+										Multi: []*schemadefinition.Multi{{
+											XMLName: xml.Name{
+												Local: "multi",
+											},
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
 									NodeNameAttr: "source-address",
 									Properties: []*schemadefinition.Properties{{
 										XMLName: xml.Name{
@@ -25296,7 +26400,7 @@ func service() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -26497,7 +27601,6 @@ func service() schemadefinition.InterfaceDefinition {
 										Local: "leafNode",
 									},
 									NodeNameAttr: "engineid",
-									DefaultValue: []string{""},
 									Properties: []*schemadefinition.Properties{{
 										XMLName: xml.Name{
 											Local: "properties",
@@ -26597,7 +27700,7 @@ func service() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"[[:alnum:]-_!@&#]{1,100}"},
+									Regex: []string{"[[:alnum:]\\-_!@&#]{1,100}"},
 								}},
 								ConstraintErrorMessage: []string{"Community string is limited to alphanumerical characters, -, _, !, @, &, and # with a total lenght of 100"},
 							}},
@@ -27566,49 +28669,6 @@ func service() schemadefinition.InterfaceDefinition {
 									}},
 								}},
 							}},
-						}, {
-							IsBaseNode: true,
-							XMLName: xml.Name{
-								Local: "node",
-							},
-							NodeNameAttr: "trusted-user-ca-key",
-							Properties: []*schemadefinition.Properties{{
-								XMLName: xml.Name{
-									Local: "properties",
-								},
-								Help: []string{"Trusted user CA key"},
-							}},
-							Children: []*schemadefinition.Children{{
-								XMLName: xml.Name{
-									Local: "children",
-								},
-								LeafNode: []*schemadefinition.LeafNode{{
-									IsBaseNode: false,
-									XMLName: xml.Name{
-										Local: "leafNode",
-									},
-									NodeNameAttr: "ca-certificate",
-									Properties: []*schemadefinition.Properties{{
-										XMLName: xml.Name{
-											Local: "properties",
-										},
-										Help: []string{"Certificate Authority in PKI configuration"},
-										ValueHelp: []*schemadefinition.ValueHelp{{
-											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
-											Format:      "txt",
-											Description: "Name of CA in PKI configuration",
-										}},
-										CompletionHelp: []*schemadefinition.CompletionHelp{{
-											XMLName: xml.Name{
-												Local: "completionHelp",
-											},
-											Path: []string{"pki ca"},
-										}},
-									}},
-								}},
-							}},
 						}},
 						LeafNode: []*schemadefinition.LeafNode{{
 							IsBaseNode: false,
@@ -27963,6 +29023,31 @@ func service() schemadefinition.InterfaceDefinition {
 									},
 									Format:      "u32:1-65535",
 									Description: "Time interval in seconds for keepalive message",
+								}},
+							}},
+						}, {
+							IsBaseNode: false,
+							XMLName: xml.Name{
+								Local: "leafNode",
+							},
+							NodeNameAttr: "trusted-user-ca",
+							Properties: []*schemadefinition.Properties{{
+								XMLName: xml.Name{
+									Local: "properties",
+								},
+								Help: []string{"OpenSSH trusted user CA"},
+								ValueHelp: []*schemadefinition.ValueHelp{{
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "txt",
+									Description: "OpenSSH certificate name from PKI subsystem",
+								}},
+								CompletionHelp: []*schemadefinition.CompletionHelp{{
+									XMLName: xml.Name{
+										Local: "completionHelp",
+									},
+									Path: []string{"pki openssh"},
 								}},
 							}},
 						}, {
@@ -29703,7 +30788,7 @@ func service() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",

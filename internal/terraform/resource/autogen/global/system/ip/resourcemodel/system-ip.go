@@ -33,6 +33,8 @@ type SystemIP struct {
 
 	// TagNodes
 
+	ExistsTagSystemIPImportTable bool `tfsdk:"-" vyos:"import-table,child"`
+
 	ExistsTagSystemIPProtocol bool `tfsdk:"-" vyos:"protocol,child"`
 
 	// Nodes

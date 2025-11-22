@@ -32,6 +32,7 @@ description: |-
       - [dhcp_options](#dhcp_options)
       - [dhcpv6_options](#dhcpv6_options)
       - [disable](#disable)
+      - [mtu](#mtu)
       - [netns](#netns)
       - [peer_name](#peer_name)
       - [timeouts](#timeouts)
@@ -77,6 +78,12 @@ description: |-
 - `dhcpv6_options` (Attributes) DHCPv6 client settings/options (see [below for nested schema](#nestedatt--dhcpv6_options))
 #### disable
 - `disable` (Boolean) Administratively disable interface
+#### mtu
+- `mtu` (Number) Maximum Transmission Unit (MTU)
+
+    |  Format    &emsp;|  Description                        |
+    |------------|-------------------------------------|
+    |  68-16000  &emsp;|  Maximum Transmission Unit in byte  |
 #### netns
 - `netns` (String) Network namespace name
 

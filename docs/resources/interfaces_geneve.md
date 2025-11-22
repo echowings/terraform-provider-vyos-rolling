@@ -36,6 +36,7 @@ description: |-
       - [mirror](#mirror)
       - [mtu](#mtu)
       - [parameters](#parameters)
+      - [port](#port)
       - [redirect](#redirect)
       - [remote](#remote)
       - [timeouts](#timeouts)
@@ -101,6 +102,12 @@ description: |-
     |  1200-16000  &emsp;|  Maximum Transmission Unit in byte  |
 #### parameters
 - `parameters` (Attributes) GENEVE tunnel parameters (see [below for nested schema](#nestedatt--parameters))
+#### port
+- `port` (Number) Port number used by connection
+
+    |  Format   &emsp;|  Description      |
+    |-----------|-------------------|
+    |  1-65535  &emsp;|  Numeric IP port  |
 #### redirect
 - `redirect` (String) Redirect incoming packet to destination
 
@@ -229,6 +236,11 @@ Optional:
     |  Format                &emsp;|  Description       |
     |------------------------|--------------------|
     |  &lt;h:h:h:h:h:h:h:h/64&gt;  &emsp;|  IPv6 /64 network  |
+- `interface_identifier` (String) SLAAC interface identifier
+
+    |  Format     &emsp;|  Description           |
+    |-------------|------------------------|
+    |  ::h:h:h:h  &emsp;|  Interface identifier  |
 - `no_default_link_local` (Boolean) Remove the default link-local address from the interface
 
 

@@ -1,0 +1,2 @@
+
+terraform import vyos_firewall_global_options_state_policy_offload.example "firewall__global-options__state-policy__offload"

@@ -28,7 +28,6 @@ description: |-
   - [Schema](#schema)
     - [Optional](#optional)
       - [disable](#disable)
-      - [dynamic_dns_update](#dynamic_dns_update)
       - [hostfile_update](#hostfile_update)
       - [listen_address](#listen_address)
       - [listen_interface](#listen_interface)
@@ -47,8 +46,6 @@ description: |-
 
 #### disable
 - `disable` (Boolean) Disable instance
-#### dynamic_dns_update
-- `dynamic_dns_update` (Boolean) Dynamically update Domain Name System (RFC4702)
 #### hostfile_update
 - `hostfile_update` (Boolean) Updating /etc/hosts file (per client lease)
 #### listen_address

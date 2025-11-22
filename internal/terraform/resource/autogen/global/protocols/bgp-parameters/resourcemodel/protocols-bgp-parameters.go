@@ -45,6 +45,7 @@ type ProtocolsBgpParameters struct {
 	LeafProtocolsBgpParametersRouteReflectorAllowOutboundPolicy types.Bool   `tfsdk:"route_reflector_allow_outbound_policy" vyos:"route-reflector-allow-outbound-policy,omitempty"`
 	LeafProtocolsBgpParametersNoClientToClientReflection        types.Bool   `tfsdk:"no_client_to_client_reflection" vyos:"no-client-to-client-reflection,omitempty"`
 	LeafProtocolsBgpParametersNoFastExternalFailover            types.Bool   `tfsdk:"no_fast_external_failover" vyos:"no-fast-external-failover,omitempty"`
+	LeafProtocolsBgpParametersNoIPvsixAutoRa                    types.Bool   `tfsdk:"no_ipv6_auto_ra" vyos:"no-ipv6-auto-ra,omitempty"`
 	LeafProtocolsBgpParametersNoSuppressDuplicates              types.Bool   `tfsdk:"no_suppress_duplicates" vyos:"no-suppress-duplicates,omitempty"`
 	LeafProtocolsBgpParametersRejectAsSets                      types.Bool   `tfsdk:"reject_as_sets" vyos:"reject-as-sets,omitempty"`
 	LeafProtocolsBgpParametersShutdown                          types.Bool   `tfsdk:"shutdown" vyos:"shutdown,omitempty"`
@@ -389,6 +390,21 @@ func (o ProtocolsBgpParameters) ResourceSchemaAttributes(ctx context.Context) ma
 
 `,
 			Description: `Disable immediate session reset on peer link down event
+
+`,
+			Default:  booldefault.StaticBool(false),
+			Computed: true,
+		},
+
+		"no_ipv6_auto_ra":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (no-ipv6-auto-ra) */
+		schema.BoolAttribute{
+			Optional: true,
+			MarkdownDescription: `Disable IPv6 automatic router advertisement
+
+`,
+			Description: `Disable IPv6 automatic router advertisement
 
 `,
 			Default:  booldefault.StaticBool(false),

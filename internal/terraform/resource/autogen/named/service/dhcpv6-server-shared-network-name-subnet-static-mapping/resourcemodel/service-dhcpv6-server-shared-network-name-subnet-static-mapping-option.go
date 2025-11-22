@@ -22,16 +22,17 @@ var _ helpers.VyosResourceDataModel = &ServiceDhcpvsixServerSharedNetworkNameSub
 // Top level basenode type: `N/A`
 type ServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOption struct {
 	// LeafNodes
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionCaptivePortal   types.String `tfsdk:"captive_portal" vyos:"captive-portal,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionDomainSearch    types.List   `tfsdk:"domain_search" vyos:"domain-search,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionNameServer      types.List   `tfsdk:"name_server" vyos:"name-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionNisDomain       types.String `tfsdk:"nis_domain" vyos:"nis-domain,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionNisServer       types.List   `tfsdk:"nis_server" vyos:"nis-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionNisplusDomain   types.String `tfsdk:"nisplus_domain" vyos:"nisplus-domain,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionNisplusServer   types.List   `tfsdk:"nisplus_server" vyos:"nisplus-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionSIPServer       types.List   `tfsdk:"sip_server" vyos:"sip-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionSntpServer      types.List   `tfsdk:"sntp_server" vyos:"sntp-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionInfoRefreshTime types.Number `tfsdk:"info_refresh_time" vyos:"info-refresh-time,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionCaptivePortal    types.String `tfsdk:"captive_portal" vyos:"captive-portal,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionDomainSearch     types.List   `tfsdk:"domain_search" vyos:"domain-search,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionNameServer       types.List   `tfsdk:"name_server" vyos:"name-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionCapwapController types.String `tfsdk:"capwap_controller" vyos:"capwap-controller,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionNisDomain        types.String `tfsdk:"nis_domain" vyos:"nis-domain,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionNisServer        types.List   `tfsdk:"nis_server" vyos:"nis-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionNisplusDomain    types.String `tfsdk:"nisplus_domain" vyos:"nisplus-domain,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionNisplusServer    types.List   `tfsdk:"nisplus_server" vyos:"nisplus-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionSIPServer        types.List   `tfsdk:"sip_server" vyos:"sip-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionSntpServer       types.List   `tfsdk:"sntp_server" vyos:"sntp-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOptionInfoRefreshTime  types.Number `tfsdk:"info_refresh_time" vyos:"info-refresh-time,omitempty"`
 
 	// TagNodes
 
@@ -93,6 +94,25 @@ func (o ServiceDhcpvsixServerSharedNetworkNameSubnetStaticMappingOption) Resourc
     |  Format  |  Description                            |
     |----------|-----------------------------------------|
     |  ipv6    |  Domain Name Server (DNS) IPv6 address  |
+`,
+		},
+
+		"capwap_controller":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (capwap-controller) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `IP address of CAPWAP access controller (Option 52)
+
+    |  Format  |  Description           |
+    |----------|------------------------|
+    |  ipv6    |  CAPWAP AC controller  |
+`,
+			Description: `IP address of CAPWAP access controller (Option 52)
+
+    |  Format  |  Description           |
+    |----------|------------------------|
+    |  ipv6    |  CAPWAP AC controller  |
 `,
 		},
 

@@ -4499,7 +4499,7 @@ func system() schemadefinition.InterfaceDefinition {
 								Local: "leafNode",
 							},
 							NodeNameAttr: "hash-size",
-							DefaultValue: []string{"32768"},
+							DefaultValue: []string{"65536"},
 							Properties: []*schemadefinition.Properties{{
 								XMLName: xml.Name{
 									Local: "properties",
@@ -4514,14 +4514,14 @@ func system() schemadefinition.InterfaceDefinition {
 											Local: "validator",
 										},
 										NameAttr:     "numeric",
-										ArgumentAttr: "--range 1-50000000",
+										ArgumentAttr: "--range 1024-50000000",
 									}},
 								}},
 								ValueHelp: []*schemadefinition.ValueHelp{{
 									XMLName: xml.Name{
 										Local: "valueHelp",
 									},
-									Format:      "u32:1-50000000",
+									Format:      "u32:1024-50000000",
 									Description: "Size of hash to use for connection tracking table",
 								}},
 							}},
@@ -5556,7 +5556,7 @@ func system() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -6133,6 +6133,106 @@ func system() schemadefinition.InterfaceDefinition {
 							}},
 						}},
 						TagNode: []*schemadefinition.TagNode{{
+							IsBaseNode: true,
+							XMLName: xml.Name{
+								Local: "tagNode",
+							},
+							NodeNameAttr: "import-table",
+							Properties: []*schemadefinition.Properties{{
+								XMLName: xml.Name{
+									Local: "properties",
+								},
+								Help: []string{"Routing table for import"},
+								Constraint: []*schemadefinition.Constraint{{
+									XMLName: xml.Name{
+										Local: "constraint",
+									},
+									Validator: []*schemadefinition.Validator{{
+										XMLName: xml.Name{
+											Local: "validator",
+										},
+										NameAttr:     "numeric",
+										ArgumentAttr: "--range 1-252",
+									}},
+								}},
+								ValueHelp: []*schemadefinition.ValueHelp{{
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "u32:1-252",
+									Description: "Table number",
+								}},
+							}},
+							Children: []*schemadefinition.Children{{
+								XMLName: xml.Name{
+									Local: "children",
+								},
+								LeafNode: []*schemadefinition.LeafNode{{
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "distance",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Distance for this route"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr:     "numeric",
+												ArgumentAttr: "--range 1-255",
+											}},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "u32:1-255",
+											Description: "Distance for this route",
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "route-map",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Specify route-map name to use"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Regex: []string{"[-_a-zA-Z0-9][\\w\\-\\.\\+]&"},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "txt",
+											Description: "Route map name",
+										}},
+										ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+										CompletionHelp: []*schemadefinition.CompletionHelp{{
+											XMLName: xml.Name{
+												Local: "completionHelp",
+											},
+											Path: []string{"policy route-map"},
+										}},
+									}},
+								}},
+							}},
+						}, {
 							IsBaseNode: true,
 							XMLName: xml.Name{
 								Local: "tagNode",
@@ -7690,6 +7790,29 @@ func system() schemadefinition.InterfaceDefinition {
 												},
 												Help: []string{"Plaintext password used for encryption"},
 											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "principal",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Accepted principal names for certificate authentication"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"[-_a-zA-Z0-9.]{1,100}"},
+												}},
+												Multi: []*schemadefinition.Multi{{
+													XMLName: xml.Name{
+														Local: "multi",
+													},
+												}},
+											}},
 										}},
 									}},
 								}},
@@ -8068,6 +8191,296 @@ func system() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "node",
 									},
+									NodeNameAttr: "cpu",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"CPU settings"},
+									}},
+									Children: []*schemadefinition.Children{{
+										XMLName: xml.Name{
+											Local: "children",
+										},
+										LeafNode: []*schemadefinition.LeafNode{{
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "disable-nmi-watchdog",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Disable the NMI watchdog for detecting hard CPU lockups"},
+												Valueless: []*schemadefinition.Valueless{{
+													XMLName: xml.Name{
+														Local: "valueless",
+													},
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "isolate-cpus",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Isolate specified CPUs from the scheduler"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr: "cpu",
+													}},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "u32:0-511",
+													Description: "CPU core",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "<start-end>",
+													Description: "CPU core range (examples: \"1\", \"4-7\", \"1,2-5,7\")",
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "nohz-full",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Enable full tickless mode for specified CPUs"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr: "cpu",
+													}},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "u32:0-511",
+													Description: "CPU core",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "<start-end>",
+													Description: "CPU core range (examples: \"1\", \"4-7\", \"1,2-5,7\")",
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "rcu-no-cbs",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Offload Read-Copy-Update (RCU) callback processing to specified CPUs"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr: "cpu",
+													}},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "u32:0-511",
+													Description: "CPU core",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "<start-end>",
+													Description: "CPU core range (examples: \"1\", \"4-7\", \"1,2-5,7\")",
+												}},
+											}},
+										}},
+									}},
+								}, {
+									IsBaseNode: true,
+									XMLName: xml.Name{
+										Local: "node",
+									},
+									NodeNameAttr: "memory",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Memory settings"},
+									}},
+									Children: []*schemadefinition.Children{{
+										XMLName: xml.Name{
+											Local: "children",
+										},
+										TagNode: []*schemadefinition.TagNode{{
+											IsBaseNode: true,
+											XMLName: xml.Name{
+												Local: "tagNode",
+											},
+											NodeNameAttr: "hugepage-size",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Set hugepage size for allocation (e.g., 2M, 1G)"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"(2M|1G)"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "2M",
+													Description: "2 megabytes",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "1G",
+													Description: "1 gigabyte",
+												}},
+												CompletionHelp: []*schemadefinition.CompletionHelp{{
+													XMLName: xml.Name{
+														Local: "completionHelp",
+													},
+													List: []string{"2M 1G"},
+												}},
+											}},
+											Children: []*schemadefinition.Children{{
+												XMLName: xml.Name{
+													Local: "children",
+												},
+												LeafNode: []*schemadefinition.LeafNode{{
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "hugepage-count",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Allocate number of hugepages for system use"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Validator: []*schemadefinition.Validator{{
+																XMLName: xml.Name{
+																	Local: "validator",
+																},
+																NameAttr:     "numeric",
+																ArgumentAttr: "--range 1-100000",
+															}},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "u32",
+															Description: "Number of hugepages",
+														}},
+													}},
+												}},
+											}},
+										}},
+										LeafNode: []*schemadefinition.LeafNode{{
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "disable-numa-balancing",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Disable automatic NUMA memory balancing"},
+												Valueless: []*schemadefinition.Valueless{{
+													XMLName: xml.Name{
+														Local: "valueless",
+													},
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "default-hugepage-size",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Set default hugepage size (e.g., 2M, 1G)"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Regex: []string{"(2M|1G)"},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "2M",
+													Description: "2 megabytes",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "1G",
+													Description: "1 gigabyte",
+												}},
+												CompletionHelp: []*schemadefinition.CompletionHelp{{
+													XMLName: xml.Name{
+														Local: "completionHelp",
+													},
+													List: []string{"2M 1G"},
+												}},
+											}},
+										}},
+									}},
+								}, {
+									IsBaseNode: true,
+									XMLName: xml.Name{
+										Local: "node",
+									},
 									NodeNameAttr: "debug",
 									Properties: []*schemadefinition.Properties{{
 										XMLName: xml.Name{
@@ -8100,6 +8513,40 @@ func system() schemadefinition.InterfaceDefinition {
 									}},
 								}},
 								LeafNode: []*schemadefinition.LeafNode{{
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "disable-hpet",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Disable High Precision Event Timer (HPET)"},
+										Valueless: []*schemadefinition.Valueless{{
+											XMLName: xml.Name{
+												Local: "valueless",
+											},
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "disable-mce",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Disable Machine Check Exceptions (MCE) reporting and handling"},
+										Valueless: []*schemadefinition.Valueless{{
+											XMLName: xml.Name{
+												Local: "valueless",
+											},
+										}},
+									}},
+								}, {
 									IsBaseNode: false,
 									XMLName: xml.Name{
 										Local: "leafNode",
@@ -8170,6 +8617,40 @@ func system() schemadefinition.InterfaceDefinition {
 											List: []string{"active passive guided"},
 										}},
 									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "disable-softlockup",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Disable soft lockup detector for kernel threads"},
+										Valueless: []*schemadefinition.Valueless{{
+											XMLName: xml.Name{
+												Local: "valueless",
+											},
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
+									NodeNameAttr: "quiet",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Disable most log messages"},
+										Valueless: []*schemadefinition.Valueless{{
+											XMLName: xml.Name{
+												Local: "valueless",
+											},
+										}},
+									}},
 								}},
 							}},
 						}, {
@@ -8203,7 +8684,7 @@ func system() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -8342,7 +8823,7 @@ func system() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -8586,6 +9067,38 @@ func system() schemadefinition.InterfaceDefinition {
 										Local: "valueless",
 									},
 								}},
+							}},
+						}, {
+							IsBaseNode: false,
+							XMLName: xml.Name{
+								Local: "leafNode",
+							},
+							NodeNameAttr: "reboot-on-upgrade-failure",
+							Properties: []*schemadefinition.Properties{{
+								XMLName: xml.Name{
+									Local: "properties",
+								},
+								Help: []string{"Automatic reboot into previous running image on upgrade failure"},
+								Constraint: []*schemadefinition.Constraint{{
+									XMLName: xml.Name{
+										Local: "constraint",
+									},
+									Validator: []*schemadefinition.Validator{{
+										XMLName: xml.Name{
+											Local: "validator",
+										},
+										NameAttr:     "numeric",
+										ArgumentAttr: "--range 5-30",
+									}},
+								}},
+								ValueHelp: []*schemadefinition.ValueHelp{{
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "u32:1-30",
+									Description: "Timeout before automatic reboot (minutes)",
+								}},
+								ConstraintErrorMessage: []string{"Timeout out of range, must be 5 to 30 minutes"},
 							}},
 						}, {
 							IsBaseNode: false,
@@ -8957,7 +9470,7 @@ func system() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -9025,7 +9538,7 @@ func system() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -9909,6 +10422,23 @@ func system() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "leafNode",
 									},
+									NodeNameAttr: "disable",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Disable instance"},
+										Valueless: []*schemadefinition.Valueless{{
+											XMLName: xml.Name{
+												Local: "valueless",
+											},
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
 									NodeNameAttr: "interval",
 									DefaultValue: []string{"1200"},
 									Properties: []*schemadefinition.Properties{{
@@ -9925,7 +10455,7 @@ func system() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 1-86400",
+												ArgumentAttr: "--range 1-65535",
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{
@@ -9935,7 +10465,7 @@ func system() schemadefinition.InterfaceDefinition {
 											Format:      "u32:1-65535",
 											Description: "Time in seconds",
 										}},
-										ConstraintErrorMessage: []string{"Port number must be in range 1 to 86400"},
+										ConstraintErrorMessage: []string{"Port number must be in range 1 to 65535"},
 									}},
 								}},
 							}},
@@ -10018,7 +10548,7 @@ func system() schemadefinition.InterfaceDefinition {
 												XMLName: xml.Name{
 													Local: "properties",
 												},
-												Help: []string{"Allows for the transmission of all characters inside a syslog message"},
+												Help: []string{"Allows for the transmission of multi-line messages (TCP only)"},
 												Valueless: []*schemadefinition.Valueless{{
 													XMLName: xml.Name{
 														Local: "valueless",
@@ -10035,7 +10565,7 @@ func system() schemadefinition.InterfaceDefinition {
 												XMLName: xml.Name{
 													Local: "properties",
 												},
-												Help: []string{"Include system timezone in syslog message"},
+												Help: []string{"Use RFC 5424 format (with RFC 3339 timestamp and timezone)"},
 												Valueless: []*schemadefinition.Valueless{{
 													XMLName: xml.Name{
 														Local: "valueless",
@@ -10820,7 +11350,7 @@ func system() schemadefinition.InterfaceDefinition {
 							XMLName: xml.Name{
 								Local: "constraint",
 							},
-							Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+							Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 							Validator: []*schemadefinition.Validator{{
 								XMLName: xml.Name{
 									Local: "validator",

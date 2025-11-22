@@ -29,6 +29,7 @@ System logging
 - [vyos_system_syslog_marker (Resource)](#vyos_system_syslog_marker-resource)
   - [Schema](#schema)
     - [Optional](#optional)
+      - [disable](#disable)
       - [interval](#interval)
       - [timeouts](#timeouts)
     - [Read-Only](#read-only)
@@ -43,6 +44,8 @@ System logging
 
 ### Optional
 
+#### disable
+- `disable` (Boolean) Disable instance
 #### interval
 - `interval` (Number) Mark message interval
 

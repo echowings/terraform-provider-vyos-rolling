@@ -44,6 +44,7 @@ Border Gateway Protocol (BGP)
       - [no_client_to_client_reflection](#no_client_to_client_reflection)
       - [no_fast_external_failover](#no_fast_external_failover)
       - [no_hard_administrative_reset](#no_hard_administrative_reset)
+      - [no_ipv6_auto_ra](#no_ipv6_auto_ra)
       - [no_suppress_duplicates](#no_suppress_duplicates)
       - [reject_as_sets](#reject_as_sets)
       - [route_reflector_allow_outbound_policy](#route_reflector_allow_outbound_policy)
@@ -107,6 +108,8 @@ Border Gateway Protocol (BGP)
 - `no_fast_external_failover` (Boolean) Disable immediate session reset on peer link down event
 #### no_hard_administrative_reset
 - `no_hard_administrative_reset` (Boolean) Do not send hard reset CEASE Notification for &#39;Administrative Reset&#39;
+#### no_ipv6_auto_ra
+- `no_ipv6_auto_ra` (Boolean) Disable IPv6 automatic router advertisement
 #### no_suppress_duplicates
 - `no_suppress_duplicates` (Boolean) Disable suppress duplicate updates if the route actually not changed
 #### reject_as_sets

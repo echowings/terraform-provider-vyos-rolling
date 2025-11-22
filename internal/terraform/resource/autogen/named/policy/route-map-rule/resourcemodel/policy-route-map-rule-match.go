@@ -31,6 +31,7 @@ type PolicyRouteMapRuleMatch struct {
 	LeafPolicyRouteMapRuleMatchPeer            types.String `tfsdk:"peer" vyos:"peer,omitempty"`
 	LeafPolicyRouteMapRuleMatchProtocol        types.String `tfsdk:"protocol" vyos:"protocol,omitempty"`
 	LeafPolicyRouteMapRuleMatchRpki            types.String `tfsdk:"rpki" vyos:"rpki,omitempty"`
+	LeafPolicyRouteMapRuleMatchSourceVrf       types.String `tfsdk:"source_vrf" vyos:"source-vrf,omitempty"`
 	LeafPolicyRouteMapRuleMatchTag             types.Number `tfsdk:"tag" vyos:"tag,omitempty"`
 
 	// TagNodes
@@ -241,6 +242,25 @@ func (o PolicyRouteMapRuleMatch) ResourceSchemaAttributes(ctx context.Context) m
     |  invalid   |  Match invalid entries   |
     |  notfound  |  Match notfound entries  |
     |  valid     |  Match valid entries     |
+`,
+		},
+
+		"source_vrf":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (source-vrf) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `Source vrf
+
+    |  Format  |  Description        |
+    |----------|---------------------|
+    |  txt     |  VRF instance name  |
+`,
+			Description: `Source vrf
+
+    |  Format  |  Description        |
+    |----------|---------------------|
+    |  txt     |  VRF instance name  |
 `,
 		},
 

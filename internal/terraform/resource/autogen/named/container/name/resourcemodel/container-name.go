@@ -49,6 +49,7 @@ type ContainerName struct {
 	LeafContainerNameAllowHostPID      types.Bool   `tfsdk:"allow_host_pid" vyos:"allow-host-pid,omitempty"`
 	LeafContainerNameAllowHostNetworks types.Bool   `tfsdk:"allow_host_networks" vyos:"allow-host-networks,omitempty"`
 	LeafContainerNameCapability        types.List   `tfsdk:"capability" vyos:"capability,omitempty"`
+	LeafContainerNamePrivileged        types.Bool   `tfsdk:"privileged" vyos:"privileged,omitempty"`
 	LeafContainerNameDescrIPtion       types.String `tfsdk:"description" vyos:"description,omitempty"`
 	LeafContainerNameDisable           types.Bool   `tfsdk:"disable" vyos:"disable,omitempty"`
 	LeafContainerNameEntrypoint        types.String `tfsdk:"entrypoint" vyos:"entrypoint,omitempty"`
@@ -63,6 +64,7 @@ type ContainerName struct {
 	LeafContainerNameRestart           types.String `tfsdk:"restart" vyos:"restart,omitempty"`
 	LeafContainerNameUID               types.Number `tfsdk:"uid" vyos:"uid,omitempty"`
 	LeafContainerNameGID               types.Number `tfsdk:"gid" vyos:"gid,omitempty"`
+	LeafContainerNameLogDriver         types.String `tfsdk:"log_driver" vyos:"log-driver,omitempty"`
 
 	// TagNodes
 
@@ -75,6 +77,8 @@ type ContainerName struct {
 	TagContainerNameNetwork map[string]*ContainerNameNetwork `tfsdk:"network" vyos:"network,omitempty"`
 
 	ExistsTagContainerNamePort bool `tfsdk:"-" vyos:"port,child"`
+
+	ExistsTagContainerNameTmpfs bool `tfsdk:"-" vyos:"tmpfs,child"`
 
 	ExistsTagContainerNameVolume bool `tfsdk:"-" vyos:"volume,child"`
 
@@ -224,6 +228,7 @@ func (o ContainerName) ResourceSchemaAttributes(ctx context.Context) map[string]
     |  net-admin         |  Network operations (interface, firewall, routing tables)               |
     |  net-bind-service  |  Bind a socket to privileged ports (port numbers less than 1024)        |
     |  net-raw           |  Permission to create raw network sockets                               |
+    |  mknod             |  Permission to create special files                                     |
     |  setpcap           |  Capability sets (from bounded or inherited set)                        |
     |  sys-admin         |  Administation operations (quotactl, mount, sethostname, setdomainame)  |
     |  sys-module        |  Load, unload and delete kernel modules                                 |
@@ -237,12 +242,28 @@ func (o ContainerName) ResourceSchemaAttributes(ctx context.Context) map[string]
     |  net-admin         |  Network operations (interface, firewall, routing tables)               |
     |  net-bind-service  |  Bind a socket to privileged ports (port numbers less than 1024)        |
     |  net-raw           |  Permission to create raw network sockets                               |
+    |  mknod             |  Permission to create special files                                     |
     |  setpcap           |  Capability sets (from bounded or inherited set)                        |
     |  sys-admin         |  Administation operations (quotactl, mount, sethostname, setdomainame)  |
     |  sys-module        |  Load, unload and delete kernel modules                                 |
     |  sys-nice          |  Permission to set process nice value                                   |
     |  sys-time          |  Permission to set system clock                                         |
 `,
+		},
+
+		"privileged":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (privileged) */
+		schema.BoolAttribute{
+			Optional: true,
+			MarkdownDescription: `Grant root capabilities to the container
+
+`,
+			Description: `Grant root capabilities to the container
+
+`,
+			Default:  booldefault.StaticBool(false),
+			Computed: true,
 		},
 
 		"description":
@@ -505,6 +526,32 @@ func (o ContainerName) ResourceSchemaAttributes(ctx context.Context) map[string]
     |-----------|---------------------------------------|
     |  0-65535  |  Group ID this container will run as  |
 `,
+		},
+
+		"log_driver":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (log-driver) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `Configure container log driver
+
+    |  Format    |  Description                        |
+    |------------|-------------------------------------|
+    |  k8s-file  |  Logs to plain-text file            |
+    |  journald  |  Logs to systemd's journal          |
+    |  none      |  Disable logging for the container  |
+`,
+			Description: `Configure container log driver
+
+    |  Format    |  Description                        |
+    |------------|-------------------------------------|
+    |  k8s-file  |  Logs to plain-text file            |
+    |  journald  |  Logs to systemd's journal          |
+    |  none      |  Disable logging for the container  |
+`,
+
+			// Default:          stringdefault.StaticString(`journald`),
+			Computed: true,
 		},
 
 		// TagNodes

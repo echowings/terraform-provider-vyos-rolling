@@ -94,7 +94,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -458,7 +458,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "constraint",
 											},
-											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+											Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 											Validator: []*schemadefinition.Validator{{
 												XMLName: xml.Name{
 													Local: "validator",
@@ -546,7 +546,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -1448,7 +1448,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -2229,6 +2229,153 @@ func vpn() schemadefinition.InterfaceDefinition {
 												XMLName: xml.Name{
 													Local: "children",
 												},
+												Node: []*schemadefinition.Node{{
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "node",
+													},
+													NodeNameAttr: "traffic-selector",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Traffic-selectors parameters"},
+													}},
+													Children: []*schemadefinition.Children{{
+														XMLName: xml.Name{
+															Local: "children",
+														},
+														Node: []*schemadefinition.Node{{
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "node",
+															},
+															NodeNameAttr: "local",
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"Local parameters for interesting traffic"},
+															}},
+															Children: []*schemadefinition.Children{{
+																XMLName: xml.Name{
+																	Local: "children",
+																},
+																LeafNode: []*schemadefinition.LeafNode{{
+																	IsBaseNode: false,
+																	XMLName: xml.Name{
+																		Local: "leafNode",
+																	},
+																	NodeNameAttr: "prefix",
+																	Properties: []*schemadefinition.Properties{{
+																		XMLName: xml.Name{
+																			Local: "properties",
+																		},
+																		Help: []string{"Local IPv4 or IPv6 prefix"},
+																		Constraint: []*schemadefinition.Constraint{{
+																			XMLName: xml.Name{
+																				Local: "constraint",
+																			},
+																			Validator: []*schemadefinition.Validator{{
+																				XMLName: xml.Name{
+																					Local: "validator",
+																				},
+																				NameAttr: "ipv4-prefix",
+																			}, {
+																				XMLName: xml.Name{
+																					Local: "validator",
+																				},
+																				NameAttr: "ipv6-prefix",
+																			}},
+																		}},
+																		ValueHelp: []*schemadefinition.ValueHelp{{
+																			XMLName: xml.Name{
+																				Local: "valueHelp",
+																			},
+																			Format:      "ipv4net",
+																			Description: "Local IPv4 prefix",
+																		}, {
+																			XMLName: xml.Name{
+																				Local: "valueHelp",
+																			},
+																			Format:      "ipv6net",
+																			Description: "Local IPv6 prefix",
+																		}},
+																		Multi: []*schemadefinition.Multi{{
+																			XMLName: xml.Name{
+																				Local: "multi",
+																			},
+																		}},
+																	}},
+																}},
+															}},
+														}, {
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "node",
+															},
+															NodeNameAttr: "remote",
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"Remote parameters for interesting traffic"},
+															}},
+															Children: []*schemadefinition.Children{{
+																XMLName: xml.Name{
+																	Local: "children",
+																},
+																LeafNode: []*schemadefinition.LeafNode{{
+																	IsBaseNode: false,
+																	XMLName: xml.Name{
+																		Local: "leafNode",
+																	},
+																	NodeNameAttr: "prefix",
+																	Properties: []*schemadefinition.Properties{{
+																		XMLName: xml.Name{
+																			Local: "properties",
+																		},
+																		Help: []string{"Remote IPv4 or IPv6 prefix"},
+																		Constraint: []*schemadefinition.Constraint{{
+																			XMLName: xml.Name{
+																				Local: "constraint",
+																			},
+																			Validator: []*schemadefinition.Validator{{
+																				XMLName: xml.Name{
+																					Local: "validator",
+																				},
+																				NameAttr: "ipv4-prefix",
+																			}, {
+																				XMLName: xml.Name{
+																					Local: "validator",
+																				},
+																				NameAttr: "ipv6-prefix",
+																			}},
+																		}},
+																		ValueHelp: []*schemadefinition.ValueHelp{{
+																			XMLName: xml.Name{
+																				Local: "valueHelp",
+																			},
+																			Format:      "ipv4net",
+																			Description: "Remote IPv4 prefix",
+																		}, {
+																			XMLName: xml.Name{
+																				Local: "valueHelp",
+																			},
+																			Format:      "ipv6net",
+																			Description: "Remote IPv6 prefix",
+																		}},
+																		Multi: []*schemadefinition.Multi{{
+																			XMLName: xml.Name{
+																				Local: "multi",
+																			},
+																		}},
+																	}},
+																}},
+															}},
+														}},
+													}},
+												}},
 												LeafNode: []*schemadefinition.LeafNode{{
 													IsBaseNode: false,
 													XMLName: xml.Name{
@@ -2708,7 +2855,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -5100,7 +5247,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "constraint",
 									},
-									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+									Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 									Validator: []*schemadefinition.Validator{{
 										XMLName: xml.Name{
 											Local: "validator",
@@ -5408,7 +5555,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																XMLName: xml.Name{
 																	Local: "properties",
 																},
-																Help: []string{"Port for Dynamic Authorization Extension server (DM/CoA)"},
+																Help: []string{"Port number used by connection"},
 																Constraint: []*schemadefinition.Constraint{{
 																	XMLName: xml.Name{
 																		Local: "constraint",
@@ -5426,8 +5573,9 @@ func vpn() schemadefinition.InterfaceDefinition {
 																		Local: "valueHelp",
 																	},
 																	Format:      "u32:1-65535",
-																	Description: "TCP port",
+																	Description: "Numeric IP port",
 																}},
+																ConstraintErrorMessage: []string{"Port number must be in range 1 to 65535"},
 															}},
 														}, {
 															IsBaseNode: false,
@@ -7709,6 +7857,57 @@ func vpn() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "leafNode",
 									},
+									NodeNameAttr: "thread-count",
+									DefaultValue: []string{"all"},
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Number of working threads"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Regex: []string{"(all|half)"},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr:     "numeric",
+												ArgumentAttr: "--range 1-512",
+											}},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "all",
+											Description: "Use all available CPU cores",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "half",
+											Description: "Use half of available CPU cores",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "u32:1-512",
+											Description: "Thread count",
+										}},
+										CompletionHelp: []*schemadefinition.CompletionHelp{{
+											XMLName: xml.Name{
+												Local: "completionHelp",
+											},
+											List: []string{"all half"},
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
 									NodeNameAttr: "wins-server",
 									Properties: []*schemadefinition.Properties{{
 										XMLName: xml.Name{
@@ -9563,7 +9762,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																XMLName: xml.Name{
 																	Local: "properties",
 																},
-																Help: []string{"Port for Dynamic Authorization Extension server (DM/CoA)"},
+																Help: []string{"Port number used by connection"},
 																Constraint: []*schemadefinition.Constraint{{
 																	XMLName: xml.Name{
 																		Local: "constraint",
@@ -9581,8 +9780,9 @@ func vpn() schemadefinition.InterfaceDefinition {
 																		Local: "valueHelp",
 																	},
 																	Format:      "u32:1-65535",
-																	Description: "TCP port",
+																	Description: "Numeric IP port",
 																}},
+																ConstraintErrorMessage: []string{"Port number must be in range 1 to 65535"},
 															}},
 														}, {
 															IsBaseNode: false,
@@ -11529,6 +11729,57 @@ func vpn() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "leafNode",
 									},
+									NodeNameAttr: "thread-count",
+									DefaultValue: []string{"all"},
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help: []string{"Number of working threads"},
+										Constraint: []*schemadefinition.Constraint{{
+											XMLName: xml.Name{
+												Local: "constraint",
+											},
+											Regex: []string{"(all|half)"},
+											Validator: []*schemadefinition.Validator{{
+												XMLName: xml.Name{
+													Local: "validator",
+												},
+												NameAttr:     "numeric",
+												ArgumentAttr: "--range 1-512",
+											}},
+										}},
+										ValueHelp: []*schemadefinition.ValueHelp{{
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "all",
+											Description: "Use all available CPU cores",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "half",
+											Description: "Use half of available CPU cores",
+										}, {
+											XMLName: xml.Name{
+												Local: "valueHelp",
+											},
+											Format:      "u32:1-512",
+											Description: "Thread count",
+										}},
+										CompletionHelp: []*schemadefinition.CompletionHelp{{
+											XMLName: xml.Name{
+												Local: "completionHelp",
+											},
+											List: []string{"all half"},
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "leafNode",
+									},
 									NodeNameAttr: "wins-server",
 									Properties: []*schemadefinition.Properties{{
 										XMLName: xml.Name{
@@ -11893,7 +12144,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 														XMLName: xml.Name{
 															Local: "properties",
 														},
-														Help: []string{"Port for Dynamic Authorization Extension server (DM/CoA)"},
+														Help: []string{"Port number used by connection"},
 														Constraint: []*schemadefinition.Constraint{{
 															XMLName: xml.Name{
 																Local: "constraint",
@@ -11911,8 +12162,9 @@ func vpn() schemadefinition.InterfaceDefinition {
 																Local: "valueHelp",
 															},
 															Format:      "u32:1-65535",
-															Description: "TCP port",
+															Description: "Numeric IP port",
 														}},
+														ConstraintErrorMessage: []string{"Port number must be in range 1 to 65535"},
 													}},
 												}, {
 													IsBaseNode: false,
@@ -13939,6 +14191,57 @@ func vpn() schemadefinition.InterfaceDefinition {
 									Description: "Numeric IP port",
 								}},
 								ConstraintErrorMessage: []string{"Port number must be in range 1 to 65535"},
+							}},
+						}, {
+							IsBaseNode: false,
+							XMLName: xml.Name{
+								Local: "leafNode",
+							},
+							NodeNameAttr: "thread-count",
+							DefaultValue: []string{"all"},
+							Properties: []*schemadefinition.Properties{{
+								XMLName: xml.Name{
+									Local: "properties",
+								},
+								Help: []string{"Number of working threads"},
+								Constraint: []*schemadefinition.Constraint{{
+									XMLName: xml.Name{
+										Local: "constraint",
+									},
+									Regex: []string{"(all|half)"},
+									Validator: []*schemadefinition.Validator{{
+										XMLName: xml.Name{
+											Local: "validator",
+										},
+										NameAttr:     "numeric",
+										ArgumentAttr: "--range 1-512",
+									}},
+								}},
+								ValueHelp: []*schemadefinition.ValueHelp{{
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "all",
+									Description: "Use all available CPU cores",
+								}, {
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "half",
+									Description: "Use half of available CPU cores",
+								}, {
+									XMLName: xml.Name{
+										Local: "valueHelp",
+									},
+									Format:      "u32:1-512",
+									Description: "Thread count",
+								}},
+								CompletionHelp: []*schemadefinition.CompletionHelp{{
+									XMLName: xml.Name{
+										Local: "completionHelp",
+									},
+									List: []string{"all half"},
+								}},
 							}},
 						}, {
 							IsBaseNode: false,

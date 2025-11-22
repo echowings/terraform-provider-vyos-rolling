@@ -23,9 +23,10 @@ var _ helpers.VyosResourceDataModel = &InterfacesLtwotpvthreeIPvsixAddress{}
 // Top level basenode type: `N/A`
 type InterfacesLtwotpvthreeIPvsixAddress struct {
 	// LeafNodes
-	LeafInterfacesLtwotpvthreeIPvsixAddressAutoconf           types.Bool `tfsdk:"autoconf" vyos:"autoconf,omitempty"`
-	LeafInterfacesLtwotpvthreeIPvsixAddressEuisixfour         types.List `tfsdk:"eui64" vyos:"eui64,omitempty"`
-	LeafInterfacesLtwotpvthreeIPvsixAddressNoDefaultLinkLocal types.Bool `tfsdk:"no_default_link_local" vyos:"no-default-link-local,omitempty"`
+	LeafInterfacesLtwotpvthreeIPvsixAddressAutoconf            types.Bool   `tfsdk:"autoconf" vyos:"autoconf,omitempty"`
+	LeafInterfacesLtwotpvthreeIPvsixAddressEuisixfour          types.List   `tfsdk:"eui64" vyos:"eui64,omitempty"`
+	LeafInterfacesLtwotpvthreeIPvsixAddressNoDefaultLinkLocal  types.Bool   `tfsdk:"no_default_link_local" vyos:"no-default-link-local,omitempty"`
+	LeafInterfacesLtwotpvthreeIPvsixAddressInterfaceIDentifier types.String `tfsdk:"interface_identifier" vyos:"interface-identifier,omitempty"`
 
 	// TagNodes
 
@@ -84,6 +85,25 @@ func (o InterfacesLtwotpvthreeIPvsixAddress) ResourceSchemaAttributes(ctx contex
 `,
 			Default:  booldefault.StaticBool(false),
 			Computed: true,
+		},
+
+		"interface_identifier":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (interface-identifier) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `SLAAC interface identifier
+
+    |  Format     |  Description           |
+    |-------------|------------------------|
+    |  ::h:h:h:h  |  Interface identifier  |
+`,
+			Description: `SLAAC interface identifier
+
+    |  Format     |  Description           |
+    |-------------|------------------------|
+    |  ::h:h:h:h  |  Interface identifier  |
+`,
 		},
 
 		// TagNodes

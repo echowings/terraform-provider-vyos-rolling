@@ -29,17 +29,18 @@ type ServiceDhcpServer struct {
 	Timeouts timeouts.Value `tfsdk:"timeouts" vyos:"-,timeout"`
 
 	// LeafNodes
-	LeafServiceDhcpServerDisable          types.Bool `tfsdk:"disable" vyos:"disable,omitempty"`
-	LeafServiceDhcpServerDynamicDNSUpdate types.Bool `tfsdk:"dynamic_dns_update" vyos:"dynamic-dns-update,omitempty"`
-	LeafServiceDhcpServerHostfileUpdate   types.Bool `tfsdk:"hostfile_update" vyos:"hostfile-update,omitempty"`
-	LeafServiceDhcpServerListenAddress    types.List `tfsdk:"listen_address" vyos:"listen-address,omitempty"`
-	LeafServiceDhcpServerListenInterface  types.List `tfsdk:"listen_interface" vyos:"listen-interface,omitempty"`
+	LeafServiceDhcpServerDisable         types.Bool `tfsdk:"disable" vyos:"disable,omitempty"`
+	LeafServiceDhcpServerHostfileUpdate  types.Bool `tfsdk:"hostfile_update" vyos:"hostfile-update,omitempty"`
+	LeafServiceDhcpServerListenAddress   types.List `tfsdk:"listen_address" vyos:"listen-address,omitempty"`
+	LeafServiceDhcpServerListenInterface types.List `tfsdk:"listen_interface" vyos:"listen-interface,omitempty"`
 
 	// TagNodes
 
 	ExistsTagServiceDhcpServerSharedNetworkName bool `tfsdk:"-" vyos:"shared-network-name,child"`
 
 	// Nodes
+
+	ExistsNodeServiceDhcpServerDynamicDNSUpdate bool `tfsdk:"-" vyos:"dynamic-dns-update,child"`
 
 	ExistsNodeServiceDhcpServerHighAvailability bool `tfsdk:"-" vyos:"high-availability,child"`
 }
@@ -114,21 +115,6 @@ func (o ServiceDhcpServer) ResourceSchemaAttributes(ctx context.Context) map[str
 
 `,
 			Description: `Disable instance
-
-`,
-			Default:  booldefault.StaticBool(false),
-			Computed: true,
-		},
-
-		"dynamic_dns_update":
-
-		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (dynamic-dns-update) */
-		schema.BoolAttribute{
-			Optional: true,
-			MarkdownDescription: `Dynamically update Domain Name System (RFC4702)
-
-`,
-			Description: `Dynamically update Domain Name System (RFC4702)
 
 `,
 			Default:  booldefault.StaticBool(false),

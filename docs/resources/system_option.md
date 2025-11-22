@@ -32,6 +32,7 @@ description: |-
       - [keyboard_layout](#keyboard_layout)
       - [performance](#performance)
       - [reboot_on_panic](#reboot_on_panic)
+      - [reboot_on_upgrade_failure](#reboot_on_upgrade_failure)
       - [root_partition_auto_resize](#root_partition_auto_resize)
       - [startup_beep](#startup_beep)
       - [time_format](#time_format)
@@ -87,6 +88,12 @@ description: |-
     |  virtual-host        &emsp;|  Tune for running guest virtual machines    |
 #### reboot_on_panic
 - `reboot_on_panic` (Boolean) Reboot system on kernel panic
+#### reboot_on_upgrade_failure
+- `reboot_on_upgrade_failure` (Number) Automatic reboot into previous running image on upgrade failure
+
+    |  Format  &emsp;|  Description                                |
+    |----------|---------------------------------------------|
+    |  1-30    &emsp;|  Timeout before automatic reboot (minutes)  |
 #### root_partition_auto_resize
 - `root_partition_auto_resize` (Boolean) Enable root partition auto-extention on system boot
 #### startup_beep

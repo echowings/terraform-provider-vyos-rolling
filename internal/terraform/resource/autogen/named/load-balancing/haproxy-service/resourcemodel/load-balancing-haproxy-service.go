@@ -50,12 +50,13 @@ type LoadBalancingHaproxyService struct {
 	// LeafNodes
 	LeafLoadBalancingHaproxyServiceBackend             types.List   `tfsdk:"backend" vyos:"backend,omitempty"`
 	LeafLoadBalancingHaproxyServiceDescrIPtion         types.String `tfsdk:"description" vyos:"description,omitempty"`
-	LeafLoadBalancingHaproxyServiceListenAddress       types.List   `tfsdk:"listen_address" vyos:"listen-address,omitempty"`
 	LeafLoadBalancingHaproxyServiceMode                types.String `tfsdk:"mode" vyos:"mode,omitempty"`
 	LeafLoadBalancingHaproxyServicePort                types.Number `tfsdk:"port" vyos:"port,omitempty"`
 	LeafLoadBalancingHaproxyServiceRedirectHTTPToHTTPS types.Bool   `tfsdk:"redirect_http_to_https" vyos:"redirect-http-to-https,omitempty"`
 
 	// TagNodes
+
+	ExistsTagLoadBalancingHaproxyServiceListenAddress bool `tfsdk:"-" vyos:"listen-address,child"`
 
 	ExistsTagLoadBalancingHaproxyServiceRule bool `tfsdk:"-" vyos:"rule,child"`
 
@@ -66,6 +67,8 @@ type LoadBalancingHaproxyService struct {
 	// Ignoring Node `LoadBalancingHaproxyServiceLogging`.
 
 	NodeLoadBalancingHaproxyServiceTCPRequest *LoadBalancingHaproxyServiceTCPRequest `tfsdk:"tcp_request" vyos:"tcp-request,omitempty"`
+
+	NodeLoadBalancingHaproxyServiceTimeout *LoadBalancingHaproxyServiceTimeout `tfsdk:"timeout" vyos:"timeout,omitempty"`
 
 	NodeLoadBalancingHaproxyServiceHTTPCompression *LoadBalancingHaproxyServiceHTTPCompression `tfsdk:"http_compression" vyos:"http-compression,omitempty"`
 
@@ -186,15 +189,15 @@ func (o LoadBalancingHaproxyService) ResourceSchemaAttributes(ctx context.Contex
 			Optional:    true,
 			MarkdownDescription: `Backend member
 
-    |  Format  |  Description                     |
-    |----------|----------------------------------|
-    |  txt     |  Name of haproxy backend system  |
+    |  Format  |  Description                  |
+    |----------|-------------------------------|
+    |  txt     |  HAProxy backend system name  |
 `,
 			Description: `Backend member
 
-    |  Format  |  Description                     |
-    |----------|----------------------------------|
-    |  txt     |  Name of haproxy backend system  |
+    |  Format  |  Description                  |
+    |----------|-------------------------------|
+    |  txt     |  HAProxy backend system name  |
 `,
 		},
 
@@ -214,27 +217,6 @@ func (o LoadBalancingHaproxyService) ResourceSchemaAttributes(ctx context.Contex
     |  Format  |  Description  |
     |----------|---------------|
     |  txt     |  Description  |
-`,
-		},
-
-		"listen_address":
-		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype-multi (listen-address) */
-		schema.ListAttribute{
-			ElementType: types.StringType,
-			Optional:    true,
-			MarkdownDescription: `Local IP addresses to listen on
-
-    |  Format  |  Description                                      |
-    |----------|---------------------------------------------------|
-    |  ipv4    |  IPv4 address to listen for incoming connections  |
-    |  ipv6    |  IPv6 address to listen for incoming connections  |
-`,
-			Description: `Local IP addresses to listen on
-
-    |  Format  |  Description                                      |
-    |----------|---------------------------------------------------|
-    |  ipv4    |  IPv4 address to listen for incoming connections  |
-    |  ipv6    |  IPv6 address to listen for incoming connections  |
 `,
 		},
 
@@ -307,6 +289,17 @@ func (o LoadBalancingHaproxyService) ResourceSchemaAttributes(ctx context.Contex
 
 `,
 			Description: `TCP request directive
+
+`,
+		},
+
+		"timeout": schema.SingleNestedAttribute{
+			Attributes: LoadBalancingHaproxyServiceTimeout{}.ResourceSchemaAttributes(ctx),
+			Optional:   true,
+			MarkdownDescription: `Timeout options
+
+`,
+			Description: `Timeout options
 
 `,
 		},

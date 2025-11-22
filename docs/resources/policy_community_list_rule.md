@@ -73,7 +73,6 @@ Add a BGP community list entry
     |  local-AS                    &emsp;|  Well-known communities value NO_EXPORT_SUBCONFED 0xFFFFFF03                 |
     |  no-advertise                &emsp;|  Well-known communities value NO_ADVERTISE 0xFFFFFF02                        |
     |  no-export                   &emsp;|  Well-known communities value NO_EXPORT 0xFFFFFF01                           |
-    |  internet                    &emsp;|  Well-known communities value 0                                              |
     |  graceful-shutdown           &emsp;|  Well-known communities value GRACEFUL_SHUTDOWN 0xFFFF0000                   |
     |  accept-own-nexthop          &emsp;|  Well-known communities value ACCEPT_OWN_NEXTHOP 0xFFFF0008                  |
     |  accept-own                  &emsp;|  Well-known communities value ACCEPT_OWN 0xFFFF0001 65535:1                  |

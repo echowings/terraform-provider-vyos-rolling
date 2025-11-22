@@ -18,7 +18,7 @@ func (r loadBalancingWanRuleInterface) Schema(ctx context.Context, req resource.
 		MarkdownDescription: `
 *load-balancing*  
 ⯯  
-Configure Wide Area Network (WAN) load-balancing  
+Wide Area Network (WAN) load-balancing  
 ⯯  
 Rule number (1-9999)  
 ⯯  

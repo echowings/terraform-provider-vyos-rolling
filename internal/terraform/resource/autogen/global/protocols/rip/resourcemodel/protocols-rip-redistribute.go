@@ -34,6 +34,8 @@ type ProtocolsRIPRedistribute struct {
 
 	ExistsNodeProtocolsRIPRedistributeKernel bool `tfsdk:"-" vyos:"kernel,child"`
 
+	ExistsNodeProtocolsRIPRedistributeNhrp bool `tfsdk:"-" vyos:"nhrp,child"`
+
 	ExistsNodeProtocolsRIPRedistributeOspf bool `tfsdk:"-" vyos:"ospf,child"`
 
 	ExistsNodeProtocolsRIPRedistributeStatic bool `tfsdk:"-" vyos:"static,child"`

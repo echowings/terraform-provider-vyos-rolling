@@ -39,9 +39,11 @@ Container applications
       - [gid](#gid)
       - [host_name](#host_name)
       - [image](#image)
+      - [log_driver](#log_driver)
       - [memory](#memory)
       - [name_server](#name_server)
       - [network](#network)
+      - [privileged](#privileged)
       - [restart](#restart)
       - [shared_memory](#shared_memory)
       - [timeouts](#timeouts)
@@ -79,6 +81,7 @@ Container applications
     |  net-admin         &emsp;|  Network operations (interface, firewall, routing tables)               |
     |  net-bind-service  &emsp;|  Bind a socket to privileged ports (port numbers less than 1024)        |
     |  net-raw           &emsp;|  Permission to create raw network sockets                               |
+    |  mknod             &emsp;|  Permission to create special files                                     |
     |  setpcap           &emsp;|  Capability sets (from bounded or inherited set)                        |
     |  sys-admin         &emsp;|  Administation operations (quotactl, mount, sethostname, setdomainame)  |
     |  sys-module        &emsp;|  Load, unload and delete kernel modules                                 |
@@ -117,6 +120,14 @@ Container applications
     |  Format  &emsp;|  Description                     |
     |----------|----------------------------------|
     |  txt     &emsp;|  Image name in the hub-registry  |
+#### log_driver
+- `log_driver` (String) Configure container log driver
+
+    |  Format    &emsp;|  Description                        |
+    |------------|-------------------------------------|
+    |  k8s-file  &emsp;|  Logs to plain-text file            |
+    |  journald  &emsp;|  Logs to systemd&#39;s journal          |
+    |  none      &emsp;|  Disable logging for the container  |
 #### memory
 - `memory` (Number) Memory (RAM) available to this container
 
@@ -133,6 +144,8 @@ Container applications
     |  ipv6    &emsp;|  Domain Name Server (DNS) IPv6 address  |
 #### network
 - `network` (Attributes Map) Attach user defined network to container (see [below for nested schema](#nestedatt--network))
+#### privileged
+- `privileged` (Boolean) Grant root capabilities to the container
 #### restart
 - `restart` (String) Restart options for container
 

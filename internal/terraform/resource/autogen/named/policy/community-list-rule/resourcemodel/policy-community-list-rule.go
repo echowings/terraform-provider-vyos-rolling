@@ -248,7 +248,6 @@ func (o PolicyCommunityListRule) ResourceSchemaAttributes(ctx context.Context) m
     |  local-AS                    |  Well-known communities value NO_EXPORT_SUBCONFED 0xFFFFFF03                 |
     |  no-advertise                |  Well-known communities value NO_ADVERTISE 0xFFFFFF02                        |
     |  no-export                   |  Well-known communities value NO_EXPORT 0xFFFFFF01                           |
-    |  internet                    |  Well-known communities value 0                                              |
     |  graceful-shutdown           |  Well-known communities value GRACEFUL_SHUTDOWN 0xFFFF0000                   |
     |  accept-own-nexthop          |  Well-known communities value ACCEPT_OWN_NEXTHOP 0xFFFF0008                  |
     |  accept-own                  |  Well-known communities value ACCEPT_OWN 0xFFFF0001 65535:1                  |
@@ -270,7 +269,6 @@ func (o PolicyCommunityListRule) ResourceSchemaAttributes(ctx context.Context) m
     |  local-AS                    |  Well-known communities value NO_EXPORT_SUBCONFED 0xFFFFFF03                 |
     |  no-advertise                |  Well-known communities value NO_ADVERTISE 0xFFFFFF02                        |
     |  no-export                   |  Well-known communities value NO_EXPORT 0xFFFFFF01                           |
-    |  internet                    |  Well-known communities value 0                                              |
     |  graceful-shutdown           |  Well-known communities value GRACEFUL_SHUTDOWN 0xFFFF0000                   |
     |  accept-own-nexthop          |  Well-known communities value ACCEPT_OWN_NEXTHOP 0xFFFF0008                  |
     |  accept-own                  |  Well-known communities value ACCEPT_OWN 0xFFFF0001 65535:1                  |

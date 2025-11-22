@@ -152,55 +152,49 @@ func (o LoadBalancingHaproxyServiceLoggingFacility) ResourceSchemaAttributes(ctx
 					Required: true,
 					MarkdownDescription: `Facility for logging
 
-    |  Format    |  Description                       |
-    |------------|------------------------------------|
-    |  all       |  All facilities excluding "mark"   |
-    |  auth      |  Authentication and authorization  |
-    |  authpriv  |  Non-system authorization          |
-    |  cron      |  Cron daemon                       |
-    |  daemon    |  System daemons                    |
-    |  kern      |  Kernel                            |
-    |  lpr       |  Line printer spooler              |
-    |  mail      |  Mail subsystem                    |
-    |  mark      |  Timestamp                         |
-    |  news      |  USENET subsystem                  |
-    |  syslog    |  Authentication and authorization  |
-    |  user      |  Application processes             |
-    |  uucp      |  UUCP subsystem                    |
-    |  local0    |  Local facility 0                  |
-    |  local1    |  Local facility 1                  |
-    |  local2    |  Local facility 2                  |
-    |  local3    |  Local facility 3                  |
-    |  local4    |  Local facility 4                  |
-    |  local5    |  Local facility 5                  |
-    |  local6    |  Local facility 6                  |
-    |  local7    |  Local facility 7                  |
+    |  Format  |  Description                       |
+    |----------|------------------------------------|
+    |  auth    |  Authentication and authorization  |
+    |  cron    |  Cron daemon                       |
+    |  daemon  |  System daemons                    |
+    |  kern    |  Kernel                            |
+    |  lpr     |  Line printer spooler              |
+    |  mail    |  Mail subsystem                    |
+    |  news    |  USENET subsystem                  |
+    |  syslog  |  Authentication and authorization  |
+    |  user    |  Application processes             |
+    |  uucp    |  UUCP subsystem                    |
+    |  local0  |  Local facility 0                  |
+    |  local1  |  Local facility 1                  |
+    |  local2  |  Local facility 2                  |
+    |  local3  |  Local facility 3                  |
+    |  local4  |  Local facility 4                  |
+    |  local5  |  Local facility 5                  |
+    |  local6  |  Local facility 6                  |
+    |  local7  |  Local facility 7                  |
 `,
 					Description: `Facility for logging
 
-    |  Format    |  Description                       |
-    |------------|------------------------------------|
-    |  all       |  All facilities excluding "mark"   |
-    |  auth      |  Authentication and authorization  |
-    |  authpriv  |  Non-system authorization          |
-    |  cron      |  Cron daemon                       |
-    |  daemon    |  System daemons                    |
-    |  kern      |  Kernel                            |
-    |  lpr       |  Line printer spooler              |
-    |  mail      |  Mail subsystem                    |
-    |  mark      |  Timestamp                         |
-    |  news      |  USENET subsystem                  |
-    |  syslog    |  Authentication and authorization  |
-    |  user      |  Application processes             |
-    |  uucp      |  UUCP subsystem                    |
-    |  local0    |  Local facility 0                  |
-    |  local1    |  Local facility 1                  |
-    |  local2    |  Local facility 2                  |
-    |  local3    |  Local facility 3                  |
-    |  local4    |  Local facility 4                  |
-    |  local5    |  Local facility 5                  |
-    |  local6    |  Local facility 6                  |
-    |  local7    |  Local facility 7                  |
+    |  Format  |  Description                       |
+    |----------|------------------------------------|
+    |  auth    |  Authentication and authorization  |
+    |  cron    |  Cron daemon                       |
+    |  daemon  |  System daemons                    |
+    |  kern    |  Kernel                            |
+    |  lpr     |  Line printer spooler              |
+    |  mail    |  Mail subsystem                    |
+    |  news    |  USENET subsystem                  |
+    |  syslog  |  Authentication and authorization  |
+    |  user    |  Application processes             |
+    |  uucp    |  UUCP subsystem                    |
+    |  local0  |  Local facility 0                  |
+    |  local1  |  Local facility 1                  |
+    |  local2  |  Local facility 2                  |
+    |  local3  |  Local facility 3                  |
+    |  local4  |  Local facility 4                  |
+    |  local5  |  Local facility 5                  |
+    |  local6  |  Local facility 6                  |
+    |  local7  |  Local facility 7                  |
 `,
 					PlanModifiers: []planmodifier.String{
 						stringplanmodifier.RequiresReplace(),
@@ -279,7 +273,6 @@ func (o LoadBalancingHaproxyServiceLoggingFacility) ResourceSchemaAttributes(ctx
     |  notice   |  Messages for further investigation  |
     |  info     |  Informational messages              |
     |  debug    |  Debug messages                      |
-    |  all      |  Log everything                      |
 `,
 			Description: `Logging level
 
@@ -293,7 +286,6 @@ func (o LoadBalancingHaproxyServiceLoggingFacility) ResourceSchemaAttributes(ctx
     |  notice   |  Messages for further investigation  |
     |  info     |  Informational messages              |
     |  debug    |  Debug messages                      |
-    |  all      |  Log everything                      |
 `,
 
 			// Default:          stringdefault.StaticString(`err`),

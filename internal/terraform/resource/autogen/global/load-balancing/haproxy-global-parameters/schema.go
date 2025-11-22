@@ -19,7 +19,7 @@ func (r loadBalancingHaproxyGlobalParameters) Schema(ctx context.Context, req re
 
 *load-balancing*  
 ⯯  
-Configure haproxy  
+HAProxy TCP/HTTP Load Balancer  
 ⯯  
 **Global perfomance parameters and limits**
 `,

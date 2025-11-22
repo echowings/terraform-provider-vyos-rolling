@@ -1,0 +1,2 @@
+
+terraform import vyos_system_option_kernel_cpu.example "system__option__kernel__cpu"

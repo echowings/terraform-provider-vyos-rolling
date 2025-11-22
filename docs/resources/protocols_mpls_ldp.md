@@ -29,7 +29,6 @@ Multiprotocol Label Switching (MPLS)
 - [vyos_protocols_mpls_ldp (Resource)](#vyos_protocols_mpls_ldp-resource)
   - [Schema](#schema)
     - [Optional](#optional)
-      - [interface](#interface)
       - [router_id](#router_id)
       - [timeouts](#timeouts)
     - [Read-Only](#read-only)
@@ -44,12 +43,6 @@ Multiprotocol Label Switching (MPLS)
 
 ### Optional
 
-#### interface
-- `interface` (List of String) Interface
-
-    |  Format  &emsp;|  Description     |
-    |----------|------------------|
-    |  txt     &emsp;|  Interface name  |
 #### router_id
 - `router_id` (String) Override default router identifier
 

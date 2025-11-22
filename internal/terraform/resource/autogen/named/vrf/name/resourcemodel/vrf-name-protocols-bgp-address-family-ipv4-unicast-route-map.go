@@ -27,6 +27,8 @@ type VrfNameProtocolsBgpAddressFamilyIPvfourUnicastRouteMap struct {
 	// Nodes
 
 	NodeVrfNameProtocolsBgpAddressFamilyIPvfourUnicastRouteMapVpn *VrfNameProtocolsBgpAddressFamilyIPvfourUnicastRouteMapVpn `tfsdk:"vpn" vyos:"vpn,omitempty"`
+
+	NodeVrfNameProtocolsBgpAddressFamilyIPvfourUnicastRouteMapVrf *VrfNameProtocolsBgpAddressFamilyIPvfourUnicastRouteMapVrf `tfsdk:"vrf" vyos:"vrf,omitempty"`
 }
 
 // ResourceSchemaAttributes generates the schema attributes for the resource at this level
@@ -45,6 +47,17 @@ func (o VrfNameProtocolsBgpAddressFamilyIPvfourUnicastRouteMap) ResourceSchemaAt
 
 `,
 			Description: `Between current address-family and VPN
+
+`,
+		},
+
+		"vrf": schema.SingleNestedAttribute{
+			Attributes: VrfNameProtocolsBgpAddressFamilyIPvfourUnicastRouteMapVrf{}.ResourceSchemaAttributes(ctx),
+			Optional:   true,
+			MarkdownDescription: `Between current address-family and VRF
+
+`,
+			Description: `Between current address-family and VRF
 
 `,
 		},

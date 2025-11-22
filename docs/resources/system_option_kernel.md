@@ -30,8 +30,12 @@ System Options
   - [Schema](#schema)
     - [Optional](#optional)
       - [amd_pstate_driver](#amd_pstate_driver)
+      - [disable_hpet](#disable_hpet)
+      - [disable_mce](#disable_mce)
       - [disable_mitigations](#disable_mitigations)
       - [disable_power_saving](#disable_power_saving)
+      - [disable_softlockup](#disable_softlockup)
+      - [quiet](#quiet)
       - [timeouts](#timeouts)
     - [Read-Only](#read-only)
       - [id](#id)
@@ -53,10 +57,18 @@ System Options
     |  active   &emsp;|  The firmware controls performance states and the system governor has no effect  |
     |  passive  &emsp;|  Allow the system governor to manage performance states                          |
     |  guided   &emsp;|  The firmware controls performance states guided by the system governor          |
+#### disable_hpet
+- `disable_hpet` (Boolean) Disable High Precision Event Timer (HPET)
+#### disable_mce
+- `disable_mce` (Boolean) Disable Machine Check Exceptions (MCE) reporting and handling
 #### disable_mitigations
 - `disable_mitigations` (Boolean) Disable all optional CPU mitigations
 #### disable_power_saving
 - `disable_power_saving` (Boolean) Disable CPU power saving mechanisms also known as C states
+#### disable_softlockup
+- `disable_softlockup` (Boolean) Disable soft lockup detector for kernel threads
+#### quiet
+- `quiet` (Boolean) Disable most log messages
 #### timeouts
 - `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
 

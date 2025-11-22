@@ -49,6 +49,7 @@ type ServiceDhcpServerSharedNetworkName struct {
 
 	// LeafNodes
 	LeafServiceDhcpServerSharedNetworkNameAuthoritative types.Bool   `tfsdk:"authoritative" vyos:"authoritative,omitempty"`
+	LeafServiceDhcpServerSharedNetworkNamePingCheck     types.Bool   `tfsdk:"ping_check" vyos:"ping-check,omitempty"`
 	LeafServiceDhcpServerSharedNetworkNameDescrIPtion   types.String `tfsdk:"description" vyos:"description,omitempty"`
 	LeafServiceDhcpServerSharedNetworkNameDisable       types.Bool   `tfsdk:"disable" vyos:"disable,omitempty"`
 
@@ -57,6 +58,8 @@ type ServiceDhcpServerSharedNetworkName struct {
 	TagServiceDhcpServerSharedNetworkNameSubnet map[string]*ServiceDhcpServerSharedNetworkNameSubnet `tfsdk:"subnet" vyos:"subnet,omitempty"`
 
 	// Nodes
+
+	NodeServiceDhcpServerSharedNetworkNameDynamicDNSUpdate *ServiceDhcpServerSharedNetworkNameDynamicDNSUpdate `tfsdk:"dynamic_dns_update" vyos:"dynamic-dns-update,omitempty"`
 
 	NodeServiceDhcpServerSharedNetworkNameOption *ServiceDhcpServerSharedNetworkNameOption `tfsdk:"option" vyos:"option,omitempty"`
 }
@@ -183,6 +186,21 @@ func (o ServiceDhcpServerSharedNetworkName) ResourceSchemaAttributes(ctx context
 			Computed: true,
 		},
 
+		"ping_check":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (ping-check) */
+		schema.BoolAttribute{
+			Optional: true,
+			MarkdownDescription: `Sends ICMP Echo request to the address being assigned
+
+`,
+			Description: `Sends ICMP Echo request to the address being assigned
+
+`,
+			Default:  booldefault.StaticBool(false),
+			Computed: true,
+		},
+
 		"description":
 
 		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (description) */
@@ -239,6 +257,17 @@ func (o ServiceDhcpServerSharedNetworkName) ResourceSchemaAttributes(ctx context
 		},
 
 		// Nodes
+
+		"dynamic_dns_update": schema.SingleNestedAttribute{
+			Attributes: ServiceDhcpServerSharedNetworkNameDynamicDNSUpdate{}.ResourceSchemaAttributes(ctx),
+			Optional:   true,
+			MarkdownDescription: `Dynamically update Domain Name System (RFC4702)
+
+`,
+			Description: `Dynamically update Domain Name System (RFC4702)
+
+`,
+		},
 
 		"option": schema.SingleNestedAttribute{
 			Attributes: ServiceDhcpServerSharedNetworkNameOption{}.ResourceSchemaAttributes(ctx),

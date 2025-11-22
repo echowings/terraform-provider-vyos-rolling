@@ -57,6 +57,7 @@ type ServiceRouterAdvertInterface struct {
 	LeafServiceRouterAdvertInterfaceNameServer         types.List   `tfsdk:"name_server" vyos:"name-server,omitempty"`
 	LeafServiceRouterAdvertInterfaceNameServerLifetime types.Number `tfsdk:"name_server_lifetime" vyos:"name-server-lifetime,omitempty"`
 	LeafServiceRouterAdvertInterfaceOtherConfigFlag    types.Bool   `tfsdk:"other_config_flag" vyos:"other-config-flag,omitempty"`
+	LeafServiceRouterAdvertInterfaceAutoIgnore         types.List   `tfsdk:"auto_ignore" vyos:"auto-ignore,omitempty"`
 	LeafServiceRouterAdvertInterfaceSourceAddress      types.List   `tfsdk:"source_address" vyos:"source-address,omitempty"`
 	LeafServiceRouterAdvertInterfaceReachableTime      types.Number `tfsdk:"reachable_time" vyos:"reachable-time,omitempty"`
 	LeafServiceRouterAdvertInterfaceRetransTimer       types.Number `tfsdk:"retrans_timer" vyos:"retrans-timer,omitempty"`
@@ -354,6 +355,25 @@ func (o ServiceRouterAdvertInterface) ResourceSchemaAttributes(ctx context.Conte
 `,
 			Default:  booldefault.StaticBool(false),
 			Computed: true,
+		},
+
+		"auto_ignore":
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype-multi (auto-ignore) */
+		schema.ListAttribute{
+			ElementType: types.StringType,
+			Optional:    true,
+			MarkdownDescription: `IPv6 prefix to be excluded in Router Advertisements (RAs) - use in conjunction with the ::/64 wildcard prefix
+
+    |  Format   |  Description                 |
+    |-----------|------------------------------|
+    |  ipv6net  |  IPv6 prefix to be excluded  |
+`,
+			Description: `IPv6 prefix to be excluded in Router Advertisements (RAs) - use in conjunction with the ::/64 wildcard prefix
+
+    |  Format   |  Description                 |
+    |-----------|------------------------------|
+    |  ipv6net  |  IPv6 prefix to be excluded  |
+`,
 		},
 
 		"source_address":

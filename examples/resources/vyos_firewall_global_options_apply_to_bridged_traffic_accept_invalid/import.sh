@@ -1,0 +1,2 @@
+
+terraform import vyos_firewall_global_options_apply_to_bridged_traffic_accept_invalid.example "firewall__global-options__apply-to-bridged-traffic__accept-invalid"

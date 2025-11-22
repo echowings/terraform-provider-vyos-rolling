@@ -39,6 +39,7 @@ description: |-
       - [name_server](#name_server)
       - [service_name](#service_name)
       - [session_control](#session_control)
+      - [thread_count](#thread_count)
       - [timeouts](#timeouts)
       - [wins_server](#wins_server)
     - [Read-Only](#read-only)
@@ -108,6 +109,14 @@ description: |-
     |  disable  &emsp;|  Disables session control                           |
     |  deny     &emsp;|  Deny second session authorization                  |
     |  replace  &emsp;|  Terminate first session when second is authorized  |
+#### thread_count
+- `thread_count` (String) Number of working threads
+
+    |  Format  &emsp;|  Description                      |
+    |----------|-----------------------------------|
+    |  all     &emsp;|  Use all available CPU cores      |
+    |  half    &emsp;|  Use half of available CPU cores  |
+    |  1-512   &emsp;|  Thread count                     |
 #### timeouts
 - `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
 #### wins_server

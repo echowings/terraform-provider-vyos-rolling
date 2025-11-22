@@ -53,8 +53,8 @@ type ServiceIPoeServerAuthenticationInterfaceMac struct {
 	SelfIdentifier *ServiceIPoeServerAuthenticationInterfaceMacSelfIdentifier `tfsdk:"identifier" vyos:"-,self-id"`
 
 	// LeafNodes
-	LeafServiceIPoeServerAuthenticationInterfaceMacVlan     types.Number `tfsdk:"vlan" vyos:"vlan,omitempty"`
-	LeafServiceIPoeServerAuthenticationInterfaceMacStaticIP types.String `tfsdk:"static_ip" vyos:"static-ip,omitempty"`
+	LeafServiceIPoeServerAuthenticationInterfaceMacVlan      types.Number `tfsdk:"vlan" vyos:"vlan,omitempty"`
+	LeafServiceIPoeServerAuthenticationInterfaceMacIPAddress types.String `tfsdk:"ip_address" vyos:"ip-address,omitempty"`
 
 	// TagNodes
 
@@ -245,22 +245,22 @@ func (o ServiceIPoeServerAuthenticationInterfaceMac) ResourceSchemaAttributes(ct
 `,
 		},
 
-		"static_ip":
+		"ip_address":
 
-		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (static-ip) */
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (ip-address) */
 		schema.StringAttribute{
 			Optional: true,
-			MarkdownDescription: `Static client IP address
+			MarkdownDescription: `Fixed IP address of static mapping
 
-    |  Format  |  Description   |
-    |----------|----------------|
-    |  ipv4    |  IPv4 address  |
+    |  Format  |  Description                          |
+    |----------|---------------------------------------|
+    |  ipv4    |  IPv4 address used in static mapping  |
 `,
-			Description: `Static client IP address
+			Description: `Fixed IP address of static mapping
 
-    |  Format  |  Description   |
-    |----------|----------------|
-    |  ipv4    |  IPv4 address  |
+    |  Format  |  Description                          |
+    |----------|---------------------------------------|
+    |  ipv4    |  IPv4 address used in static mapping  |
 `,
 		},
 

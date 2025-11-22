@@ -413,6 +413,11 @@ Optional:
     |  Format                &emsp;|  Description       |
     |------------------------|--------------------|
     |  &lt;h:h:h:h:h:h:h:h/64&gt;  &emsp;|  IPv6 /64 network  |
+- `interface_identifier` (String) SLAAC interface identifier
+
+    |  Format     &emsp;|  Description           |
+    |-------------|------------------------|
+    |  ::h:h:h:h  &emsp;|  Interface identifier  |
 - `no_default_link_local` (Boolean) Remove the default link-local address from the interface
 
 

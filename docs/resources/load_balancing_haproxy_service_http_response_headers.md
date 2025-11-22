@@ -4,7 +4,7 @@ page_title: "vyos_load_balancing_haproxy_service_http_response_headers Resource 
 subcategory: "Load Balancing"
 
 description: |-
-  load-balancing⯯Configure haproxy⯯Frontend service name⯯Headers to include in HTTP response
+  load-balancing⯯HAProxy TCP/HTTP Load Balancer⯯Frontend service name⯯Headers to include in HTTP response
 ---
 
 # vyos_load_balancing_haproxy_service_http_response_headers (Resource)
@@ -13,7 +13,7 @@ description: |-
 
 *load-balancing*  
 ⯯  
-Configure haproxy  
+HAProxy TCP/HTTP Load Balancer  
 ⯯  
 Frontend service name  
 ⯯  

@@ -5,7 +5,7 @@ subcategory: "Load Balancing"
 
 description: |-
   ~> This resource is global, having more than one resource of this type is likely to cause configuration drift / conflicts.
-  load-balancing⯯Configure Wide Area Network (WAN) load-balancing
+  load-balancing⯯Wide Area Network (WAN) load-balancing
 ---
 
 # vyos_load_balancing_wan (Resource)
@@ -15,7 +15,7 @@ description: |-
 
 *load-balancing*  
 ⯯  
-**Configure Wide Area Network (WAN) load-balancing**
+**Wide Area Network (WAN) load-balancing**
 
 
 </center>

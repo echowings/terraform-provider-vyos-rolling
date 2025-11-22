@@ -90,6 +90,7 @@ Optional:
 - `encrypted_password` (String) Encrypted password
 - `otp` (Attributes) One-Time-Pad (two-factor) authentication parameters (see [below for nested schema](#nestedatt--authentication--otp))
 - `plaintext_password` (String) Plaintext password used for encryption
+- `principal` (List of String) Accepted principal names for certificate authentication
 
 <a id="nestedatt--authentication--otp"></a>
 ### Nested Schema for `authentication.otp`

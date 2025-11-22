@@ -1115,7 +1115,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -1124,6 +1124,56 @@ func vrf() schemadefinition.InterfaceDefinition {
 																				}},
 																			}},
 																		}, {
+																			IsBaseNode: false,
+																			XMLName: xml.Name{
+																				Local: "leafNode",
+																			},
+																			NodeNameAttr: "import",
+																			Properties: []*schemadefinition.Properties{{
+																				XMLName: xml.Name{
+																					Local: "properties",
+																				},
+																				Help: []string{"Route-map to filter incoming route updates"},
+																				Constraint: []*schemadefinition.Constraint{{
+																					XMLName: xml.Name{
+																						Local: "constraint",
+																					},
+																					Regex: []string{"[-_a-zA-Z0-9][\\w\\-\\.\\+]&"},
+																				}},
+																				ValueHelp: []*schemadefinition.ValueHelp{{
+																					XMLName: xml.Name{
+																						Local: "valueHelp",
+																					},
+																					Format:      "txt",
+																					Description: "Route map name",
+																				}},
+																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				CompletionHelp: []*schemadefinition.CompletionHelp{{
+																					XMLName: xml.Name{
+																						Local: "completionHelp",
+																					},
+																					Path: []string{"policy route-map"},
+																				}},
+																			}},
+																		}},
+																	}},
+																}, {
+																	IsBaseNode: false,
+																	XMLName: xml.Name{
+																		Local: "node",
+																	},
+																	NodeNameAttr: "vrf",
+																	Properties: []*schemadefinition.Properties{{
+																		XMLName: xml.Name{
+																			Local: "properties",
+																		},
+																		Help: []string{"Between current address-family and VRF"},
+																	}},
+																	Children: []*schemadefinition.Children{{
+																		XMLName: xml.Name{
+																			Local: "children",
+																		},
+																		LeafNode: []*schemadefinition.LeafNode{{
 																			IsBaseNode: false,
 																			XMLName: xml.Name{
 																				Local: "leafNode",
@@ -1594,6 +1644,75 @@ func vrf() schemadefinition.InterfaceDefinition {
 																			Local: "properties",
 																		},
 																		Help: []string{"Redistribute kernel routes into BGP"},
+																	}},
+																	Children: []*schemadefinition.Children{{
+																		XMLName: xml.Name{
+																			Local: "children",
+																		},
+																		LeafNode: []*schemadefinition.LeafNode{{
+																			IsBaseNode: false,
+																			XMLName: xml.Name{
+																				Local: "leafNode",
+																			},
+																			NodeNameAttr: "metric",
+																			Properties: []*schemadefinition.Properties{{
+																				XMLName: xml.Name{
+																					Local: "properties",
+																				},
+																				Help: []string{"Metric for redistributed routes"},
+																				ValueHelp: []*schemadefinition.ValueHelp{{
+																					XMLName: xml.Name{
+																						Local: "valueHelp",
+																					},
+																					Format:      "u32:1-4294967295",
+																					Description: "Metric for redistributed routes",
+																				}},
+																			}},
+																		}, {
+																			IsBaseNode: false,
+																			XMLName: xml.Name{
+																				Local: "leafNode",
+																			},
+																			NodeNameAttr: "route-map",
+																			Properties: []*schemadefinition.Properties{{
+																				XMLName: xml.Name{
+																					Local: "properties",
+																				},
+																				Help: []string{"Specify route-map name to use"},
+																				Constraint: []*schemadefinition.Constraint{{
+																					XMLName: xml.Name{
+																						Local: "constraint",
+																					},
+																					Regex: []string{"[-_a-zA-Z0-9][\\w\\-\\.\\+]&"},
+																				}},
+																				ValueHelp: []*schemadefinition.ValueHelp{{
+																					XMLName: xml.Name{
+																						Local: "valueHelp",
+																					},
+																					Format:      "txt",
+																					Description: "Route map name",
+																				}},
+																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				CompletionHelp: []*schemadefinition.CompletionHelp{{
+																					XMLName: xml.Name{
+																						Local: "completionHelp",
+																					},
+																					Path: []string{"policy route-map"},
+																				}},
+																			}},
+																		}},
+																	}},
+																}, {
+																	IsBaseNode: false,
+																	XMLName: xml.Name{
+																		Local: "node",
+																	},
+																	NodeNameAttr: "nhrp",
+																	Properties: []*schemadefinition.Properties{{
+																		XMLName: xml.Name{
+																			Local: "properties",
+																		},
+																		Help: []string{"Redistribute NHRP routes into BGP"},
 																	}},
 																	Children: []*schemadefinition.Children{{
 																		XMLName: xml.Name{
@@ -2944,7 +3063,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																			XMLName: xml.Name{
 																				Local: "constraint",
 																			},
-																			Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+																			Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 																			Validator: []*schemadefinition.Validator{{
 																				XMLName: xml.Name{
 																					Local: "validator",
@@ -3706,7 +3825,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -4185,6 +4304,75 @@ func vrf() schemadefinition.InterfaceDefinition {
 																			Local: "properties",
 																		},
 																		Help: []string{"Redistribute kernel routes into BGP"},
+																	}},
+																	Children: []*schemadefinition.Children{{
+																		XMLName: xml.Name{
+																			Local: "children",
+																		},
+																		LeafNode: []*schemadefinition.LeafNode{{
+																			IsBaseNode: false,
+																			XMLName: xml.Name{
+																				Local: "leafNode",
+																			},
+																			NodeNameAttr: "metric",
+																			Properties: []*schemadefinition.Properties{{
+																				XMLName: xml.Name{
+																					Local: "properties",
+																				},
+																				Help: []string{"Metric for redistributed routes"},
+																				ValueHelp: []*schemadefinition.ValueHelp{{
+																					XMLName: xml.Name{
+																						Local: "valueHelp",
+																					},
+																					Format:      "u32:1-4294967295",
+																					Description: "Metric for redistributed routes",
+																				}},
+																			}},
+																		}, {
+																			IsBaseNode: false,
+																			XMLName: xml.Name{
+																				Local: "leafNode",
+																			},
+																			NodeNameAttr: "route-map",
+																			Properties: []*schemadefinition.Properties{{
+																				XMLName: xml.Name{
+																					Local: "properties",
+																				},
+																				Help: []string{"Specify route-map name to use"},
+																				Constraint: []*schemadefinition.Constraint{{
+																					XMLName: xml.Name{
+																						Local: "constraint",
+																					},
+																					Regex: []string{"[-_a-zA-Z0-9][\\w\\-\\.\\+]&"},
+																				}},
+																				ValueHelp: []*schemadefinition.ValueHelp{{
+																					XMLName: xml.Name{
+																						Local: "valueHelp",
+																					},
+																					Format:      "txt",
+																					Description: "Route map name",
+																				}},
+																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				CompletionHelp: []*schemadefinition.CompletionHelp{{
+																					XMLName: xml.Name{
+																						Local: "completionHelp",
+																					},
+																					Path: []string{"policy route-map"},
+																				}},
+																			}},
+																		}},
+																	}},
+																}, {
+																	IsBaseNode: false,
+																	XMLName: xml.Name{
+																		Local: "node",
+																	},
+																	NodeNameAttr: "nhrp",
+																	Properties: []*schemadefinition.Properties{{
+																		XMLName: xml.Name{
+																			Local: "properties",
+																		},
+																		Help: []string{"Redistribute NHRP routes into BGP"},
 																	}},
 																	Children: []*schemadefinition.Children{{
 																		XMLName: xml.Name{
@@ -5482,7 +5670,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																			XMLName: xml.Name{
 																				Local: "constraint",
 																			},
-																			Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+																			Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 																			Validator: []*schemadefinition.Validator{{
 																				XMLName: xml.Name{
 																					Local: "validator",
@@ -8303,6 +8491,23 @@ func vrf() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "leafNode",
 													},
+													NodeNameAttr: "no-ipv6-auto-ra",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Disable IPv6 automatic router advertisement"},
+														Valueless: []*schemadefinition.Valueless{{
+															XMLName: xml.Name{
+																Local: "valueless",
+															},
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
 													NodeNameAttr: "no-suppress-duplicates",
 													Properties: []*schemadefinition.Properties{{
 														XMLName: xml.Name{
@@ -8641,7 +8846,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -8719,7 +8924,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -9498,7 +9703,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -10599,7 +10804,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -11665,7 +11870,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -12766,7 +12971,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -13744,7 +13949,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -14707,7 +14912,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -15189,7 +15394,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -15495,7 +15700,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -16335,7 +16540,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -17348,7 +17553,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -17897,7 +18102,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -18344,7 +18549,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																	XMLName: xml.Name{
 																		Local: "constraint",
 																	},
-																	Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+																	Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 																	Validator: []*schemadefinition.Validator{{
 																		XMLName: xml.Name{
 																			Local: "validator",
@@ -19148,7 +19353,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 															Validator: []*schemadefinition.Validator{{
 																XMLName: xml.Name{
 																	Local: "validator",
@@ -19985,7 +20190,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -21051,7 +21256,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -22029,7 +22234,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -23080,7 +23285,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -24181,7 +24386,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -25194,7 +25399,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -25693,7 +25898,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																					Format:      "txt",
 																					Description: "Route map name",
 																				}},
-																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				ConstraintErrorMessage: []string{"Route map names can only contain alphanumeric characters, hyphens, and underscores"},
 																				CompletionHelp: []*schemadefinition.CompletionHelp{{
 																					XMLName: xml.Name{
 																						Local: "completionHelp",
@@ -26437,7 +26642,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 															Validator: []*schemadefinition.Validator{{
 																XMLName: xml.Name{
 																	Local: "validator",
@@ -29132,6 +29337,186 @@ func vrf() schemadefinition.InterfaceDefinition {
 																	Local: "properties",
 																},
 																Help: []string{"Redistribute kernel routes into IS-IS"},
+															}},
+															Children: []*schemadefinition.Children{{
+																XMLName: xml.Name{
+																	Local: "children",
+																},
+																Node: []*schemadefinition.Node{{
+																	IsBaseNode: false,
+																	XMLName: xml.Name{
+																		Local: "node",
+																	},
+																	NodeNameAttr: "level-1",
+																	Properties: []*schemadefinition.Properties{{
+																		XMLName: xml.Name{
+																			Local: "properties",
+																		},
+																		Help: []string{"Redistribute into level-1"},
+																	}},
+																	Children: []*schemadefinition.Children{{
+																		XMLName: xml.Name{
+																			Local: "children",
+																		},
+																		LeafNode: []*schemadefinition.LeafNode{{
+																			IsBaseNode: false,
+																			XMLName: xml.Name{
+																				Local: "leafNode",
+																			},
+																			NodeNameAttr: "metric",
+																			Properties: []*schemadefinition.Properties{{
+																				XMLName: xml.Name{
+																					Local: "properties",
+																				},
+																				Help: []string{"Set default metric for circuit"},
+																				Constraint: []*schemadefinition.Constraint{{
+																					XMLName: xml.Name{
+																						Local: "constraint",
+																					},
+																					Validator: []*schemadefinition.Validator{{
+																						XMLName: xml.Name{
+																							Local: "validator",
+																						},
+																						NameAttr:     "numeric",
+																						ArgumentAttr: "--range 0-16777215",
+																					}},
+																				}},
+																				ValueHelp: []*schemadefinition.ValueHelp{{
+																					XMLName: xml.Name{
+																						Local: "valueHelp",
+																					},
+																					Format:      "u32:0-16777215",
+																					Description: "Default metric value",
+																				}},
+																			}},
+																		}, {
+																			IsBaseNode: false,
+																			XMLName: xml.Name{
+																				Local: "leafNode",
+																			},
+																			NodeNameAttr: "route-map",
+																			Properties: []*schemadefinition.Properties{{
+																				XMLName: xml.Name{
+																					Local: "properties",
+																				},
+																				Help: []string{"Specify route-map name to use"},
+																				Constraint: []*schemadefinition.Constraint{{
+																					XMLName: xml.Name{
+																						Local: "constraint",
+																					},
+																					Regex: []string{"[-_a-zA-Z0-9][\\w\\-\\.\\+]&"},
+																				}},
+																				ValueHelp: []*schemadefinition.ValueHelp{{
+																					XMLName: xml.Name{
+																						Local: "valueHelp",
+																					},
+																					Format:      "txt",
+																					Description: "Route map name",
+																				}},
+																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				CompletionHelp: []*schemadefinition.CompletionHelp{{
+																					XMLName: xml.Name{
+																						Local: "completionHelp",
+																					},
+																					Path: []string{"policy route-map"},
+																				}},
+																			}},
+																		}},
+																	}},
+																}, {
+																	IsBaseNode: false,
+																	XMLName: xml.Name{
+																		Local: "node",
+																	},
+																	NodeNameAttr: "level-2",
+																	Properties: []*schemadefinition.Properties{{
+																		XMLName: xml.Name{
+																			Local: "properties",
+																		},
+																		Help: []string{"Redistribute into level-2"},
+																	}},
+																	Children: []*schemadefinition.Children{{
+																		XMLName: xml.Name{
+																			Local: "children",
+																		},
+																		LeafNode: []*schemadefinition.LeafNode{{
+																			IsBaseNode: false,
+																			XMLName: xml.Name{
+																				Local: "leafNode",
+																			},
+																			NodeNameAttr: "metric",
+																			Properties: []*schemadefinition.Properties{{
+																				XMLName: xml.Name{
+																					Local: "properties",
+																				},
+																				Help: []string{"Set default metric for circuit"},
+																				Constraint: []*schemadefinition.Constraint{{
+																					XMLName: xml.Name{
+																						Local: "constraint",
+																					},
+																					Validator: []*schemadefinition.Validator{{
+																						XMLName: xml.Name{
+																							Local: "validator",
+																						},
+																						NameAttr:     "numeric",
+																						ArgumentAttr: "--range 0-16777215",
+																					}},
+																				}},
+																				ValueHelp: []*schemadefinition.ValueHelp{{
+																					XMLName: xml.Name{
+																						Local: "valueHelp",
+																					},
+																					Format:      "u32:0-16777215",
+																					Description: "Default metric value",
+																				}},
+																			}},
+																		}, {
+																			IsBaseNode: false,
+																			XMLName: xml.Name{
+																				Local: "leafNode",
+																			},
+																			NodeNameAttr: "route-map",
+																			Properties: []*schemadefinition.Properties{{
+																				XMLName: xml.Name{
+																					Local: "properties",
+																				},
+																				Help: []string{"Specify route-map name to use"},
+																				Constraint: []*schemadefinition.Constraint{{
+																					XMLName: xml.Name{
+																						Local: "constraint",
+																					},
+																					Regex: []string{"[-_a-zA-Z0-9][\\w\\-\\.\\+]&"},
+																				}},
+																				ValueHelp: []*schemadefinition.ValueHelp{{
+																					XMLName: xml.Name{
+																						Local: "valueHelp",
+																					},
+																					Format:      "txt",
+																					Description: "Route map name",
+																				}},
+																				ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																				CompletionHelp: []*schemadefinition.CompletionHelp{{
+																					XMLName: xml.Name{
+																						Local: "completionHelp",
+																					},
+																					Path: []string{"policy route-map"},
+																				}},
+																			}},
+																		}},
+																	}},
+																}},
+															}},
+														}, {
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "node",
+															},
+															NodeNameAttr: "nhrp",
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"Redistribute NHRP routes into IS-IS"},
 															}},
 															Children: []*schemadefinition.Children{{
 																XMLName: xml.Name{
@@ -34251,6 +34636,119 @@ func vrf() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "node",
 													},
+													NodeNameAttr: "nhrp",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Redistribute NHRP routes"},
+													}},
+													Children: []*schemadefinition.Children{{
+														XMLName: xml.Name{
+															Local: "children",
+														},
+														LeafNode: []*schemadefinition.LeafNode{{
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "leafNode",
+															},
+															NodeNameAttr: "metric",
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"OSPF default metric"},
+																Constraint: []*schemadefinition.Constraint{{
+																	XMLName: xml.Name{
+																		Local: "constraint",
+																	},
+																	Validator: []*schemadefinition.Validator{{
+																		XMLName: xml.Name{
+																			Local: "validator",
+																		},
+																		NameAttr:     "numeric",
+																		ArgumentAttr: "--range 0-16777214",
+																	}},
+																}},
+																ValueHelp: []*schemadefinition.ValueHelp{{
+																	XMLName: xml.Name{
+																		Local: "valueHelp",
+																	},
+																	Format:      "u32:0-16777214",
+																	Description: "Default metric",
+																}},
+															}},
+														}, {
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "leafNode",
+															},
+															NodeNameAttr: "metric-type",
+															DefaultValue: []string{"2"},
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"OSPF metric type for default routes"},
+																Constraint: []*schemadefinition.Constraint{{
+																	XMLName: xml.Name{
+																		Local: "constraint",
+																	},
+																	Validator: []*schemadefinition.Validator{{
+																		XMLName: xml.Name{
+																			Local: "validator",
+																		},
+																		NameAttr:     "numeric",
+																		ArgumentAttr: "--range 1-2",
+																	}},
+																}},
+																ValueHelp: []*schemadefinition.ValueHelp{{
+																	XMLName: xml.Name{
+																		Local: "valueHelp",
+																	},
+																	Format:      "u32:1-2",
+																	Description: "Set OSPF External Type 1/2 metrics",
+																}},
+															}},
+														}, {
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "leafNode",
+															},
+															NodeNameAttr: "route-map",
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"Specify route-map name to use"},
+																Constraint: []*schemadefinition.Constraint{{
+																	XMLName: xml.Name{
+																		Local: "constraint",
+																	},
+																	Regex: []string{"[-_a-zA-Z0-9][\\w\\-\\.\\+]&"},
+																}},
+																ValueHelp: []*schemadefinition.ValueHelp{{
+																	XMLName: xml.Name{
+																		Local: "valueHelp",
+																	},
+																	Format:      "txt",
+																	Description: "Route map name",
+																}},
+																ConstraintErrorMessage: []string{"Name of route-map can only contain alpha-numeric letters, hyphen and underscores"},
+																CompletionHelp: []*schemadefinition.CompletionHelp{{
+																	XMLName: xml.Name{
+																		Local: "completionHelp",
+																	},
+																	Path: []string{"policy route-map"},
+																}},
+															}},
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "node",
+													},
 													NodeNameAttr: "rip",
 													Properties: []*schemadefinition.Properties{{
 														XMLName: xml.Name{
@@ -35933,7 +36431,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -38646,7 +39144,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -39099,6 +39597,345 @@ func vrf() schemadefinition.InterfaceDefinition {
 									XMLName: xml.Name{
 										Local: "node",
 									},
+									NodeNameAttr: "rpki",
+									OwnerAttr:    "${vyos_conf_scripts_dir}/protocols_rpki.py $VAR(../../@)",
+									Properties: []*schemadefinition.Properties{{
+										XMLName: xml.Name{
+											Local: "properties",
+										},
+										Help:     []string{"Resource Public Key Infrastructure (RPKI)"},
+										Priority: []string{"820"},
+									}},
+									Children: []*schemadefinition.Children{{
+										XMLName: xml.Name{
+											Local: "children",
+										},
+										TagNode: []*schemadefinition.TagNode{{
+											IsBaseNode: true,
+											XMLName: xml.Name{
+												Local: "tagNode",
+											},
+											NodeNameAttr: "cache",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"RPKI cache server address"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr: "ip-address",
+													}, {
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr: "fqdn",
+													}},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "ipv4",
+													Description: "IP address of RPKI server",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "ipv6",
+													Description: "IPv6 address of RPKI server",
+												}, {
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "hostname",
+													Description: "Fully qualified domain name of RPKI server",
+												}},
+											}},
+											Children: []*schemadefinition.Children{{
+												XMLName: xml.Name{
+													Local: "children",
+												},
+												Node: []*schemadefinition.Node{{
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "node",
+													},
+													NodeNameAttr: "ssh",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"RPKI SSH connection settings"},
+													}},
+													Children: []*schemadefinition.Children{{
+														XMLName: xml.Name{
+															Local: "children",
+														},
+														LeafNode: []*schemadefinition.LeafNode{{
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "leafNode",
+															},
+															NodeNameAttr: "key",
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"OpenSSH key in PKI configuration"},
+																ValueHelp: []*schemadefinition.ValueHelp{{
+																	XMLName: xml.Name{
+																		Local: "valueHelp",
+																	},
+																	Format:      "txt",
+																	Description: "Name of OpenSSH key in PKI configuration",
+																}},
+																CompletionHelp: []*schemadefinition.CompletionHelp{{
+																	XMLName: xml.Name{
+																		Local: "completionHelp",
+																	},
+																	Path: []string{"pki openssh"},
+																}},
+															}},
+														}, {
+															IsBaseNode: false,
+															XMLName: xml.Name{
+																Local: "leafNode",
+															},
+															NodeNameAttr: "username",
+															Properties: []*schemadefinition.Properties{{
+																XMLName: xml.Name{
+																	Local: "properties",
+																},
+																Help: []string{"Username used for authentication"},
+																Constraint: []*schemadefinition.Constraint{{
+																	XMLName: xml.Name{
+																		Local: "constraint",
+																	},
+																	Regex: []string{"[[:ascii:]]{1,128}"},
+																}},
+																ValueHelp: []*schemadefinition.ValueHelp{{
+																	XMLName: xml.Name{
+																		Local: "valueHelp",
+																	},
+																	Format:      "txt",
+																	Description: "Username",
+																}},
+																ConstraintErrorMessage: []string{"Username is limited to ASCII characters only, with a total length of 128"},
+															}},
+														}},
+													}},
+												}},
+												LeafNode: []*schemadefinition.LeafNode{{
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "port",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Port number used by connection"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Validator: []*schemadefinition.Validator{{
+																XMLName: xml.Name{
+																	Local: "validator",
+																},
+																NameAttr:     "numeric",
+																ArgumentAttr: "--range 1-65535",
+															}},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "u32:1-65535",
+															Description: "Numeric IP port",
+														}},
+														ConstraintErrorMessage: []string{"Port number must be in range 1 to 65535"},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "preference",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Preference of the cache server"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Validator: []*schemadefinition.Validator{{
+																XMLName: xml.Name{
+																	Local: "validator",
+																},
+																NameAttr:     "numeric",
+																ArgumentAttr: "--range 1-255",
+															}},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "u32:1-255",
+															Description: "Preference of the cache server",
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "source-address",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"IPv4 address used to initiate connection"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Validator: []*schemadefinition.Validator{{
+																XMLName: xml.Name{
+																	Local: "validator",
+																},
+																NameAttr: "ipv4-address",
+															}},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "ipv4",
+															Description: "IPv4 source address",
+														}},
+														CompletionHelp: []*schemadefinition.CompletionHelp{{
+															XMLName: xml.Name{
+																Local: "completionHelp",
+															},
+															Script: []string{"${vyos_completion_dir}/list_local_ips.sh --ipv4"},
+														}},
+													}},
+												}},
+											}},
+										}},
+										LeafNode: []*schemadefinition.LeafNode{{
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "expire-interval",
+											DefaultValue: []string{"7200"},
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Interval to wait before expiring the cache"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr:     "numeric",
+														ArgumentAttr: "--range 600-172800",
+													}},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "u32:600-172800",
+													Description: "Interval in seconds",
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "polling-period",
+											DefaultValue: []string{"300"},
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Cache polling interval"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr:     "numeric",
+														ArgumentAttr: "--range 1-86400",
+													}},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "u32:1-86400",
+													Description: "Interval in seconds",
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "retry-interval",
+											DefaultValue: []string{"600"},
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Retry interval to connect to the cache server"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr:     "numeric",
+														ArgumentAttr: "--range 1-7200",
+													}},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "u32:1-7200",
+													Description: "Interval in seconds",
+												}},
+											}},
+										}},
+									}},
+								}, {
+									IsBaseNode: false,
+									XMLName: xml.Name{
+										Local: "node",
+									},
 									NodeNameAttr: "static",
 									OwnerAttr:    "${vyos_conf_scripts_dir}/protocols_static.py $VAR(../../@)",
 									Properties: []*schemadefinition.Properties{{
@@ -39322,7 +40159,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 															Validator: []*schemadefinition.Validator{{
 																XMLName: xml.Name{
 																	Local: "validator",
@@ -39632,7 +40469,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																	XMLName: xml.Name{
 																		Local: "constraint",
 																	},
-																	Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+																	Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 																	Validator: []*schemadefinition.Validator{{
 																		XMLName: xml.Name{
 																			Local: "validator",
@@ -39710,7 +40547,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 															Validator: []*schemadefinition.Validator{{
 																XMLName: xml.Name{
 																	Local: "validator",
@@ -39975,7 +40812,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+															Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 															Validator: []*schemadefinition.Validator{{
 																XMLName: xml.Name{
 																	Local: "validator",
@@ -40315,7 +41152,7 @@ func vrf() schemadefinition.InterfaceDefinition {
 																	XMLName: xml.Name{
 																		Local: "constraint",
 																	},
-																	Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+																	Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 																	Validator: []*schemadefinition.Validator{{
 																		XMLName: xml.Name{
 																			Local: "validator",

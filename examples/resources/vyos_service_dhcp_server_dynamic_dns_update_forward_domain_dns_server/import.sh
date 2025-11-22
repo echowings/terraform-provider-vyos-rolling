@@ -1,0 +1,2 @@
+
+terraform import vyos_service_dhcp_server_dynamic_dns_update_forward_domain_dns_server.example "service__dhcp-server__dynamic-dns-update__forward-domain__<forward-domain>__dns-server__<dns-server>"

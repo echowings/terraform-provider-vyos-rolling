@@ -19,7 +19,7 @@ func (r loadBalancingWan) Schema(ctx context.Context, req resource.SchemaRequest
 
 *load-balancing*  
 ⯯  
-**Configure Wide Area Network (WAN) load-balancing**
+**Wide Area Network (WAN) load-balancing**
 `,
 		Attributes: r.model.ResourceSchemaAttributes(ctx),
 	}

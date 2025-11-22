@@ -32,6 +32,8 @@ type ProtocolsIsisRedistributeIPvfour struct {
 
 	// Ignoring Node `ProtocolsIsisRedistributeIPvfourKernel`.
 
+	// Ignoring Node `ProtocolsIsisRedistributeIPvfourNhrp`.
+
 	// Ignoring Node `ProtocolsIsisRedistributeIPvfourOspf`.
 
 	// Ignoring Node `ProtocolsIsisRedistributeIPvfourRIP`.

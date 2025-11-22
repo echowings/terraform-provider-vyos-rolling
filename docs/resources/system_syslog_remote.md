@@ -109,8 +109,8 @@ Required:
 
 Optional:
 
-- `include_timezone` (Boolean) Include system timezone in syslog message
-- `octet_counted` (Boolean) Allows for the transmission of all characters inside a syslog message
+- `include_timezone` (Boolean) Use RFC 5424 format (with RFC 3339 timestamp and timezone)
+- `octet_counted` (Boolean) Allows for the transmission of multi-line messages (TCP only)
 
 
 <a id="nestedatt--timeouts"></a>

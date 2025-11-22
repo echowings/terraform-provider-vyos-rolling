@@ -154,18 +154,18 @@ func (o SystemConntrack) ResourceSchemaAttributes(ctx context.Context) map[strin
 			Optional: true,
 			MarkdownDescription: `Hash size for connection tracking table
 
-    |  Format      |  Description                                        |
-    |--------------|-----------------------------------------------------|
-    |  1-50000000  |  Size of hash to use for connection tracking table  |
+    |  Format         |  Description                                        |
+    |-----------------|-----------------------------------------------------|
+    |  1024-50000000  |  Size of hash to use for connection tracking table  |
 `,
 			Description: `Hash size for connection tracking table
 
-    |  Format      |  Description                                        |
-    |--------------|-----------------------------------------------------|
-    |  1-50000000  |  Size of hash to use for connection tracking table  |
+    |  Format         |  Description                                        |
+    |-----------------|-----------------------------------------------------|
+    |  1024-50000000  |  Size of hash to use for connection tracking table  |
 `,
 
-			// Default:          stringdefault.StaticString(`32768`),
+			// Default:          stringdefault.StaticString(`65536`),
 			Computed: true,
 		},
 

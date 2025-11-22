@@ -31,6 +31,7 @@ Resource Public Key Infrastructure (RPKI)
     - [Optional](#optional)
       - [port](#port)
       - [preference](#preference)
+      - [source_address](#source_address)
       - [ssh](#ssh)
       - [timeouts](#timeouts)
     - [Read-Only](#read-only)
@@ -64,6 +65,12 @@ Resource Public Key Infrastructure (RPKI)
     |  Format  &emsp;|  Description                     |
     |----------|----------------------------------|
     |  1-255   &emsp;|  Preference of the cache server  |
+#### source_address
+- `source_address` (String) IPv4 address used to initiate connection
+
+    |  Format  &emsp;|  Description          |
+    |----------|-----------------------|
+    |  ipv4    &emsp;|  IPv4 source address  |
 #### ssh
 - `ssh` (Attributes) RPKI SSH connection settings (see [below for nested schema](#nestedatt--ssh))
 #### timeouts

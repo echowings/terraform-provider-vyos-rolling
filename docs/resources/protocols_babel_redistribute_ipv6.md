@@ -35,6 +35,7 @@ Redistribute information from another routing protocol
       - [connected](#connected)
       - [isis](#isis)
       - [kernel](#kernel)
+      - [nhrp](#nhrp)
       - [openfabric](#openfabric)
       - [ospfv3](#ospfv3)
       - [ripng](#ripng)
@@ -60,6 +61,8 @@ Redistribute information from another routing protocol
 - `isis` (Boolean) Intermediate System to Intermediate System (IS-IS)
 #### kernel
 - `kernel` (Boolean) Redistribute Kernel routes (not installed via the zebra RIB)
+#### nhrp
+- `nhrp` (Boolean) Redistribute NHRP routes
 #### openfabric
 - `openfabric` (Boolean) OpenFabric Routing Protocol
 #### ospfv3

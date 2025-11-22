@@ -27,6 +27,8 @@ type ProtocolsBgpAddressFamilyIPvfourUnicastRouteMap struct {
 	// Nodes
 
 	ExistsNodeProtocolsBgpAddressFamilyIPvfourUnicastRouteMapVpn bool `tfsdk:"-" vyos:"vpn,child"`
+
+	ExistsNodeProtocolsBgpAddressFamilyIPvfourUnicastRouteMapVrf bool `tfsdk:"-" vyos:"vrf,child"`
 }
 
 // ResourceSchemaAttributes generates the schema attributes for the resource at this level

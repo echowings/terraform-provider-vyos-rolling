@@ -26,6 +26,8 @@ type FirewallGlobalOptionsStatePolicy struct {
 
 	// Nodes
 
+	ExistsNodeFirewallGlobalOptionsStatePolicyOffload bool `tfsdk:"-" vyos:"offload,child"`
+
 	ExistsNodeFirewallGlobalOptionsStatePolicyEstablished bool `tfsdk:"-" vyos:"established,child"`
 
 	ExistsNodeFirewallGlobalOptionsStatePolicyInvalID bool `tfsdk:"-" vyos:"invalid,child"`

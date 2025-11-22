@@ -4,7 +4,7 @@ page_title: "vyos_load_balancing_haproxy_global_parameters_logging_facility Reso
 subcategory: "Load Balancing"
 
 description: |-
-  load-balancing⯯Configure haproxy⯯Global perfomance parameters and limits⯯Logging parameters⯯Facility for logging
+  load-balancing⯯HAProxy TCP/HTTP Load Balancer⯯Global perfomance parameters and limits⯯Logging parameters⯯Facility for logging
 ---
 
 # vyos_load_balancing_haproxy_global_parameters_logging_facility (Resource)
@@ -13,7 +13,7 @@ description: |-
 
 *load-balancing*  
 ⯯  
-Configure haproxy  
+HAProxy TCP/HTTP Load Balancer  
 ⯯  
 Global perfomance parameters and limits  
 ⯯  
@@ -66,7 +66,6 @@ Logging parameters
     |  notice   &emsp;|  Messages for further investigation  |
     |  info     &emsp;|  Informational messages              |
     |  debug    &emsp;|  Debug messages                      |
-    |  all      &emsp;|  Log everything                      |
 #### timeouts
 - `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
 
@@ -82,29 +81,26 @@ Required:
 
 - `facility` (String) Facility for logging
 
-    |  Format    &emsp;|  Description                       |
-    |------------|------------------------------------|
-    |  all       &emsp;|  All facilities excluding &#34;mark&#34;   |
-    |  auth      &emsp;|  Authentication and authorization  |
-    |  authpriv  &emsp;|  Non-system authorization          |
-    |  cron      &emsp;|  Cron daemon                       |
-    |  daemon    &emsp;|  System daemons                    |
-    |  kern      &emsp;|  Kernel                            |
-    |  lpr       &emsp;|  Line printer spooler              |
-    |  mail      &emsp;|  Mail subsystem                    |
-    |  mark      &emsp;|  Timestamp                         |
-    |  news      &emsp;|  USENET subsystem                  |
-    |  syslog    &emsp;|  Authentication and authorization  |
-    |  user      &emsp;|  Application processes             |
-    |  uucp      &emsp;|  UUCP subsystem                    |
-    |  local0    &emsp;|  Local facility 0                  |
-    |  local1    &emsp;|  Local facility 1                  |
-    |  local2    &emsp;|  Local facility 2                  |
-    |  local3    &emsp;|  Local facility 3                  |
-    |  local4    &emsp;|  Local facility 4                  |
-    |  local5    &emsp;|  Local facility 5                  |
-    |  local6    &emsp;|  Local facility 6                  |
-    |  local7    &emsp;|  Local facility 7                  |
+    |  Format  &emsp;|  Description                       |
+    |----------|------------------------------------|
+    |  auth    &emsp;|  Authentication and authorization  |
+    |  cron    &emsp;|  Cron daemon                       |
+    |  daemon  &emsp;|  System daemons                    |
+    |  kern    &emsp;|  Kernel                            |
+    |  lpr     &emsp;|  Line printer spooler              |
+    |  mail    &emsp;|  Mail subsystem                    |
+    |  news    &emsp;|  USENET subsystem                  |
+    |  syslog  &emsp;|  Authentication and authorization  |
+    |  user    &emsp;|  Application processes             |
+    |  uucp    &emsp;|  UUCP subsystem                    |
+    |  local0  &emsp;|  Local facility 0                  |
+    |  local1  &emsp;|  Local facility 1                  |
+    |  local2  &emsp;|  Local facility 2                  |
+    |  local3  &emsp;|  Local facility 3                  |
+    |  local4  &emsp;|  Local facility 4                  |
+    |  local5  &emsp;|  Local facility 5                  |
+    |  local6  &emsp;|  Local facility 6                  |
+    |  local7  &emsp;|  Local facility 7                  |
 
 
 <a id="nestedatt--timeouts"></a>

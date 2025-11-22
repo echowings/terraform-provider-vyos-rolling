@@ -22,16 +22,17 @@ var _ helpers.VyosResourceDataModel = &ServiceDhcpvsixServerSharedNetworkNameSub
 // Top level basenode type: `N/A`
 type ServiceDhcpvsixServerSharedNetworkNameSubnetOption struct {
 	// LeafNodes
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionCaptivePortal   types.String `tfsdk:"captive_portal" vyos:"captive-portal,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionDomainSearch    types.List   `tfsdk:"domain_search" vyos:"domain-search,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionNameServer      types.List   `tfsdk:"name_server" vyos:"name-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionNisDomain       types.String `tfsdk:"nis_domain" vyos:"nis-domain,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionNisServer       types.List   `tfsdk:"nis_server" vyos:"nis-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionNisplusDomain   types.String `tfsdk:"nisplus_domain" vyos:"nisplus-domain,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionNisplusServer   types.List   `tfsdk:"nisplus_server" vyos:"nisplus-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionSIPServer       types.List   `tfsdk:"sip_server" vyos:"sip-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionSntpServer      types.List   `tfsdk:"sntp_server" vyos:"sntp-server,omitempty"`
-	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionInfoRefreshTime types.Number `tfsdk:"info_refresh_time" vyos:"info-refresh-time,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionCaptivePortal    types.String `tfsdk:"captive_portal" vyos:"captive-portal,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionDomainSearch     types.List   `tfsdk:"domain_search" vyos:"domain-search,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionNameServer       types.List   `tfsdk:"name_server" vyos:"name-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionCapwapController types.String `tfsdk:"capwap_controller" vyos:"capwap-controller,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionNisDomain        types.String `tfsdk:"nis_domain" vyos:"nis-domain,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionNisServer        types.List   `tfsdk:"nis_server" vyos:"nis-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionNisplusDomain    types.String `tfsdk:"nisplus_domain" vyos:"nisplus-domain,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionNisplusServer    types.List   `tfsdk:"nisplus_server" vyos:"nisplus-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionSIPServer        types.List   `tfsdk:"sip_server" vyos:"sip-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionSntpServer       types.List   `tfsdk:"sntp_server" vyos:"sntp-server,omitempty"`
+	LeafServiceDhcpvsixServerSharedNetworkNameSubnetOptionInfoRefreshTime  types.Number `tfsdk:"info_refresh_time" vyos:"info-refresh-time,omitempty"`
 
 	// TagNodes
 
@@ -93,6 +94,25 @@ func (o ServiceDhcpvsixServerSharedNetworkNameSubnetOption) ResourceSchemaAttrib
     |  Format  |  Description                            |
     |----------|-----------------------------------------|
     |  ipv6    |  Domain Name Server (DNS) IPv6 address  |
+`,
+		},
+
+		"capwap_controller":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (capwap-controller) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `IP address of CAPWAP access controller (Option 52)
+
+    |  Format  |  Description           |
+    |----------|------------------------|
+    |  ipv6    |  CAPWAP AC controller  |
+`,
+			Description: `IP address of CAPWAP access controller (Option 52)
+
+    |  Format  |  Description           |
+    |----------|------------------------|
+    |  ipv6    |  CAPWAP AC controller  |
 `,
 		},
 

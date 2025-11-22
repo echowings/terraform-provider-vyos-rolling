@@ -133,6 +133,11 @@ Optional:
     |  Format  &emsp;|  Description                  |
     |----------|-------------------------------|
     |  txt     &emsp;|  Captive portal API endpoint  |
+- `capwap_controller` (String) IP address of CAPWAP access controller (Option 138)
+
+    |  Format  &emsp;|  Description           |
+    |----------|------------------------|
+    |  ipv4    &emsp;|  CAPWAP AC controller  |
 - `client_prefix_length` (Number) Specifies the clients subnet mask as per RFC 950. If unset, subnet declaration is used.
 
     |  Format  &emsp;|  Description                                |

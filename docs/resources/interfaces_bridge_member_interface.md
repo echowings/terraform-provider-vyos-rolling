@@ -32,10 +32,12 @@ Bridge member interfaces
       - [identifier](#identifier)
     - [Optional](#optional)
       - [allowed_vlan](#allowed_vlan)
+      - [bpdu_guard](#bpdu_guard)
       - [cost](#cost)
       - [isolated](#isolated)
       - [native_vlan](#native_vlan)
       - [priority](#priority)
+      - [root_guard](#root_guard)
       - [timeouts](#timeouts)
     - [Read-Only](#read-only)
       - [id](#id)
@@ -62,6 +64,8 @@ Bridge member interfaces
     |---------------|------------------------------------------------------------------|
     |  &lt;id&gt;         &emsp;|  VLAN id allowed to pass this interface                          |
     |  &lt;idN&gt;-&lt;idM&gt;  &emsp;|  VLAN id range allowed on this interface (use &#39;-&#39; as delimiter)  |
+#### bpdu_guard
+- `bpdu_guard` (Boolean) Enable BPDU Guard
 #### cost
 - `cost` (Number) Bridge port cost
 
@@ -82,6 +86,8 @@ Bridge member interfaces
     |  Format  &emsp;|  Description           |
     |----------|------------------------|
     |  0-63    &emsp;|  Bridge port priority  |
+#### root_guard
+- `root_guard` (Boolean) Enable Root Guard
 #### timeouts
 - `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
 

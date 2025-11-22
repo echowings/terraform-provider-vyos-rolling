@@ -39,6 +39,7 @@ description: |-
       - [port](#port)
       - [pubkey_accepted_algorithm](#pubkey_accepted_algorithm)
       - [timeouts](#timeouts)
+      - [trusted_user_ca](#trusted_user_ca)
       - [vrf](#vrf)
     - [Read-Only](#read-only)
       - [id](#id)
@@ -97,6 +98,12 @@ description: |-
 - `pubkey_accepted_algorithm` (List of String) Allowed pubkey signature algorithms
 #### timeouts
 - `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
+#### trusted_user_ca
+- `trusted_user_ca` (String) OpenSSH trusted user CA
+
+    |  Format  &emsp;|  Description                                  |
+    |----------|-----------------------------------------------|
+    |  txt     &emsp;|  OpenSSH certificate name from PKI subsystem  |
 #### vrf
 - `vrf` (List of String) VRF instance name
 

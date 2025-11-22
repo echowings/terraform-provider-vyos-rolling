@@ -40,17 +40,17 @@ func (o LoadBalancingHaproxyServiceRuleSet) ResourceSchemaAttributes(ctx context
 		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (redirect-location) */
 		schema.StringAttribute{
 			Optional: true,
-			MarkdownDescription: `Set URL location
+			MarkdownDescription: `Set path location
 
-    |  Format  |  Description       |
-    |----------|--------------------|
-    |  url     |  Set URL location  |
+    |  Format  |  Description        |
+    |----------|---------------------|
+    |  url     |  Set path location  |
 `,
-			Description: `Set URL location
+			Description: `Set path location
 
-    |  Format  |  Description       |
-    |----------|--------------------|
-    |  url     |  Set URL location  |
+    |  Format  |  Description        |
+    |----------|---------------------|
+    |  url     |  Set path location  |
 `,
 		},
 

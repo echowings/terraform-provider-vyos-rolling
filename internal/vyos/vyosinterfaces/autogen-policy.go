@@ -1875,12 +1875,6 @@ func policy() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "valueHelp",
 											},
-											Format:      "internet",
-											Description: "Well-known communities value 0",
-										}, {
-											XMLName: xml.Name{
-												Local: "valueHelp",
-											},
 											Format:      "graceful-shutdown",
 											Description: "Well-known communities value GRACEFUL_SHUTDOWN 0xFFFF0000",
 										}, {
@@ -1954,7 +1948,7 @@ func policy() schemadefinition.InterfaceDefinition {
 											XMLName: xml.Name{
 												Local: "completionHelp",
 											},
-											List: []string{"local-AS no-advertise no-export internet graceful-shutdown accept-own-nexthop accept-own route-filter-translated-v4 route-filter-v4 route-filter-translated-v6 route-filter-v6 llgr-stale no-llgr blackhole no-peer additive"},
+											List: []string{"local-AS no-advertise no-export graceful-shutdown accept-own-nexthop accept-own route-filter-translated-v4 route-filter-v4 route-filter-translated-v6 route-filter-v6 llgr-stale no-llgr blackhole no-peer additive"},
 										}},
 									}},
 								}},
@@ -3830,7 +3824,7 @@ func policy() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|lo"},
+													Regex: []string{"(bond|br|dum|en|ersp|eth|gnv|ifb|ipoe|lan|l2tp|l2tpeth|macsec|peth|ppp|pppoe|pptp|sstp|sstpc|tun|veth|vpptap|vpptun|vti|vtun|vxlan|wg|wlan|wwan)[0-9]+(.\\d+)?|pod-[-_a-zA-Z0-9]{1,11}|lo"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -4131,6 +4125,44 @@ func policy() schemadefinition.InterfaceDefinition {
 														Local: "completionHelp",
 													},
 													List: []string{"invalid notfound valid"},
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "leafNode",
+											},
+											NodeNameAttr: "source-vrf",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"Source vrf"},
+												Constraint: []*schemadefinition.Constraint{{
+													XMLName: xml.Name{
+														Local: "constraint",
+													},
+													Validator: []*schemadefinition.Validator{{
+														XMLName: xml.Name{
+															Local: "validator",
+														},
+														NameAttr: "vrf-name",
+													}},
+												}},
+												ValueHelp: []*schemadefinition.ValueHelp{{
+													XMLName: xml.Name{
+														Local: "valueHelp",
+													},
+													Format:      "txt",
+													Description: "VRF instance name",
+												}},
+												ConstraintErrorMessage: []string{"VRF instance name must be 15 characters or less and can not\\nbe named as regular network interfaces.\\nA name must starts from a letter.\\n"},
+												CompletionHelp: []*schemadefinition.CompletionHelp{{
+													XMLName: xml.Name{
+														Local: "completionHelp",
+													},
+													List: []string{"default"},
+													Path: []string{"vrf name"},
 												}},
 											}},
 										}, {
@@ -4480,7 +4512,7 @@ func policy() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"local-as|no-advertise|no-export|internet|graceful-shutdown|accept-own|route-filter-translated-v4|route-filter-v4|route-filter-translated-v6|route-filter-v6|llgr-stale|no-llgr|accept-own-nexthop|blackhole|no-peer"},
+															Regex: []string{"local-as|no-advertise|no-export|graceful-shutdown|accept-own|route-filter-translated-v4|route-filter-v4|route-filter-translated-v6|route-filter-v6|llgr-stale|no-llgr|accept-own-nexthop|blackhole|no-peer"},
 															Validator: []*schemadefinition.Validator{{
 																XMLName: xml.Name{
 																	Local: "validator",
@@ -4512,12 +4544,6 @@ func policy() schemadefinition.InterfaceDefinition {
 															},
 															Format:      "no-export",
 															Description: "Well-known communities value NO_EXPORT 0xFFFFFF01",
-														}, {
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "internet",
-															Description: "Well-known communities value 0",
 														}, {
 															XMLName: xml.Name{
 																Local: "valueHelp",
@@ -4589,7 +4615,7 @@ func policy() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "completionHelp",
 															},
-															List: []string{"\n      local-as\n      no-advertise\n      no-export\n      internet\n      graceful-shutdown\n      accept-own\n      route-filter-translated-v4\n      route-filter-v4\n      route-filter-translated-v6\n      route-filter-v6\n      llgr-stale\n      no-llgr\n      accept-own-nexthop\n      blackhole\n      no-peer\n    "},
+															List: []string{"\n      local-as\n      no-advertise\n      no-export\n      graceful-shutdown\n      accept-own\n      route-filter-translated-v4\n      route-filter-v4\n      route-filter-translated-v6\n      route-filter-v6\n      llgr-stale\n      no-llgr\n      accept-own-nexthop\n      blackhole\n      no-peer\n    "},
 														}},
 														Multi: []*schemadefinition.Multi{{
 															XMLName: xml.Name{
@@ -4612,7 +4638,7 @@ func policy() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "constraint",
 															},
-															Regex: []string{"local-as|no-advertise|no-export|internet|graceful-shutdown|accept-own|route-filter-translated-v4|route-filter-v4|route-filter-translated-v6|route-filter-v6|llgr-stale|no-llgr|accept-own-nexthop|blackhole|no-peer"},
+															Regex: []string{"local-as|no-advertise|no-export|graceful-shutdown|accept-own|route-filter-translated-v4|route-filter-v4|route-filter-translated-v6|route-filter-v6|llgr-stale|no-llgr|accept-own-nexthop|blackhole|no-peer"},
 															Validator: []*schemadefinition.Validator{{
 																XMLName: xml.Name{
 																	Local: "validator",
@@ -4644,12 +4670,6 @@ func policy() schemadefinition.InterfaceDefinition {
 															},
 															Format:      "no-export",
 															Description: "Well-known communities value NO_EXPORT 0xFFFFFF01",
-														}, {
-															XMLName: xml.Name{
-																Local: "valueHelp",
-															},
-															Format:      "internet",
-															Description: "Well-known communities value 0",
 														}, {
 															XMLName: xml.Name{
 																Local: "valueHelp",
@@ -4721,7 +4741,7 @@ func policy() schemadefinition.InterfaceDefinition {
 															XMLName: xml.Name{
 																Local: "completionHelp",
 															},
-															List: []string{"\n      local-as\n      no-advertise\n      no-export\n      internet\n      graceful-shutdown\n      accept-own\n      route-filter-translated-v4\n      route-filter-v4\n      route-filter-translated-v6\n      route-filter-v6\n      llgr-stale\n      no-llgr\n      accept-own-nexthop\n      blackhole\n      no-peer\n    "},
+															List: []string{"\n      local-as\n      no-advertise\n      no-export\n      graceful-shutdown\n      accept-own\n      route-filter-translated-v4\n      route-filter-v4\n      route-filter-translated-v6\n      route-filter-v6\n      llgr-stale\n      no-llgr\n      accept-own-nexthop\n      blackhole\n      no-peer\n    "},
 														}},
 														Multi: []*schemadefinition.Multi{{
 															XMLName: xml.Name{
@@ -5507,7 +5527,7 @@ func policy() schemadefinition.InterfaceDefinition {
 													XMLName: xml.Name{
 														Local: "constraint",
 													},
-													Regex: []string{"^[+|-]?rtt$"},
+													Regex: []string{"[+|-]?rtt"},
 													Validator: []*schemadefinition.Validator{{
 														XMLName: xml.Name{
 															Local: "validator",
@@ -6118,6 +6138,71 @@ func policy() schemadefinition.InterfaceDefinition {
 													}},
 												}},
 											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "node",
+											},
+											NodeNameAttr: "geoip",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"GeoIP options - Data provided by DB-IP.com"},
+											}},
+											Children: []*schemadefinition.Children{{
+												XMLName: xml.Name{
+													Local: "children",
+												},
+												LeafNode: []*schemadefinition.LeafNode{{
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "country-code",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"GeoIP country code"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"(ad|ae|af|ag|ai|al|am|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bl|bm|bn|bo|bq|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cu|cv|cw|cx|cy|cz|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mf|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sk|sl|sm|sn|so|sr|ss|st|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tr|tt|tv|tw|tz|ua|ug|um|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|za|zm|zw)"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "<country>",
+															Description: "Country code (2 characters)",
+														}},
+														Multi: []*schemadefinition.Multi{{
+															XMLName: xml.Name{
+																Local: "multi",
+															},
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "inverse-match",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Inverse match of country-codes"},
+														Valueless: []*schemadefinition.Valueless{{
+															XMLName: xml.Name{
+																Local: "valueless",
+															},
+														}},
+													}},
+												}},
+											}},
 										}},
 										LeafNode: []*schemadefinition.LeafNode{{
 											IsBaseNode: false,
@@ -6364,6 +6449,71 @@ func policy() schemadefinition.InterfaceDefinition {
 																Local: "completionHelp",
 															},
 															Path: []string{"firewall group port-group"},
+														}},
+													}},
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "node",
+											},
+											NodeNameAttr: "geoip",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"GeoIP options - Data provided by DB-IP.com"},
+											}},
+											Children: []*schemadefinition.Children{{
+												XMLName: xml.Name{
+													Local: "children",
+												},
+												LeafNode: []*schemadefinition.LeafNode{{
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "country-code",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"GeoIP country code"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"(ad|ae|af|ag|ai|al|am|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bl|bm|bn|bo|bq|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cu|cv|cw|cx|cy|cz|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mf|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sk|sl|sm|sn|so|sr|ss|st|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tr|tt|tv|tw|tz|ua|ug|um|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|za|zm|zw)"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "<country>",
+															Description: "Country code (2 characters)",
+														}},
+														Multi: []*schemadefinition.Multi{{
+															XMLName: xml.Name{
+																Local: "multi",
+															},
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "inverse-match",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Inverse match of country-codes"},
+														Valueless: []*schemadefinition.Valueless{{
+															XMLName: xml.Name{
+																Local: "valueless",
+															},
 														}},
 													}},
 												}},
@@ -8732,6 +8882,71 @@ func policy() schemadefinition.InterfaceDefinition {
 													}},
 												}},
 											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "node",
+											},
+											NodeNameAttr: "geoip",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"GeoIP options - Data provided by DB-IP.com"},
+											}},
+											Children: []*schemadefinition.Children{{
+												XMLName: xml.Name{
+													Local: "children",
+												},
+												LeafNode: []*schemadefinition.LeafNode{{
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "country-code",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"GeoIP country code"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"(ad|ae|af|ag|ai|al|am|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bl|bm|bn|bo|bq|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cu|cv|cw|cx|cy|cz|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mf|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sk|sl|sm|sn|so|sr|ss|st|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tr|tt|tv|tw|tz|ua|ug|um|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|za|zm|zw)"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "<country>",
+															Description: "Country code (2 characters)",
+														}},
+														Multi: []*schemadefinition.Multi{{
+															XMLName: xml.Name{
+																Local: "multi",
+															},
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "inverse-match",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Inverse match of country-codes"},
+														Valueless: []*schemadefinition.Valueless{{
+															XMLName: xml.Name{
+																Local: "valueless",
+															},
+														}},
+													}},
+												}},
+											}},
 										}},
 										LeafNode: []*schemadefinition.LeafNode{{
 											IsBaseNode: false,
@@ -8988,6 +9203,71 @@ func policy() schemadefinition.InterfaceDefinition {
 																Local: "completionHelp",
 															},
 															Path: []string{"firewall group port-group"},
+														}},
+													}},
+												}},
+											}},
+										}, {
+											IsBaseNode: false,
+											XMLName: xml.Name{
+												Local: "node",
+											},
+											NodeNameAttr: "geoip",
+											Properties: []*schemadefinition.Properties{{
+												XMLName: xml.Name{
+													Local: "properties",
+												},
+												Help: []string{"GeoIP options - Data provided by DB-IP.com"},
+											}},
+											Children: []*schemadefinition.Children{{
+												XMLName: xml.Name{
+													Local: "children",
+												},
+												LeafNode: []*schemadefinition.LeafNode{{
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "country-code",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"GeoIP country code"},
+														Constraint: []*schemadefinition.Constraint{{
+															XMLName: xml.Name{
+																Local: "constraint",
+															},
+															Regex: []string{"(ad|ae|af|ag|ai|al|am|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bl|bm|bn|bo|bq|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cu|cv|cw|cx|cy|cz|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mf|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sk|sl|sm|sn|so|sr|ss|st|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tr|tt|tv|tw|tz|ua|ug|um|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|za|zm|zw)"},
+														}},
+														ValueHelp: []*schemadefinition.ValueHelp{{
+															XMLName: xml.Name{
+																Local: "valueHelp",
+															},
+															Format:      "<country>",
+															Description: "Country code (2 characters)",
+														}},
+														Multi: []*schemadefinition.Multi{{
+															XMLName: xml.Name{
+																Local: "multi",
+															},
+														}},
+													}},
+												}, {
+													IsBaseNode: false,
+													XMLName: xml.Name{
+														Local: "leafNode",
+													},
+													NodeNameAttr: "inverse-match",
+													Properties: []*schemadefinition.Properties{{
+														XMLName: xml.Name{
+															Local: "properties",
+														},
+														Help: []string{"Inverse match of country-codes"},
+														Valueless: []*schemadefinition.Valueless{{
+															XMLName: xml.Name{
+																Local: "valueless",
+															},
 														}},
 													}},
 												}},

@@ -28,6 +28,7 @@ type FirewallIPvsixInputFilterRuleSourceGroup struct {
 	LeafFirewallIPvsixInputFilterRuleSourceGroupNetworkGroup        types.String `tfsdk:"network_group" vyos:"network-group,omitempty"`
 	LeafFirewallIPvsixInputFilterRuleSourceGroupPortGroup           types.String `tfsdk:"port_group" vyos:"port-group,omitempty"`
 	LeafFirewallIPvsixInputFilterRuleSourceGroupDynamicAddressGroup types.String `tfsdk:"dynamic_address_group" vyos:"dynamic-address-group,omitempty"`
+	LeafFirewallIPvsixInputFilterRuleSourceGroupRemoteGroup         types.String `tfsdk:"remote_group" vyos:"remote-group,omitempty"`
 
 	// TagNodes
 
@@ -113,6 +114,19 @@ func (o FirewallIPvsixInputFilterRuleSourceGroup) ResourceSchemaAttributes(ctx c
 
 `,
 			Description: `Group of dynamic ipv6 addresses
+
+`,
+		},
+
+		"remote_group":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (remote-group) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `Group of remote addresses
+
+`,
+			Description: `Group of remote addresses
 
 `,
 		},

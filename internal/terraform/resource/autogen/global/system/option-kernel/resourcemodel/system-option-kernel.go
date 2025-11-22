@@ -29,13 +29,21 @@ type SystemOptionKernel struct {
 	Timeouts timeouts.Value `tfsdk:"timeouts" vyos:"-,timeout"`
 
 	// LeafNodes
+	LeafSystemOptionKernelDisableHpet        types.Bool   `tfsdk:"disable_hpet" vyos:"disable-hpet,omitempty"`
+	LeafSystemOptionKernelDisableMce         types.Bool   `tfsdk:"disable_mce" vyos:"disable-mce,omitempty"`
 	LeafSystemOptionKernelDisableMitigations types.Bool   `tfsdk:"disable_mitigations" vyos:"disable-mitigations,omitempty"`
 	LeafSystemOptionKernelDisablePowerSaving types.Bool   `tfsdk:"disable_power_saving" vyos:"disable-power-saving,omitempty"`
 	LeafSystemOptionKernelAmdPstateDriver    types.String `tfsdk:"amd_pstate_driver" vyos:"amd-pstate-driver,omitempty"`
+	LeafSystemOptionKernelDisableSoftlockup  types.Bool   `tfsdk:"disable_softlockup" vyos:"disable-softlockup,omitempty"`
+	LeafSystemOptionKernelQuiet              types.Bool   `tfsdk:"quiet" vyos:"quiet,omitempty"`
 
 	// TagNodes
 
 	// Nodes
+
+	ExistsNodeSystemOptionKernelCpu bool `tfsdk:"-" vyos:"cpu,child"`
+
+	ExistsNodeSystemOptionKernelMemory bool `tfsdk:"-" vyos:"memory,child"`
 
 	ExistsNodeSystemOptionKernelDebug bool `tfsdk:"-" vyos:"debug,child"`
 }
@@ -107,6 +115,36 @@ func (o SystemOptionKernel) ResourceSchemaAttributes(ctx context.Context) map[st
 
 		// LeafNodes
 
+		"disable_hpet":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (disable-hpet) */
+		schema.BoolAttribute{
+			Optional: true,
+			MarkdownDescription: `Disable High Precision Event Timer (HPET)
+
+`,
+			Description: `Disable High Precision Event Timer (HPET)
+
+`,
+			Default:  booldefault.StaticBool(false),
+			Computed: true,
+		},
+
+		"disable_mce":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (disable-mce) */
+		schema.BoolAttribute{
+			Optional: true,
+			MarkdownDescription: `Disable Machine Check Exceptions (MCE) reporting and handling
+
+`,
+			Description: `Disable Machine Check Exceptions (MCE) reporting and handling
+
+`,
+			Default:  booldefault.StaticBool(false),
+			Computed: true,
+		},
+
 		"disable_mitigations":
 
 		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (disable-mitigations) */
@@ -158,6 +196,36 @@ func (o SystemOptionKernel) ResourceSchemaAttributes(ctx context.Context) map[st
     |  passive  |  Allow the system governor to manage performance states                          |
     |  guided   |  The firmware controls performance states guided by the system governor          |
 `,
+		},
+
+		"disable_softlockup":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (disable-softlockup) */
+		schema.BoolAttribute{
+			Optional: true,
+			MarkdownDescription: `Disable soft lockup detector for kernel threads
+
+`,
+			Description: `Disable soft lockup detector for kernel threads
+
+`,
+			Default:  booldefault.StaticBool(false),
+			Computed: true,
+		},
+
+		"quiet":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (quiet) */
+		schema.BoolAttribute{
+			Optional: true,
+			MarkdownDescription: `Disable most log messages
+
+`,
+			Description: `Disable most log messages
+
+`,
+			Default:  booldefault.StaticBool(false),
+			Computed: true,
 		},
 
 		// TagNodes

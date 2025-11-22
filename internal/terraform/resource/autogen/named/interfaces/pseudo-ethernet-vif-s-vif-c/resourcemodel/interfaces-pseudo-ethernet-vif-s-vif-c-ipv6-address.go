@@ -23,9 +23,10 @@ var _ helpers.VyosResourceDataModel = &InterfacesPseudoEthernetVifSVifCIPvsixAdd
 // Top level basenode type: `N/A`
 type InterfacesPseudoEthernetVifSVifCIPvsixAddress struct {
 	// LeafNodes
-	LeafInterfacesPseudoEthernetVifSVifCIPvsixAddressAutoconf           types.Bool `tfsdk:"autoconf" vyos:"autoconf,omitempty"`
-	LeafInterfacesPseudoEthernetVifSVifCIPvsixAddressEuisixfour         types.List `tfsdk:"eui64" vyos:"eui64,omitempty"`
-	LeafInterfacesPseudoEthernetVifSVifCIPvsixAddressNoDefaultLinkLocal types.Bool `tfsdk:"no_default_link_local" vyos:"no-default-link-local,omitempty"`
+	LeafInterfacesPseudoEthernetVifSVifCIPvsixAddressAutoconf            types.Bool   `tfsdk:"autoconf" vyos:"autoconf,omitempty"`
+	LeafInterfacesPseudoEthernetVifSVifCIPvsixAddressEuisixfour          types.List   `tfsdk:"eui64" vyos:"eui64,omitempty"`
+	LeafInterfacesPseudoEthernetVifSVifCIPvsixAddressNoDefaultLinkLocal  types.Bool   `tfsdk:"no_default_link_local" vyos:"no-default-link-local,omitempty"`
+	LeafInterfacesPseudoEthernetVifSVifCIPvsixAddressInterfaceIDentifier types.String `tfsdk:"interface_identifier" vyos:"interface-identifier,omitempty"`
 
 	// TagNodes
 
@@ -84,6 +85,25 @@ func (o InterfacesPseudoEthernetVifSVifCIPvsixAddress) ResourceSchemaAttributes(
 `,
 			Default:  booldefault.StaticBool(false),
 			Computed: true,
+		},
+
+		"interface_identifier":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (interface-identifier) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `SLAAC interface identifier
+
+    |  Format     |  Description           |
+    |-------------|------------------------|
+    |  ::h:h:h:h  |  Interface identifier  |
+`,
+			Description: `SLAAC interface identifier
+
+    |  Format     |  Description           |
+    |-------------|------------------------|
+    |  ::h:h:h:h  |  Interface identifier  |
+`,
 		},
 
 		// TagNodes

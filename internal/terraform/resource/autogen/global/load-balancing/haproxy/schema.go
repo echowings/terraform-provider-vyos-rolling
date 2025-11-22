@@ -19,7 +19,7 @@ func (r loadBalancingHaproxy) Schema(ctx context.Context, req resource.SchemaReq
 
 *load-balancing*  
 ⯯  
-**Configure haproxy**
+**HAProxy TCP/HTTP Load Balancer**
 `,
 		Attributes: r.model.ResourceSchemaAttributes(ctx),
 	}

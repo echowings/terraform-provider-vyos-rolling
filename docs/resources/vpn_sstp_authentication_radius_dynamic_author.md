@@ -52,11 +52,11 @@ RADIUS based user authentication
 #### key
 - `key` (String) Shared secret for Dynamic Authorization Extension server
 #### port
-- `port` (Number) Port for Dynamic Authorization Extension server (DM/CoA)
+- `port` (Number) Port number used by connection
 
-    |  Format   &emsp;|  Description  |
-    |-----------|---------------|
-    |  1-65535  &emsp;|  TCP port     |
+    |  Format   &emsp;|  Description      |
+    |-----------|-------------------|
+    |  1-65535  &emsp;|  Numeric IP port  |
 #### server
 - `server` (String) IP address for Dynamic Authorization Extension server (DM/CoA)
 

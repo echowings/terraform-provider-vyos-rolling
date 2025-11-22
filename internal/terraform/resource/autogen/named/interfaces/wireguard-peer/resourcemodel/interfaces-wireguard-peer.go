@@ -247,10 +247,10 @@ func (o InterfacesWireguardPeer) ResourceSchemaAttributes(ctx context.Context) m
 		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (public-key) */
 		schema.StringAttribute{
 			Optional: true,
-			MarkdownDescription: `base64 encoded public key
+			MarkdownDescription: `Base64 encoded public key
 
 `,
-			Description: `base64 encoded public key
+			Description: `Base64 encoded public key
 
 `,
 		},
@@ -260,10 +260,10 @@ func (o InterfacesWireguardPeer) ResourceSchemaAttributes(ctx context.Context) m
 		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (preshared-key) */
 		schema.StringAttribute{
 			Optional: true,
-			MarkdownDescription: `base64 encoded preshared key
+			MarkdownDescription: `Base64 encoded preshared key
 
 `,
-			Description: `base64 encoded preshared key
+			Description: `Base64 encoded preshared key
 
 `,
 		},

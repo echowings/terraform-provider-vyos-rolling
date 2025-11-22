@@ -40,6 +40,7 @@ type ServiceTCP struct {
 	LeafServiceTCPMac                           types.List   `tfsdk:"mac" vyos:"mac,omitempty"`
 	LeafServiceTCPPort                          types.List   `tfsdk:"port" vyos:"port,omitempty"`
 	LeafServiceTCPClientKeepaliveInterval       types.Number `tfsdk:"client_keepalive_interval" vyos:"client-keepalive-interval,omitempty"`
+	LeafServiceTCPTrustedUserCa                 types.String `tfsdk:"trusted_user_ca" vyos:"trusted-user-ca,omitempty"`
 	LeafServiceTCPVrf                           types.List   `tfsdk:"vrf" vyos:"vrf,omitempty"`
 
 	// TagNodes
@@ -51,8 +52,6 @@ type ServiceTCP struct {
 	ExistsNodeServiceTCPDynamicProtection bool `tfsdk:"-" vyos:"dynamic-protection,child"`
 
 	ExistsNodeServiceTCPRekey bool `tfsdk:"-" vyos:"rekey,child"`
-
-	ExistsNodeServiceTCPTrustedUserCaKey bool `tfsdk:"-" vyos:"trusted-user-ca-key,child"`
 }
 
 // SetID configures the resource ID
@@ -300,6 +299,25 @@ func (o ServiceTCP) ResourceSchemaAttributes(ctx context.Context) map[string]sch
     |  Format   |  Description                                     |
     |-----------|--------------------------------------------------|
     |  1-65535  |  Time interval in seconds for keepalive message  |
+`,
+		},
+
+		"trusted_user_ca":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (trusted-user-ca) */
+		schema.StringAttribute{
+			Optional: true,
+			MarkdownDescription: `OpenSSH trusted user CA
+
+    |  Format  |  Description                                  |
+    |----------|-----------------------------------------------|
+    |  txt     |  OpenSSH certificate name from PKI subsystem  |
+`,
+			Description: `OpenSSH trusted user CA
+
+    |  Format  |  Description                                  |
+    |----------|-----------------------------------------------|
+    |  txt     |  OpenSSH certificate name from PKI subsystem  |
 `,
 		},
 

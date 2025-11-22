@@ -11,8 +11,10 @@ import (
 	globalfirewallbridgepreroutingfilter "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/firewall/bridge-prerouting-filter"
 	globalfirewallglobaloptions "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/firewall/global-options"
 	globalfirewallglobaloptionsapplytobridgedtraffic "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/firewall/global-options-apply-to-bridged-traffic"
+	globalfirewallglobaloptionsapplytobridgedtrafficacceptinvalid "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/firewall/global-options-apply-to-bridged-traffic-accept-invalid"
 	globalfirewallglobaloptionsstatepolicyestablished "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/firewall/global-options-state-policy-established"
 	globalfirewallglobaloptionsstatepolicyinvalid "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/firewall/global-options-state-policy-invalid"
+	globalfirewallglobaloptionsstatepolicyoffload "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/firewall/global-options-state-policy-offload"
 	globalfirewallglobaloptionsstatepolicyrelated "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/firewall/global-options-state-policy-related"
 	globalfirewallglobaloptionstimeout "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/firewall/global-options-timeout"
 	globalfirewallglobaloptionstimeouttcp "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/firewall/global-options-timeout-tcp"
@@ -33,6 +35,7 @@ import (
 	globalhighavailabilityvrrpglobalparametersgarp "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/high-availability/vrrp-global-parameters-garp"
 	globalloadbalancinghaproxy "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/load-balancing/haproxy"
 	globalloadbalancinghaproxyglobalparameters "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/load-balancing/haproxy-global-parameters"
+	globalloadbalancinghaproxytimeout "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/load-balancing/haproxy-timeout"
 	globalloadbalancingwan "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/load-balancing/wan"
 	globalloadbalancingwanstickyconnections "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/load-balancing/wan-sticky-connections"
 	globalnatcgnat "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/nat/cgnat"
@@ -60,10 +63,12 @@ import (
 	globalprotocolsbgpaddressfamilyipvfourunicastredistributeconnected "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv4-unicast-redistribute-connected"
 	globalprotocolsbgpaddressfamilyipvfourunicastredistributeisis "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv4-unicast-redistribute-isis"
 	globalprotocolsbgpaddressfamilyipvfourunicastredistributekernel "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv4-unicast-redistribute-kernel"
+	globalprotocolsbgpaddressfamilyipvfourunicastredistributenhrp "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv4-unicast-redistribute-nhrp"
 	globalprotocolsbgpaddressfamilyipvfourunicastredistributeospf "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv4-unicast-redistribute-ospf"
 	globalprotocolsbgpaddressfamilyipvfourunicastredistributerip "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv4-unicast-redistribute-rip"
 	globalprotocolsbgpaddressfamilyipvfourunicastredistributestatic "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv4-unicast-redistribute-static"
 	globalprotocolsbgpaddressfamilyipvfourunicastroutemapvpn "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv4-unicast-route-map-vpn"
+	globalprotocolsbgpaddressfamilyipvfourunicastroutemapvrf "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv4-unicast-route-map-vrf"
 	globalprotocolsbgpaddressfamilyipvfourunicastroutetargetvpn "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv4-unicast-route-target-vpn"
 	globalprotocolsbgpaddressfamilyipvfourunicastsidvpn "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv4-unicast-sid-vpn"
 	globalprotocolsbgpaddressfamilyipvsixflowspeclocalinstall "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv6-flowspec-local-install"
@@ -80,6 +85,7 @@ import (
 	globalprotocolsbgpaddressfamilyipvsixunicastredistributeconnected "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv6-unicast-redistribute-connected"
 	globalprotocolsbgpaddressfamilyipvsixunicastredistributeisis "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv6-unicast-redistribute-isis"
 	globalprotocolsbgpaddressfamilyipvsixunicastredistributekernel "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv6-unicast-redistribute-kernel"
+	globalprotocolsbgpaddressfamilyipvsixunicastredistributenhrp "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv6-unicast-redistribute-nhrp"
 	globalprotocolsbgpaddressfamilyipvsixunicastredistributeospfvthree "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv6-unicast-redistribute-ospfv3"
 	globalprotocolsbgpaddressfamilyipvsixunicastredistributeripng "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv6-unicast-redistribute-ripng"
 	globalprotocolsbgpaddressfamilyipvsixunicastredistributestatic "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/bgp-address-family-ipv6-unicast-redistribute-static"
@@ -134,6 +140,8 @@ import (
 	globalprotocolsisisredistributeipvfourconnectedleveltwo "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/isis-redistribute-ipv4-connected-level-2"
 	globalprotocolsisisredistributeipvfourkernellevelone "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/isis-redistribute-ipv4-kernel-level-1"
 	globalprotocolsisisredistributeipvfourkernelleveltwo "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/isis-redistribute-ipv4-kernel-level-2"
+	globalprotocolsisisredistributeipvfournhrplevelone "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/isis-redistribute-ipv4-nhrp-level-1"
+	globalprotocolsisisredistributeipvfournhrpleveltwo "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/isis-redistribute-ipv4-nhrp-level-2"
 	globalprotocolsisisredistributeipvfourospflevelone "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/isis-redistribute-ipv4-ospf-level-1"
 	globalprotocolsisisredistributeipvfourospfleveltwo "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/isis-redistribute-ipv4-ospf-level-2"
 	globalprotocolsisisredistributeipvfourriplevelone "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/isis-redistribute-ipv4-rip-level-1"
@@ -195,6 +203,7 @@ import (
 	globalprotocolsospfredistributeconnected "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/ospf-redistribute-connected"
 	globalprotocolsospfredistributeisis "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/ospf-redistribute-isis"
 	globalprotocolsospfredistributekernel "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/ospf-redistribute-kernel"
+	globalprotocolsospfredistributenhrp "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/ospf-redistribute-nhrp"
 	globalprotocolsospfredistributerip "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/ospf-redistribute-rip"
 	globalprotocolsospfredistributestatic "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/ospf-redistribute-static"
 	globalprotocolsospfrefresh "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/ospf-refresh"
@@ -236,6 +245,7 @@ import (
 	globalprotocolsripredistributeconnected "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/rip-redistribute-connected"
 	globalprotocolsripredistributeisis "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/rip-redistribute-isis"
 	globalprotocolsripredistributekernel "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/rip-redistribute-kernel"
+	globalprotocolsripredistributenhrp "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/rip-redistribute-nhrp"
 	globalprotocolsripredistributeospf "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/rip-redistribute-ospf"
 	globalprotocolsripredistributestatic "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/rip-redistribute-static"
 	globalprotocolsriptimers "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/protocols/rip-timers"
@@ -268,6 +278,7 @@ import (
 	globalservicedhcprelay "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/dhcp-relay"
 	globalservicedhcprelayrelayoptions "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/dhcp-relay-relay-options"
 	globalservicedhcpserver "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/dhcp-server"
+	globalservicedhcpserverdynamicdnsupdate "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/dhcp-server-dynamic-dns-update"
 	globalservicedhcpserverhighavailability "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/dhcp-server-high-availability"
 	globalservicedhcpvsixrelay "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/dhcpv6-relay"
 	globalservicedhcpvsixserver "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/dhcpv6-server"
@@ -282,12 +293,6 @@ import (
 	globalservicehttpsapigraphqlcors "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/https-api-graphql-cors"
 	globalservicehttpsapirest "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/https-api-rest"
 	globalservicehttpscertificates "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/https-certificates"
-	globalserviceidsddosprotection "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/ids-ddos-protection"
-	globalserviceidsddosprotectionsflow "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/ids-ddos-protection-sflow"
-	globalserviceidsddosprotectionthresholdgeneral "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/ids-ddos-protection-threshold-general"
-	globalserviceidsddosprotectionthresholdicmp "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/ids-ddos-protection-threshold-icmp"
-	globalserviceidsddosprotectionthresholdtcp "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/ids-ddos-protection-threshold-tcp"
-	globalserviceidsddosprotectionthresholdudp "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/ids-ddos-protection-threshold-udp"
 	globalserviceipoeserver "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/ipoe-server"
 	globalserviceipoeserverauthentication "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/ipoe-server-authentication"
 	globalserviceipoeserverauthenticationradius "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/ipoe-server-authentication-radius"
@@ -348,7 +353,6 @@ import (
 	globalservicetcpaccesscontroldeny "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/ssh-access-control-deny"
 	globalservicetcpdynamicprotection "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/ssh-dynamic-protection"
 	globalservicetcprekey "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/ssh-rekey"
-	globalservicetcptrustedusercakey "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/ssh-trusted-user-ca-key"
 	globalservicestunnellog "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/stunnel-log"
 	globalservicesuricata "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/suricata"
 	globalservicesuricatalogeve "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/suricata-log-eve"
@@ -396,7 +400,9 @@ import (
 	globalsystemoption "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/system/option"
 	globalsystemoptionhttpclient "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/system/option-http-client"
 	globalsystemoptionkernel "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/system/option-kernel"
+	globalsystemoptionkernelcpu "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/system/option-kernel-cpu"
 	globalsystemoptionkerneldebug "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/system/option-kernel-debug"
+	globalsystemoptionkernelmemory "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/system/option-kernel-memory"
 	globalsystemoptiontcpclient "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/system/option-ssh-client"
 	globalsystemproxy "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/system/proxy"
 	globalsystemsflow "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/system/sflow"
@@ -465,6 +471,7 @@ import (
 	namedcontainernamelabel "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/container/name-label"
 	namedcontainernameport "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/container/name-port"
 	namedcontainernamesysctlparameter "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/container/name-sysctl-parameter"
+	namedcontainernametmpfs "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/container/name-tmpfs"
 	namedcontainernamevolume "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/container/name-volume"
 	namedcontainernetwork "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/container/network"
 	namedcontainerregistry "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/container/registry"
@@ -485,6 +492,7 @@ import (
 	namedfirewallgroupmacgroup "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/firewall/group-mac-group"
 	namedfirewallgroupnetworkgroup "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/firewall/group-network-group"
 	namedfirewallgroupportgroup "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/firewall/group-port-group"
+	namedfirewallgroupremotegroup "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/firewall/group-remote-group"
 	namedfirewallipvfourforwardfilterrule "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/firewall/ipv4-forward-filter-rule"
 	namedfirewallipvfourinputfilterrule "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/firewall/ipv4-input-filter-rule"
 	namedfirewallipvfourname "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/firewall/ipv4-name"
@@ -607,6 +615,7 @@ import (
 	namedloadbalancinghaproxyglobalparametersloggingfacility "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/load-balancing/haproxy-global-parameters-logging-facility"
 	namedloadbalancinghaproxyservice "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/load-balancing/haproxy-service"
 	namedloadbalancinghaproxyservicehttpresponseheaders "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/load-balancing/haproxy-service-http-response-headers"
+	namedloadbalancinghaproxyservicelistenaddress "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/load-balancing/haproxy-service-listen-address"
 	namedloadbalancinghaproxyserviceloggingfacility "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/load-balancing/haproxy-service-logging-facility"
 	namedloadbalancinghaproxyservicerule "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/load-balancing/haproxy-service-rule"
 	namedloadbalancingwaninterfacehealth "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/load-balancing/wan-interface-health"
@@ -698,6 +707,7 @@ import (
 	namedprotocolsisisfastreroutelfaremoteprefixlist "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/protocols/isis-fast-reroute-lfa-remote-prefix-list"
 	namedprotocolsisisinterface "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/protocols/isis-interface"
 	namedprotocolsisissegmentroutingprefix "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/protocols/isis-segment-routing-prefix"
+	namedprotocolsmplsldpinterface "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/protocols/mpls-ldp-interface"
 	namedprotocolsmplsldpneighbor "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/protocols/mpls-ldp-neighbor"
 	namedprotocolsnhrptunnel "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/protocols/nhrp-tunnel"
 	namedprotocolsnhrptunnelmaptunnelip "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/protocols/nhrp-tunnel-map-tunnel-ip"
@@ -781,6 +791,11 @@ import (
 	namedqostrafficmatchgroupmatch "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/qos/traffic-match-group-match"
 	namedservicebroadcastrelayid "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/service/broadcast-relay-id"
 	namedserviceconsoleserverdevice "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/service/console-server-device"
+	namedservicedhcpserverdynamicdnsupdateforwarddomain "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/service/dhcp-server-dynamic-dns-update-forward-domain"
+	namedservicedhcpserverdynamicdnsupdateforwarddomaindnsserver "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/service/dhcp-server-dynamic-dns-update-forward-domain-dns-server"
+	namedservicedhcpserverdynamicdnsupdatereversedomain "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/service/dhcp-server-dynamic-dns-update-reverse-domain"
+	namedservicedhcpserverdynamicdnsupdatereversedomaindnsserver "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/service/dhcp-server-dynamic-dns-update-reverse-domain-dns-server"
+	namedservicedhcpserverdynamicdnsupdatetsigkey "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/service/dhcp-server-dynamic-dns-update-tsig-key"
 	namedservicedhcpserversharednetworkname "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/service/dhcp-server-shared-network-name"
 	namedservicedhcpserversharednetworknameoptionstaticroute "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/service/dhcp-server-shared-network-name-option-static-route"
 	namedservicedhcpserversharednetworknamesubnetoptionstaticroute "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/service/dhcp-server-shared-network-name-subnet-option-static-route"
@@ -871,12 +886,14 @@ import (
 	namedsystemconntracktimeoutcustomipvsixrule "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/system/conntrack-timeout-custom-ipv6-rule"
 	namedsystemconsoledevice "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/system/console-device"
 	namedsystemflowaccountingnetflowserver "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/system/flow-accounting-netflow-server"
+	namedsystemipimporttable "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/system/ip-import-table"
 	namedsystemipprotocol "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/system/ip-protocol"
 	namedsystemipvsixprotocol "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/system/ipv6-protocol"
 	namedsystemloginradiusserver "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/system/login-radius-server"
 	namedsystemlogintacacsserver "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/system/login-tacacs-server"
 	namedsystemloginuser "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/system/login-user"
 	namedsystemloginuserauthenticationpublickeys "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/system/login-user-authentication-public-keys"
+	namedsystemoptionkernelmemoryhugepagesize "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/system/option-kernel-memory-hugepage-size"
 	namedsystemsflowserver "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/system/sflow-server"
 	namedsystemstatichostmappinghostname "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/system/static-host-mapping-host-name"
 	namedsystemsysctlparameter "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/system/sysctl-parameter"
@@ -972,6 +989,7 @@ import (
 	namedvrfnameprotocolsospfvthreearea "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/vrf/name-protocols-ospfv3-area"
 	namedvrfnameprotocolsospfvthreearearange "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/vrf/name-protocols-ospfv3-area-range"
 	namedvrfnameprotocolsospfvthreeinterface "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/vrf/name-protocols-ospfv3-interface"
+	namedvrfnameprotocolsrpkicache "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/vrf/name-protocols-rpki-cache"
 	namedvrfnameprotocolsstaticroute "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/vrf/name-protocols-static-route"
 	namedvrfnameprotocolsstaticrouteinterface "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/vrf/name-protocols-static-route-interface"
 	namedvrfnameprotocolsstaticroutenexthop "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/vrf/name-protocols-static-route-next-hop"
@@ -989,8 +1007,10 @@ func GetResources() []func() resource.Resource {
 		globalfirewallbridgepreroutingfilter.NewFirewallBrIDgePreroutingFilter,
 		globalfirewallglobaloptions.NewFirewallGlobalOptions,
 		globalfirewallglobaloptionsapplytobridgedtraffic.NewFirewallGlobalOptionsApplyToBrIDgedTraffic,
+		globalfirewallglobaloptionsapplytobridgedtrafficacceptinvalid.NewFirewallGlobalOptionsApplyToBrIDgedTrafficAcceptInvalID,
 		globalfirewallglobaloptionsstatepolicyestablished.NewFirewallGlobalOptionsStatePolicyEstablished,
 		globalfirewallglobaloptionsstatepolicyinvalid.NewFirewallGlobalOptionsStatePolicyInvalID,
+		globalfirewallglobaloptionsstatepolicyoffload.NewFirewallGlobalOptionsStatePolicyOffload,
 		globalfirewallglobaloptionsstatepolicyrelated.NewFirewallGlobalOptionsStatePolicyRelated,
 		globalfirewallglobaloptionstimeout.NewFirewallGlobalOptionsTimeout,
 		globalfirewallglobaloptionstimeouttcp.NewFirewallGlobalOptionsTimeoutTCP,
@@ -1011,6 +1031,7 @@ func GetResources() []func() resource.Resource {
 		globalhighavailabilityvrrpglobalparametersgarp.NewHighAvailabilityVrrpGlobalParametersGarp,
 		globalloadbalancinghaproxy.NewLoadBalancingHaproxy,
 		globalloadbalancinghaproxyglobalparameters.NewLoadBalancingHaproxyGlobalParameters,
+		globalloadbalancinghaproxytimeout.NewLoadBalancingHaproxyTimeout,
 		globalloadbalancingwan.NewLoadBalancingWan,
 		globalloadbalancingwanstickyconnections.NewLoadBalancingWanStickyConnections,
 		globalnatcgnat.NewNatCgnat,
@@ -1038,10 +1059,12 @@ func GetResources() []func() resource.Resource {
 		globalprotocolsbgpaddressfamilyipvfourunicastredistributeconnected.NewProtocolsBgpAddressFamilyIPvfourUnicastRedistributeConnected,
 		globalprotocolsbgpaddressfamilyipvfourunicastredistributeisis.NewProtocolsBgpAddressFamilyIPvfourUnicastRedistributeIsis,
 		globalprotocolsbgpaddressfamilyipvfourunicastredistributekernel.NewProtocolsBgpAddressFamilyIPvfourUnicastRedistributeKernel,
+		globalprotocolsbgpaddressfamilyipvfourunicastredistributenhrp.NewProtocolsBgpAddressFamilyIPvfourUnicastRedistributeNhrp,
 		globalprotocolsbgpaddressfamilyipvfourunicastredistributeospf.NewProtocolsBgpAddressFamilyIPvfourUnicastRedistributeOspf,
 		globalprotocolsbgpaddressfamilyipvfourunicastredistributerip.NewProtocolsBgpAddressFamilyIPvfourUnicastRedistributeRIP,
 		globalprotocolsbgpaddressfamilyipvfourunicastredistributestatic.NewProtocolsBgpAddressFamilyIPvfourUnicastRedistributeStatic,
 		globalprotocolsbgpaddressfamilyipvfourunicastroutemapvpn.NewProtocolsBgpAddressFamilyIPvfourUnicastRouteMapVpn,
+		globalprotocolsbgpaddressfamilyipvfourunicastroutemapvrf.NewProtocolsBgpAddressFamilyIPvfourUnicastRouteMapVrf,
 		globalprotocolsbgpaddressfamilyipvfourunicastroutetargetvpn.NewProtocolsBgpAddressFamilyIPvfourUnicastRouteTargetVpn,
 		globalprotocolsbgpaddressfamilyipvfourunicastsidvpn.NewProtocolsBgpAddressFamilyIPvfourUnicastSIDVpn,
 		globalprotocolsbgpaddressfamilyipvsixflowspeclocalinstall.NewProtocolsBgpAddressFamilyIPvsixFlowspecLocalInstall,
@@ -1058,6 +1081,7 @@ func GetResources() []func() resource.Resource {
 		globalprotocolsbgpaddressfamilyipvsixunicastredistributeconnected.NewProtocolsBgpAddressFamilyIPvsixUnicastRedistributeConnected,
 		globalprotocolsbgpaddressfamilyipvsixunicastredistributeisis.NewProtocolsBgpAddressFamilyIPvsixUnicastRedistributeIsis,
 		globalprotocolsbgpaddressfamilyipvsixunicastredistributekernel.NewProtocolsBgpAddressFamilyIPvsixUnicastRedistributeKernel,
+		globalprotocolsbgpaddressfamilyipvsixunicastredistributenhrp.NewProtocolsBgpAddressFamilyIPvsixUnicastRedistributeNhrp,
 		globalprotocolsbgpaddressfamilyipvsixunicastredistributeospfvthree.NewProtocolsBgpAddressFamilyIPvsixUnicastRedistributeOspfvthree,
 		globalprotocolsbgpaddressfamilyipvsixunicastredistributeripng.NewProtocolsBgpAddressFamilyIPvsixUnicastRedistributeRIPng,
 		globalprotocolsbgpaddressfamilyipvsixunicastredistributestatic.NewProtocolsBgpAddressFamilyIPvsixUnicastRedistributeStatic,
@@ -1112,6 +1136,8 @@ func GetResources() []func() resource.Resource {
 		globalprotocolsisisredistributeipvfourconnectedleveltwo.NewProtocolsIsisRedistributeIPvfourConnectedLevelTwo,
 		globalprotocolsisisredistributeipvfourkernellevelone.NewProtocolsIsisRedistributeIPvfourKernelLevelOne,
 		globalprotocolsisisredistributeipvfourkernelleveltwo.NewProtocolsIsisRedistributeIPvfourKernelLevelTwo,
+		globalprotocolsisisredistributeipvfournhrplevelone.NewProtocolsIsisRedistributeIPvfourNhrpLevelOne,
+		globalprotocolsisisredistributeipvfournhrpleveltwo.NewProtocolsIsisRedistributeIPvfourNhrpLevelTwo,
 		globalprotocolsisisredistributeipvfourospflevelone.NewProtocolsIsisRedistributeIPvfourOspfLevelOne,
 		globalprotocolsisisredistributeipvfourospfleveltwo.NewProtocolsIsisRedistributeIPvfourOspfLevelTwo,
 		globalprotocolsisisredistributeipvfourriplevelone.NewProtocolsIsisRedistributeIPvfourRIPLevelOne,
@@ -1173,6 +1199,7 @@ func GetResources() []func() resource.Resource {
 		globalprotocolsospfredistributeconnected.NewProtocolsOspfRedistributeConnected,
 		globalprotocolsospfredistributeisis.NewProtocolsOspfRedistributeIsis,
 		globalprotocolsospfredistributekernel.NewProtocolsOspfRedistributeKernel,
+		globalprotocolsospfredistributenhrp.NewProtocolsOspfRedistributeNhrp,
 		globalprotocolsospfredistributerip.NewProtocolsOspfRedistributeRIP,
 		globalprotocolsospfredistributestatic.NewProtocolsOspfRedistributeStatic,
 		globalprotocolsospfrefresh.NewProtocolsOspfRefresh,
@@ -1225,6 +1252,7 @@ func GetResources() []func() resource.Resource {
 		globalprotocolsripredistributeconnected.NewProtocolsRIPRedistributeConnected,
 		globalprotocolsripredistributeisis.NewProtocolsRIPRedistributeIsis,
 		globalprotocolsripredistributekernel.NewProtocolsRIPRedistributeKernel,
+		globalprotocolsripredistributenhrp.NewProtocolsRIPRedistributeNhrp,
 		globalprotocolsripredistributeospf.NewProtocolsRIPRedistributeOspf,
 		globalprotocolsripredistributestatic.NewProtocolsRIPRedistributeStatic,
 		globalprotocolsriptimers.NewProtocolsRIPTimers,
@@ -1246,6 +1274,7 @@ func GetResources() []func() resource.Resource {
 		globalservicedhcprelay.NewServiceDhcpRelay,
 		globalservicedhcprelayrelayoptions.NewServiceDhcpRelayRelayOptions,
 		globalservicedhcpserver.NewServiceDhcpServer,
+		globalservicedhcpserverdynamicdnsupdate.NewServiceDhcpServerDynamicDNSUpdate,
 		globalservicedhcpserverhighavailability.NewServiceDhcpServerHighAvailability,
 		globalservicedhcpvsixrelay.NewServiceDhcpvsixRelay,
 		globalservicedhcpvsixserver.NewServiceDhcpvsixServer,
@@ -1260,12 +1289,6 @@ func GetResources() []func() resource.Resource {
 		globalservicehttpsapigraphqlcors.NewServiceHTTPSAPIGraphqlCors,
 		globalservicehttpsapirest.NewServiceHTTPSAPIRest,
 		globalservicehttpscertificates.NewServiceHTTPSCertificates,
-		globalserviceidsddosprotection.NewServiceIDsDdosProtection,
-		globalserviceidsddosprotectionsflow.NewServiceIDsDdosProtectionSflow,
-		globalserviceidsddosprotectionthresholdgeneral.NewServiceIDsDdosProtectionThresholdGeneral,
-		globalserviceidsddosprotectionthresholdicmp.NewServiceIDsDdosProtectionThresholdIcmp,
-		globalserviceidsddosprotectionthresholdtcp.NewServiceIDsDdosProtectionThresholdTCP,
-		globalserviceidsddosprotectionthresholdudp.NewServiceIDsDdosProtectionThresholdUDP,
 		globalserviceipoeserver.NewServiceIPoeServer,
 		globalserviceipoeserverauthentication.NewServiceIPoeServerAuthentication,
 		globalserviceipoeserverauthenticationradius.NewServiceIPoeServerAuthenticationRadius,
@@ -1329,7 +1352,6 @@ func GetResources() []func() resource.Resource {
 		globalservicetcpaccesscontroldeny.NewServiceTCPAccessControlDeny,
 		globalservicetcpdynamicprotection.NewServiceTCPDynamicProtection,
 		globalservicetcprekey.NewServiceTCPRekey,
-		globalservicetcptrustedusercakey.NewServiceTCPTrustedUserCaKey,
 		globalservicetftpserver.NewServiceTftpServer,
 		globalservicewebproxy.NewServiceWebproxy,
 		globalservicewebproxyauthentication.NewServiceWebproxyAuthentication,
@@ -1374,7 +1396,9 @@ func GetResources() []func() resource.Resource {
 		globalsystemoption.NewSystemOption,
 		globalsystemoptionhttpclient.NewSystemOptionHTTPClient,
 		globalsystemoptionkernel.NewSystemOptionKernel,
+		globalsystemoptionkernelcpu.NewSystemOptionKernelCpu,
 		globalsystemoptionkerneldebug.NewSystemOptionKernelDebug,
+		globalsystemoptionkernelmemory.NewSystemOptionKernelMemory,
 		globalsystemoptiontcpclient.NewSystemOptionTCPClient,
 		globalsystemproxy.NewSystemProxy,
 		globalsystemsflow.NewSystemSflow,
@@ -1443,6 +1467,7 @@ func GetResources() []func() resource.Resource {
 		namedcontainernamelabel.NewContainerNameLabel,
 		namedcontainernameport.NewContainerNamePort,
 		namedcontainernamesysctlparameter.NewContainerNameSysctlParameter,
+		namedcontainernametmpfs.NewContainerNameTmpfs,
 		namedcontainernamevolume.NewContainerNameVolume,
 		namedcontainernetwork.NewContainerNetwork,
 		namedcontainerregistry.NewContainerRegistry,
@@ -1463,6 +1488,7 @@ func GetResources() []func() resource.Resource {
 		namedfirewallgroupmacgroup.NewFirewallGroupMacGroup,
 		namedfirewallgroupnetworkgroup.NewFirewallGroupNetworkGroup,
 		namedfirewallgroupportgroup.NewFirewallGroupPortGroup,
+		namedfirewallgroupremotegroup.NewFirewallGroupRemoteGroup,
 		namedfirewallipvfourforwardfilterrule.NewFirewallIPvfourForwardFilterRule,
 		namedfirewallipvfourinputfilterrule.NewFirewallIPvfourInputFilterRule,
 		namedfirewallipvfourname.NewFirewallIPvfourName,
@@ -1585,6 +1611,7 @@ func GetResources() []func() resource.Resource {
 		namedloadbalancinghaproxyglobalparametersloggingfacility.NewLoadBalancingHaproxyGlobalParametersLoggingFacility,
 		namedloadbalancinghaproxyservice.NewLoadBalancingHaproxyService,
 		namedloadbalancinghaproxyservicehttpresponseheaders.NewLoadBalancingHaproxyServiceHTTPResponseHeaders,
+		namedloadbalancinghaproxyservicelistenaddress.NewLoadBalancingHaproxyServiceListenAddress,
 		namedloadbalancinghaproxyserviceloggingfacility.NewLoadBalancingHaproxyServiceLoggingFacility,
 		namedloadbalancinghaproxyservicerule.NewLoadBalancingHaproxyServiceRule,
 		namedloadbalancingwaninterfacehealth.NewLoadBalancingWanInterfaceHealth,
@@ -1676,6 +1703,7 @@ func GetResources() []func() resource.Resource {
 		namedprotocolsisisfastreroutelfaremoteprefixlist.NewProtocolsIsisFastRerouteLfaRemotePrefixList,
 		namedprotocolsisisinterface.NewProtocolsIsisInterface,
 		namedprotocolsisissegmentroutingprefix.NewProtocolsIsisSegmentRoutingPrefix,
+		namedprotocolsmplsldpinterface.NewProtocolsMplsLdpInterface,
 		namedprotocolsmplsldpneighbor.NewProtocolsMplsLdpNeighbor,
 		namedprotocolsnhrptunnel.NewProtocolsNhrpTunnel,
 		namedprotocolsnhrptunnelmaptunnelip.NewProtocolsNhrpTunnelMapTunnelIP,
@@ -1759,6 +1787,11 @@ func GetResources() []func() resource.Resource {
 		namedqostrafficmatchgroupmatch.NewQosTrafficMatchGroupMatch,
 		namedservicebroadcastrelayid.NewServiceBroadcastRelayID,
 		namedserviceconsoleserverdevice.NewServiceConsoleServerDevice,
+		namedservicedhcpserverdynamicdnsupdateforwarddomain.NewServiceDhcpServerDynamicDNSUpdateForwardDomain,
+		namedservicedhcpserverdynamicdnsupdateforwarddomaindnsserver.NewServiceDhcpServerDynamicDNSUpdateForwardDomainDNSServer,
+		namedservicedhcpserverdynamicdnsupdatereversedomain.NewServiceDhcpServerDynamicDNSUpdateReverseDomain,
+		namedservicedhcpserverdynamicdnsupdatereversedomaindnsserver.NewServiceDhcpServerDynamicDNSUpdateReverseDomainDNSServer,
+		namedservicedhcpserverdynamicdnsupdatetsigkey.NewServiceDhcpServerDynamicDNSUpdateTsigKey,
 		namedservicedhcpserversharednetworkname.NewServiceDhcpServerSharedNetworkName,
 		namedservicedhcpserversharednetworknameoptionstaticroute.NewServiceDhcpServerSharedNetworkNameOptionStaticRoute,
 		namedservicedhcpserversharednetworknamesubnetoptionstaticroute.NewServiceDhcpServerSharedNetworkNameSubnetOptionStaticRoute,
@@ -1849,12 +1882,14 @@ func GetResources() []func() resource.Resource {
 		namedsystemconntracktimeoutcustomipvsixrule.NewSystemConntrackTimeoutCustomIPvsixRule,
 		namedsystemconsoledevice.NewSystemConsoleDevice,
 		namedsystemflowaccountingnetflowserver.NewSystemFlowAccountingNetflowServer,
+		namedsystemipimporttable.NewSystemIPImportTable,
 		namedsystemipprotocol.NewSystemIPProtocol,
 		namedsystemipvsixprotocol.NewSystemIPvsixProtocol,
 		namedsystemloginradiusserver.NewSystemLoginRadiusServer,
 		namedsystemlogintacacsserver.NewSystemLoginTacacsServer,
 		namedsystemloginuser.NewSystemLoginUser,
 		namedsystemloginuserauthenticationpublickeys.NewSystemLoginUserAuthenticationPublicKeys,
+		namedsystemoptionkernelmemoryhugepagesize.NewSystemOptionKernelMemoryHugepageSize,
 		namedsystemsflowserver.NewSystemSflowServer,
 		namedsystemstatichostmappinghostname.NewSystemStaticHostMappingHostName,
 		namedsystemsysctlparameter.NewSystemSysctlParameter,
@@ -1950,6 +1985,7 @@ func GetResources() []func() resource.Resource {
 		namedvrfnameprotocolsospfvthreearea.NewVrfNameProtocolsOspfvthreeArea,
 		namedvrfnameprotocolsospfvthreearearange.NewVrfNameProtocolsOspfvthreeAreaRange,
 		namedvrfnameprotocolsospfvthreeinterface.NewVrfNameProtocolsOspfvthreeInterface,
+		namedvrfnameprotocolsrpkicache.NewVrfNameProtocolsRpkiCache,
 		namedvrfnameprotocolsstaticroute.NewVrfNameProtocolsStaticRoute,
 		namedvrfnameprotocolsstaticrouteinterface.NewVrfNameProtocolsStaticRouteInterface,
 		namedvrfnameprotocolsstaticroutenexthop.NewVrfNameProtocolsStaticRouteNextHop,

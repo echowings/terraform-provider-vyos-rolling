@@ -41,10 +41,10 @@ func (o SystemSyslogRemoteFormat) ResourceSchemaAttributes(ctx context.Context) 
 		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (octet-counted) */
 		schema.BoolAttribute{
 			Optional: true,
-			MarkdownDescription: `Allows for the transmission of all characters inside a syslog message
+			MarkdownDescription: `Allows for the transmission of multi-line messages (TCP only)
 
 `,
-			Description: `Allows for the transmission of all characters inside a syslog message
+			Description: `Allows for the transmission of multi-line messages (TCP only)
 
 `,
 			Default:  booldefault.StaticBool(false),
@@ -56,10 +56,10 @@ func (o SystemSyslogRemoteFormat) ResourceSchemaAttributes(ctx context.Context) 
 		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (include-timezone) */
 		schema.BoolAttribute{
 			Optional: true,
-			MarkdownDescription: `Include system timezone in syslog message
+			MarkdownDescription: `Use RFC 5424 format (with RFC 3339 timestamp and timezone)
 
 `,
-			Description: `Include system timezone in syslog message
+			Description: `Use RFC 5424 format (with RFC 3339 timestamp and timezone)
 
 `,
 			Default:  booldefault.StaticBool(false),

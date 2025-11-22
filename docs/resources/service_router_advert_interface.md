@@ -29,6 +29,7 @@ IPv6 Router Advertisements (RAs) service
     - [Required](#required)
       - [identifier](#identifier)
     - [Optional](#optional)
+      - [auto_ignore](#auto_ignore)
       - [default_lifetime](#default_lifetime)
       - [default_preference](#default_preference)
       - [dnssl](#dnssl)
@@ -64,6 +65,12 @@ IPv6 Router Advertisements (RAs) service
 
 ### Optional
 
+#### auto_ignore
+- `auto_ignore` (List of String) IPv6 prefix to be excluded in Router Advertisements (RAs) - use in conjunction with the ::/64 wildcard prefix
+
+    |  Format   &emsp;|  Description                 |
+    |-----------|------------------------------|
+    |  ipv6net  &emsp;|  IPv6 prefix to be excluded  |
 #### default_lifetime
 - `default_lifetime` (String) Lifetime associated with the default router in units of seconds
 

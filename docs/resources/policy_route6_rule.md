@@ -58,6 +58,7 @@ Policy route rule set name for IPv6
       - [id](#id)
     - [Nested Schema for `identifier`](#nested-schema-for-identifier)
     - [Nested Schema for `destination`](#nested-schema-for-destination)
+    - [Nested Schema for `destination.geoip`](#nested-schema-for-destinationgeoip)
     - [Nested Schema for `destination.group`](#nested-schema-for-destinationgroup)
     - [Nested Schema for `fragment`](#nested-schema-for-fragment)
     - [Nested Schema for `hop_limit`](#nested-schema-for-hop_limit)
@@ -67,6 +68,7 @@ Policy route rule set name for IPv6
     - [Nested Schema for `recent`](#nested-schema-for-recent)
     - [Nested Schema for `set`](#nested-schema-for-set)
     - [Nested Schema for `source`](#nested-schema-for-source)
+    - [Nested Schema for `source.geoip`](#nested-schema-for-sourcegeoip)
     - [Nested Schema for `source.group`](#nested-schema-for-sourcegroup)
     - [Nested Schema for `tcp`](#nested-schema-for-tcp)
     - [Nested Schema for `tcp.flags`](#nested-schema-for-tcpflags)
@@ -234,6 +236,7 @@ Optional:
     |  !ipv6       &emsp;|  Match everything except the specified address  |
     |  !ipv6net    &emsp;|  Match everything except the specified prefix   |
     |  !ipv6range  &emsp;|  Match everything except the specified range    |
+- `geoip` (Attributes) GeoIP options - Data provided by DB-IP.com (see [below for nested schema](#nestedatt--destination--geoip))
 - `group` (Attributes) Group (see [below for nested schema](#nestedatt--destination--group))
 - `port` (String) Port
 
@@ -243,6 +246,19 @@ Optional:
     |  1-65535      &emsp;|  Numbered port                                                                                                                      |
     |  &lt;start-end&gt;  &emsp;|  Numbered port range (e.g. 1001-1005)                                                                                               |
     |               &emsp;|  </br></br>  Multiple destination ports can be specified as a comma-separated list.</br>  For example: &#39;telnet,http,123,1001-1005&#39;  |
+
+<a id="nestedatt--destination--geoip"></a>
+### Nested Schema for `destination.geoip`
+
+Optional:
+
+- `country_code` (List of String) GeoIP country code
+
+    |  Format     &emsp;|  Description                  |
+    |-------------|-------------------------------|
+    |  &lt;country&gt;  &emsp;|  Country code (2 characters)  |
+- `inverse_match` (Boolean) Inverse match of country-codes
+
 
 <a id="nestedatt--destination--group"></a>
 ### Nested Schema for `destination.group`
@@ -439,6 +455,7 @@ Optional:
     |  !ipv6       &emsp;|  Match everything except the specified address  |
     |  !ipv6net    &emsp;|  Match everything except the specified prefix   |
     |  !ipv6range  &emsp;|  Match everything except the specified range    |
+- `geoip` (Attributes) GeoIP options - Data provided by DB-IP.com (see [below for nested schema](#nestedatt--source--geoip))
 - `group` (Attributes) Group (see [below for nested schema](#nestedatt--source--group))
 - `mac_address` (String) MAC address
 
@@ -454,6 +471,19 @@ Optional:
     |  1-65535      &emsp;|  Numbered port                                                                                                                      |
     |  &lt;start-end&gt;  &emsp;|  Numbered port range (e.g. 1001-1005)                                                                                               |
     |               &emsp;|  </br></br>  Multiple destination ports can be specified as a comma-separated list.</br>  For example: &#39;telnet,http,123,1001-1005&#39;  |
+
+<a id="nestedatt--source--geoip"></a>
+### Nested Schema for `source.geoip`
+
+Optional:
+
+- `country_code` (List of String) GeoIP country code
+
+    |  Format     &emsp;|  Description                  |
+    |-------------|-------------------------------|
+    |  &lt;country&gt;  &emsp;|  Country code (2 characters)  |
+- `inverse_match` (Boolean) Inverse match of country-codes
+
 
 <a id="nestedatt--source--group"></a>
 ### Nested Schema for `source.group`

@@ -32,16 +32,20 @@ Dynamic Host Configuration Protocol (DHCP) for DHCP server
       - [authoritative](#authoritative)
       - [description](#description)
       - [disable](#disable)
+      - [dynamic_dns_update](#dynamic_dns_update)
       - [option](#option)
+      - [ping_check](#ping_check)
       - [subnet](#subnet)
       - [timeouts](#timeouts)
     - [Read-Only](#read-only)
       - [id](#id)
     - [Nested Schema for `identifier`](#nested-schema-for-identifier)
+    - [Nested Schema for `dynamic_dns_update`](#nested-schema-for-dynamic_dns_update)
     - [Nested Schema for `option`](#nested-schema-for-option)
     - [Nested Schema for `option.vendor_option`](#nested-schema-for-optionvendor_option)
     - [Nested Schema for `option.vendor_option.ubiquiti`](#nested-schema-for-optionvendor_optionubiquiti)
     - [Nested Schema for `subnet`](#nested-schema-for-subnet)
+    - [Nested Schema for `subnet.dynamic_dns_update`](#nested-schema-for-subnetdynamic_dns_update)
     - [Nested Schema for `subnet.option`](#nested-schema-for-subnetoption)
     - [Nested Schema for `subnet.option.vendor_option`](#nested-schema-for-subnetoptionvendor_option)
     - [Nested Schema for `subnet.option.vendor_option.ubiquiti`](#nested-schema-for-subnetoptionvendor_optionubiquiti)
@@ -74,8 +78,12 @@ Dynamic Host Configuration Protocol (DHCP) for DHCP server
     |  txt     &emsp;|  Description  |
 #### disable
 - `disable` (Boolean) Disable instance
+#### dynamic_dns_update
+- `dynamic_dns_update` (Attributes) Dynamically update Domain Name System (RFC4702) (see [below for nested schema](#nestedatt--dynamic_dns_update))
 #### option
 - `option` (Attributes) DHCP option (see [below for nested schema](#nestedatt--option))
+#### ping_check
+- `ping_check` (Boolean) Sends ICMP Echo request to the address being assigned
 #### subnet
 - `subnet` (Attributes Map) DHCP subnet for shared network
 
@@ -96,6 +104,61 @@ Dynamic Host Configuration Protocol (DHCP) for DHCP server
 Required:
 
 - `shared_network_name` (String) Name of DHCP shared network
+
+
+<a id="nestedatt--dynamic_dns_update"></a>
+### Nested Schema for `dynamic_dns_update`
+
+Optional:
+
+- `conflict_resolution` (String) DNS conflict resolution behavior
+
+    |  Format   &emsp;|  Description                      |
+    |-----------|-----------------------------------|
+    |  enable   &emsp;|  Enable DNS conflict resolution   |
+    |  disable  &emsp;|  Disable DNS conflict resolution  |
+- `generated_prefix` (String) The prefix used in the generation of an FQDN
+- `hostname_char_replacement` (String) A string of zero or more characters with which to replace each invalid character in
+            the host name
+- `hostname_char_set` (String) A regular expression describing the invalid character set in the host name
+- `override_client_update` (String) Always update both forward and reverse DNS data, regardless of the client&#39;s request
+
+    |  Format   &emsp;|  Description                                        |
+    |-----------|-----------------------------------------------------|
+    |  enable   &emsp;|  Force update both forward and reverse DNS records  |
+    |  disable  &emsp;|  Respect client request settings                    |
+- `override_no_update` (String) Perform a DDNS update, even if the client instructs the server not to
+
+    |  Format   &emsp;|  Description                                      |
+    |-----------|---------------------------------------------------|
+    |  enable   &emsp;|  Force DDNS updates regardless of client request  |
+    |  disable  &emsp;|  Respect client request settings                  |
+- `qualifying_suffix` (String) The suffix used when generating an FQDN, or when qualifying a partial name
+- `replace_client_name` (String) Replace client name mode
+
+    |  Format            &emsp;|  Description                                                                                                |
+    |--------------------|-------------------------------------------------------------------------------------------------------------|
+    |  never             |  Use the name the client sent. If the client sent no name, do not generate
+                one              |
+    |  always            |  Replace the name the client sent. If the client sent no name, generate one
+                for the client  |
+    |  when-present      |  Replace the name the client sent. If the client sent no name, do not
+                generate one          |
+    |  when-not-present  |  Use the name the client sent. If the client sent no name, generate one for
+                the client      |
+- `send_updates` (String) Enable or disable updates for this scope
+
+    |  Format   &emsp;|  Description                     |
+    |-----------|----------------------------------|
+    |  enable   &emsp;|  Enable updates for this scope   |
+    |  disable  &emsp;|  Disable updates for this scope  |
+- `ttl_percent` (String) Calculate TTL of the DNS record as a percentage of the lease lifetime
+- `update_on_renew` (String) Update DNS record on lease renew
+
+    |  Format   &emsp;|  Description                              |
+    |-----------|-------------------------------------------|
+    |  enable   &emsp;|  Update DNS record on lease renew         |
+    |  disable  &emsp;|  Do not update DNS record on lease renew  |
 
 
 <a id="nestedatt--option"></a>
@@ -120,6 +183,11 @@ Optional:
     |  Format  &emsp;|  Description                  |
     |----------|-------------------------------|
     |  txt     &emsp;|  Captive portal API endpoint  |
+- `capwap_controller` (String) IP address of CAPWAP access controller (Option 138)
+
+    |  Format  &emsp;|  Description           |
+    |----------|------------------------|
+    |  ipv4    &emsp;|  CAPWAP AC controller  |
 - `client_prefix_length` (Number) Specifies the clients subnet mask as per RFC 950. If unset, subnet declaration is used.
 
     |  Format  &emsp;|  Description                                |
@@ -220,6 +288,7 @@ Optional:
     |----------|---------------|
     |  txt     &emsp;|  Description  |
 - `disable` (Boolean) Disable instance
+- `dynamic_dns_update` (Attributes) Dynamically update Domain Name System (RFC4702) (see [below for nested schema](#nestedatt--subnet--dynamic_dns_update))
 - `exclude` (List of String) IP address to exclude from DHCP lease range
 
     |  Format  &emsp;|  Description                               |
@@ -232,12 +301,68 @@ Optional:
     |----------|------------------------------|
     |  u32     &emsp;|  DHCP lease time in seconds  |
 - `option` (Attributes) DHCP option (see [below for nested schema](#nestedatt--subnet--option))
+- `ping_check` (Boolean) Sends ICMP Echo request to the address being assigned
 - `range` (Attributes Map) DHCP lease range (see [below for nested schema](#nestedatt--subnet--range))
 - `subnet_id` (Number) Unique ID mapped to leases in the lease file
 
     |  Format  &emsp;|  Description       |
     |----------|--------------------|
     |  u32     &emsp;|  Unique subnet ID  |
+
+<a id="nestedatt--subnet--dynamic_dns_update"></a>
+### Nested Schema for `subnet.dynamic_dns_update`
+
+Optional:
+
+- `conflict_resolution` (String) DNS conflict resolution behavior
+
+    |  Format   &emsp;|  Description                      |
+    |-----------|-----------------------------------|
+    |  enable   &emsp;|  Enable DNS conflict resolution   |
+    |  disable  &emsp;|  Disable DNS conflict resolution  |
+- `generated_prefix` (String) The prefix used in the generation of an FQDN
+- `hostname_char_replacement` (String) A string of zero or more characters with which to replace each invalid character in
+            the host name
+- `hostname_char_set` (String) A regular expression describing the invalid character set in the host name
+- `override_client_update` (String) Always update both forward and reverse DNS data, regardless of the client&#39;s request
+
+    |  Format   &emsp;|  Description                                        |
+    |-----------|-----------------------------------------------------|
+    |  enable   &emsp;|  Force update both forward and reverse DNS records  |
+    |  disable  &emsp;|  Respect client request settings                    |
+- `override_no_update` (String) Perform a DDNS update, even if the client instructs the server not to
+
+    |  Format   &emsp;|  Description                                      |
+    |-----------|---------------------------------------------------|
+    |  enable   &emsp;|  Force DDNS updates regardless of client request  |
+    |  disable  &emsp;|  Respect client request settings                  |
+- `qualifying_suffix` (String) The suffix used when generating an FQDN, or when qualifying a partial name
+- `replace_client_name` (String) Replace client name mode
+
+    |  Format            &emsp;|  Description                                                                                                |
+    |--------------------|-------------------------------------------------------------------------------------------------------------|
+    |  never             |  Use the name the client sent. If the client sent no name, do not generate
+                one              |
+    |  always            |  Replace the name the client sent. If the client sent no name, generate one
+                for the client  |
+    |  when-present      |  Replace the name the client sent. If the client sent no name, do not
+                generate one          |
+    |  when-not-present  |  Use the name the client sent. If the client sent no name, generate one for
+                the client      |
+- `send_updates` (String) Enable or disable updates for this scope
+
+    |  Format   &emsp;|  Description                     |
+    |-----------|----------------------------------|
+    |  enable   &emsp;|  Enable updates for this scope   |
+    |  disable  &emsp;|  Disable updates for this scope  |
+- `ttl_percent` (String) Calculate TTL of the DNS record as a percentage of the lease lifetime
+- `update_on_renew` (String) Update DNS record on lease renew
+
+    |  Format   &emsp;|  Description                              |
+    |-----------|-------------------------------------------|
+    |  enable   &emsp;|  Update DNS record on lease renew         |
+    |  disable  &emsp;|  Do not update DNS record on lease renew  |
+
 
 <a id="nestedatt--subnet--option"></a>
 ### Nested Schema for `subnet.option`
@@ -261,6 +386,11 @@ Optional:
     |  Format  &emsp;|  Description                  |
     |----------|-------------------------------|
     |  txt     &emsp;|  Captive portal API endpoint  |
+- `capwap_controller` (String) IP address of CAPWAP access controller (Option 138)
+
+    |  Format  &emsp;|  Description           |
+    |----------|------------------------|
+    |  ipv4    &emsp;|  CAPWAP AC controller  |
 - `client_prefix_length` (Number) Specifies the clients subnet mask as per RFC 950. If unset, subnet declaration is used.
 
     |  Format  &emsp;|  Description                                |
@@ -389,6 +519,11 @@ Optional:
     |  Format  &emsp;|  Description                  |
     |----------|-------------------------------|
     |  txt     &emsp;|  Captive portal API endpoint  |
+- `capwap_controller` (String) IP address of CAPWAP access controller (Option 138)
+
+    |  Format  &emsp;|  Description           |
+    |----------|------------------------|
+    |  ipv4    &emsp;|  CAPWAP AC controller  |
 - `client_prefix_length` (Number) Specifies the clients subnet mask as per RFC 950. If unset, subnet declaration is used.
 
     |  Format  &emsp;|  Description                                |

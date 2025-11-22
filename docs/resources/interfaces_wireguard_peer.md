@@ -93,9 +93,9 @@ WireGuard Interface
     |-----------|-------------------|
     |  1-65535  &emsp;|  Numeric IP port  |
 #### preshared_key
-- `preshared_key` (String) base64 encoded preshared key
+- `preshared_key` (String) Base64 encoded preshared key
 #### public_key
-- `public_key` (String) base64 encoded public key
+- `public_key` (String) Base64 encoded public key
 #### timeouts
 - `timeouts` (Attributes) (see [below for nested schema](#nestedatt--timeouts))
 

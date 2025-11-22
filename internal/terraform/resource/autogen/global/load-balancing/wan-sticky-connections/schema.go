@@ -19,7 +19,7 @@ func (r loadBalancingWanStickyConnections) Schema(ctx context.Context, req resou
 
 *load-balancing*  
 ⯯  
-Configure Wide Area Network (WAN) load-balancing  
+Wide Area Network (WAN) load-balancing  
 ⯯  
 **Configure sticky connections**
 `,

@@ -52,11 +52,14 @@ type QosPolicyCake struct {
 	LeafQosPolicyCakeBandwIDth        types.String `tfsdk:"bandwidth" vyos:"bandwidth,omitempty"`
 	LeafQosPolicyCakeFlowIsolation    types.String `tfsdk:"flow_isolation" vyos:"flow-isolation,omitempty"`
 	LeafQosPolicyCakeFlowIsolationNat types.Bool   `tfsdk:"flow_isolation_nat" vyos:"flow-isolation-nat,omitempty"`
+	LeafQosPolicyCakeNoSplitGso       types.Bool   `tfsdk:"no_split_gso" vyos:"no-split-gso,omitempty"`
 	LeafQosPolicyCakeRtt              types.Number `tfsdk:"rtt" vyos:"rtt,omitempty"`
 
 	// TagNodes
 
 	// Nodes
+
+	NodeQosPolicyCakeAckFilter *QosPolicyCakeAckFilter `tfsdk:"ack_filter" vyos:"ack-filter,omitempty"`
 }
 
 // SetID configures the resource ID
@@ -273,6 +276,21 @@ func (o QosPolicyCake) ResourceSchemaAttributes(ctx context.Context) map[string]
 			Computed: true,
 		},
 
+		"no_split_gso":
+
+		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (no-split-gso) */
+		schema.BoolAttribute{
+			Optional: true,
+			MarkdownDescription: `Do not split GSO super-packets into on-the-wire components
+
+`,
+			Description: `Do not split GSO super-packets into on-the-wire components
+
+`,
+			Default:  booldefault.StaticBool(false),
+			Computed: true,
+		},
+
 		"rtt":
 
 		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype (rtt) */
@@ -299,5 +317,15 @@ func (o QosPolicyCake) ResourceSchemaAttributes(ctx context.Context) map[string]
 
 		// Nodes
 
+		"ack_filter": schema.SingleNestedAttribute{
+			Attributes: QosPolicyCakeAckFilter{}.ResourceSchemaAttributes(ctx),
+			Optional:   true,
+			MarkdownDescription: `Identify and filter out TCP ACK packets that do not convey significant new information
+
+`,
+			Description: `Identify and filter out TCP ACK packets that do not convey significant new information
+
+`,
+		},
 	}
 }

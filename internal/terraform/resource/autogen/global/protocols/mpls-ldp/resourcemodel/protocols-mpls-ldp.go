@@ -28,12 +28,13 @@ type ProtocolsMplsLdp struct {
 	Timeouts timeouts.Value `tfsdk:"timeouts" vyos:"-,timeout"`
 
 	// LeafNodes
-	LeafProtocolsMplsLdpRouterID  types.String `tfsdk:"router_id" vyos:"router-id,omitempty"`
-	LeafProtocolsMplsLdpInterface types.List   `tfsdk:"interface" vyos:"interface,omitempty"`
+	LeafProtocolsMplsLdpRouterID types.String `tfsdk:"router_id" vyos:"router-id,omitempty"`
 
 	// TagNodes
 
 	ExistsTagProtocolsMplsLdpNeighbor bool `tfsdk:"-" vyos:"neighbor,child"`
+
+	ExistsTagProtocolsMplsLdpInterface bool `tfsdk:"-" vyos:"interface,child"`
 
 	// Nodes
 
@@ -133,25 +134,6 @@ func (o ProtocolsMplsLdp) ResourceSchemaAttributes(ctx context.Context) map[stri
     |  Format  |  Description                     |
     |----------|----------------------------------|
     |  ipv4    |  Router-ID in IP address format  |
-`,
-		},
-
-		"interface":
-		/* tools/generate-terraform-resource-full/templates/resources/common/resource-model-schema-attrtype.gotmpl #resource-model-schema-attrtype-multi (interface) */
-		schema.ListAttribute{
-			ElementType: types.StringType,
-			Optional:    true,
-			MarkdownDescription: `Interface
-
-    |  Format  |  Description     |
-    |----------|------------------|
-    |  txt     |  Interface name  |
-`,
-			Description: `Interface
-
-    |  Format  |  Description     |
-    |----------|------------------|
-    |  txt     |  Interface name  |
 `,
 		},
 

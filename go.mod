@@ -1,6 +1,6 @@
 module github.com/thomasfinstad/terraform-provider-vyos-rolling
 
-go 1.23
+go 1.24.0
 
 require (
 	github.com/gdexlab/go-render v1.0.1
@@ -17,7 +17,7 @@ require (
 	github.com/leodido/go-conventionalcommits v0.12.0
 	github.com/zclconf/go-cty v1.14.4
 	golang.org/x/exp v0.0.0-20240318143956-a85f2c67cd81
-	golang.org/x/text v0.14.0
+	golang.org/x/text v0.31.0
 )
 
 require (
@@ -52,11 +52,12 @@ require (
 	github.com/vmihailenco/msgpack/v5 v5.3.5 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
-	golang.org/x/crypto v0.21.0 // indirect
-	golang.org/x/mod v0.16.0 // indirect
-	golang.org/x/net v0.22.0 // indirect
-	golang.org/x/sys v0.18.0 // indirect
-	golang.org/x/tools v0.19.0 // indirect
+	golang.org/x/crypto v0.44.0 // indirect
+	golang.org/x/mod v0.30.0 // indirect
+	golang.org/x/net v0.47.0 // indirect
+	golang.org/x/sync v0.18.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/tools v0.39.0 // indirect
 	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1 // indirect
 	google.golang.org/grpc v1.56.1 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect

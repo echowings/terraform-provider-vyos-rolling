@@ -28,6 +28,8 @@ type VpnIPsecSiteToSitePeerVti struct {
 	// TagNodes
 
 	// Nodes
+
+	NodeVpnIPsecSiteToSitePeerVtiTrafficSelector *VpnIPsecSiteToSitePeerVtiTrafficSelector `tfsdk:"traffic_selector" vyos:"traffic-selector,omitempty"`
 }
 
 // ResourceSchemaAttributes generates the schema attributes for the resource at this level
@@ -65,5 +67,15 @@ func (o VpnIPsecSiteToSitePeerVti) ResourceSchemaAttributes(ctx context.Context)
 
 		// Nodes
 
+		"traffic_selector": schema.SingleNestedAttribute{
+			Attributes: VpnIPsecSiteToSitePeerVtiTrafficSelector{}.ResourceSchemaAttributes(ctx),
+			Optional:   true,
+			MarkdownDescription: `Traffic-selectors parameters
+
+`,
+			Description: `Traffic-selectors parameters
+
+`,
+		},
 	}
 }

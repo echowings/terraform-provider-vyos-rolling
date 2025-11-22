@@ -197,6 +197,11 @@ Optional:
     |  invalid   &emsp;|  Match invalid entries   |
     |  notfound  &emsp;|  Match notfound entries  |
     |  valid     &emsp;|  Match valid entries     |
+- `source_vrf` (String) Source vrf
+
+    |  Format  &emsp;|  Description        |
+    |----------|---------------------|
+    |  txt     &emsp;|  VRF instance name  |
 - `tag` (Number) Route tag value
 
     |  Format   &emsp;|  Description  |
@@ -519,7 +524,6 @@ Optional:
     |  local-as                    &emsp;|  Well-known communities value NO_EXPORT_SUBCONFED 0xFFFFFF03         |
     |  no-advertise                &emsp;|  Well-known communities value NO_ADVERTISE 0xFFFFFF02                |
     |  no-export                   &emsp;|  Well-known communities value NO_EXPORT 0xFFFFFF01                   |
-    |  internet                    &emsp;|  Well-known communities value 0                                      |
     |  graceful-shutdown           &emsp;|  Well-known communities value GRACEFUL_SHUTDOWN 0xFFFF0000           |
     |  accept-own                  &emsp;|  Well-known communities value ACCEPT_OWN 0xFFFF0001                  |
     |  route-filter-translated-v4  &emsp;|  Well-known communities value ROUTE_FILTER_TRANSLATED_v4 0xFFFF0002  |
@@ -545,7 +549,6 @@ Optional:
     |  local-as                    &emsp;|  Well-known communities value NO_EXPORT_SUBCONFED 0xFFFFFF03         |
     |  no-advertise                &emsp;|  Well-known communities value NO_ADVERTISE 0xFFFFFF02                |
     |  no-export                   &emsp;|  Well-known communities value NO_EXPORT 0xFFFFFF01                   |
-    |  internet                    &emsp;|  Well-known communities value 0                                      |
     |  graceful-shutdown           &emsp;|  Well-known communities value GRACEFUL_SHUTDOWN 0xFFFF0000           |
     |  accept-own                  &emsp;|  Well-known communities value ACCEPT_OWN 0xFFFF0001                  |
     |  route-filter-translated-v4  &emsp;|  Well-known communities value ROUTE_FILTER_TRANSLATED_v4 0xFFFF0002  |

@@ -18,7 +18,7 @@ func (r loadBalancingHaproxyBackendRule) Schema(ctx context.Context, req resourc
 		MarkdownDescription: `
 *load-balancing*  
 ⯯  
-Configure haproxy  
+HAProxy TCP/HTTP Load Balancer  
 ⯯  
 Backend server name  
 ⯯  
