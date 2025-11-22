@@ -36,6 +36,7 @@ description: |-
       - [listen_address](#listen_address)
       - [loglevel](#loglevel)
       - [mac](#mac)
+      - [permit_root_login](#permit_root_login)
       - [port](#port)
       - [pubkey_accepted_algorithm](#pubkey_accepted_algorithm)
       - [timeouts](#timeouts)
@@ -88,6 +89,8 @@ description: |-
     |  verbose  &emsp;|  enable logging of failed login attempts  |
 #### mac
 - `mac` (List of String) Allowed message authentication code (MAC) algorithms
+#### permit_root_login
+- `permit_root_login` (Boolean) Permit root login
 #### port
 - `port` (List of Number) Port for SSH service
 

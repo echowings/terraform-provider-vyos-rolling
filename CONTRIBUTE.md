@@ -94,6 +94,53 @@ This command will:
 
 After running this, you'll see a number of changed files. You can then commit them.
 
+### Testing a Change (Example)
+
+Let's say you've made a change to the provider and want to test it. For example, let's test a fix for setting the SSH service port.
+
+1.  **Build the provider with your changes:**
+    If you've modified the Go code, you need to rebuild the provider.
+    ```bash
+    make build
+    ```
+
+2.  **Navigate to the examples directory:**
+    ```bash
+    cd examples/provider
+    ```
+
+3.  **Create a test file:**
+    Create a file named `testing.tf` and add the following configuration. This configuration will attempt to set the SSH port.
+
+    ```terraform
+    terraform {
+      required_providers {
+        vyos-rolling = {
+          source = "providers.localhost/dev/vyos-rolling"
+        }
+      }
+    }
+
+    provider "vyos-rolling" {
+      # Add your vyos connection details here
+    }
+
+    resource "vyos_service_ssh" "this" {
+      port = "2222"
+    }
+    ```
+
+4.  **Initialize and Apply:**
+    Now, run `make init` to initialize Terraform with your local provider, then `tofu plan` and `tofu apply` to test the change.
+
+    ```bash
+    make init
+    tofu plan
+    tofu apply
+    ```
+
+    If the apply is successful, your change is working. You can then run `tofu destroy` to clean up the resources.
+
 ## Troubleshooting
 
 ### Dev Container

@@ -4,7 +4,7 @@
 // Global: can have one resource of this kind, having multiple will result in configuration conflicts between the two.
 
 // Named resource
-resource "vyos_system_syslog_global_facility" "all" {
+resource "vyos_system_syslog_local_facility" "all" {
   identifier = { facility = "all" }
   level      = "info"
 }
@@ -113,4 +113,8 @@ resource "vyos_service_conntrack_sync" "this" {
       sync_group = vyos_high_availability_vrrp_sync_group.all.identifier.sync_group
     }
   }
+}
+
+resource "vyos_service_ssh" "this" {
+  port = [2222]
 }

@@ -42,6 +42,7 @@ type ServiceTCP struct {
 	LeafServiceTCPClientKeepaliveInterval       types.Number `tfsdk:"client_keepalive_interval" vyos:"client-keepalive-interval,omitempty"`
 	LeafServiceTCPTrustedUserCa                 types.String `tfsdk:"trusted_user_ca" vyos:"trusted-user-ca,omitempty"`
 	LeafServiceTCPVrf                           types.List   `tfsdk:"vrf" vyos:"vrf,omitempty"`
+	LeafServiceTCPPermitRootLogin             	types.Bool   `tfsdk:"permit_root_login" vyos:"permit-root-login,omitempty"`
 
 	// TagNodes
 
@@ -342,6 +343,19 @@ func (o ServiceTCP) ResourceSchemaAttributes(ctx context.Context) map[string]sch
 `,
 
 			// Default:          stringdefault.StaticString(`default`),
+			Computed: true,
+		},
+
+		"permit_root_login":
+		schema.BoolAttribute{
+			Optional: true,
+			MarkdownDescription: `Permit root login
+
+`,
+			Description: `Permit root login
+
+`,
+			Default:  booldefault.StaticBool(false),
 			Computed: true,
 		},
 

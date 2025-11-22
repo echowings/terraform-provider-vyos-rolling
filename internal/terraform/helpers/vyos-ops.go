@@ -64,6 +64,13 @@ func iron(ctx context.Context, vyosPath []string, values map[string]interface{})
 				tools.Trace(ctx, "NOT appending to ret because bool is false", map[string]interface{}{"ret": fmt.Sprintf("%#v", ret)})
 			}
 		// LeafNodes
+		case int64:
+
+			tools.Trace(ctx, "ironing int value", map[string]interface{}{"current-vyos-path": cVyosPath, "type": fmt.Sprintf("%T", value), "value": fmt.Sprintf("%#v", value)})
+			val := append(cVyosPath, strconv.FormatInt(value, 10))
+			tools.Trace(ctx, "appending to ret", map[string]interface{}{"ret": fmt.Sprintf("%#v", ret), "val": fmt.Sprintf("%#v", val)})
+			ret = append(ret, val)
+		// LeafNodes
 		case float64:
 
 			tools.Trace(ctx, "ironing float value", map[string]interface{}{"current-vyos-path": cVyosPath, "type": fmt.Sprintf("%T", value), "value": fmt.Sprintf("%#v", value)})
