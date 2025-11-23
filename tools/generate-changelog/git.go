@@ -57,10 +57,15 @@ func GenerateGitChanges() (previousVersion *version.Version, commitsSinceLastVer
 		}
 
 		cc, err := ccm.Parse([]byte(c.Message))
-		if err != nil {
-			if conventionalcommits.IsInvalid(err) {
-				return nil
-			}
+		// WithBestEffort still returns errors for malformed commits.
+		// It also can return a nil error and a nil message for non-conventional commits.
+		if err != nil || cc == nil {
+			return nil
+		}
+
+		// Skip commits that are not conventional, which WithBestEffort parses into an empty struct
+		if cc.Type == "" && cc.Description == "" {
+			return nil
 		}
 
 		chgs = append(chgs, cc)
