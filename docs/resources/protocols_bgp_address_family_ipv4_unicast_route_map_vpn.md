@@ -28,7 +28,7 @@ Route-map to filter route updates to/from this peer
 
 </center>
 
--> This provider is in "early access", please see the current status at: https://github.com/thomasfinstad/terraform-provider-vyos-rolling/milestones?state=open
+-> This provider is in "early access", please see the current status at: https://github.com/echowings/terraform-provider-vyos-rolling/milestones?state=open
 
 <!--TOC-->
 

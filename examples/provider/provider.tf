@@ -5,7 +5,7 @@ terraform {
   required_version = "~> 1.0"
   required_providers {
     vyos = {
-      source = "thomasfinstad/vyos-rolling"
+      source = "echowings/vyos-rolling"
     }
   }
 }

@@ -10,10 +10,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/client"
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/helpers/tools"
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/provider/data"
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/client"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/helpers/tools"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/provider/data"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/resource/autogen"
 )
 
 // Ensure ScaffoldingProvider satisfies various provider interfaces.

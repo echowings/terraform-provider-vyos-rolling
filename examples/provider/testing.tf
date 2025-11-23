@@ -51,7 +51,7 @@ resource "vyos_service_ntp" "this" {
   }
 }
 
-// Regression test for: https://github.com/thomasfinstad/terraform-provider-vyos-rolling/issues/224
+// Regression test for: https://github.com/echowings/terraform-provider-vyos-rolling/issues/224
 resource "vyos_interfaces_dummy" "issue224" {
   identifier = {
     dummy = "dum224"

@@ -5,8 +5,8 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
-	vyosinterface "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/vyos/vyosinterfaces"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
+	vyosinterface "github.com/echowings/terraform-provider-vyos-rolling/internal/vyos/vyosinterfaces"
 )
 
 func TestTagNodeOverride(t *testing.T) {

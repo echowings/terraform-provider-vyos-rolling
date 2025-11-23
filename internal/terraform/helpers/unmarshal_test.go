@@ -6,8 +6,8 @@ import (
 
 	"github.com/go-test/deep"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/helpers"
-	ntpResourceModel "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/ntp/resourcemodel"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/helpers"
+	ntpResourceModel "github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/ntp/resourcemodel"
 )
 
 // TestMarshalToVyosNamedResMergedIntoGlobal

@@ -83,7 +83,7 @@ func main() {
 		die(err)
 		defer f.Close()
 		f.WriteString(`package tmp
-		import "github.com/thomasfinstad/terraform-provider-vyos-rolling/tools/generate-changelog"
+		import "github.com/echowings/terraform-provider-vyos-rolling/tools/generate-changelog"
 		var _ = `)
 		_, err = f.WriteString(AddLineBreaks(render.AsCode(schemaChanges)))
 		die(err)

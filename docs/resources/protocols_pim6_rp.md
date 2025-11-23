@@ -22,7 +22,7 @@ Protocol Independent Multicast for IPv6 (PIMv6) and MLD
 
 </center>
 
--> This provider is in "early access", please see the current status at: https://github.com/thomasfinstad/terraform-provider-vyos-rolling/milestones?state=open
+-> This provider is in "early access", please see the current status at: https://github.com/echowings/terraform-provider-vyos-rolling/milestones?state=open
 
 <!--TOC-->
 

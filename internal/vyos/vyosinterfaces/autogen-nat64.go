@@ -5,7 +5,8 @@ package vyosinterface
 import (
 	"encoding/xml"
 
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
+	vyosTools "github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/helpers/tools"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
 )
 
 func nat64() schemadefinition.InterfaceDefinition {
@@ -19,7 +20,7 @@ func nat64() schemadefinition.InterfaceDefinition {
 				Local: "node",
 			},
 			NodeNameAttr: "nat64",
-			OwnerAttr:    "${vyos_conf_scripts_dir}/nat64.py",
+			OwnerAttr:    vyosTools.String("${vyos_conf_scripts_dir}/nat64.py"),
 			Properties: []*schemadefinition.Properties{{
 				XMLName: xml.Name{
 					Local: "properties",
@@ -67,7 +68,7 @@ func nat64() schemadefinition.InterfaceDefinition {
 											Local: "validator",
 										},
 										NameAttr:     "numeric",
-										ArgumentAttr: "--range 1-999999",
+										ArgumentAttr: vyosTools.String("--range 1-999999"),
 									}},
 								}},
 								ValueHelp: []*schemadefinition.ValueHelp{{
@@ -119,7 +120,7 @@ func nat64() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 1-2147483647",
+														ArgumentAttr: vyosTools.String("--range 1-2147483647"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -216,7 +217,7 @@ func nat64() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 1-999999",
+														ArgumentAttr: vyosTools.String("--range 1-999999"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{

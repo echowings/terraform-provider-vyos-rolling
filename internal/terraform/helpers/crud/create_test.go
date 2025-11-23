@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/helpers"
-	conntrackTcp "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/system/conntrack-tcp/resourcemodel"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/helpers"
+	conntrackTcp "github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/system/conntrack-tcp/resourcemodel"
 
 	"github.com/hashicorp/terraform-plugin-framework-timeouts/resource/timeouts"
 	"github.com/hashicorp/terraform-plugin-framework/attr"
@@ -25,10 +25,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 	"github.com/hashicorp/terraform-plugin-go/tftypes"
 	"github.com/hashicorp/terraform-plugin-log/tflogtest"
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/client"
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/provider/data"
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/firewall/ipv4-name-rule/resourcemodel"
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/tests/api"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/client"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/provider/data"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/firewall/ipv4-name-rule/resourcemodel"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/tests/api"
 )
 
 // TestCrudCreateSuccess test CRUD helper: Create

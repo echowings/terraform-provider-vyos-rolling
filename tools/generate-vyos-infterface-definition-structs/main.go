@@ -14,7 +14,7 @@ import (
 	"github.com/dave/dst/decorator"
 	"github.com/dave/dst/dstutil"
 	"github.com/gdexlab/go-render/render"
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 )
@@ -103,6 +103,7 @@ Outer:
 		output := render.AsCode(topLevelInterface)
 
 		outputFormatted := []byte(output)
+		fmt.Printf("DEBUG: OutputFormatted before regex: %s\n", outputFormatted)
 
 		// TODO improve interface definition generation
 		//  milestone: 6
@@ -123,12 +124,14 @@ Outer:
 		// OwnerAttr:"",
 		outputFormatted = regexp.MustCompile(`\w+:\s*"",?`).ReplaceAll(outputFormatted, []byte(""))
 
+		// Fix string pointer rendering
+		outputFormatted = regexp.MustCompile(`\(&string\)\((.*?)\)`).ReplaceAll(outputFormatted, []byte("vyosTools.String($1)"))
+
 		file, err := os.Create(outputFile)
 		if err != nil {
 			return
 		}
 		defer file.Close()
-
 		funcName := strings.ReplaceAll(cases.Lower(language.Norwegian).String(outputBaseName), "-", "")
 
 		outputBase := fmt.Sprintf(`
@@ -139,7 +142,8 @@ Outer:
 			import (
 				"encoding/xml"
 
-				"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
+				vyosTools "github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/helpers/tools"
+				"github.com/echowings/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
 			)
 
 			func %s() schemadefinition.InterfaceDefinition {

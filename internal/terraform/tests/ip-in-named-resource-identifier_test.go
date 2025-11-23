@@ -10,13 +10,13 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 	"github.com/hashicorp/terraform-plugin-log/tflogtest"
-	protocolsBgpNeighbor "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/protocols/bgp-neighbor/resourcemodel"
-	serviceDhcpServerSharedNetworkName "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/service/dhcp-server-shared-network-name/resourcemodel"
+	protocolsBgpNeighbor "github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/protocols/bgp-neighbor/resourcemodel"
+	serviceDhcpServerSharedNetworkName "github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/service/dhcp-server-shared-network-name/resourcemodel"
 )
 
 // TestIpInNamedResourceIdentifier allow IPv6 in resource identifiers
 //
-// Regression test for bug: https://github.com/thomasfinstad/terraform-provider-vyos-rolling/issues/222
+// Regression test for bug: https://github.com/echowings/terraform-provider-vyos-rolling/issues/222
 func TestIpInNamedResourceIdentifier(t *testing.T) {
 	ctx := tflogtest.RootLogger(context.Background(), os.Stdout)
 	validators := protocolsBgpNeighbor.ProtocolsBgpNeighbor{}.ResourceSchemaAttributes(ctx)["identifier"].(schema.SingleNestedAttribute).Attributes["neighbor"].(schema.StringAttribute).Validators
@@ -46,7 +46,7 @@ func TestIpInNamedResourceIdentifier(t *testing.T) {
 }
 
 // TestNetworkInNamedResourceIdentifier allow IPv6 in resource identifiers
-// Regression test for bug: https://github.com/thomasfinstad/terraform-provider-vyos-rolling/issues/224
+// Regression test for bug: https://github.com/echowings/terraform-provider-vyos-rolling/issues/224
 func TestNetworkInNamedResourceIdentifier(t *testing.T) {
 	ctx := tflogtest.RootLogger(context.Background(), os.Stdout)
 	validators := serviceDhcpServerSharedNetworkName.ServiceDhcpServerSharedNetworkName{}.ResourceSchemaAttributes(ctx)["identifier"].(schema.SingleNestedAttribute).Attributes["shared_network_name"].(schema.StringAttribute).Validators

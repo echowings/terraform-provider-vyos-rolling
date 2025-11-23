@@ -5,7 +5,8 @@ package vyosinterface
 import (
 	"encoding/xml"
 
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
+	vyosTools "github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/helpers/tools"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
 )
 
 func pki() schemadefinition.InterfaceDefinition {
@@ -19,7 +20,7 @@ func pki() schemadefinition.InterfaceDefinition {
 				Local: "node",
 			},
 			NodeNameAttr: "pki",
-			OwnerAttr:    "${vyos_conf_scripts_dir}/pki.py",
+			OwnerAttr:    vyosTools.String("${vyos_conf_scripts_dir}/pki.py"),
 			Properties: []*schemadefinition.Properties{{
 				XMLName: xml.Name{
 					Local: "properties",
@@ -436,7 +437,7 @@ func pki() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "url",
-												ArgumentAttr: "--scheme http --scheme https",
+												ArgumentAttr: vyosTools.String("--scheme http --scheme https"),
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{

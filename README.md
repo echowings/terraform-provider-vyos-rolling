@@ -1,6 +1,6 @@
 # VyOS Provider for Terraform
 
-<!-- ![Build Status](https://github.com/thomasfinstad/terraform-provider-vyos-rolling/actions/workflows/XYZ.yml/badge.svg) -->
+<!-- ![Build Status](https://github.com/echowings/terraform-provider-vyos-rolling/actions/workflows/XYZ.yml/badge.svg) -->
 [![Go Report Card](https://goreportcard.com/badge/github.com/thomasfinstad/terraform-provider-vyos)](https://goreportcard.com/report/github.com/thomasfinstad/terraform-provider-vyos)
 <!-- ![GitHub release](https://img.shields.io/github/v/release/thomasfinstad/terraform-provider-vyos-rolling) -->
 

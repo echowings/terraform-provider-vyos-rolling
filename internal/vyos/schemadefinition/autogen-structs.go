@@ -26,7 +26,7 @@ type Node struct {
 	IsBaseNode   bool
 	XMLName      xml.Name      `xml:"node"`
 	NodeNameAttr string        `xml:"name,attr,omitempty"`
-	OwnerAttr    string        `xml:"owner,attr,omitempty"`
+	OwnerAttr    *string       `xml:"owner,attr"`
 	Properties   []*Properties `xml:"properties"`
 	Children     []*Children   `xml:"children"`
 }
@@ -37,7 +37,7 @@ type TagNode struct {
 	IsBaseNode   bool
 	XMLName      xml.Name      `xml:"tagNode"`
 	NodeNameAttr string        `xml:"name,attr,omitempty"`
-	OwnerAttr    string        `xml:"owner,attr,omitempty"`
+	OwnerAttr    *string       `xml:"owner,attr"`
 	DefaultValue []string      `xml:"defaultValue"`
 	Properties   []*Properties `xml:"properties"`
 	Children     []*Children   `xml:"children"`
@@ -49,7 +49,7 @@ type LeafNode struct {
 	IsBaseNode   bool
 	XMLName      xml.Name      `xml:"leafNode"`
 	NodeNameAttr string        `xml:"name,attr,omitempty"`
-	OwnerAttr    string        `xml:"owner,attr,omitempty"`
+	OwnerAttr    *string       `xml:"owner,attr"`
 	DefaultValue []string      `xml:"defaultValue"`
 	Properties   []*Properties `xml:"properties"`
 }
@@ -183,7 +183,7 @@ type ConstraintGroup struct {
 type Validator struct {
 	XMLName      xml.Name `xml:"validator"`
 	NameAttr     string   `xml:"name,attr"`
-	ArgumentAttr string   `xml:"argument,attr,omitempty"`
+	ArgumentAttr *string  `xml:"argument,attr"`
 }
 
 // Help ...

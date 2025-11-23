@@ -25,6 +25,11 @@ func ListContains(list []string, value string) bool {
 	return false
 }
 
+// String returns a pointer to the string value passed in.
+func String(v string) *string {
+	return &v
+}
+
 // stringify tries to return a string version of value.
 //
 // If value is not a string it will try to json marshal the value and return the json string.

@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"sort"
 
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
 )
 
 type duplicateIndex struct {

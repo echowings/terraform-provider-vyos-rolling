@@ -43,7 +43,7 @@
             "program": "${workspaceFolder}/tools/generate-terraform-resource-full/main.go",
             "args": [
                 "${workspaceFolder}/internal/terraform/resource/autogen",
-                "github.com/thomasfinstad/terraform-provider-vyos-rolling",
+                "github.com/echowings/terraform-provider-vyos-rolling",
                 "system/conntrack-timeout-custom-rule"
             ]
         }

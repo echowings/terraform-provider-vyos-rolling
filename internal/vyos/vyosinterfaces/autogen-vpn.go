@@ -5,7 +5,8 @@ package vyosinterface
 import (
 	"encoding/xml"
 
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
+	vyosTools "github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/helpers/tools"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
 )
 
 func vpn() schemadefinition.InterfaceDefinition {
@@ -35,7 +36,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 						Local: "node",
 					},
 					NodeNameAttr: "ipsec",
-					OwnerAttr:    "${vyos_conf_scripts_dir}/vpn_ipsec.py",
+					OwnerAttr:    vyosTools.String("${vyos_conf_scripts_dir}/vpn_ipsec.py"),
 					Properties: []*schemadefinition.Properties{{
 						XMLName: xml.Name{
 							Local: "properties",
@@ -230,7 +231,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 0-2",
+												ArgumentAttr: vyosTools.String("--range 0-2"),
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{
@@ -714,7 +715,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-65535",
+																ArgumentAttr: vyosTools.String("--range 1-65535"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -815,7 +816,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 1-240",
+														ArgumentAttr: vyosTools.String("--range 1-240"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -1243,7 +1244,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-65535",
+																ArgumentAttr: vyosTools.String("--range 1-65535"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -1491,7 +1492,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 0-2040",
+														ArgumentAttr: vyosTools.String("--range 0-2040"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -1547,7 +1548,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 0-86400",
+														ArgumentAttr: vyosTools.String("--range 0-86400"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -2474,7 +2475,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 1-65535",
+																		ArgumentAttr: vyosTools.String("--range 1-65535"),
 																	}},
 																}},
 																ValueHelp: []*schemadefinition.ValueHelp{{
@@ -2570,7 +2571,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 1-65535",
+																		ArgumentAttr: vyosTools.String("--range 1-65535"),
 																	}},
 																}},
 																ValueHelp: []*schemadefinition.ValueHelp{{
@@ -2722,7 +2723,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-100",
+																ArgumentAttr: vyosTools.String("--range 1-100"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -3085,7 +3086,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 0-2040",
+														ArgumentAttr: vyosTools.String("--range 0-2040"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -3677,7 +3678,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 30-86400",
+												ArgumentAttr: vyosTools.String("--range 30-86400"),
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{
@@ -3708,7 +3709,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 1024-26843545600000",
+												ArgumentAttr: vyosTools.String("--range 1024-26843545600000"),
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{
@@ -3739,7 +3740,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 1000-26843545600000",
+												ArgumentAttr: vyosTools.String("--range 1000-26843545600000"),
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{
@@ -4074,7 +4075,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 2-86400",
+														ArgumentAttr: vyosTools.String("--range 2-86400"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -4106,7 +4107,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 2-86400",
+														ArgumentAttr: vyosTools.String("--range 2-86400"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -4950,7 +4951,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 0-86400",
+												ArgumentAttr: vyosTools.String("--range 0-86400"),
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{
@@ -5282,7 +5283,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 						Local: "node",
 					},
 					NodeNameAttr: "l2tp",
-					OwnerAttr:    "${vyos_conf_scripts_dir}/vpn_l2tp.py",
+					OwnerAttr:    vyosTools.String("${vyos_conf_scripts_dir}/vpn_l2tp.py"),
 					Properties: []*schemadefinition.Properties{{
 						XMLName: xml.Name{
 							Local: "properties",
@@ -5394,7 +5395,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																					Local: "validator",
 																				},
 																				NameAttr:     "numeric",
-																				ArgumentAttr: "--range 1-10000000",
+																				ArgumentAttr: vyosTools.String("--range 1-10000000"),
 																			}},
 																		}},
 																	}},
@@ -5418,7 +5419,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																					Local: "validator",
 																				},
 																				NameAttr:     "numeric",
-																				ArgumentAttr: "--range 1-10000000",
+																				ArgumentAttr: vyosTools.String("--range 1-10000000"),
 																			}},
 																		}},
 																	}},
@@ -5565,7 +5566,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 1-65535",
+																		ArgumentAttr: vyosTools.String("--range 1-65535"),
 																	}},
 																}},
 																ValueHelp: []*schemadefinition.ValueHelp{{
@@ -5670,7 +5671,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 0.001-1000 --float",
+																		ArgumentAttr: vyosTools.String("--range 0.001-1000 --float"),
 																	}},
 																}},
 																ValueHelp: []*schemadefinition.ValueHelp{{
@@ -5783,7 +5784,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 1-65535",
+																		ArgumentAttr: vyosTools.String("--range 1-65535"),
 																	}},
 																}},
 																ValueHelp: []*schemadefinition.ValueHelp{{
@@ -5816,7 +5817,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 1-65535",
+																		ArgumentAttr: vyosTools.String("--range 1-65535"),
 																	}},
 																}},
 																ValueHelp: []*schemadefinition.ValueHelp{{
@@ -5865,7 +5866,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 0-600",
+																		ArgumentAttr: vyosTools.String("--range 0-600"),
 																	}},
 																}},
 																ValueHelp: []*schemadefinition.ValueHelp{{
@@ -5897,7 +5898,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 1-255",
+																		ArgumentAttr: vyosTools.String("--range 1-255"),
 																	}},
 																}},
 																ValueHelp: []*schemadefinition.ValueHelp{{
@@ -5984,7 +5985,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-3600",
+																ArgumentAttr: vyosTools.String("--range 1-3600"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -6016,7 +6017,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-60",
+																ArgumentAttr: vyosTools.String("--range 1-60"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -6049,7 +6050,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-60",
+																ArgumentAttr: vyosTools.String("--range 1-60"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -6082,7 +6083,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 0-60",
+																ArgumentAttr: vyosTools.String("--range 0-60"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -6115,7 +6116,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-20",
+																ArgumentAttr: vyosTools.String("--range 1-20"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -6495,7 +6496,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 30-86400",
+														ArgumentAttr: vyosTools.String("--range 30-86400"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -6527,7 +6528,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 30-86400",
+														ArgumentAttr: vyosTools.String("--range 30-86400"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -6832,7 +6833,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 68-65535",
+														ArgumentAttr: vyosTools.String("--range 68-65535"),
 													}},
 												}},
 											}},
@@ -6856,7 +6857,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 68-65535",
+														ArgumentAttr: vyosTools.String("--range 68-65535"),
 													}},
 												}},
 											}},
@@ -6942,7 +6943,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--positive",
+														ArgumentAttr: vyosTools.String("--positive"),
 													}},
 												}},
 											}},
@@ -6967,7 +6968,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--positive",
+														ArgumentAttr: vyosTools.String("--positive"),
 													}},
 												}},
 											}},
@@ -6992,7 +6993,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--positive",
+														ArgumentAttr: vyosTools.String("--positive"),
 													}},
 												}},
 											}},
@@ -7016,7 +7017,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 1-256000",
+														ArgumentAttr: vyosTools.String("--range 1-256000"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -7269,7 +7270,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 1-2147483647",
+														ArgumentAttr: vyosTools.String("--range 1-2147483647"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -7354,7 +7355,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 0-5",
+														ArgumentAttr: vyosTools.String("--range 0-5"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -7457,7 +7458,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "ipv4-range-mask",
-														ArgumentAttr: "-m 24 -r",
+														ArgumentAttr: vyosTools.String("-m 24 -r"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -7596,7 +7597,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 48-128",
+																ArgumentAttr: vyosTools.String("--range 48-128"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -7663,7 +7664,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 32-64",
+																ArgumentAttr: vyosTools.String("--range 32-64"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -7815,7 +7816,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--allow-range --range 0-65535",
+												ArgumentAttr: vyosTools.String("--allow-range --range 0-65535"),
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{
@@ -7848,7 +7849,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 128-16384",
+												ArgumentAttr: vyosTools.String("--range 128-16384"),
 											}},
 										}},
 									}},
@@ -7874,7 +7875,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 1-512",
+												ArgumentAttr: vyosTools.String("--range 1-512"),
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{
@@ -8015,7 +8016,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 						Local: "node",
 					},
 					NodeNameAttr: "openconnect",
-					OwnerAttr:    "${vyos_conf_scripts_dir}/vpn_openconnect.py",
+					OwnerAttr:    vyosTools.String("${vyos_conf_scripts_dir}/vpn_openconnect.py"),
 					Properties: []*schemadefinition.Properties{{
 						XMLName: xml.Name{
 							Local: "properties",
@@ -8192,7 +8193,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-65535",
+																ArgumentAttr: vyosTools.String("--range 1-65535"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -8395,7 +8396,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "file-path",
-														ArgumentAttr: "--directory --parent-dir /config/auth --strict",
+														ArgumentAttr: vyosTools.String("--directory --parent-dir /config/auth --strict"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -8426,7 +8427,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "file-path",
-														ArgumentAttr: "--file --parent-dir /config/auth --strict",
+														ArgumentAttr: vyosTools.String("--file --parent-dir /config/auth --strict"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -8541,7 +8542,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 6-8",
+																		ArgumentAttr: vyosTools.String("--range 6-8"),
 																	}},
 																}},
 																ValueHelp: []*schemadefinition.ValueHelp{{
@@ -8574,7 +8575,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 5-86400",
+																		ArgumentAttr: vyosTools.String("--range 5-86400"),
 																	}},
 																}},
 																ValueHelp: []*schemadefinition.ValueHelp{{
@@ -8774,7 +8775,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-65535",
+																ArgumentAttr: vyosTools.String("--range 1-65535"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -8846,7 +8847,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 1-240",
+														ArgumentAttr: vyosTools.String("--range 1-240"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -8936,7 +8937,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 1-65535",
+												ArgumentAttr: vyosTools.String("--range 1-65535"),
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{
@@ -8968,7 +8969,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 1-65535",
+												ArgumentAttr: vyosTools.String("--range 1-65535"),
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{
@@ -9205,7 +9206,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 48-128",
+														ArgumentAttr: vyosTools.String("--range 48-128"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -9489,7 +9490,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 						Local: "node",
 					},
 					NodeNameAttr: "pptp",
-					OwnerAttr:    "${vyos_conf_scripts_dir}/vpn_pptp.py",
+					OwnerAttr:    vyosTools.String("${vyos_conf_scripts_dir}/vpn_pptp.py"),
 					Properties: []*schemadefinition.Properties{{
 						XMLName: xml.Name{
 							Local: "properties",
@@ -9601,7 +9602,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																					Local: "validator",
 																				},
 																				NameAttr:     "numeric",
-																				ArgumentAttr: "--range 1-10000000",
+																				ArgumentAttr: vyosTools.String("--range 1-10000000"),
 																			}},
 																		}},
 																	}},
@@ -9625,7 +9626,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																					Local: "validator",
 																				},
 																				NameAttr:     "numeric",
-																				ArgumentAttr: "--range 1-10000000",
+																				ArgumentAttr: vyosTools.String("--range 1-10000000"),
 																			}},
 																		}},
 																	}},
@@ -9772,7 +9773,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 1-65535",
+																		ArgumentAttr: vyosTools.String("--range 1-65535"),
 																	}},
 																}},
 																ValueHelp: []*schemadefinition.ValueHelp{{
@@ -9877,7 +9878,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 0.001-1000 --float",
+																		ArgumentAttr: vyosTools.String("--range 0.001-1000 --float"),
 																	}},
 																}},
 																ValueHelp: []*schemadefinition.ValueHelp{{
@@ -9990,7 +9991,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 1-65535",
+																		ArgumentAttr: vyosTools.String("--range 1-65535"),
 																	}},
 																}},
 																ValueHelp: []*schemadefinition.ValueHelp{{
@@ -10023,7 +10024,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 1-65535",
+																		ArgumentAttr: vyosTools.String("--range 1-65535"),
 																	}},
 																}},
 																ValueHelp: []*schemadefinition.ValueHelp{{
@@ -10072,7 +10073,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 0-600",
+																		ArgumentAttr: vyosTools.String("--range 0-600"),
 																	}},
 																}},
 																ValueHelp: []*schemadefinition.ValueHelp{{
@@ -10104,7 +10105,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 1-255",
+																		ArgumentAttr: vyosTools.String("--range 1-255"),
 																	}},
 																}},
 																ValueHelp: []*schemadefinition.ValueHelp{{
@@ -10191,7 +10192,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-3600",
+																ArgumentAttr: vyosTools.String("--range 1-3600"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -10223,7 +10224,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-60",
+																ArgumentAttr: vyosTools.String("--range 1-60"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -10256,7 +10257,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-60",
+																ArgumentAttr: vyosTools.String("--range 1-60"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -10289,7 +10290,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 0-60",
+																ArgumentAttr: vyosTools.String("--range 0-60"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -10322,7 +10323,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-20",
+																ArgumentAttr: vyosTools.String("--range 1-20"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -10704,7 +10705,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 68-65535",
+														ArgumentAttr: vyosTools.String("--range 68-65535"),
 													}},
 												}},
 											}},
@@ -10728,7 +10729,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 68-65535",
+														ArgumentAttr: vyosTools.String("--range 68-65535"),
 													}},
 												}},
 											}},
@@ -10814,7 +10815,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--positive",
+														ArgumentAttr: vyosTools.String("--positive"),
 													}},
 												}},
 											}},
@@ -10839,7 +10840,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--positive",
+														ArgumentAttr: vyosTools.String("--positive"),
 													}},
 												}},
 											}},
@@ -10864,7 +10865,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--positive",
+														ArgumentAttr: vyosTools.String("--positive"),
 													}},
 												}},
 											}},
@@ -10888,7 +10889,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 1-256000",
+														ArgumentAttr: vyosTools.String("--range 1-256000"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -11141,7 +11142,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 1-2147483647",
+														ArgumentAttr: vyosTools.String("--range 1-2147483647"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -11226,7 +11227,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 0-5",
+														ArgumentAttr: vyosTools.String("--range 0-5"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -11329,7 +11330,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "ipv4-range-mask",
-														ArgumentAttr: "-m 24 -r",
+														ArgumentAttr: vyosTools.String("-m 24 -r"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -11468,7 +11469,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 48-128",
+																ArgumentAttr: vyosTools.String("--range 48-128"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -11535,7 +11536,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 32-64",
+																ArgumentAttr: vyosTools.String("--range 32-64"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -11687,7 +11688,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--allow-range --range 0-65535",
+												ArgumentAttr: vyosTools.String("--allow-range --range 0-65535"),
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{
@@ -11720,7 +11721,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 128-16384",
+												ArgumentAttr: vyosTools.String("--range 128-16384"),
 											}},
 										}},
 									}},
@@ -11746,7 +11747,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 1-512",
+												ArgumentAttr: vyosTools.String("--range 1-512"),
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{
@@ -11887,7 +11888,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 						Local: "node",
 					},
 					NodeNameAttr: "sstp",
-					OwnerAttr:    "${vyos_conf_scripts_dir}/vpn_sstp.py",
+					OwnerAttr:    vyosTools.String("${vyos_conf_scripts_dir}/vpn_sstp.py"),
 					Properties: []*schemadefinition.Properties{{
 						XMLName: xml.Name{
 							Local: "properties",
@@ -11983,7 +11984,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 1-10000000",
+																		ArgumentAttr: vyosTools.String("--range 1-10000000"),
 																	}},
 																}},
 															}},
@@ -12007,7 +12008,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																			Local: "validator",
 																		},
 																		NameAttr:     "numeric",
-																		ArgumentAttr: "--range 1-10000000",
+																		ArgumentAttr: vyosTools.String("--range 1-10000000"),
 																	}},
 																}},
 															}},
@@ -12154,7 +12155,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-65535",
+																ArgumentAttr: vyosTools.String("--range 1-65535"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -12259,7 +12260,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 0.001-1000 --float",
+																ArgumentAttr: vyosTools.String("--range 0.001-1000 --float"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -12372,7 +12373,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-65535",
+																ArgumentAttr: vyosTools.String("--range 1-65535"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -12405,7 +12406,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-65535",
+																ArgumentAttr: vyosTools.String("--range 1-65535"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -12454,7 +12455,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 0-600",
+																ArgumentAttr: vyosTools.String("--range 0-600"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -12486,7 +12487,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 																	Local: "validator",
 																},
 																NameAttr:     "numeric",
-																ArgumentAttr: "--range 1-255",
+																ArgumentAttr: vyosTools.String("--range 1-255"),
 															}},
 														}},
 														ValueHelp: []*schemadefinition.ValueHelp{{
@@ -12573,7 +12574,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 1-3600",
+														ArgumentAttr: vyosTools.String("--range 1-3600"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -12605,7 +12606,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 1-60",
+														ArgumentAttr: vyosTools.String("--range 1-60"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -12638,7 +12639,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 1-60",
+														ArgumentAttr: vyosTools.String("--range 1-60"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -12671,7 +12672,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 0-60",
+														ArgumentAttr: vyosTools.String("--range 0-60"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -12704,7 +12705,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 1-20",
+														ArgumentAttr: vyosTools.String("--range 1-20"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -13154,7 +13155,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 68-65535",
+												ArgumentAttr: vyosTools.String("--range 68-65535"),
 											}},
 										}},
 									}},
@@ -13178,7 +13179,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 68-65535",
+												ArgumentAttr: vyosTools.String("--range 68-65535"),
 											}},
 										}},
 									}},
@@ -13264,7 +13265,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--positive",
+												ArgumentAttr: vyosTools.String("--positive"),
 											}},
 										}},
 									}},
@@ -13289,7 +13290,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--positive",
+												ArgumentAttr: vyosTools.String("--positive"),
 											}},
 										}},
 									}},
@@ -13314,7 +13315,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--positive",
+												ArgumentAttr: vyosTools.String("--positive"),
 											}},
 										}},
 									}},
@@ -13338,7 +13339,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 1-256000",
+												ArgumentAttr: vyosTools.String("--range 1-256000"),
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{
@@ -13591,7 +13592,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 1-2147483647",
+												ArgumentAttr: vyosTools.String("--range 1-2147483647"),
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{
@@ -13676,7 +13677,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "numeric",
-												ArgumentAttr: "--range 0-5",
+												ArgumentAttr: vyosTools.String("--range 0-5"),
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{
@@ -13779,7 +13780,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 													Local: "validator",
 												},
 												NameAttr:     "ipv4-range-mask",
-												ArgumentAttr: "-m 24 -r",
+												ArgumentAttr: vyosTools.String("-m 24 -r"),
 											}},
 										}},
 										ValueHelp: []*schemadefinition.ValueHelp{{
@@ -13918,7 +13919,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 48-128",
+														ArgumentAttr: vyosTools.String("--range 48-128"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -13985,7 +13986,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 															Local: "validator",
 														},
 														NameAttr:     "numeric",
-														ArgumentAttr: "--range 32-64",
+														ArgumentAttr: vyosTools.String("--range 32-64"),
 													}},
 												}},
 												ValueHelp: []*schemadefinition.ValueHelp{{
@@ -14114,7 +14115,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 											Local: "validator",
 										},
 										NameAttr:     "numeric",
-										ArgumentAttr: "--allow-range --range 0-65535",
+										ArgumentAttr: vyosTools.String("--allow-range --range 0-65535"),
 									}},
 								}},
 								ValueHelp: []*schemadefinition.ValueHelp{{
@@ -14147,7 +14148,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 											Local: "validator",
 										},
 										NameAttr:     "numeric",
-										ArgumentAttr: "--range 68-1500",
+										ArgumentAttr: vyosTools.String("--range 68-1500"),
 									}},
 								}},
 								ValueHelp: []*schemadefinition.ValueHelp{{
@@ -14180,7 +14181,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 											Local: "validator",
 										},
 										NameAttr:     "numeric",
-										ArgumentAttr: "--range 1-65535",
+										ArgumentAttr: vyosTools.String("--range 1-65535"),
 									}},
 								}},
 								ValueHelp: []*schemadefinition.ValueHelp{{
@@ -14214,7 +14215,7 @@ func vpn() schemadefinition.InterfaceDefinition {
 											Local: "validator",
 										},
 										NameAttr:     "numeric",
-										ArgumentAttr: "--range 1-512",
+										ArgumentAttr: vyosTools.String("--range 1-512"),
 									}},
 								}},
 								ValueHelp: []*schemadefinition.ValueHelp{{

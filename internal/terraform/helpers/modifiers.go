@@ -9,7 +9,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/helpers/tools"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/helpers/tools"
 )
 
 // UnknownToNull

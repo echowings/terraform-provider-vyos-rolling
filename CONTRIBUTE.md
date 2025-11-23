@@ -32,7 +32,8 @@ If you are not using the devcontainer these are the steps for a fresh start:
 *   **Install Terraform/OpenTofu:** You'll need the Terraform or OpenTofu CLI to test the provider.
 *   **Install `tfplugindocs`:** This tool is used to generate documentation. You can install it with:
     ```bash
-    go install github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs@v0.19.4
+    #go install github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs@v0.19.4
+    go install github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs@latest
     ```
 *   **Configure Local Provider:** Create a `~/.terraformrc` file with the following content to tell Terraform to use your local build of the provider:
     ```
@@ -77,7 +78,7 @@ This will place the compiled provider binary in the `/dist` directory, where you
         make init
         ```
     3.  Create a `testing.tf` file (or similar) in that directory to define some resources you want to test.
-    4.  Run `tofu plan` to see what changes will be made, and `tofu apply` to apply them.
+    4.  Run `tofu plan` to see what changes will be made, and `tofu apply -auto-approve -parallelism=1` to apply them.
 
 **4. Updating Documentation and Code**
 
@@ -136,7 +137,7 @@ Let's say you've made a change to the provider and want to test it. For example,
     ```bash
     make init
     tofu plan
-    tofu apply
+    tofu apply -auto-approve -parallelism=1
     ```
 
     If the apply is successful, your change is working. You can then run `tofu destroy` to clean up the resources.

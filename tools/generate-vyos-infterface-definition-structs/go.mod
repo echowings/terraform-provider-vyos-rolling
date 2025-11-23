@@ -1,13 +1,13 @@
-module github.com/thomasfinstad/terraform-provider-vyos-rolling/tools/generate-vyos-infterface-definition-structs
+module github.com/echowings/terraform-provider-vyos-rolling/tools/generate-vyos-infterface-definition-structs
 
 go 1.24.0
 
-replace github.com/thomasfinstad/terraform-provider-vyos-rolling => ../../
+replace github.com/echowings/terraform-provider-vyos-rolling => ../../
 
 require (
 	github.com/dave/dst v0.27.3
 	github.com/gdexlab/go-render v1.0.1
-	github.com/thomasfinstad/terraform-provider-vyos-rolling v1.6.202408210
+	github.com/echowings/terraform-provider-vyos-rolling v1.6.202408210
 	golang.org/x/text v0.31.0
 )
 

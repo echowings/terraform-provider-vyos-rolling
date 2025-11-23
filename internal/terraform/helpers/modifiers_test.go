@@ -7,9 +7,9 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/attr"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/helpers"
-	serviceDnsForwarding "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/dns-forwarding/resourcemodel"
-	firewallBridgeInputFilterRule "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/firewall/bridge-input-filter-rule/resourcemodel"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/helpers"
+	serviceDnsForwarding "github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/global/service/dns-forwarding/resourcemodel"
+	firewallBridgeInputFilterRule "github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/firewall/bridge-input-filter-rule/resourcemodel"
 )
 
 func TestModifiersUnknownToNull(t *testing.T) {

@@ -20,7 +20,7 @@ description: |-
 
 </center>
 
--> This provider is in "early access", please see the current status at: https://github.com/thomasfinstad/terraform-provider-vyos-rolling/milestones?state=open
+-> This provider is in "early access", please see the current status at: https://github.com/echowings/terraform-provider-vyos-rolling/milestones?state=open
 
 <!--TOC-->
 
@@ -36,7 +36,6 @@ description: |-
       - [listen_address](#listen_address)
       - [loglevel](#loglevel)
       - [mac](#mac)
-      - [permit_root_login](#permit_root_login)
       - [port](#port)
       - [pubkey_accepted_algorithm](#pubkey_accepted_algorithm)
       - [timeouts](#timeouts)
@@ -89,8 +88,6 @@ description: |-
     |  verbose  &emsp;|  enable logging of failed login attempts  |
 #### mac
 - `mac` (List of String) Allowed message authentication code (MAC) algorithms
-#### permit_root_login
-- `permit_root_login` (Boolean) Permit root login
 #### port
 - `port` (List of Number) Port for SSH service
 

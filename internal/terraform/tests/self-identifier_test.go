@@ -5,7 +5,7 @@ import (
 
 	"github.com/go-test/deep"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
-	modelIfaceEth "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/interfaces/ethernet/resourcemodel"
+	modelIfaceEth "github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/interfaces/ethernet/resourcemodel"
 )
 
 /*
@@ -26,14 +26,14 @@ Stack trace from the terraform-provider-vyos-rolling_v13.0.202411271 plugin:
 panic: interface conversion: attr.Value is nil, not basetypes.StringValue
 
 goroutine 197 [running]:
-github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/interfaces/ethernet/resourcemodel.(*InterfacesEthernet).GetVyosPath(0xc0006c0820)
-        github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/interfaces/ethernet/resourcemodel/interfaces-ethernet.go:106 +0x29f
-github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/helpers/crud.read({0x1b5b2a8, 0xc000c59ea0}, {{{0x1b48fc0, 0xc00042a300}, 0x0, {0x0, 0x0}, 0x0}, {0x18ffc8a, 0x29}, ...}, ...)
-        github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/helpers/crud/read.go:67 +0x105
-github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/helpers/crud.Read({0x1b5b200, 0xc000635a10}, {0x1b55138, 0xc00003c3c0}, {{{{0x1b83ff8, 0xc0012f07e0}, {0x15bfae0, 0xc0012f01b0}}, {0x1b85cc8, 0xc0000194a0}}, ...}, ...)
-        github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/helpers/crud/read.go:44 +0x4d8
-github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/interfaces/ethernet.(*interfacesEthernet).Read(0x0?, {0x1b5b200?, 0xc000635a10?}, {{{{0x1b83ff8, 0xc0012f07e0}, {0x15bfae0, 0xc0012f01b0}}, {0x1b85cc8, 0xc0000194a0}}, 0xc0004680d8, ...}, ...)
-        github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/interfaces/ethernet/crud.go:22 +0x6d
+github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/interfaces/ethernet/resourcemodel.(*InterfacesEthernet).GetVyosPath(0xc0006c0820)
+        github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/interfaces/ethernet/resourcemodel/interfaces-ethernet.go:106 +0x29f
+github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/helpers/crud.read({0x1b5b2a8, 0xc000c59ea0}, {{{0x1b48fc0, 0xc00042a300}, 0x0, {0x0, 0x0}, 0x0}, {0x18ffc8a, 0x29}, ...}, ...)
+        github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/helpers/crud/read.go:67 +0x105
+github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/helpers/crud.Read({0x1b5b200, 0xc000635a10}, {0x1b55138, 0xc00003c3c0}, {{{{0x1b83ff8, 0xc0012f07e0}, {0x15bfae0, 0xc0012f01b0}}, {0x1b85cc8, 0xc0000194a0}}, ...}, ...)
+        github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/helpers/crud/read.go:44 +0x4d8
+github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/interfaces/ethernet.(*interfacesEthernet).Read(0x0?, {0x1b5b200?, 0xc000635a10?}, {{{{0x1b83ff8, 0xc0012f07e0}, {0x15bfae0, 0xc0012f01b0}}, {0x1b85cc8, 0xc0000194a0}}, 0xc0004680d8, ...}, ...)
+        github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/resource/autogen/named/interfaces/ethernet/crud.go:22 +0x6d
 github.com/hashicorp/terraform-plugin-framework/internal/fwserver.(*Server).ReadResource(0xc00017d080, {0x1b5b200, 0xc000635a10}, 0xc000635b30, 0xc0005cb648)
         github.com/hashicorp/terraform-plugin-framework@v1.3.5/internal/fwserver/server_readresource.go:101 +0x62e
 github.com/hashicorp/terraform-plugin-framework/internal/proto6server.(*Server).ReadResource(0xc00017d080, {0x1b5b200?, 0xc000635860?}, 0xc000406d00)

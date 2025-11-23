@@ -162,6 +162,9 @@ internal/vyos/schemadefinition/autogen-structs.go: data/vyos-1x-info.txt interna
 	# the files in the directory, which would cause make to
 	# see vyos-1x as newer than the interface-definitions
 	# causing interface-definitions to always rebuild
+	sudo docker stop make-interface-definitions || true
+	sudo docker rm make-interface-definitions || true
+	sudo docker volume rm repo || true
 	sudo docker volume create --name repo
 	sudo docker container create --name make-interface-definitions -v repo:/docker-volume busybox
 	sudo docker cp .build/vyos-1x make-interface-definitions:/docker-volume

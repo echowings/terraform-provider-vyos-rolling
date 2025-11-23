@@ -1,4 +1,4 @@
-module github.com/thomasfinstad/terraform-provider-vyos-rolling
+module github.com/echowings/terraform-provider-vyos-rolling
 
 go 1.24.0
 

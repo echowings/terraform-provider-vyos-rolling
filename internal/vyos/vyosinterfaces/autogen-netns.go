@@ -5,7 +5,8 @@ package vyosinterface
 import (
 	"encoding/xml"
 
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
+	vyosTools "github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/helpers/tools"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
 )
 
 func netns() schemadefinition.InterfaceDefinition {
@@ -19,7 +20,7 @@ func netns() schemadefinition.InterfaceDefinition {
 				Local: "node",
 			},
 			NodeNameAttr: "netns",
-			OwnerAttr:    "${vyos_conf_scripts_dir}/netns.py",
+			OwnerAttr:    vyosTools.String("${vyos_conf_scripts_dir}/netns.py"),
 			Properties: []*schemadefinition.Properties{{
 				XMLName: xml.Name{
 					Local: "properties",

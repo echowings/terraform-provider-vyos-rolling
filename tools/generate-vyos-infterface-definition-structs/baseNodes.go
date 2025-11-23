@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
 )
 
 func markBaseTagNodes(rootNode schemadefinition.NodeParent) {

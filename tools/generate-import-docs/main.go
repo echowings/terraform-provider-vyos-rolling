@@ -8,7 +8,7 @@ import (
 	"runtime"
 	"text/template"
 
-	vyosinterfaces "github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/vyos/vyosinterfaces"
+	vyosinterfaces "github.com/echowings/terraform-provider-vyos-rolling/internal/vyos/vyosinterfaces"
 )
 
 type resourceInfo struct {

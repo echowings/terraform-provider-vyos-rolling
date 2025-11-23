@@ -9,10 +9,10 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/client"
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/helpers"
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/helpers/tools"
-	"github.com/thomasfinstad/terraform-provider-vyos-rolling/internal/terraform/provider/data"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/client"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/helpers"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/helpers/tools"
+	"github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/provider/data"
 )
 
 type resourcePathCtxKey string
