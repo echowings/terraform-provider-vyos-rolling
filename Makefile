@@ -12,7 +12,7 @@ MAKEFLAGS += --no-builtin-rules
 ROOT_DIR := $(CURDIR)
 
 HOSTNAME=github.com
-NAMESPACE=thomasfinstad
+NAMESPACE=echowings
 PROVIDER_NAME=vyos-rolling
 DIST_DIR="/dist"
 GO_IMPORT_ROOT=${HOSTNAME}/${NAMESPACE}/terraform-provider-${PROVIDER_NAME}
