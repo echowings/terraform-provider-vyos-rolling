@@ -9,6 +9,9 @@ import (
 	"github.com/echowings/terraform-provider-vyos-rolling/internal/vyos/schemadefinition"
 )
 
+// Dummy import to prevent "imported and not used" error
+var _ = vyosTools.String("")
+
 func policy() schemadefinition.InterfaceDefinition {
 	return schemadefinition.InterfaceDefinition{
 		XMLName: xml.Name{
