@@ -60,8 +60,7 @@ func GenerateGitChanges() (previousVersion *version.Version, commitsSinceLastVer
 
 		cc, err := ccm.Parse([]byte(c.Message))
 		if err != nil {
-			var errConventional *conventionalcommits.ErrConventional
-			if errors.As(err, &errConventional) {
+			if conventionalcommits.IsNotConventional(err) {
 				return nil
 			}
 		}
