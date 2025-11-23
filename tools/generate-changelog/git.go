@@ -1,6 +1,8 @@
 package main
 
 import (
+	"errors"
+
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing"
 	"github.com/go-git/go-git/v5/plumbing/object"
@@ -13,41 +15,56 @@ func GenerateGitChanges() (previousVersion *version.Version, commitsSinceLastVer
 	repo, err := git.PlainOpen("../..")
 	die(err)
 
-	previousVersion, err = version.NewVersion("0.0.0")
+	tags, err := repo.Tags()
 	die(err)
 
-	itr, err := repo.Tags()
+	latestVersion, err := version.NewVersion("0.0.0")
 	die(err)
-	err = itr.ForEach(func(ref *plumbing.Reference) error {
+	var latestVersionRef *plumbing.Reference
+	err = tags.ForEach(func(ref *plumbing.Reference) error {
 		v, err := version.NewVersion(ref.Name().Short())
-		die(err)
-		if v.GreaterThan(previousVersion) {
-			previousVersion = v
+		if err != nil {
+			return nil
+		}
+		if v.GreaterThan(latestVersion) {
+			latestVersion = v
+			latestVersionRef = ref
 		}
 		return nil
 	})
 	die(err)
+	previousVersion = latestVersion
 
-	hash, err := repo.ResolveRevision(plumbing.Revision(previousVersion.Original()))
-	die(err)
-	releaseCommit, err := repo.CommitObject(*hash)
-	die(err)
+	var logOptions git.LogOptions
+	logOptions.Order = git.LogOrderCommitterTime
 
-	commits, err := repo.Log(&git.LogOptions{
-		Since: &releaseCommit.Author.When,
-		Order: git.LogOrderCommitterTime,
-	})
+	if latestVersionRef != nil {
+		releaseCommit, err := repo.CommitObject(latestVersionRef.Hash())
+		die(err)
+		logOptions.Since = &releaseCommit.Author.When
+	}
+
+	commits, err := repo.Log(&logOptions)
 	die(err)
 
 	chgs := make([]conventionalcommits.Message, 0)
 	ccm := parser.NewMachine(parser.WithTypes(conventionalcommits.TypesConventional), parser.WithBestEffort())
 
-	// skip the commit for the previous release
-	_, err = commits.Next()
-	die(err)
+	err = commits.ForEach(func(c *object.Commit) error {
+		if c == nil {
+			return nil
+		}
+		if latestVersionRef != nil && c.Hash == latestVersionRef.Hash() {
+			return nil
+		}
 
-	err = commits.ForEach(func(commit *object.Commit) error {
-		cc, _ := ccm.Parse([]byte(commit.Message))
+		cc, err := ccm.Parse([]byte(c.Message))
+		if err != nil {
+			var errConventional *conventionalcommits.ErrConventional
+			if errors.As(err, &errConventional) {
+				return nil
+			}
+		}
 
 		chgs = append(chgs, cc)
 		return nil

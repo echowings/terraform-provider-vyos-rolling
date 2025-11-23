@@ -459,7 +459,12 @@ changelog:
 	mv CHANGELOG.md .build/old-CHANGELOG.md
 
 	echo Copy out provider schema from last tagged release
-	git show "$$(git tag | sort -V | tail -n1)":data/provider-schema.json > .build/old-provider-schema.json
+	LAST_TAG=$$(git tag -l 'v*' --sort='-v:refname' | head -n1)
+	if [ -z "$$LAST_TAG" ]; then
+		echo "{}" > .build/old-provider-schema.json
+	else
+		git show "$$LAST_TAG":data/provider-schema.json > .build/old-provider-schema.json
+	fi
 	cd tools/generate-changelog
 	echo Generate changelog
 	go run *.go ../../.build/old-provider-schema.json ../../.build/new-provider-schema.json
@@ -544,7 +549,11 @@ ci-update:
 	make docs/index.md
 
 	echo Check for changes since last release
-	if git diff --ignore-matching-lines='[0-9-]+T[0-9:]+Z' --exit-code --stat  "$$(git tag -l v* | sort -V | tail -n1)" >/dev/null; then
+	LAST_TAG=$$(git tag -l 'v*' --sort='-v:refname' | head -n1)
+	if [ -z "$$LAST_TAG" ]; then
+		LAST_TAG=$$(git rev-list --max-parents=0 HEAD)
+	fi
+	if git diff --ignore-matching-lines='[0-9-]+T[0-9:]+Z' --exit-code --stat  "$$LAST_TAG" >/dev/null; then
 		echo "No changes to provider files since last release"
 		exit 0
 	fi
