@@ -12,6 +12,9 @@ jobs:
         with:
           fetch-tags: true
           fetch-depth: 0
+      - name: Get Go version
+        id: go-version
+        run: echo "go_version=$(grep -oP 'go \K[0-9\.]+' go.mod)" >> $GITHUB_OUTPUT
       - uses: docker/setup-buildx-action@v2
       - uses: docker/build-push-action@v4
         with:
@@ -22,6 +25,8 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           push: false
+          build-args: |
+            GO_VERSION=${{ steps.go-version.outputs.go_version }}
       - name: "Run Makefile target: ci-update"
         uses: addnab/docker-run-action@v3
         with:
@@ -72,20 +77,20 @@ jobs:
           swap-storage: true
       - name: Setup Golang
         if: steps.git-push.outputs.git_status == 'pushed'
-        uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 # v5.0.0
+        uses: actions/setup-go@v5
         with:
           go-version-file: 'go.mod'
           cache: true
       - name: Import GPG key
         if: steps.git-push.outputs.git_status == 'pushed'
-        uses: crazy-max/ghaction-import-gpg@01dd5d3ca463c7f10f7f4f7b4f177225ac661ee4 # v6.1.0
+        uses: crazy-max/ghaction-import-gpg@v6
         id: import_gpg
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
       - name: Run GoReleaser
         if: steps.git-push.outputs.git_status == 'pushed'
-        uses: goreleaser/goreleaser-action@7ec5c2b0c6cdda6e8bbb49444bc797dd33d74dd8 # v5.0.0
+        uses: goreleaser/goreleaser-action@v5
         with:
           args: release --clean --release-notes CHANGELOG-FOR-GO-RELEASER.md.tmp
         env:

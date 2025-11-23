@@ -12,14 +12,12 @@ RUN apt-get update
 RUN apt-get dist-upgrade -y
 
 RUN apt-get install -y software-properties-common
-RUN add-apt-repository ppa:longsleep/golang-backports
 
 RUN apt-get install -y \
     python3 \
     jq \
     make \
     openjdk-17-jre \
-    golang-go \
     git \
     docker.io \
     bash-completion \
@@ -28,6 +26,12 @@ RUN apt-get install -y \
     pipx \
     xorriso \
     squashfs-tools
+
+# Install Go
+ARG GO_VERSION=1.24.0
+RUN curl -L https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz -o go${GO_VERSION}.linux-amd64.tar.gz
+RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
+ENV PATH=$PATH:/usr/local/go/bin
 
 ENV DEBIAN_FRONTEND=""
 
