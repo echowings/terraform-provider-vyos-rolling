@@ -5,8 +5,8 @@ import (
 	"flag"
 	"log"
 
+	"github.com/echowings/terraform-provider-vyos-rolling/provider"
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
-	"github.com/echowings/terraform-provider-vyos-rolling/internal/terraform/provider"
 )
 
 var (
@@ -40,7 +40,6 @@ func main() {
 	//  currently implemented in internal/terraform/helpers/tools/log.go
 	//  milestone: 6
 	err := providerserver.Serve(context.Background(), provider.New(version), opts)
-
 	if err != nil {
 		log.Fatal(err.Error())
 	}
